@@ -72,6 +72,7 @@ public class Bullet : MonoBehaviour
                 timeLife = BloodEffect.main.startLifetime.constant + 0.2f;
                 modelBullet.SetActive(false);
                 enableMovement = false;
+                rig.velocity = Vector3.zero;
                 break;
         }
     }

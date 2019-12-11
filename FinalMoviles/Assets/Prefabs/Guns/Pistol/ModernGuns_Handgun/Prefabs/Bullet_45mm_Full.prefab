@@ -46,9 +46,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.02
-  m_Height: 0.1
+  m_Height: 0.12599969
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: -0.0015582144}
 --- !u!54 &54238672335603214
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -302,16 +302,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4396417133449288}
     m_Modifications:
-    - target: {fileID: 8559803344244416185, guid: 545d25241a6fc5f40a1c0577d2339647,
-        type: 3}
-      propertyPath: m_Name
-      value: BloodEffect
-      objectReference: {fileID: 0}
-    - target: {fileID: 8559803344244416185, guid: 545d25241a6fc5f40a1c0577d2339647,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8559803344244416190, guid: 545d25241a6fc5f40a1c0577d2339647,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -396,6 +386,16 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8559803344244416185, guid: 545d25241a6fc5f40a1c0577d2339647,
+        type: 3}
+      propertyPath: m_Name
+      value: BloodEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 8559803344244416185, guid: 545d25241a6fc5f40a1c0577d2339647,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 545d25241a6fc5f40a1c0577d2339647, type: 3}
