@@ -5,7 +5,7 @@ using UnityStandardAssets.CrossPlatformInput;
 namespace UnityStandardAssets.Characters.FirstPerson
 {
     [Serializable]
-    public class MouseLook 
+    public class MouseLook
     {
         public float XSensitivity = 2f;
         public float YSensitivity = 2f;
@@ -21,9 +21,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private Quaternion m_CameraTargetRot;
         private bool m_cursorIsLocked = true;
 
-        [HideInInspector]
-        public Vector2 LookAxis;
-
         public void Init(Transform character, Transform camera)
         {
             m_CharacterTargetRot = character.localRotation;
@@ -33,46 +30,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         public void LookRotation(Transform character, Transform camera)
         {
-#if UNITY_STANDALONE
-            //PARA LA COMPU USAR ESTO
             float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
             float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
+
             m_CharacterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
             m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
-            //-----------------------------------
-            //PARA CELULAR USAR ESTO
-            //float yRot = LookAxis.x * XSensitivity;
-            //float xRot = LookAxis.y * YSensitivity;
-            //m_CharacterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
-            //m_CameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);
-#elif UNITY_EDITOR
-            //(descomentar esto en caso que se quiera probar para windows)
-            //float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
-            //float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
-            //(descomentar esto en caso de que se quiera probar para celular)
-            float yRot = LookAxis.x * XSensitivity;
-            float xRot = LookAxis.y * YSensitivity;
-            //------------------------------------
-            m_CharacterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
-            m_CameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);
-#elif UNITY_ANDROID
-            //PARA CELULAR USAR ESTO
-            float yRot = LookAxis.x * XSensitivity;
-            float xRot = LookAxis.y * YSensitivity;
-            m_CharacterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
-            m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
-            //------------------------------------
-#elif UNITY_WIN
-            float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
-            float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
-            m_CharacterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
-            m_CameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);
-#endif
 
-
-            if (clampVerticalRotation)
+            if(clampVerticalRotation)
                 m_CameraTargetRot = ClampRotationAroundXAxis (m_CameraTargetRot);
-            if (smooth)
+
+            if(smooth)
             {
                 character.localRotation = Quaternion.Slerp (character.localRotation, m_CharacterTargetRot,
                     smoothTime * Time.deltaTime);
@@ -118,8 +85,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             if (m_cursorIsLocked)
             {
-                //Cursor.lockState = CursorLockMode.Locked;
-                //Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
             else if (!m_cursorIsLocked)
             {

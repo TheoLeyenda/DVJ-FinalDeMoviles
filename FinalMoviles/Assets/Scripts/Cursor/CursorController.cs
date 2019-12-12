@@ -6,16 +6,14 @@ public class CursorController : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool initHidderCursor;
-    void Start()
-    {
-        
-    }
     private void Update()
     {
+#if !UNITY_ANDROID
         if (initHidderCursor)
         {
             DisableMouse();
         }
+#endif
     }
     public void DisableMouse()
     {
