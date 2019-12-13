@@ -31,17 +31,11 @@ public class Gun : MonoBehaviour
 
     private void Update()
     {
-        CheckShoot();
+        //CheckShoot();
         CheckRateOfShoot();
-        CheckReload();
+        //CheckReload();
     }
-    public void CheckReload()
-    {
-        if (Input.GetButtonDown("ReloadButton"))
-        {
-            Reload();
-        }
-    }
+    
     public virtual void Shoot(TypeGun _typeGun)
     {
         GameObject go = poolBullets.GetObject();
@@ -61,34 +55,7 @@ public class Gun : MonoBehaviour
                 break;
         }
     }
-    public void CheckShoot()
-    {
-        //Debug.Log(bulletInCharger);
-        //Debug.Log(enableShoot);
-        if (bulletInCharger > 0 && enableShoot)
-        {
-            if (rateOfShoot <= 0)
-            {
-                switch (typeGun)
-                {
-                    case TypeGun.Automatic:
-                        if (Input.GetButton("Fire"))
-                            Shoot(TypeGun.Automatic);
-                        break;
-                    case TypeGun.Blast:
-                        if (Input.GetButtonDown("Fire"))
-                            Shoot(TypeGun.Blast);
-                        break;
-                    case TypeGun.Semiautomatic:
-                        if (Input.GetButtonDown("Fire"))
-                            Shoot(TypeGun.Semiautomatic);
-                        break;
-                }
-                enableShoot = false;
-                rateOfShoot = auxRateOfShoot;
-            }
-        }
-    }
+    
     public void CheckRateOfShoot()
     {
         if (rateOfShoot > 0)
@@ -103,6 +70,22 @@ public class Gun : MonoBehaviour
     public virtual void Reload()
     {
         bulletInCharger = countBullets;
+    }
+    public int GetBulletInCharger()
+    {
+        return bulletInCharger;
+    }
+    public bool GetEnableShoot()
+    {
+        return enableShoot;
+    }
+    public float GetAuxRateOfShoot()
+    {
+        return auxRateOfShoot;
+    }
+    public void SetEnableShoot(bool _enableShoot)
+    {
+        enableShoot = _enableShoot;
     }
 }
 

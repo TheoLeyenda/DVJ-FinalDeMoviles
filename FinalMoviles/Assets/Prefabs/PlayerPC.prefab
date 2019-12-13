@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 3688233052847534017}
   - component: {fileID: 3688233052836428097}
   - component: {fileID: 3688233052833842113}
+  - component: {fileID: -3791291881156921386}
   m_Layer: 0
   m_Name: PlayerPC
   m_TagString: Untagged
@@ -322,6 +323,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &-3791291881156921386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3688233052841482785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7112b7bf8d68cfa40a871bdadd89971c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipedGuns:
+  - {fileID: 5474659508566658243}
 --- !u!1 &3688233052841482787
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,6 +507,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3688233052297753672}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5474659508566658243 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8707386325295921291, guid: dfe8fefa5bc33d54c9e0a213c042b75d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3688233052297753672}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f492749793fc3c841b1b65b041dbc50b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3686617815454271262 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1762746446689110, guid: dfe8fefa5bc33d54c9e0a213c042b75d,
