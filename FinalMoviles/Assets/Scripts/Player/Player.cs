@@ -31,6 +31,14 @@ public class Player : MonoBehaviour
         {
             ReloadCurrentGun();
         }
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            SwichtGunUp();
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            SwichtGunDown();
+        }
     }
     public void SwichtGunUp()
     {
