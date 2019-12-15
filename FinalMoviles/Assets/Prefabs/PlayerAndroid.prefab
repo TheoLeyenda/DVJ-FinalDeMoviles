@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 4780681361225400682}
   - component: {fileID: 4780681361222843370}
   - component: {fileID: 4185524291553529853}
+  - component: {fileID: -4770799351104266515}
   m_Layer: 0
   m_Name: PlayerAndroid
   m_TagString: Untagged
@@ -430,6 +431,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipedGuns:
   - {fileID: 4219518692025971944}
+--- !u!114 &-4770799351104266515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4780681361230406154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf9db670c1df4bb2843b82560ce5409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 9abce3e87c5b94d899d1dbbdc1b9a2ff, type: 3}
+  size: {x: 20, y: 20}
+  rotateWithObject: 1
+  upAxis: {x: 0, y: 1, z: 0}
+  initialIconRotation: 0
+  clampIconInBorder: 1
+  clampDistance: 100
 --- !u!1001 &4780681360060739292
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -445,16 +465,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -1894409914340694612, guid: f2b3bff7c9d735441b445bb19a2fe9cc,
-        type: 3}
-      propertyPath: GeneratorBullet
-      value: 
-      objectReference: {fileID: 4782017146062864168}
-    - target: {fileID: -1894409914340694612, guid: f2b3bff7c9d735441b445bb19a2fe9cc,
-        type: 3}
-      propertyPath: poolBullets
-      value: 
-      objectReference: {fileID: 6792589368578165934}
     - target: {fileID: 4878850369403266, guid: f2b3bff7c9d735441b445bb19a2fe9cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -499,6 +509,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1894409914340694612, guid: f2b3bff7c9d735441b445bb19a2fe9cc,
+        type: 3}
+      propertyPath: GeneratorBullet
+      value: 
+      objectReference: {fileID: 4782017146062864168}
+    - target: {fileID: -1894409914340694612, guid: f2b3bff7c9d735441b445bb19a2fe9cc,
+        type: 3}
+      propertyPath: poolBullets
+      value: 
+      objectReference: {fileID: 6792589368578165934}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2b3bff7c9d735441b445bb19a2fe9cc, type: 3}
 --- !u!4 &4776402858783168350 stripped
@@ -615,6 +635,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4780681360581406810}
     m_Modifications:
+    - target: {fileID: 2380609469716419134, guid: b23b7fe9f41597e49bbf7bc32d69016e,
+        type: 3}
+      propertyPath: m_Name
+      value: PoolBulletPistol
+      objectReference: {fileID: 0}
     - target: {fileID: 1160526957699646465, guid: b23b7fe9f41597e49bbf7bc32d69016e,
         type: 3}
       propertyPath: Ball
@@ -625,11 +650,6 @@ PrefabInstance:
         type: 3}
       propertyPath: count
       value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2380609469716419134, guid: b23b7fe9f41597e49bbf7bc32d69016e,
-        type: 3}
-      propertyPath: m_Name
-      value: PoolBulletPistol
       objectReference: {fileID: 0}
     - target: {fileID: 2126681388316031242, guid: b23b7fe9f41597e49bbf7bc32d69016e,
         type: 3}
