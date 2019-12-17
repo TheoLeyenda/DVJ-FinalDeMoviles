@@ -194,8 +194,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IsWalking: 0
-  m_WalkSpeed: 5
-  m_RunSpeed: 10
+  m_WalkSpeed: 2
+  m_RunSpeed: 4
   m_RunstepLenghten: 0.7
   m_JumpSpeed: 10
   m_StickToGroundForce: 10
@@ -540,24 +540,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4780681360581406810}
     m_Modifications:
-    - target: {fileID: 1810581554106536, guid: dfe8fefa5bc33d54c9e0a213c042b75d, type: 3}
-      propertyPath: m_Name
-      value: Handgun_M1911A_Black
-      objectReference: {fileID: 0}
-    - target: {fileID: 1810581554106536, guid: dfe8fefa5bc33d54c9e0a213c042b75d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8707386325295921291, guid: dfe8fefa5bc33d54c9e0a213c042b75d,
-        type: 3}
-      propertyPath: poolBullets
-      value: 
-      objectReference: {fileID: 6792589368578165934}
-    - target: {fileID: 8707386325295921291, guid: dfe8fefa5bc33d54c9e0a213c042b75d,
-        type: 3}
-      propertyPath: GeneratorBullet
-      value: 
-      objectReference: {fileID: 4782303195697774389}
     - target: {fileID: 4235179229403270, guid: dfe8fefa5bc33d54c9e0a213c042b75d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -602,6 +584,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1810581554106536, guid: dfe8fefa5bc33d54c9e0a213c042b75d, type: 3}
+      propertyPath: m_Name
+      value: Handgun_M1911A_Black
+      objectReference: {fileID: 0}
+    - target: {fileID: 1810581554106536, guid: dfe8fefa5bc33d54c9e0a213c042b75d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8707386325295921291, guid: dfe8fefa5bc33d54c9e0a213c042b75d,
+        type: 3}
+      propertyPath: poolBullets
+      value: 
+      objectReference: {fileID: 6792589368578165934}
+    - target: {fileID: 8707386325295921291, guid: dfe8fefa5bc33d54c9e0a213c042b75d,
+        type: 3}
+      propertyPath: GeneratorBullet
+      value: 
+      objectReference: {fileID: 4782303195697774389}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfe8fefa5bc33d54c9e0a213c042b75d, type: 3}
 --- !u!4 &4780412132833891557 stripped
@@ -635,11 +635,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4780681360581406810}
     m_Modifications:
-    - target: {fileID: 2380609469716419134, guid: b23b7fe9f41597e49bbf7bc32d69016e,
-        type: 3}
-      propertyPath: m_Name
-      value: PoolBulletPistol
-      objectReference: {fileID: 0}
     - target: {fileID: 1160526957699646465, guid: b23b7fe9f41597e49bbf7bc32d69016e,
         type: 3}
       propertyPath: Ball
@@ -705,6 +700,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2380609469716419134, guid: b23b7fe9f41597e49bbf7bc32d69016e,
+        type: 3}
+      propertyPath: m_Name
+      value: PoolBulletPistol
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23b7fe9f41597e49bbf7bc32d69016e, type: 3}

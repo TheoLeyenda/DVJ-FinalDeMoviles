@@ -8,12 +8,15 @@ namespace DarkTreeFPS
 {
     public class FPSController : MonoBehaviour
     {
+        public GameObject prefabPlayerPC;
+        public GameObject prefabPlayerAndroid;
+        public Transform posCamara;
         [Header("Movement Settings")]
         public float moveSpeed = 1f;
         public float crouchSpeed = 0.4f;
         public float runSpeedMultiplier = 2f;
         public float jumpForce = 4f;
-        
+        public float height;
         public float crouchHeight = 0.5f;
         private bool crouch = false;
 
@@ -54,7 +57,14 @@ namespace DarkTreeFPS
         Vector3 dirVector;
 
         InputManager inputManager;
-
+        private void Awake()
+        {
+#if UNITY_ANDROID
+            prefabPlayerPC.SetActive(false);
+#else
+            prefabPlayerAndroid.SetActive(false);
+#endif
+        }
         private void Start()
         {
             controllerRigidbody = GetComponent<Rigidbody>();
@@ -284,7 +294,7 @@ namespace DarkTreeFPS
             if (crouch == true)
             {
                 controllerCollider.height = crouchHeight;
-                camHolder.transform.localPosition = new Vector3(0, 0.2f, 0);
+                camHolder.transform.localPosition = new Vector3(0, posCamara.localPosition.y/2, 0);
             }
             else
             {
@@ -294,8 +304,8 @@ namespace DarkTreeFPS
                 ray.direction = transform.up;
                 if (!Physics.Raycast(ray, out hit, 1))
                 {
-                    camHolder.transform.localPosition = new Vector3(0, 0.4f, 0);
-                    controllerCollider.height = 1.6f;
+                    camHolder.transform.localPosition = new Vector3(0, posCamara.localPosition.y,0); 
+                    controllerCollider.height = height;
                     crouch = false;
                 }
                 else
