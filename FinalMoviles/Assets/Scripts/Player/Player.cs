@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButton("Fire"))
         {
-            ShootGunEquiped();
+            //ShootGunEquiped();
         }
         if (Input.GetButton("ReloadButton"))
         {
@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
         }
         currentGun = equipedGuns[indexGun];
     }
+    /*
     public void ShootGunEquiped()
     {
         if (currentGun.GetBulletInCharger() > 0 && currentGun.GetEnableShoot())
@@ -86,6 +87,7 @@ public class Player : MonoBehaviour
             }
         }
     }
+    */
     public void ReloadCurrentGun()
     {
         currentGun.Reload();

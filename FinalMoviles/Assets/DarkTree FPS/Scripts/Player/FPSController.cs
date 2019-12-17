@@ -3,6 +3,8 @@
 /// Thanks for purchasing my asset!
 
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
+using UnityStandardAssets.Utility;
 
 namespace DarkTreeFPS
 {
@@ -227,7 +229,7 @@ namespace DarkTreeFPS
                 weaponHolderAnimator.SetBool("HideWeapon", true);
                 controllerRigidbody.useGravity = false;
                 
-                    dirVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+                    dirVector = new Vector3(CrossPlatformInputManager.GetAxis("Horizontal"), 0, CrossPlatformInputManager.GetAxis("Vertical")).normalized;
                 
                 
                 Vector3 verticalDirection = transform.up;
@@ -240,7 +242,7 @@ namespace DarkTreeFPS
                 weaponHolderAnimator.SetBool("HideWeapon", false);
                 controllerRigidbody.useGravity = true;
                 
-                    dirVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+                    dirVector = new Vector3(CrossPlatformInputManager.GetAxis("Horizontal"), 0, CrossPlatformInputManager.GetAxis("Vertical")).normalized;
                 
                 Vector3 moveDirection = camForward * dirVector.z + camRight * dirVector.x;
 
@@ -250,7 +252,7 @@ namespace DarkTreeFPS
 
         bool CheckMovement()
         {
-                if (Input.GetAxis("Vertical") > 0 || Input.GetAxis("Vertical") < 0 || Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0)
+                if (CrossPlatformInputManager.GetAxis("Vertical") > 0 || CrossPlatformInputManager.GetAxis("Vertical") < 0 || CrossPlatformInputManager.GetAxis("Horizontal") > 0 || CrossPlatformInputManager.GetAxis("Horizontal") < 0)
                 {
                     return true;
                 }
@@ -265,11 +267,11 @@ namespace DarkTreeFPS
 
                 Vector2 mouseDelta = new Vector2();
             
-                    mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+                    mouseDelta = new Vector2(CrossPlatformInputManager.GetAxisRaw("Mouse X"), CrossPlatformInputManager.GetAxisRaw("Mouse Y"));
                 
 
                 mouseDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity.x * smoothing.x, sensitivity.y * smoothing.y));
-
+                
                 _smoothMouse.x = Mathf.Lerp(_smoothMouse.x, mouseDelta.x, 1f / smoothing.x);
                 _smoothMouse.y = Mathf.Lerp(_smoothMouse.y, mouseDelta.y, 1f / smoothing.y);
 
