@@ -114,7 +114,7 @@ namespace DarkTreeFPS
         public void FireCurrentWeapon()
         {
             //DISPARO
-            if (activeSlot != null && activeSlot.storedWeapon != null)
+            if (activeSlot.storedWeapon.weaponName != "Knife")
             {
                 if (Input.GetKey(activeSlot.storedWeapon.input.Fire) && !PlayerStats.isPlayerDead && activeSlot.storedWeapon.weaponType != WeaponType.Pistol && !InventoryManager.showInventory && activeSlot.storedWeapon.fireMode == Weapon.FireMode.automatic)  //Statement to restrict auto-fire for pistol weapon type. Riffle and others are automatic
                 {
@@ -128,19 +128,20 @@ namespace DarkTreeFPS
         }
         public void ReloadCurrentWeapon()
         {
-            if (activeSlot != null && activeSlot.storedWeapon != null)
+            if (activeSlot.storedWeapon.weaponName != "Knife")
             {
+                Debug.Log("Entre");
                 //RECARGA
                 if (activeSlot.storedWeapon.weaponType != WeaponType.Melee && activeSlot.storedWeapon.weaponType != WeaponType.Grenade)
                 {
                     //Reloading consists of two stages ReloadBegin and ReloadEnd  
                     //ReloadBegin method play animation and soundFX and also restrict weapon shooting. ReloadingEnd removes restriction and add ammo to weapon
                     //See more in methods below
-                    if (Input.GetKeyDown(activeSlot.storedWeapon.input.Reload) || activeSlot.storedWeapon.currentAmmo < 0)
-                    {
+                    //if (Input.GetKeyDown(activeSlot.storedWeapon.input.Reload) || activeSlot.storedWeapon.currentAmmo < 0)
+                    //{
                         if (!activeSlot.storedWeapon.reloading && !activeSlot.storedWeapon.controller.isClimbing)
                             activeSlot.storedWeapon.ReloadBegin();
-                    }
+                    //}
 
                     if (Input.GetKey(activeSlot.storedWeapon.input.Aim))
                     {

@@ -336,6 +336,11 @@ namespace DarkTreeFPS
                     UpdateCrosshairPosition();
             }
 #endif
+            if (weaponType != WeaponType.Melee && weaponType != WeaponType.Grenade)
+            {
+                //SetAim();
+                UpdateAmmoText();
+            }
             FireModeSwitch();
         }
         
