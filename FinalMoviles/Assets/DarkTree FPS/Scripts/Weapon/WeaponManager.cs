@@ -111,7 +111,67 @@ namespace DarkTreeFPS
                 DropAllWeapons();
             }
         }
+        public void FireCurrentWeapon()
+        {
+            //DISPARO
+            if (activeSlot != null && activeSlot.storedWeapon != null)
+            {
+                if (Input.GetKey(activeSlot.storedWeapon.input.Fire) && !PlayerStats.isPlayerDead && activeSlot.storedWeapon.weaponType != WeaponType.Pistol && !InventoryManager.showInventory && activeSlot.storedWeapon.fireMode == Weapon.FireMode.automatic)  //Statement to restrict auto-fire for pistol weapon type. Riffle and others are automatic
+                {
+                    activeSlot.storedWeapon.Fire();
+                }
+                else if (Input.GetKeyDown(activeSlot.storedWeapon.input.Fire) && !PlayerStats.isPlayerDead && (activeSlot.storedWeapon.weaponType == WeaponType.Pistol || activeSlot.storedWeapon.fireMode == Weapon.FireMode.single) && !InventoryManager.showInventory)
+                {
+                    activeSlot.storedWeapon.Fire();
+                }
+            }
+        }
+        public void ReloadCurrentWeapon()
+        {
+            if (activeSlot != null && activeSlot.storedWeapon != null)
+            {
+                //RECARGA
+                if (activeSlot.storedWeapon.weaponType != WeaponType.Melee && activeSlot.storedWeapon.weaponType != WeaponType.Grenade)
+                {
+                    //Reloading consists of two stages ReloadBegin and ReloadEnd  
+                    //ReloadBegin method play animation and soundFX and also restrict weapon shooting. ReloadingEnd removes restriction and add ammo to weapon
+                    //See more in methods below
+                    if (Input.GetKeyDown(activeSlot.storedWeapon.input.Reload) || activeSlot.storedWeapon.currentAmmo < 0)
+                    {
+                        if (!activeSlot.storedWeapon.reloading && !activeSlot.storedWeapon.controller.isClimbing)
+                            activeSlot.storedWeapon.ReloadBegin();
+                    }
 
+                    if (Input.GetKey(activeSlot.storedWeapon.input.Aim))
+                    {
+                        activeSlot.storedWeapon.setAim = true;
+                        activeSlot.storedWeapon.sway.xSwayAmount = activeSlot.storedWeapon.sway.xSwayAmount * 0.3f;
+                        activeSlot.storedWeapon.sway.ySwayAmount = activeSlot.storedWeapon.sway.ySwayAmount * 0.3f;
+                        if (UseNonPhysicalReticle)
+                            activeSlot.storedWeapon.staticReticle.SetActive(false);
+                        else
+                            activeSlot.storedWeapon.dynamicReticle.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        activeSlot.storedWeapon.setAim = false;
+                        activeSlot.storedWeapon.sway.xSwayAmount = activeSlot.storedWeapon.sway.startX;
+                        activeSlot.storedWeapon.sway.ySwayAmount = activeSlot.storedWeapon.sway.startY;
+                        if (UseNonPhysicalReticle)
+                            activeSlot.storedWeapon.staticReticle.SetActive(true);
+                        else
+                            activeSlot.storedWeapon.dynamicReticle.gameObject.SetActive(true);
+                    }
+
+
+                    activeSlot.storedWeapon.SetAim();
+                    activeSlot.storedWeapon.UpdateAmmoText();
+
+                    if (activeSlot.storedWeapon.canUpdateCrosshair && !UseNonPhysicalReticle)
+                        activeSlot.storedWeapon.UpdateCrosshairPosition();
+                }
+            }
+        }
         public Slot FindFreeSlot()
         {
             foreach (Slot slot in slots)
@@ -146,11 +206,11 @@ namespace DarkTreeFPS
 
         private void SlotChange()
         {
-            print("Slot change");
+            //print("Slot change");
             if (grenade.gameObject.activeInHierarchy)
                 grenade.gameObject.SetActive(false);
 
-            print("Slot change 2");
+            //print("Slot change 2");
             if (activeSlot != null && activeSlot.storedWeapon != null)
             {///////  012            /// 012     
                 if (slots.Count > switchSlotIndex)
@@ -163,7 +223,7 @@ namespace DarkTreeFPS
                         activeSlot = slots[switchSlotIndex];
                         activeSlot.storedWeapon.gameObject.SetActive(true);
 
-                        print("I equip slot number" + switchSlotIndex);
+                        //print("I equip slot number" + switchSlotIndex);
 
                         weaponHolderAnimator.Play("Unhide");
                     }
@@ -199,7 +259,7 @@ namespace DarkTreeFPS
 
         public void EquipWeapon(string weaponName, GameObject temp)
         {
-            print(temp.name);
+            //print(temp.name);
 
             grenade.gameObject.SetActive(false);
 
@@ -217,8 +277,8 @@ namespace DarkTreeFPS
                         if (weapon.weaponName == weaponName)
                         {
                             activeSlot.storedWeapon = weapon;
-                            print(activeSlot.storedWeapon.currentAmmo);
-                            print(temp.GetComponent<WeaponPickup>().ammoInWeaponCount);
+                            //print(activeSlot.storedWeapon.currentAmmo);
+                            //print(temp.GetComponent<WeaponPickup>().ammoInWeaponCount);
                             activeSlot.storedWeapon.currentAmmo = temp.GetComponent<WeaponPickup>().ammoInWeaponCount;
                             activeSlot.storedDropObject = temp;
                             activeSlot.storedDropObject.SetActive(false);
@@ -241,7 +301,7 @@ namespace DarkTreeFPS
                 
                 //temp.SetActive(false);
                 //temp = null;
-                print("Weapon already exist");
+                //print("Weapon already exist");
             }
         }
 
@@ -397,7 +457,7 @@ namespace DarkTreeFPS
             }
             else if(equipMelee && haveMeleeWeaponByDefault)
             {
-                print("I equip melee");
+                //print("I equip melee");
                 
                 HideAll();
                 switchSlotIndex = 0;

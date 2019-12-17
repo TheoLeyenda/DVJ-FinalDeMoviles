@@ -10,7 +10,7 @@ namespace DarkTreeFPS
     public class UseObjects : MonoBehaviour
     {
         [Tooltip("The distance within which you can pick up item")]
-        public float distance = 8f;
+        public float distance = 100f;
         
         private GameObject use;
         private GameObject useCursor;

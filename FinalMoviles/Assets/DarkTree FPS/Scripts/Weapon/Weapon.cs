@@ -155,9 +155,11 @@ namespace DarkTreeFPS
         private float movementSpreadFactor;
 
         private Inventory inventory;
-        private InputManager input;
+        [HideInInspector]
+        public InputManager input;
         private Recoil recoilComponent;
-        private Sway sway;
+        [HideInInspector]
+        public Sway sway;
 
         [HideInInspector]
         public bool isThrowingGrenade = false;
@@ -284,7 +286,7 @@ namespace DarkTreeFPS
         void Update()
         {
             movementSpreadFactor = controller.GetVelocityMagnitude();
-
+#if !UNITY_ANDROID
             if (Input.GetKey(input.Fire)  && !PlayerStats.isPlayerDead && weaponType != WeaponType.Pistol && !InventoryManager.showInventory && fireMode == FireMode.automatic)  //Statement to restrict auto-fire for pistol weapon type. Riffle and others are automatic
             {
                 Fire();
@@ -333,7 +335,7 @@ namespace DarkTreeFPS
                 if (canUpdateCrosshair && !weaponManager.UseNonPhysicalReticle)
                     UpdateCrosshairPosition();
             }
-
+#endif
             FireModeSwitch();
         }
         
@@ -587,7 +589,7 @@ namespace DarkTreeFPS
             
         }
 
-        #region Decal, projectiles, shot FX, hitFX managers
+#region Decal, projectiles, shot FX, hitFX managers
 
         public void HitParticlesFXManager(RaycastHit hit)
         {
@@ -795,9 +797,9 @@ namespace DarkTreeFPS
             ricochetSource.PlayOneShot(ricochetSounds[Random.Range(0, ricochetSounds.Length)]);
         }
 
-        #endregion
+#endregion
 
-        #region Pool methods
+#region Pool methods
 
         public void ShellsPool()
         {
@@ -832,9 +834,9 @@ namespace DarkTreeFPS
             }
         }
 
-        #endregion
+#endregion
 
-        #region Utility methods
+#region Utility methods
 
         public void SetAim()
         {
@@ -869,7 +871,7 @@ namespace DarkTreeFPS
             }
         }
 
-        private void UpdateCrosshairPosition()
+        public void UpdateCrosshairPosition()
         {
             RaycastHit hit = new RaycastHit();
 
@@ -908,7 +910,7 @@ namespace DarkTreeFPS
             }
         }
 
-        private void UpdateAmmoText()
+        public void UpdateAmmoText()
         {
             if (!ammoText.enabled)
                 ammoText.enabled = true;
@@ -956,7 +958,7 @@ namespace DarkTreeFPS
             return items;
         }
 
-        #endregion
+#endregion
 
         private void OnDisable()
         {
