@@ -66,7 +66,8 @@ namespace DarkTreeFPS
         private GameObject shell;
         private int shellPoolSize;
         private float shellForce;
-        private Text ammoText;
+        [HideInInspector]
+        public Text ammoText;
         private Text weaponNameText;
 
         //Stats
@@ -930,9 +931,10 @@ namespace DarkTreeFPS
             {
                 mode = 'A';
             }
-
+            
             weaponNameText.text = weaponName;
             ammoText.text = string.Format("{0}|{1}\n Mode:{2}", currentAmmo, CalculateTotalAmmo(), mode);
+            
         }
 
         public int CalculateTotalAmmo()
@@ -972,7 +974,6 @@ namespace DarkTreeFPS
             animator.Rebind();
             canShot = true;
             reloading = false;
-
             if (weaponNameText)
                 weaponNameText.text = "";
             if (ammoText)

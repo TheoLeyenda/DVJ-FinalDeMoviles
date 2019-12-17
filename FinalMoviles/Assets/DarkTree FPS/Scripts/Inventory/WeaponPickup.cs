@@ -21,7 +21,7 @@ namespace DarkTreeFPS
         public void Pickup()
         {
                     weaponManager.EquipWeapon(weaponNameToEquip, gameObject);
-                    print("Pickup:" + weaponNameToEquip);
+                    //print("Pickup:" + weaponNameToEquip);
             
         }
     }

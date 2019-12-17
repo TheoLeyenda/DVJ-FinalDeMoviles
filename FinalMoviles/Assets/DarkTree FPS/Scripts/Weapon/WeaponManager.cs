@@ -101,7 +101,6 @@ namespace DarkTreeFPS
         {
             //Check if we are trying to switch weapons we have
             SlotInput();
-
             if (Input.GetKeyDown(KeyCode.G))
             {
                 DropWeapon();
@@ -130,7 +129,6 @@ namespace DarkTreeFPS
         {
             if (activeSlot.storedWeapon.weaponName != "Knife")
             {
-                Debug.Log("Entre");
                 //RECARGA
                 if (activeSlot.storedWeapon.weaponType != WeaponType.Melee && activeSlot.storedWeapon.weaponType != WeaponType.Grenade)
                 {
