@@ -484,7 +484,7 @@ namespace DarkTreeFPS
             }
         }
 
-        private void DropWeapon()
+        public void DropWeapon()
         {
             if (activeSlot != null)
             {

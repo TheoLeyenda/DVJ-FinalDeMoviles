@@ -21,7 +21,7 @@ namespace DarkTreeFPS
         public float height;
         public float crouchHeight = 0.5f;
         private bool crouch = false;
-
+        private bool isRunning = false;
         [Header("MouseLook Settings")]
 
         private Vector2 clampInDegrees = new Vector2(360, 180);
@@ -101,7 +101,10 @@ namespace DarkTreeFPS
             Crouch();
             Landing();
         }
-
+        public void SetIsRunning()
+        {
+            isRunning = !isRunning;
+        }
         void StandaloneMovement()
         {
             if (isGrounded())
@@ -114,7 +117,7 @@ namespace DarkTreeFPS
                 else
                     weaponHolderAnimator.SetBool("Walk", false);
 
-                if (Input.GetKey(inputManager.Run) && !isClimbing && !crouch && weaponHolderAnimator.GetBool("Walk") == true)
+                if ((Input.GetKey(inputManager.Run) || isRunning) && !isClimbing && !crouch && weaponHolderAnimator.GetBool("Walk") == true)
                 {
                     moveSpeedLocal = runSpeedMultiplier * moveSpeed;
                     weaponHolderAnimator.SetBool("Run", true);
@@ -324,7 +327,7 @@ namespace DarkTreeFPS
 
         public void Jump()
         {
-            if (isGrounded())
+            if (isGrounded() && !crouch)
                 controllerRigidbody.AddForce(transform.up * jumpForce, ForceMode.VelocityChange);
         }
 
