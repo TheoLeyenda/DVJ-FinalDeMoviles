@@ -308,28 +308,14 @@ namespace DarkTreeFPS
                         ReloadBegin();
                 }
                 
-                    if (Input.GetKey(input.Aim))
-                    {
-                        setAim = true;
-                        sway.xSwayAmount = sway.xSwayAmount*0.3f;
-                        sway.ySwayAmount = sway.ySwayAmount*0.3f;
-                        if (weaponManager.UseNonPhysicalReticle)
-                            staticReticle.SetActive(false);
-                        else
-                            dynamicReticle.gameObject.SetActive(false);
-                    }
-                    else
-                    {
-                        setAim = false;
-                        sway.xSwayAmount = sway.startX;
-                        sway.ySwayAmount = sway.startY;
-                        if (weaponManager.UseNonPhysicalReticle)
-                            staticReticle.SetActive(true);
-                        else
-                            dynamicReticle.gameObject.SetActive(true);
-                    }
-                
-
+                if (Input.GetKey(input.Aim))
+                {
+                    ActiveAim();
+                }
+                else
+                {
+                    DisableAim();
+                }
                 SetAim();
                 UpdateAmmoText();
 
@@ -339,19 +325,42 @@ namespace DarkTreeFPS
 #endif
             if (weaponType != WeaponType.Melee && weaponType != WeaponType.Grenade)
             {
-                //SetAim();
+                SetAim();
                 UpdateAmmoText();
             }
             FireModeSwitch();
         }
-        
+        public void ActiveAim()
+        {
+            //Apuntar
+            setAim = true;
+            sway.xSwayAmount = sway.xSwayAmount * 0.3f;
+            sway.ySwayAmount = sway.ySwayAmount * 0.3f;
+            if (weaponManager.UseNonPhysicalReticle)
+                staticReticle.SetActive(false);
+            else
+                dynamicReticle.gameObject.SetActive(false);
+        }
+        public void DisableAim()
+        {
+            //Desapuntar
+            setAim = false;
+            sway.xSwayAmount = sway.startX;
+            sway.ySwayAmount = sway.startY;
+            if (weaponManager.UseNonPhysicalReticle)
+                staticReticle.SetActive(true);
+            else
+                dynamicReticle.gameObject.SetActive(true);
+        }
         public void FireMobile()
         {
+            Debug.Log("Aqui Se apunta");
             Fire();
         }
 
         public void AimMobile()
         {
+            Debug.Log("Aqui Se apunta");
             setAim = !setAim;
         }
 
@@ -849,6 +858,7 @@ namespace DarkTreeFPS
             if (!reloading && useAnimator)
             {
                 animator.SetBool("Aim", setAim);
+
             }
             else
             {
@@ -906,7 +916,7 @@ namespace DarkTreeFPS
         
         private void FireModeSwitch()
         {
-            if(Input.GetKeyDown(input.FiremodeAuto))
+            if (Input.GetKeyDown(input.FiremodeAuto))
             {
                 fireMode = FireMode.automatic;
             }

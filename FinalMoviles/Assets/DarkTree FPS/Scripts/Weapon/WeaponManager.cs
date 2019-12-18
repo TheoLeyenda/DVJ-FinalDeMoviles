@@ -22,7 +22,7 @@ namespace DarkTreeFPS
         [Range(1, 9)]
         
         private int slotsSize = 4;
-
+        private bool isPointer = false;
         public int switchSlotIndex = 0;
         public int currentWeaponIndex;
         public Slot activeSlot;
@@ -109,6 +109,7 @@ namespace DarkTreeFPS
             {
                 DropAllWeapons();
             }
+            CheckAimCurrentWeapon();
         }
         public void FireCurrentWeapon()
         {
@@ -124,6 +125,24 @@ namespace DarkTreeFPS
                     activeSlot.storedWeapon.Fire();
                 }
             }
+        }
+        public void CheckAimCurrentWeapon()
+        {
+            if (isPointer)
+            {
+                if (activeSlot.storedWeapon.weaponName != "Knife")
+                    activeSlot.storedWeapon.ActiveAim();
+            }
+            else
+            {
+                if (activeSlot.storedWeapon.weaponName != "Knife")
+                    activeSlot.storedWeapon.DisableAim();
+            }
+        }
+        public void SetPointer()
+        {
+            if (activeSlot.storedWeapon.weaponName != "Knife")
+                isPointer = !isPointer;
         }
         public void ReloadCurrentWeapon()
         {
@@ -143,6 +162,7 @@ namespace DarkTreeFPS
 
                     if (Input.GetKey(activeSlot.storedWeapon.input.Aim))
                     {
+                       
                         activeSlot.storedWeapon.setAim = true;
                         activeSlot.storedWeapon.sway.xSwayAmount = activeSlot.storedWeapon.sway.xSwayAmount * 0.3f;
                         activeSlot.storedWeapon.sway.ySwayAmount = activeSlot.storedWeapon.sway.ySwayAmount * 0.3f;
