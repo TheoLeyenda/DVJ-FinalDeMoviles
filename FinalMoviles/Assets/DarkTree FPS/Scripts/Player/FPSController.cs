@@ -3,6 +3,7 @@
 /// Thanks for purchasing my asset!
 
 using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 
@@ -13,6 +14,9 @@ namespace DarkTreeFPS
         public GameObject prefabPlayerPC;
         public GameObject prefabPlayerAndroid;
         public Transform posCamara;
+        public Image imageButtonRuning; 
+        public Sprite spriteRunningStickMan;
+        public Sprite spriteWalkingStickMan;
         [Header("Movement Settings")]
         public float moveSpeed = 1f;
         public float crouchSpeed = 0.4f;
@@ -104,6 +108,16 @@ namespace DarkTreeFPS
         public void SetIsRunning()
         {
             isRunning = !isRunning;
+#if UNITY_ANDROID
+            if (isRunning)
+            {
+                imageButtonRuning.sprite = spriteWalkingStickMan;
+            }
+            else
+            {
+                imageButtonRuning.sprite = spriteRunningStickMan;
+            }
+#endif
         }
         void StandaloneMovement()
         {
