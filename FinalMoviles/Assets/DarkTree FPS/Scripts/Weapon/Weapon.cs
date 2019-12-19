@@ -333,34 +333,38 @@ namespace DarkTreeFPS
         public void ActiveAim()
         {
             //Apuntar
-            setAim = true;
-            sway.xSwayAmount = sway.xSwayAmount * 0.3f;
-            sway.ySwayAmount = sway.ySwayAmount * 0.3f;
-            if (weaponManager.UseNonPhysicalReticle)
-                staticReticle.SetActive(false);
-            else
-                dynamicReticle.gameObject.SetActive(false);
+            if (sway != null)
+            {
+                setAim = true;
+                sway.xSwayAmount = sway.xSwayAmount * 0.3f;
+                sway.ySwayAmount = sway.ySwayAmount * 0.3f;
+                if (weaponManager.UseNonPhysicalReticle)
+                    staticReticle.SetActive(false);
+                else
+                    dynamicReticle.gameObject.SetActive(false);
+            }
         }
         public void DisableAim()
         {
             //Desapuntar
-            setAim = false;
-            sway.xSwayAmount = sway.startX;
-            sway.ySwayAmount = sway.startY;
-            if (weaponManager.UseNonPhysicalReticle)
-                staticReticle.SetActive(true);
-            else
-                dynamicReticle.gameObject.SetActive(true);
+            if (sway != null)
+            {
+                setAim = false;
+                sway.xSwayAmount = sway.startX;
+                sway.ySwayAmount = sway.startY;
+                if (weaponManager.UseNonPhysicalReticle)
+                    staticReticle.SetActive(true);
+                else
+                    dynamicReticle.gameObject.SetActive(true);
+            }
         }
         public void FireMobile()
         {
-            Debug.Log("Aqui Se apunta");
             Fire();
         }
 
         public void AimMobile()
         {
-            Debug.Log("Aqui Se apunta");
             setAim = !setAim;
         }
 
