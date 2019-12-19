@@ -17,7 +17,7 @@ namespace DarkTreeFPS
         public bool haveMeleeWeaponByDefault = true;
         public Weapon melleeDefaultWeapon;
         public Weapon grenade;
-
+        public bool enableGrenade;
         public List<Slot> slots;
         [Range(1, 9)]
         
@@ -66,10 +66,12 @@ namespace DarkTreeFPS
                 slots[0].storedWeapon = melleeDefaultWeapon;
                 activeSlot = slots[0];
             }
-
-            if(grenade != null)
+            if (enableGrenade)
             {
-                slots[3].storedWeapon = grenade;
+                if (grenade != null)
+                {
+                    slots[3].storedWeapon = grenade;
+                }
             }
 
             swayTransform = FindObjectOfType<Sway>().GetComponent<Transform>();
@@ -95,6 +97,8 @@ namespace DarkTreeFPS
             }
 
             inventory = FindObjectOfType<Inventory>();
+            switchSlotIndex = 0;
+            SlotChange();
         }
 
         private void Update()
@@ -204,6 +208,43 @@ namespace DarkTreeFPS
         
         private void SlotInput()
         {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+                switchSlotIndex++;
+                if (switchSlotIndex < slotsSize)
+                {
+                    if (slots[switchSlotIndex] != null)
+                    {
+                        SlotChange();
+                    }
+                    if (slots[switchSlotIndex].storedWeapon == null)
+                    {
+                        switchSlotIndex = 0;
+                        SlotChange();
+                    }
+                }
+                else
+                {
+                    switchSlotIndex = 0;
+                    SlotChange();
+                }
+                
+            }
+            if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                switchSlotIndex--;
+                if (switchSlotIndex >= 0)
+                {
+                    SlotChange();
+                }
+                else if (switchSlotIndex < 0)
+                {
+                    switchSlotIndex = slotsSize;
+                    SlotChange();
+                }
+                
+            }
+
             if (Input.GetButtonDown("Slot0")) { switchSlotIndex = 0; SlotChange(); }
             else if (Input.GetButtonDown("Slot1")) { switchSlotIndex = 1; SlotChange(); }
             else if (Input.GetButtonDown("Slot2")) { switchSlotIndex = 2; SlotChange(); }
