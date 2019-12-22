@@ -29036,6 +29036,7 @@ MonoBehaviour:
   haveMeleeWeaponByDefault: 1
   melleeDefaultWeapon: {fileID: 6509752449353267190}
   grenade: {fileID: 5530369605080486540}
+  enableGrenade: 0
   slots: []
   switchSlotIndex: 0
   currentWeaponIndex: 0
@@ -35618,6 +35619,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6742103842900459721}
+    - target: {fileID: 5729596898028914437, guid: 46d22814ae140be4190c19c17a6ad446,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46d22814ae140be4190c19c17a6ad446, type: 3}
 --- !u!224 &4566846663373232135 stripped
@@ -35815,42 +35821,52 @@ PrefabInstance:
     - target: {fileID: 1811191446841454701, guid: a47b1ab7661661644992c1822a54a1b2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.000000029802322
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1811191446841454701, guid: a47b1ab7661661644992c1822a54a1b2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1811191446841454701, guid: a47b1ab7661661644992c1822a54a1b2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1811191446841454701, guid: a47b1ab7661661644992c1822a54a1b2,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.000000029802322
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1811191446841454701, guid: a47b1ab7661661644992c1822a54a1b2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -866.6671
+      value: -875.61884
       objectReference: {fileID: 0}
     - target: {fileID: 1811191446841454701, guid: a47b1ab7661661644992c1822a54a1b2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -550.93274
+      value: -482.0574
       objectReference: {fileID: 0}
     - target: {fileID: 1811191446841454701, guid: a47b1ab7661661644992c1822a54a1b2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 92.402596
+      value: 716.34467
       objectReference: {fileID: 0}
     - target: {fileID: 1811191446827912141, guid: a47b1ab7661661644992c1822a54a1b2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00007035743
+      value: -0.0001900552
       objectReference: {fileID: 0}
     - target: {fileID: 1811191446827912141, guid: a47b1ab7661661644992c1822a54a1b2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.0002951026
+      value: 0.00049853325
       objectReference: {fileID: 0}
     - target: {fileID: 1811191446827912141, guid: a47b1ab7661661644992c1822a54a1b2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00003552437
+      value: -0.000015377998
       objectReference: {fileID: 0}
     - target: {fileID: 1811191446827705533, guid: a47b1ab7661661644992c1822a54a1b2,
         type: 3}
