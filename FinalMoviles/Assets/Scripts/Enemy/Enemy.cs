@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     
     void Start()
     {
+
         auxSpeed = speed;
         followRoute = GetComponent<FollowRoute>();
         followRoute.GetAgent().speed = speed;
