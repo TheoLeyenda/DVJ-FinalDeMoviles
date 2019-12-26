@@ -14,6 +14,9 @@ public class FollowRoute : MonoBehaviour
     private int indexDataRoute;
     private List<GameObject> pathPoints;
 
+    // ES EL NUMERO DE DataRoute que se debe buscar para interactuar(esto se setea desde el generador de enemigos).
+    public int numRoute;
+
     private void Awake()
     {
         pathPoints = new List<GameObject>();
@@ -27,7 +30,14 @@ public class FollowRoute : MonoBehaviour
     }
     void Start()
     {
-        goDataRoute = GameObject.Find("DataRoute");
+        if (numRoute == 0 || numRoute == 1)
+        {
+            goDataRoute = GameObject.Find("DataRoute");
+        }
+        else
+        {
+            goDataRoute = GameObject.Find("DataRoute " + numRoute);
+        }
         if (goDataRoute != null)
         {
             dataRoute = goDataRoute.GetComponent<DataRoute>();
