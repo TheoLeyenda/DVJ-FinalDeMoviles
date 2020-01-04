@@ -20,7 +20,7 @@ namespace DarkTreeFPS
         public bool enableGrenade;
         public List<Slot> slots;
         [Range(1, 9)]
-        
+
         private int slotsSize = 4;
         private bool isPointer = false;
         public int switchSlotIndex = 0;
@@ -47,12 +47,11 @@ namespace DarkTreeFPS
         private Transform swayTransform;
 
         private Inventory inventory;
-        
+
         [HideInInspector]
         //public Weapon currentWeapon;
 
-
-        private void Start()
+        public void ON()
         {
             for (int i = 0; i < slotsSize; i++)
             {
@@ -99,6 +98,14 @@ namespace DarkTreeFPS
             inventory = FindObjectOfType<Inventory>();
             switchSlotIndex = 0;
             SlotChange();
+        }
+        private void OnEnable()
+        {
+            ON();
+        }
+        private void Start()
+        {
+            //ON();
         }
 
         private void Update()
