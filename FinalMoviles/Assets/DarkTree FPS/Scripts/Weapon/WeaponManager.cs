@@ -53,51 +53,60 @@ namespace DarkTreeFPS
 
         public void ON()
         {
-            for (int i = 0; i < slotsSize; i++)
+            Sway swayObject = FindObjectOfType<Sway>();
+            if (swayObject != null)
             {
-                Slot slot_temp = gameObject.AddComponent<Slot>();
-
-                slots.Add(slot_temp);
+                swayTransform = FindObjectOfType<Sway>().GetComponent<Transform>();
             }
 
-            if (haveMeleeWeaponByDefault)
+            if (swayTransform != null)
             {
-                slots[0].storedWeapon = melleeDefaultWeapon;
-                activeSlot = slots[0];
-            }
-            if (enableGrenade)
-            {
-                if (grenade != null)
+                for (int i = 0; i < slotsSize; i++)
                 {
-                    slots[3].storedWeapon = grenade;
+                    Slot slot_temp = gameObject.AddComponent<Slot>();
+
+                    slots.Add(slot_temp);
                 }
+
+                if (haveMeleeWeaponByDefault)
+                {
+                    slots[0].storedWeapon = melleeDefaultWeapon;
+                    activeSlot = slots[0];
+                }
+                if (enableGrenade)
+                {
+                    if (grenade != null)
+                    {
+                        slots[3].storedWeapon = grenade;
+                    }
+                }
+
+
+
+                scopeImage.SetActive(false);
+
+                if (UseNonPhysicalReticle)
+                {
+                    reticleStatic.SetActive(true);
+                    reticleDynamic.SetActive(false);
+                }
+                else
+                {
+                    reticleStatic.SetActive(false);
+                    reticleDynamic.SetActive(true);
+                }
+
+                playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
+                foreach (Weapon weapon in swayTransform.GetComponentsInChildren<Weapon>(true))
+                {
+                    weapons.Add(weapon);
+                }
+
+                inventory = FindObjectOfType<Inventory>();
+                switchSlotIndex = 0;
+                SlotChange();
             }
-
-            swayTransform = FindObjectOfType<Sway>().GetComponent<Transform>();
-
-            scopeImage.SetActive(false);
-
-            if (UseNonPhysicalReticle)
-            {
-                reticleStatic.SetActive(true);
-                reticleDynamic.SetActive(false);
-            }
-            else
-            {
-                reticleStatic.SetActive(false);
-                reticleDynamic.SetActive(true);
-            }
-
-            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-
-            foreach (Weapon weapon in swayTransform.GetComponentsInChildren<Weapon>(true))
-            {
-                weapons.Add(weapon);
-            }
-
-            inventory = FindObjectOfType<Inventory>();
-            switchSlotIndex = 0;
-            SlotChange();
         }
         private void OnEnable()
         {
