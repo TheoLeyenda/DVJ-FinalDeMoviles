@@ -8,7 +8,10 @@ public class Construction : MonoBehaviour
     public float life;
     public float rangeOfView;
     protected bool constructed;
-
+    public bool rotateStart;
+    private void OnEnable()
+    {
+    }
     public void SetConstructed(bool _constructed)
     {
         constructed = _constructed;

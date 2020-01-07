@@ -98,7 +98,10 @@ public class UIContructionController : MonoBehaviour
             currentIndex = index;
             construction = go.GetComponent<Construction>();
             go.transform.position = CM.GetCurrentZoneConstruction().transform.position;
-            go.transform.rotation = CM.GetCurrentZoneConstruction().transform.rotation;
+            if (construction.rotateStart)
+            {
+                go.transform.rotation = CM.GetCurrentZoneConstruction().transform.rotation;
+            }
             CM.GetCurrentZoneConstruction().SetActive(false);
             CM.camvasContruction.SetActive(false);
             camvasConfirmationConstruction.SetActive(true);
@@ -127,9 +130,19 @@ public class UIContructionController : MonoBehaviour
             
         }
     }
-    public void RotateStructure()
+    public void RotateStructure(int angle)
     {
-        currentConstruction.transform.Rotate(Vector3.up, 15);
+        if (construction != null)
+        {
+            if (construction.rotateStart)
+            {
+                currentConstruction.transform.Rotate(Vector3.up, angle);
+            }
+            else
+            {
+                currentConstruction.transform.Rotate(Vector3.back, angle);
+            }
+        }
     }
     public void Exit()
     {

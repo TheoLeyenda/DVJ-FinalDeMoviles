@@ -1967,7 +1967,7 @@ MonoBehaviour:
     spriteLocked: {fileID: 21300098, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
     nameLockedConstruction: Bloqueado
     nameConstruction: Torre De Metal
-    lockedButton: 1
+    lockedButton: 0
   - informationButton: {fileID: 1612633528}
     poolConstruction: {fileID: 3923646990921592564}
     go_button: {fileID: 2000964205}
@@ -1979,7 +1979,7 @@ MonoBehaviour:
     spriteLocked: {fileID: 21300098, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
     nameLockedConstruction: Bloqueado
     nameConstruction: Torre Blindada
-    lockedButton: 1
+    lockedButton: 0
   - informationButton: {fileID: 294859875}
     poolConstruction: {fileID: 6529222947917057895}
     go_button: {fileID: 791542659}
@@ -1991,7 +1991,7 @@ MonoBehaviour:
     spriteLocked: {fileID: 21300098, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
     nameLockedConstruction: Bloqueado
     nameConstruction: "Caseta Peque\xF1a"
-    lockedButton: 1
+    lockedButton: 0
   - informationButton: {fileID: 2080510951}
     poolConstruction: {fileID: 14089662468484500}
     go_button: {fileID: 1010626942}
@@ -2003,7 +2003,7 @@ MonoBehaviour:
     spriteLocked: {fileID: 21300098, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
     nameLockedConstruction: Bloqueado
     nameConstruction: Casa en Ruinas
-    lockedButton: 1
+    lockedButton: 0
   - informationButton: {fileID: 1588149327}
     poolConstruction: {fileID: 2244605194021542352}
     go_button: {fileID: 1464852940}
@@ -2015,7 +2015,7 @@ MonoBehaviour:
     spriteLocked: {fileID: 21300098, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
     nameLockedConstruction: Bloqueado
     nameConstruction: Edificio en Ruinas
-    lockedButton: 1
+    lockedButton: 0
   - informationButton: {fileID: 1978985659}
     poolConstruction: {fileID: 2865616885082149490}
     go_button: {fileID: 1077387934}
@@ -2027,7 +2027,7 @@ MonoBehaviour:
     spriteLocked: {fileID: 21300098, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
     nameLockedConstruction: Bloqueado
     nameConstruction: Casa Sin Techo
-    lockedButton: 1
+    lockedButton: 0
   - informationButton: {fileID: 1152878376}
     poolConstruction: {fileID: 2880259285214038121}
     go_button: {fileID: 1983053084}
@@ -2039,7 +2039,7 @@ MonoBehaviour:
     spriteLocked: {fileID: 21300098, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
     nameLockedConstruction: Bloqueado
     nameConstruction: Casa
-    lockedButton: 1
+    lockedButton: 0
   - informationButton: {fileID: 826369498}
     poolConstruction: {fileID: 505347012686933429}
     go_button: {fileID: 944340521}
@@ -2051,7 +2051,7 @@ MonoBehaviour:
     spriteLocked: {fileID: 21300098, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
     nameLockedConstruction: Bloqueado
     nameConstruction: "Bunker Peque\xF1o"
-    lockedButton: 1
+    lockedButton: 0
   - informationButton: {fileID: 1222940558}
     poolConstruction: {fileID: 2295695700007442464}
     go_button: {fileID: 827695393}
@@ -2063,7 +2063,7 @@ MonoBehaviour:
     spriteLocked: {fileID: 21300098, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
     nameLockedConstruction: Bloqueado
     nameConstruction: Bunker
-    lockedButton: 1
+    lockedButton: 0
   camvasConfirmationConstruction: {fileID: 1764210340}
 --- !u!1001 &504212414
 PrefabInstance:
@@ -6485,7 +6485,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1611892756}
+      objectReference: {fileID: 2136178163}
     - target: {fileID: 1811191446014955359, guid: 770274626b5a55541bc7ad8e0aa82746,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -7145,11 +7145,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 481973049}
         m_MethodName: RotateStructure
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 15
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7442,41 +7442,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1610231858}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &1611892756
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 180
-  m_Height: 180
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 2
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1612633526
 GameObject:
   m_ObjectHideFlags: 0
@@ -10394,6 +10359,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2132786622}
   m_CullTransparentMesh: 0
+--- !u!84 &2136178163
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 180
+  m_Height: 180
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthFormat: 2
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1001 &14089662468484499
 PrefabInstance:
   m_ObjectHideFlags: 0
