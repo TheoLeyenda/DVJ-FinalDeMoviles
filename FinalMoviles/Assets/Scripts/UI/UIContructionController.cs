@@ -105,6 +105,7 @@ public class UIContructionController : MonoBehaviour
             CM.GetCurrentZoneConstruction().SetActive(false);
             CM.camvasContruction.SetActive(false);
             camvasConfirmationConstruction.SetActive(true);
+            construction.DownMovement();
         }
     }
     public void ConfirmConstruction()
