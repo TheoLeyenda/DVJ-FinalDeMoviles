@@ -29,6 +29,7 @@ public class ConstructionManager : MonoBehaviour
         indexConstructionZone = 0;
         SetActiveObjects(false,objectsDisables);
         SetActiveObjects(true, objectsActivate);
+        camvasContruction.SetActive(false);
     }
     private void OnDisable()
     {
@@ -57,16 +58,17 @@ public class ConstructionManager : MonoBehaviour
     }
     public void CheckClickInConstructionZone()
     {
+        //Debug.Log(Camera.main);
         if (Camera.main != null)
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, rangeOfRayCast))
+            if (Physics.Raycast(ray, out hit, rangeOfRayCast) && Input.GetButton("InputSeleccion") && !camvasContruction.activeSelf)
             {
                 if (hit.transform != null)
                 {
-                    if (hit.transform.tag == "ZonaConstruccion" || Input.GetButton("InputSeleccion"))
+                    if (hit.transform.tag == "ZonaConstruccion")
                     {
                         camvasContruction.SetActive(true);
                         currentZoneConstruction = hit.transform.gameObject;
@@ -147,5 +149,9 @@ public class ConstructionManager : MonoBehaviour
     public GameObject GetCurrentZoneConstruction()
     {
         return currentZoneConstruction;
+    }
+    public void SetCurrentZoneConstruction(GameObject go)
+    {
+        currentZoneConstruction = go;
     }
 }

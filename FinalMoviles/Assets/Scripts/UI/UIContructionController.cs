@@ -9,6 +9,7 @@ public class UIContructionController : MonoBehaviour
     [System.Serializable]
     public class UIButtonConstruction
     {
+        public Button informationButton;
         public Pool poolConstruction;
         public GameObject go_button;
         public GameObject go_Information;
@@ -28,6 +29,7 @@ public class UIContructionController : MonoBehaviour
                 buttonImage.sprite = spriteLocked;
                 button.interactable = false;
                 button.targetGraphic = null;
+                informationButton.interactable = false;
             }
             else
             {
@@ -35,6 +37,7 @@ public class UIContructionController : MonoBehaviour
                 buttonImage.sprite = spriteUnlocked;
                 button.interactable = true;
                 button.targetGraphic = buttonImage;
+                informationButton.interactable = true;
             }
         }
     }
@@ -44,6 +47,13 @@ public class UIContructionController : MonoBehaviour
     public string textTitulo;
     public Text titulo;
     public List<UIButtonConstruction> buttons;
+    private void OnEnable()
+    {
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            buttons[i].CheckDataButton();
+        }
+    }
     public void Information(int index)
     {
         if (index < buttons.Count && index >= 0)
@@ -82,6 +92,7 @@ public class UIContructionController : MonoBehaviour
             go.transform.position = CM.GetCurrentZoneConstruction().transform.position;
             go.transform.rotation = CM.GetCurrentZoneConstruction().transform.rotation;
             CM.GetCurrentZoneConstruction().SetActive(false);
+            CM.camvasContruction.SetActive(false);
         }
     }
     public void ConfirmConstruction(int index)
@@ -112,5 +123,9 @@ public class UIContructionController : MonoBehaviour
     {
         go.transform.Rotate(go.transform.position, 15);
     }
-
+    public void Exit()
+    {
+        CM.SetCurrentZoneConstruction(null);
+        gameObject.SetActive(false);
+    }
 }

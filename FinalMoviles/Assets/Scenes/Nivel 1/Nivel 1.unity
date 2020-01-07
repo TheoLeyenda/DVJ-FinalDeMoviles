@@ -611,41 +611,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185672542}
   m_CullTransparentMesh: 0
---- !u!84 &197719094
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 180
-  m_Height: 180
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 2
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1001 &211872215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -722,7 +687,7 @@ GameObject:
   - component: {fileID: 247415520}
   - component: {fileID: 247415519}
   m_Layer: 0
-  m_Name: Info
+  m_Name: InfoMetal_Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1168,7 +1133,7 @@ GameObject:
   - component: {fileID: 294859876}
   - component: {fileID: 294859875}
   m_Layer: 0
-  m_Name: Info
+  m_Name: "InfoCasetaPeque\xF1a"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1466,6 +1431,218 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 373589935}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &384280799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 384280800}
+  - component: {fileID: 384280802}
+  - component: {fileID: 384280801}
+  m_Layer: 0
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &384280800
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384280799}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 439238832}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 60}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &384280801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384280799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 38fc25c3663ea5a408946ee84f234c5a, type: 3}
+    m_FontSize: 50
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 50
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Salir
+--- !u!222 &384280802
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384280799}
+  m_CullTransparentMesh: 0
+--- !u!1 &439238831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 439238832}
+  - component: {fileID: 439238835}
+  - component: {fileID: 439238834}
+  - component: {fileID: 439238833}
+  m_Layer: 0
+  m_Name: Exit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &439238832
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439238831}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 384280800}
+  m_Father: {fileID: 481973046}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 10, y: -434}
+  m_SizeDelta: {x: 400, y: 80}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &439238833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439238831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 439238834}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 481973049}
+        m_MethodName: Exit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &439238834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439238831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 23656b4580e800e46bdbb44a7c8817cf, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &439238835
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439238831}
+  m_CullTransparentMesh: 0
 --- !u!1001 &475271943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1570,6 +1747,7 @@ RectTransform:
   - {fileID: 1983053085}
   - {fileID: 944340522}
   - {fileID: 827695394}
+  - {fileID: 439238832}
   m_Father: {fileID: 745220679}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1633,7 +1811,8 @@ MonoBehaviour:
   textTitulo: Construcciones
   titulo: {fileID: 1415439635}
   buttons:
-  - poolConstruction: {fileID: 6641015791101296929}
+  - informationButton: {fileID: 753600047}
+    poolConstruction: {fileID: 6641015791101296929}
     go_button: {fileID: 1828876765}
     go_Information: {fileID: 0}
     button: {fileID: 1828876767}
@@ -1644,7 +1823,8 @@ MonoBehaviour:
     nameLockedConstruction: Bloqueado
     nameConstruction: Torre De Madera
     lockedButton: 0
-  - poolConstruction: {fileID: 8114190648810879536}
+  - informationButton: {fileID: 247415519}
+    poolConstruction: {fileID: 8114190648810879536}
     go_button: {fileID: 1748760632}
     go_Information: {fileID: 0}
     button: {fileID: 1748760634}
@@ -1655,7 +1835,8 @@ MonoBehaviour:
     nameLockedConstruction: Bloqueado
     nameConstruction: Torre De Metal
     lockedButton: 1
-  - poolConstruction: {fileID: 3923646990921592564}
+  - informationButton: {fileID: 1612633528}
+    poolConstruction: {fileID: 3923646990921592564}
     go_button: {fileID: 2000964205}
     go_Information: {fileID: 0}
     button: {fileID: 2000964207}
@@ -1666,7 +1847,8 @@ MonoBehaviour:
     nameLockedConstruction: Bloqueado
     nameConstruction: Torre Blindada
     lockedButton: 1
-  - poolConstruction: {fileID: 6529222947917057895}
+  - informationButton: {fileID: 294859875}
+    poolConstruction: {fileID: 6529222947917057895}
     go_button: {fileID: 791542659}
     go_Information: {fileID: 0}
     button: {fileID: 791542661}
@@ -1677,7 +1859,8 @@ MonoBehaviour:
     nameLockedConstruction: Bloqueado
     nameConstruction: "Caseta Peque\xF1a"
     lockedButton: 1
-  - poolConstruction: {fileID: 14089662468484500}
+  - informationButton: {fileID: 2080510951}
+    poolConstruction: {fileID: 14089662468484500}
     go_button: {fileID: 1010626942}
     go_Information: {fileID: 0}
     button: {fileID: 1010626944}
@@ -1688,7 +1871,8 @@ MonoBehaviour:
     nameLockedConstruction: Bloqueado
     nameConstruction: Casa en Ruinas
     lockedButton: 1
-  - poolConstruction: {fileID: 2244605194021542352}
+  - informationButton: {fileID: 1588149327}
+    poolConstruction: {fileID: 2244605194021542352}
     go_button: {fileID: 1464852940}
     go_Information: {fileID: 0}
     button: {fileID: 1464852942}
@@ -1699,7 +1883,8 @@ MonoBehaviour:
     nameLockedConstruction: Bloqueado
     nameConstruction: Edificio en Ruinas
     lockedButton: 1
-  - poolConstruction: {fileID: 2865616885082149490}
+  - informationButton: {fileID: 1978985659}
+    poolConstruction: {fileID: 2865616885082149490}
     go_button: {fileID: 1077387934}
     go_Information: {fileID: 0}
     button: {fileID: 1077387936}
@@ -1710,7 +1895,8 @@ MonoBehaviour:
     nameLockedConstruction: Bloqueado
     nameConstruction: Casa Sin Techo
     lockedButton: 1
-  - poolConstruction: {fileID: 2880259285214038121}
+  - informationButton: {fileID: 1152878376}
+    poolConstruction: {fileID: 2880259285214038121}
     go_button: {fileID: 1983053084}
     go_Information: {fileID: 0}
     button: {fileID: 1983053086}
@@ -1721,7 +1907,8 @@ MonoBehaviour:
     nameLockedConstruction: Bloqueado
     nameConstruction: Casa
     lockedButton: 1
-  - poolConstruction: {fileID: 505347012686933429}
+  - informationButton: {fileID: 826369498}
+    poolConstruction: {fileID: 505347012686933429}
     go_button: {fileID: 944340521}
     go_Information: {fileID: 0}
     button: {fileID: 944340523}
@@ -1732,7 +1919,8 @@ MonoBehaviour:
     nameLockedConstruction: Bloqueado
     nameConstruction: "Bunker Peque\xF1o"
     lockedButton: 1
-  - poolConstruction: {fileID: 2295695700007442464}
+  - informationButton: {fileID: 1222940558}
+    poolConstruction: {fileID: 2295695700007442464}
     go_button: {fileID: 827695393}
     go_Information: {fileID: 0}
     button: {fileID: 827695395}
@@ -1835,11 +2023,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527000832}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.359281, y: 1, z: 10.216492}
-  m_Center: {x: -0.027037144, y: 0, z: -2.2811127}
+  m_Size: {x: 14.784605, y: 4.101029, z: 14.559809}
+  m_Center: {x: -0.058645476, y: 1.5505135, z: -2.1150444}
 --- !u!4 &527000834
 Transform:
   m_ObjectHideFlags: 0
@@ -2595,7 +2783,7 @@ GameObject:
   - component: {fileID: 753600048}
   - component: {fileID: 753600047}
   m_Layer: 0
-  m_Name: Info
+  m_Name: InfoWood_Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2861,7 +3049,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 791542662}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 481973049}
+        m_MethodName: PreviousConstruction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &791542662
@@ -3057,11 +3256,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815978690}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.359281, y: 1, z: 10.216492}
-  m_Center: {x: -0.027037144, y: 0, z: -2.2811127}
+  m_Size: {x: 14.464394, y: 3.5863419, z: 14.783447}
+  m_Center: {x: 0.1414032, y: 1.2931709, z: -2.4495544}
 --- !u!4 &815978692
 Transform:
   m_ObjectHideFlags: 0
@@ -3144,7 +3343,7 @@ GameObject:
   - component: {fileID: 826369499}
   - component: {fileID: 826369498}
   m_Layer: 0
-  m_Name: Info
+  m_Name: "InfoBunkerPeque\xF1o"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3335,7 +3534,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 827695396}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 481973049}
+        m_MethodName: PreviousConstruction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 9
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &827695396
@@ -3577,6 +3787,41 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1465844866}
   m_PrefabAsset: {fileID: 0}
+--- !u!84 &886966578
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 180
+  m_Height: 180
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthFormat: 2
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &913645473
 GameObject:
   m_ObjectHideFlags: 0
@@ -3738,7 +3983,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 944340524}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 481973049}
+        m_MethodName: PreviousConstruction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &944340524
@@ -3924,7 +4180,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1010626945}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 481973049}
+        m_MethodName: PreviousConstruction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1010626945
@@ -4331,7 +4598,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1077387937}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 481973049}
+        m_MethodName: PreviousConstruction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1077387937
@@ -4533,7 +4811,7 @@ GameObject:
   - component: {fileID: 1152878377}
   - component: {fileID: 1152878376}
   m_Layer: 0
-  m_Name: Info
+  m_Name: InfoCasa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4785,7 +5063,7 @@ GameObject:
   - component: {fileID: 1222940559}
   - component: {fileID: 1222940558}
   m_Layer: 0
-  m_Name: Info
+  m_Name: InfoBunker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5550,7 +5828,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1464852943}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 481973049}
+        m_MethodName: PreviousConstruction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1464852943
@@ -5690,10 +5979,10 @@ PrefabInstance:
     - target: {fileID: 763809863, guid: 770274626b5a55541bc7ad8e0aa82746, type: 3}
       propertyPath: camvasContruction
       value: 
-      objectReference: {fileID: 745220678}
+      objectReference: {fileID: 481973045}
     - target: {fileID: 1114143157, guid: 770274626b5a55541bc7ad8e0aa82746, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6745856987671994349, guid: 770274626b5a55541bc7ad8e0aa82746,
         type: 3}
@@ -5804,7 +6093,7 @@ PrefabInstance:
         type: 3}
       propertyPath: renderTex
       value: 
-      objectReference: {fileID: 1912191254}
+      objectReference: {fileID: 1795494014}
     - target: {fileID: 1811191445982818855, guid: 770274626b5a55541bc7ad8e0aa82746,
         type: 3}
       propertyPath: target
@@ -5814,7 +6103,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 197719094}
+      objectReference: {fileID: 886966578}
     - target: {fileID: 1811191446014955359, guid: 770274626b5a55541bc7ad8e0aa82746,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -5932,6 +6221,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 230.04999
+      objectReference: {fileID: 0}
+    - target: {fileID: 751188164, guid: 770274626b5a55541bc7ad8e0aa82746, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 770274626b5a55541bc7ad8e0aa82746, type: 3}
@@ -6459,7 +6752,7 @@ GameObject:
   - component: {fileID: 1588149328}
   - component: {fileID: 1588149327}
   m_Layer: 0
-  m_Name: Info
+  m_Name: InfoEdificioEnRuinas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6644,7 +6937,7 @@ GameObject:
   - component: {fileID: 1612633529}
   - component: {fileID: 1612633528}
   m_Layer: 0
-  m_Name: Info
+  m_Name: InfoTorre_Blindada
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7373,7 +7666,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1748760635}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 481973049}
+        m_MethodName: PreviousConstruction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1748760635
@@ -7474,6 +7778,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 45, y: -90, z: 0}
+--- !u!84 &1795494014
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 180
+  m_Height: 180
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthFormat: 2
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1001 &1804108598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7619,7 +7958,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1828876768}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 481973049}
+        m_MethodName: PreviousConstruction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1828876768
@@ -8155,41 +8505,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1901658484}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &1912191254
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 180
-  m_Height: 180
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 2
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1001 &1954812146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8333,7 +8648,7 @@ GameObject:
   - component: {fileID: 1978985660}
   - component: {fileID: 1978985659}
   m_Layer: 0
-  m_Name: Info
+  m_Name: InfoCasaSinTecho
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8524,7 +8839,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1983053087}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 481973049}
+        m_MethodName: PreviousConstruction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1983053087
@@ -8803,7 +9129,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2000964208}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 481973049}
+        m_MethodName: PreviousConstruction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2000964208
@@ -9077,7 +9414,7 @@ GameObject:
   - component: {fileID: 2080510952}
   - component: {fileID: 2080510951}
   m_Layer: 0
-  m_Name: Info
+  m_Name: InfoCasaEnRuinas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
