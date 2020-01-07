@@ -104,8 +104,17 @@ public class UIContructionController : MonoBehaviour
             }
             CM.GetCurrentZoneConstruction().SetActive(false);
             CM.camvasContruction.SetActive(false);
+            CM.buttonDerecha.SetActive(false);
+            CM.buttonIzquierda.SetActive(false);
             camvasConfirmationConstruction.SetActive(true);
-            construction.DownMovement();
+            if (construction.valueDown > 0)
+            {
+                construction.DownMovement();
+            }
+            if(construction.valueUp > 0)
+            {
+                construction.UpMovement();
+            }
         }
     }
     public void ConfirmConstruction()
@@ -116,6 +125,7 @@ public class UIContructionController : MonoBehaviour
             construction.SetConstructed(true);
             construction = null;
             camvasConfirmationConstruction.SetActive(false);
+            CM.CheckActivationButtons();
         }
     }
     public void CancelConstruction()
@@ -128,7 +138,6 @@ public class UIContructionController : MonoBehaviour
             CM.camvasContruction.SetActive(true);
             construction = null;
             camvasConfirmationConstruction.SetActive(false);
-            
         }
     }
     public void RotateStructure(int angle)
@@ -149,5 +158,6 @@ public class UIContructionController : MonoBehaviour
     {
         CM.SetCurrentZoneConstruction(null);
         gameObject.SetActive(false);
+        CM.CheckActivationButtons();
     }
 }

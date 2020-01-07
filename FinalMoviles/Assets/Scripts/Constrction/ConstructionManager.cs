@@ -72,6 +72,8 @@ public class ConstructionManager : MonoBehaviour
                     {
                         camvasContruction.SetActive(true);
                         currentZoneConstruction = hit.transform.gameObject;
+                        buttonDerecha.SetActive(false);
+                        buttonIzquierda.SetActive(false);
                     }
                 }
             }
@@ -110,6 +112,24 @@ public class ConstructionManager : MonoBehaviour
 
         
     }
+    public void CheckActivationButtons()
+    {
+        if (indexConstructionZone >= constructionZone.Count - 1)
+        {
+            buttonDerecha.SetActive(false);
+            buttonIzquierda.SetActive(true);
+        }
+        else if (indexConstructionZone <= 0)
+        {
+            buttonDerecha.SetActive(true);
+            buttonIzquierda.SetActive(false);
+        }
+        else
+        {
+            buttonDerecha.SetActive(true);
+            buttonIzquierda.SetActive(true);
+        }
+    }
     public void NextConstruction()
     {
         if (indexConstructionZone < constructionZone.Count - 1)
@@ -120,11 +140,8 @@ public class ConstructionManager : MonoBehaviour
             buttonDerecha.SetActive(true);
             buttonIzquierda.SetActive(true);
         }
-        if(indexConstructionZone >= constructionZone.Count - 1)
-        {
-            buttonDerecha.SetActive(false);
-            buttonIzquierda.SetActive(true);
-        }
+        CheckActivationButtons();
+        
     }
     public void PrevConstruction()
     {
@@ -136,11 +153,7 @@ public class ConstructionManager : MonoBehaviour
             buttonDerecha.SetActive(true);
             buttonIzquierda.SetActive(true);
         }
-        if(indexConstructionZone <= 0)
-        {
-            buttonDerecha.SetActive(true);
-            buttonIzquierda.SetActive(false);
-        }
+        CheckActivationButtons();
     }
     public void CloseStageConstruction()
     {
@@ -153,5 +166,9 @@ public class ConstructionManager : MonoBehaviour
     public void SetCurrentZoneConstruction(GameObject go)
     {
         currentZoneConstruction = go;
+    }
+    public int GetIndexConstructionZone()
+    {
+        return indexConstructionZone;
     }
 }
