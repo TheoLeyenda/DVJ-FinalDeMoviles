@@ -42,17 +42,22 @@ public class UIContructionController : MonoBehaviour
         }
     }
     private PoolObject poolObject;
+    private GameObject currentConstruction;
+    private int currentIndex;
+    private Construction construction;
     public ConstructionManager CM;
     public string textInformacion;
     public string textTitulo;
     public Text titulo;
     public List<UIButtonConstruction> buttons;
+    public GameObject camvasConfirmationConstruction;
     private void OnEnable()
     {
         for (int i = 0; i < buttons.Count; i++)
         {
             buttons[i].CheckDataButton();
         }
+        camvasConfirmationConstruction.SetActive(false);
     }
     public void Information(int index)
     {
@@ -89,39 +94,42 @@ public class UIContructionController : MonoBehaviour
         {
             GameObject go;
             go = buttons[index].poolConstruction.GetObject();
+            currentConstruction = go;
+            currentIndex = index;
+            construction = go.GetComponent<Construction>();
             go.transform.position = CM.GetCurrentZoneConstruction().transform.position;
             go.transform.rotation = CM.GetCurrentZoneConstruction().transform.rotation;
             CM.GetCurrentZoneConstruction().SetActive(false);
             CM.camvasContruction.SetActive(false);
+            camvasConfirmationConstruction.SetActive(true);
         }
     }
-    public void ConfirmConstruction(int index)
+    public void ConfirmConstruction()
     {
-        if (index < buttons.Count && index >= 0)
+        if (construction != null)
         {
-            Construction construction;
-            construction = buttons[index].poolConstruction.GetObject().GetComponent<Construction>();
             CM.GetCurrentZoneConstruction().SetActive(false);
             construction.SetConstructed(true);
+            construction = null;
+            camvasConfirmationConstruction.SetActive(false);
         }
     }
-    public void CancelConstruction(int index)
+    public void CancelConstruction()
     {
-        if (index < buttons.Count && index >= 0)
+        if (construction != null)
         {
-            Construction construction;
-            construction = buttons[index].poolConstruction.GetObject().GetComponent<Construction>();
-            if (!construction.GetConstructed())
-            {
-                buttons[index].poolConstruction.Recycle(construction.gameObject);
-                construction.gameObject.SetActive(false);
-                CM.GetCurrentZoneConstruction().SetActive(true);
-            }
+            buttons[currentIndex].poolConstruction.Recycle(construction.gameObject);
+            construction.gameObject.SetActive(false);
+            CM.GetCurrentZoneConstruction().SetActive(true);
+            CM.camvasContruction.SetActive(true);
+            construction = null;
+            camvasConfirmationConstruction.SetActive(false);
+            
         }
     }
-    public void RotateStructure(GameObject go)
+    public void RotateStructure()
     {
-        go.transform.Rotate(go.transform.position, 15);
+        currentConstruction.transform.Rotate(Vector3.up, 15);
     }
     public void Exit()
     {
