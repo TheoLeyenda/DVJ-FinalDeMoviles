@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ConstructionManager : MonoBehaviour
-{ 
+{
     // Start is called before the first frame update
+    public GameObject StartGameButton;
     public List<GameObject> objectsDisables;
     public List<GameObject> objectsActivate;
     public List<GameObject> constructionZone;
@@ -16,7 +17,9 @@ public class ConstructionManager : MonoBehaviour
     public float speedTraslationCamera;
     public GameObject buttonIzquierda;
     public GameObject buttonDerecha;
+    public GameObject buttonMap;
     public GameObject camvasContruction;
+    public GameManager gm;
     private int indexConstructionZone;
     private Vector3 finishPositionCamera;
     private float magnitudeFinishMovementCamera = 0.1f;
@@ -26,6 +29,7 @@ public class ConstructionManager : MonoBehaviour
     //public Camera cameraInConstruction;
     private void OnEnable()
     {
+        StartGameButton.SetActive(false);
         indexConstructionZone = 0;
         SetActiveObjects(false,objectsDisables);
         SetActiveObjects(true, objectsActivate);
@@ -56,9 +60,22 @@ public class ConstructionManager : MonoBehaviour
     {
         CheckClickInConstructionZone();
     }
+    public void CheckStartGameEnable()
+    {
+        bool enableStartGame = true;
+        for (int i = 0; i < constructionZone.Count; i++)
+        {
+            //Debug.Log("construccion "+i+":"+constructionZone[i].activeSelf);
+            if (constructionZone[i].activeSelf)
+            {
+                enableStartGame = false;
+            }
+        }
+        //Debug.Log("EnableStartGame: "+enableStartGame);
+        gm.SetEnableStartGame(enableStartGame);
+    }
     public void CheckClickInConstructionZone()
     {
-        //Debug.Log(Camera.main);
         if (Camera.main != null)
         {
             RaycastHit hit;
@@ -74,6 +91,7 @@ public class ConstructionManager : MonoBehaviour
                         currentZoneConstruction = hit.transform.gameObject;
                         buttonDerecha.SetActive(false);
                         buttonIzquierda.SetActive(false);
+                        buttonMap.SetActive(false);
                     }
                 }
             }
@@ -84,10 +102,15 @@ public class ConstructionManager : MonoBehaviour
         inGeneralVision = !inGeneralVision;
         if (inGeneralVision)
         {
+            CheckStartGameEnable();
             cursorCamera.transform.position = waypointGeneralVision.transform.position;
             cursorCamera.transform.rotation = waypointGeneralVision.transform.rotation;
             buttonDerecha.SetActive(false);
             buttonIzquierda.SetActive(false);
+            if (gm.GetEnableStartGame())
+            {
+                StartGameButton.SetActive(true);
+            }
         }
         else
         {
@@ -108,6 +131,7 @@ public class ConstructionManager : MonoBehaviour
                 buttonDerecha.SetActive(true);
                 buttonIzquierda.SetActive(true);
             }
+            StartGameButton.SetActive(false);
         }
 
         
@@ -129,6 +153,8 @@ public class ConstructionManager : MonoBehaviour
             buttonDerecha.SetActive(true);
             buttonIzquierda.SetActive(true);
         }
+        if(!buttonMap.activeSelf)
+            buttonMap.SetActive(true);
     }
     public void NextConstruction()
     {

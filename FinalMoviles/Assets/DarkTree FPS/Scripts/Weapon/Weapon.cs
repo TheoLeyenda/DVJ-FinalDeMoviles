@@ -983,15 +983,21 @@ namespace DarkTreeFPS
 
         private void OnDisable()
         {
-            CancelInvoke();
-            animator.StopPlayback();
-            animator.Rebind();
-            canShot = true;
-            reloading = false;
-            if (weaponNameText)
-                weaponNameText.text = "";
-            if (ammoText)
-                ammoText.text = "";
+            if (animator != null)
+            {
+                if (animator.gameObject.activeSelf)
+                {
+                    CancelInvoke();
+                    animator.StopPlayback();
+                    animator.Rebind();
+                    canShot = true;
+                    reloading = false;
+                    if (weaponNameText)
+                        weaponNameText.text = "";
+                    if (ammoText)
+                        ammoText.text = "";
+                }
+            }
         }
     }
 }

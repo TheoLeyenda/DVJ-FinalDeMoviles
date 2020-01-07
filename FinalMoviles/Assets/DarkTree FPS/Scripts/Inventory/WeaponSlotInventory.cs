@@ -26,25 +26,28 @@ namespace DarkTreeFPS
         
         void Update()
         {
-            if(weaponManager.slots[slotIndex].storedWeapon != null)
+            if (weaponManager != null && weaponManager.gameObject.activeSelf)
             {
-                image.sprite = weaponManager.slots[slotIndex].storedWeapon.weaponSetting.weaponIcon;
-                ammoCount.text = weaponManager.slots[slotIndex].storedWeapon.currentAmmo.ToString();
-                weaponName.text = weaponManager.slots[slotIndex].storedWeapon.weaponName;
+                if (weaponManager.slots[slotIndex].storedWeapon != null)
+                {
+                    image.sprite = weaponManager.slots[slotIndex].storedWeapon.weaponSetting.weaponIcon;
+                    ammoCount.text = weaponManager.slots[slotIndex].storedWeapon.currentAmmo.ToString();
+                    weaponName.text = weaponManager.slots[slotIndex].storedWeapon.weaponName;
 
-                image.color = Color.white;
+                    image.color = Color.white;
 
-                dropButton.gameObject.SetActive(true);
-            }
-            else
-            {
-                image.sprite = null;
-                ammoCount.text = "";
-                weaponName.text = "";
+                    dropButton.gameObject.SetActive(true);
+                }
+                else
+                {
+                    image.sprite = null;
+                    ammoCount.text = "";
+                    weaponName.text = "";
 
-                image.color = Color.clear;
+                    image.color = Color.clear;
 
-                dropButton.gameObject.SetActive(false);
+                    dropButton.gameObject.SetActive(false);
+                }
             }
         }
     }
