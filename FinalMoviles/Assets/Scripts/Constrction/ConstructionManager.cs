@@ -16,10 +16,13 @@ public class ConstructionManager : MonoBehaviour
     public float speedTraslationCamera;
     public GameObject buttonIzquierda;
     public GameObject buttonDerecha;
+    public GameObject camvasContruction;
     private int indexConstructionZone;
     private Vector3 finishPositionCamera;
     private float magnitudeFinishMovementCamera = 0.1f;
     private bool inGeneralVision = false;
+    private GameObject currentZoneConstruction;
+
     //public Camera cameraInConstruction;
     private void OnEnable()
     {
@@ -63,9 +66,10 @@ public class ConstructionManager : MonoBehaviour
             {
                 if (hit.transform != null)
                 {
-                    if (hit.transform.tag == "ZonaConstruccion")
+                    if (hit.transform.tag == "ZonaConstruccion" || Input.GetButton("InputSeleccion"))
                     {
-                        //Se abre el menu de construccion
+                        camvasContruction.SetActive(true);
+                        currentZoneConstruction = hit.transform.gameObject;
                     }
                 }
             }
@@ -135,5 +139,13 @@ public class ConstructionManager : MonoBehaviour
             buttonDerecha.SetActive(true);
             buttonIzquierda.SetActive(false);
         }
+    }
+    public void CloseStageConstruction()
+    {
+        gameObject.SetActive(false);
+    }
+    public GameObject GetCurrentZoneConstruction()
+    {
+        return currentZoneConstruction;
     }
 }

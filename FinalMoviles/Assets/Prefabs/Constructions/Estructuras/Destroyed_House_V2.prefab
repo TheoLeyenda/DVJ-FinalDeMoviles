@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3390500}
   - component: {fileID: 2334130}
   - component: {fileID: 6453170}
+  - component: {fileID: -4796373026185617728}
   m_Layer: 0
   m_Name: Destroyed_House_V2
   m_TagString: Untagged
@@ -95,6 +96,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 00af4a863ab97414d9627bd5d7e303b4, type: 3}
+--- !u!114 &-4796373026185617728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab889a30eb05b743a96f5f64994978f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 0
+  rangeOfView: 0
 --- !u!1 &68068587
 GameObject:
   m_ObjectHideFlags: 0
