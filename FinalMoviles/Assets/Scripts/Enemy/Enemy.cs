@@ -12,7 +12,8 @@ public class Enemy : MonoBehaviour
         Fighter,// Al ver al jugador lo atacan
         ConstructionDestroyer, //Al ver una construccion la atacan
     }
-
+    public GameObject EnemyPrefab;
+    public FollowRoute auxFollowRoute;
     private FollowRoute followRoute;
     public float speed;
     protected float auxSpeed;
@@ -27,6 +28,10 @@ public class Enemy : MonoBehaviour
 
         auxSpeed = speed;
         followRoute = GetComponent<FollowRoute>();
+        if (followRoute == null && auxFollowRoute != null)
+        {
+            followRoute = auxFollowRoute;
+        }
         followRoute.GetAgent().speed = speed;
         followRoute.GetAgent().acceleration = acceletartion;
     }
@@ -47,7 +52,14 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                gameObject.SetActive(false);
+                if (EnemyPrefab != null)
+                {
+                    EnemyPrefab.SetActive(false);
+                }
+                else
+                {
+                    gameObject.SetActive(false);
+                }
             }
         }
     }
@@ -61,7 +73,14 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                gameObject.SetActive(false);
+                if (EnemyPrefab != null)
+                {
+                    EnemyPrefab.SetActive(false);
+                }
+                else
+                {
+                    gameObject.SetActive(false);
+                }
             }
         }
     }

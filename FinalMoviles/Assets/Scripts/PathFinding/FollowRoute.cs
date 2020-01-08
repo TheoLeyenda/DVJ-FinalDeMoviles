@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class FollowRoute : MonoBehaviour
 {
     // Start is called before the first frame update
+    public NavMeshAgent navMeshAgent;
     [SerializeField]
     private GameObject finishPoint;
     private DataRoute dataRoute;
@@ -22,6 +23,10 @@ public class FollowRoute : MonoBehaviour
         pathPoints = new List<GameObject>();
         indexDataRoute = 0;
         agent = GetComponent<NavMeshAgent>();
+        if (agent == null && navMeshAgent != null)
+        {
+            agent = navMeshAgent;
+        }
         finishPoint = null;
     }
     private void OnEnable()
@@ -77,6 +82,12 @@ public class FollowRoute : MonoBehaviour
         if (finishPoint != null)
         {
             Vector3 a = finishPoint.transform.position - transform.position;
+            /*if (finishPoint == pathPoints[pathPoints.Count - 1])
+            {
+                Debug.Log(a.magnitude <= agent.stoppingDistance);
+                Debug.Log("a.magnitude: "+a.magnitude);
+                Debug.Log("agent.stoppingDistance: " + agent.stoppingDistance);
+            }*/
             if (a.magnitude <= agent.stoppingDistance)
             {
                 if (finishPoint == pathPoints[pathPoints.Count - 1])
