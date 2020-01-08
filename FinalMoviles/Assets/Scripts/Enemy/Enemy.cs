@@ -5,12 +5,22 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
+    public enum TypeEnemy
+    {
+        Normal, // van normalmente al punto final del recorrido
+        Runner, // Corren al punto final del recorrido
+        Fighter,// Al ver al jugador lo atacan
+        ConstructionDestroyer, //Al ver una construccion la atacan
+    }
+
     private FollowRoute followRoute;
     public float speed;
     protected float auxSpeed;
     public float acceletartion;
     public float life = 100;
     public bool inPool;
+    public TypeEnemy typeEnemy;
+    public string nameEnemy;
     
     void Start()
     {
