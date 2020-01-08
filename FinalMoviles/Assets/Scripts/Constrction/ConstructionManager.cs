@@ -20,6 +20,8 @@ public class ConstructionManager : MonoBehaviour
     public GameObject buttonMap;
     public GameObject camvasContruction;
     public GameManager gm;
+    public GameObject ButtonBack;
+    public GameObject ButtonExit;
     private int indexConstructionZone;
     private Vector3 finishPositionCamera;
     private float magnitudeFinishMovementCamera = 0.1f;

@@ -56,8 +56,10 @@ public class UIContructionController : MonoBehaviour
         for (int i = 0; i < buttons.Count; i++)
         {
             buttons[i].CheckDataButton();
+            buttons[i].go_Information.SetActive(false);
         }
         camvasConfirmationConstruction.SetActive(false);
+        CM.ButtonBack.SetActive(false);
     }
     public void Information(int index)
     {
@@ -67,8 +69,10 @@ public class UIContructionController : MonoBehaviour
             {
                 buttons[i].go_button.SetActive(false);
             }
-            titulo.text = textInformacion;
+            titulo.text = buttons[index].nameConstructionText.text;
             buttons[index].go_Information.SetActive(true);
+            CM.ButtonExit.SetActive(false);
+            CM.ButtonBack.SetActive(true);
         }
 
         //mostrara la informacion de un boton en especifico
@@ -87,6 +91,9 @@ public class UIContructionController : MonoBehaviour
             buttons[i].go_button.SetActive(true);
         }
         titulo.text = textTitulo;
+        CM.ButtonExit.SetActive(true);
+        CM.ButtonBack.SetActive(false);
+
     }
     public void PreviousConstruction(int index)
     {
