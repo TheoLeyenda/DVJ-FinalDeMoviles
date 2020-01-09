@@ -45,7 +45,7 @@ public class Pool : MonoBehaviour {
         CommonBalls = new List<GameObject>();
         for (int i = 0; i < count; i++)
         {
-            GameObject go = Instantiate(Ball);
+            GameObject go = Instantiate(Ball,transform.position,Quaternion.identity);
             CheckParent(go);
             PoolObject po;
             go.SetActive(false);

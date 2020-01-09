@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -22,10 +22,11 @@ public class Enemy : MonoBehaviour
     public bool inPool;
     public TypeEnemy typeEnemy;
     public string nameEnemy;
-    
+
+    public static event Action<Enemy> OnDieAction;
     void Start()
     {
-
+        acceletartion = acceletartion * 10;
         auxSpeed = speed;
         followRoute = GetComponent<FollowRoute>();
         if (followRoute == null && auxFollowRoute != null)
@@ -46,20 +47,18 @@ public class Enemy : MonoBehaviour
     {
         if (followRoute.CheckFinishRoute())
         {
-            if (inPool)
+            //SI ANDA MAL LA DESAPARICION O APARICION DEL ENEMIGO PROGRAMAR EL TEMA DEL RECICLADO DEL POOL
+            if (EnemyPrefab != null)
             {
-                //Escribir la programacion del Resiclado del pool y todo eso.
+                if (OnDieAction != null)
+                    OnDieAction(this);
+                EnemyPrefab.SetActive(false);
             }
             else
             {
-                if (EnemyPrefab != null)
-                {
-                    EnemyPrefab.SetActive(false);
-                }
-                else
-                {
-                    gameObject.SetActive(false);
-                }
+                if (OnDieAction != null)
+                    OnDieAction(this);
+                gameObject.SetActive(false);
             }
         }
     }
@@ -67,20 +66,18 @@ public class Enemy : MonoBehaviour
     {
         if (life <= 0)
         {
-            if (inPool)
+            //SI ANDA MAL LA DESAPARICION O APARICION DEL ENEMIGO PROGRAMAR EL TEMA DEL RECICLADO DEL POOL
+            if (EnemyPrefab != null)
             {
-                //Escribir la programacion del Resiclado del pool y todo eso.
+                if (OnDieAction != null)
+                    OnDieAction(this);
+                EnemyPrefab.SetActive(false);
             }
             else
             {
-                if (EnemyPrefab != null)
-                {
-                    EnemyPrefab.SetActive(false);
-                }
-                else
-                {
-                    gameObject.SetActive(false);
-                }
+                if (OnDieAction != null)
+                    OnDieAction(this);
+                gameObject.SetActive(false);
             }
         }
     }

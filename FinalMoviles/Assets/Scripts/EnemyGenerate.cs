@@ -25,6 +25,7 @@ public class EnemyGenerate : MonoBehaviour
         Infinite,
     }
     private NameEnemys nameEnemys;
+    private TypeGenerator auxTypeGenerator;
     public TypeGenerator typeGenerator;
     public float rangeGenerationX;
     public float rangeGenerationZ;
@@ -37,15 +38,22 @@ public class EnemyGenerate : MonoBehaviour
     private Pool currentPool;
     private bool finishWaves;
     private int indexWave;
+    private int enemysDie;
     //private bool swarm;//Enjambre (boleano que controla si los enemigos a salir salen en enjambre o no)
 
     private void Start()
     {
+        auxTypeGenerator = typeGenerator;
+        waves.Add(new Wave());
         indexWave = 0;
         auxDelayBetweenWaves = delayBetweenWaves;
-        for (int i = 0; i < waves.Count; i++)
-        {    
-            waves[i].delayGenerationEnemys = new float[waves[i].countTotalEnemysWave];
+        for (int i = 0; i < waves.Count - 1; i++)
+        {
+            for (int k = 0; k < waves[i].dataCountEnemySpawns.Length; k++)
+            {
+                waves[i].countTotalEnemysWave = waves[i].countTotalEnemysWave + waves[i].dataCountEnemySpawns[k].countEnemysSpawn;
+            }
+            waves[i].delayGenerationEnemys = new float[waves[i].countTotalEnemysWave + 1];
             for (int j = 0; j < waves[i].delayGenerationEnemys.Length; j++)
             {
                 if (j > 0)
@@ -60,8 +68,20 @@ public class EnemyGenerate : MonoBehaviour
             waves[i].indexDelayGenerationSpawn = 0;
             waves[i].indexDataCountEnemySpawns = 0;
             waves[i].currentEnemysGenerate = 0;
+            
         }
-        
+    }
+    private void OnEnable()
+    {
+        Enemy.OnDieAction += AddEnemysDie;
+    }
+    private void OnDisable()
+    {
+        Enemy.OnDieAction -= AddEnemysDie;
+    }
+    public void AddEnemysDie(Enemy e)
+    {
+        enemysDie++;
     }
     [System.Serializable]
     public class PoolsData
@@ -86,6 +106,9 @@ public class EnemyGenerate : MonoBehaviour
         public int indexDataCountEnemySpawns;
         [HideInInspector]
         public int currentEnemysGenerate;
+        //SI ALGO FALLA DESCOMENTAR EL [HideInInspector] de abajo y comparar el countTotalEnemyWave con la
+        //suma de todos los countEnemysSpawn del DataCountEnemySpawn en cuestion.
+        [HideInInspector]
         public int countTotalEnemysWave;
         [HideInInspector]
         public float[] delayGenerationEnemys;
@@ -96,21 +119,29 @@ public class EnemyGenerate : MonoBehaviour
     {
         if (typeGenerator == TypeGenerator.Finite)
         {
-            if (indexWave < waves.Count)
+
+            if (delayBetweenWaves <= 0)
             {
-                if (delayBetweenWaves <= 0)
+                if (indexWave < waves.Count)
                 {
+                    //Debug.Log(waves[indexWave].delayGenerationEnemys.Length);
+                    Debug.Log("index: " + indexWave);
+                    //Debug.Log("indexDelayGenerationSpawn: "+ waves[indexWave].indexDelayGenerationSpawn);
+
                     float currentDelay = waves[indexWave].delayGenerationEnemys[waves[indexWave].indexDelayGenerationSpawn];
                     GameObject go = null;
                     float Height = 0;
                     for (int i = 0; i < listPools.Count; i++)
                     {
-                        if (listPools[i].nameObjectPool == waves[indexWave].dataCountEnemySpawns[waves[indexWave].indexDataCountEnemySpawns].ToString())
+                        //Debug.Log("dataCountEnemySpawns: "+waves[indexWave].dataCountEnemySpawns.Length);
+                        //Debug.Log("indexDataCountEnemySpawns: " + waves[indexWave].indexDataCountEnemySpawns);
+                        if (listPools[i].nameObjectPool == waves[indexWave].dataCountEnemySpawns[waves[indexWave].indexDataCountEnemySpawns].enemysGenerate.ToString())
                         {
                             currentPool = listPools[i].pool;
                             Height = listPools[i].objectHeight;
                         }
                     }
+                    //Debug.Log("currentDelay:" + currentDelay);
                     if (currentDelay <= 0)
                     {
                         if (waves[indexWave].dataCountEnemySpawns[waves[indexWave].indexDataCountEnemySpawns].swarn)
@@ -128,44 +159,40 @@ public class EnemyGenerate : MonoBehaviour
 
                                     //APARECEN EN X o Z ALEATORIO
                                     go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
-
-                                    go = currentPool.GetObject();
+                                    go.transform.rotation = transform.rotation;
                                     waves[indexWave].currentEnemysGenerate++;
                                 }
                                 waves[indexWave].indexDataCountEnemySpawns++;
+                                waves[indexWave].indexDelayGenerationSpawn++;
                             }
                         }
                         else
                         {
                             //Genero al enemigo de forma individual.
-
+                            Debug.Log(currentPool);
                             if (currentPool != null)
                             {
-
                                 go = currentPool.GetObject();
+                                go.transform.rotation = transform.rotation;
                                 go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
                                 waves[indexWave].currentEnemysGenerate++;
                                 waves[indexWave].indexDataCountEnemySpawns++;
+                                waves[indexWave].indexDelayGenerationSpawn++;
                             }
                         }
-                        waves[indexWave].indexDelayGenerationSpawn++;
-
                     }
                     else
                     {
                         currentDelay -= Time.deltaTime;
                         waves[indexWave].delayGenerationEnemys[waves[indexWave].indexDelayGenerationSpawn] = currentDelay;
                     }
-                    if (waves[indexWave].currentEnemysGenerate >= waves[indexWave].countTotalEnemysWave)
-                    {
-                        indexWave++;
-                        currentPool = null;
-                    }
+
                 }
-                else
-                {
-                    delayBetweenWaves = delayBetweenWaves - Time.deltaTime;
-                }
+
+            }
+            else
+            {
+                delayBetweenWaves = delayBetweenWaves - Time.deltaTime;
             }
         }
         else if (typeGenerator == TypeGenerator.Infinite)
@@ -173,16 +200,43 @@ public class EnemyGenerate : MonoBehaviour
             //Programar un estilo de generacion infinita en donde cada ronda sera progresivamente mas dificil a
             //la anterior, ademas hacer que los enemigos se elijan completamente aleatoria ya sea un conjunto de enemigos
             //juntos generados de golpe o varios enemigos individuales caminando.
-            
+
             /* 
-             Para hacer esto hacer que los datos de la wave actual se llenen de forma automatica. asi por cada nueva 
-             ronda se utiliza la misma wave solo que con datos renovados 
+                Para hacer esto hacer que los datos de la wave actual se llenen de forma automatica. asi por cada nueva 
+                ronda se utiliza la misma wave solo que con datos renovados 
             */
         }
+    }
+    public void CheckNextWave(TypeGenerator curremtTypeGenerator)
+    {
+        if (indexWave < waves.Count)
+        {
+            if (waves[indexWave].currentEnemysGenerate >= waves[indexWave].countTotalEnemysWave
+                && (enemysDie >= waves[indexWave].countTotalEnemysWave))
+            {
+                enemysDie = 0;
+                indexWave++;
+                delayBetweenWaves = auxDelayBetweenWaves;
+                currentPool = null;
+                typeGenerator = curremtTypeGenerator;
+            }
+            else if (indexWave >= waves.Count - 1 ||
+                (waves[indexWave].currentEnemysGenerate >= waves[indexWave].countTotalEnemysWave
+                && (enemysDie < waves[indexWave].countTotalEnemysWave)))
+            {
+                typeGenerator = TypeGenerator.None;
+            }
+        }
+        else
+        {
+            typeGenerator = TypeGenerator.None;
+        }
+
     }
     // Update is called once per frame
     void Update()
     {
-        CheckGenerate();    
+        CheckGenerate();
+        CheckNextWave(auxTypeGenerator);
     }
 }

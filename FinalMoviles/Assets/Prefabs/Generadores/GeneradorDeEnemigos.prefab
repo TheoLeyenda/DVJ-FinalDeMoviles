@@ -24,13 +24,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3012772410816871952}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.00000028088027}
   m_LocalPosition: {x: -5.69, y: 0, z: 292.8}
   m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
-  m_Children: []
+  m_Children:
+  - {fileID: 3012772412533330965}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -179.99998, z: 0}
 --- !u!114 &3012772410816871953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,16 +44,332 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a7f0820da3c8746bcbdcc21af943ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayGeneration: 0
-  countEnemysForWave: 
+  typeGenerator: 1
+  rangeGenerationX: 3.5
+  rangeGenerationZ: 0
+  delayBetweenWaves: 5
   listPools:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - pool: {fileID: 3012772412427642411}
+    nameObjectPool: Slime_2
+    objectHeight: -0.26
+  - pool: {fileID: 3012772411307270610}
+    nameObjectPool: Rabbit
+    objectHeight: -0.27
+  - pool: {fileID: 3012772412552130171}
+    nameObjectPool: Ghost_White
+    objectHeight: -0.244
+  - pool: {fileID: 3012772410600319495}
+    nameObjectPool: Bat
+    objectHeight: -0.29
+  - pool: {fileID: 3012772411033648940}
+    nameObjectPool: TurtellShell
+    objectHeight: -0.35
+  - pool: {fileID: 3012772411257586657}
+    nameObjectPool: Slime
+    objectHeight: -0.35
+  - pool: {fileID: 5041312466041056988}
+    nameObjectPool: Spider
+    objectHeight: -0.311
+  - pool: {fileID: 3629334701536395627}
+    nameObjectPool: BoximonFiery
+    objectHeight: 0.11
+  - pool: {fileID: 4640351362993216619}
+    nameObjectPool: BoximonCyclopes
+    objectHeight: 0.11
+  - pool: {fileID: 4190555757823437857}
+    nameObjectPool: StoneMonster
+    objectHeight: 0
+  waves:
+  - indexDelayGenerationSpawn: 0
+    indexDataCountEnemySpawns: 0
+    currentEnemysGenerate: 0
+    countTotalEnemysWave: 25
+    delayGenerationEnemys: []
+    dataCountEnemySpawns:
+    - countEnemysSpawn: 1
+      enemysGenerate: 5
+      swarn: 0
+    - countEnemysSpawn: 1
+      enemysGenerate: 5
+      swarn: 0
+    - countEnemysSpawn: 1
+      enemysGenerate: 5
+      swarn: 0
+    - countEnemysSpawn: 5
+      enemysGenerate: 5
+      swarn: 1
+    - countEnemysSpawn: 1
+      enemysGenerate: 5
+      swarn: 0
+    - countEnemysSpawn: 1
+      enemysGenerate: 5
+      swarn: 0
+    - countEnemysSpawn: 5
+      enemysGenerate: 5
+      swarn: 1
+    - countEnemysSpawn: 1
+      enemysGenerate: 5
+      swarn: 0
+    - countEnemysSpawn: 1
+      enemysGenerate: 5
+      swarn: 0
+    - countEnemysSpawn: 1
+      enemysGenerate: 5
+      swarn: 0
+    - countEnemysSpawn: 1
+      enemysGenerate: 5
+      swarn: 0
+    - countEnemysSpawn: 1
+      enemysGenerate: 5
+      swarn: 0
+    - countEnemysSpawn: 5
+      enemysGenerate: 5
+      swarn: 1
+  - indexDelayGenerationSpawn: 0
+    indexDataCountEnemySpawns: 0
+    currentEnemysGenerate: 0
+    countTotalEnemysWave: 35
+    delayGenerationEnemys: []
+    dataCountEnemySpawns: []
+  - indexDelayGenerationSpawn: 0
+    indexDataCountEnemySpawns: 0
+    currentEnemysGenerate: 0
+    countTotalEnemysWave: 0
+    delayGenerationEnemys: []
+    dataCountEnemySpawns: []
+  - indexDelayGenerationSpawn: 0
+    indexDataCountEnemySpawns: 0
+    currentEnemysGenerate: 0
+    countTotalEnemysWave: 0
+    delayGenerationEnemys: []
+    dataCountEnemySpawns: []
+  - indexDelayGenerationSpawn: 0
+    indexDataCountEnemySpawns: 0
+    currentEnemysGenerate: 0
+    countTotalEnemysWave: 0
+    delayGenerationEnemys: []
+    dataCountEnemySpawns: []
+  - indexDelayGenerationSpawn: 0
+    indexDataCountEnemySpawns: 0
+    currentEnemysGenerate: 0
+    countTotalEnemysWave: 0
+    delayGenerationEnemys: []
+    dataCountEnemySpawns: []
+  - indexDelayGenerationSpawn: 0
+    indexDataCountEnemySpawns: 0
+    currentEnemysGenerate: 0
+    countTotalEnemysWave: 0
+    delayGenerationEnemys: []
+    dataCountEnemySpawns: []
+  minDelaySpawn: 0.2
+  maxDelaySpawn: 1.5
+--- !u!1001 &4738917794558609613
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3012772410816871954}
+    m_Modifications:
+    - target: {fileID: 7497226929717959897, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: m_Name
+      value: PoolsEnemys
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.5015658
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.24039505
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.0139583
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.96615726
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.25795397
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.58823544
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.58823526
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.58823544
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b54148df196df1444850374a102f7efe, type: 3}
+--- !u!4 &3012772412533330965 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
+    type: 3}
+  m_PrefabInstance: {fileID: 4738917794558609613}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3012772412427642411 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7497226929606045414, guid: b54148df196df1444850374a102f7efe,
+    type: 3}
+  m_PrefabInstance: {fileID: 4738917794558609613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75438edaff39ea94592a8d0f5a22a436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3012772411307270610 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7497226930641479967, guid: b54148df196df1444850374a102f7efe,
+    type: 3}
+  m_PrefabInstance: {fileID: 4738917794558609613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75438edaff39ea94592a8d0f5a22a436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3012772412552130171 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7497226929732691638, guid: b54148df196df1444850374a102f7efe,
+    type: 3}
+  m_PrefabInstance: {fileID: 4738917794558609613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75438edaff39ea94592a8d0f5a22a436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3012772410600319495 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7497226930595062474, guid: b54148df196df1444850374a102f7efe,
+    type: 3}
+  m_PrefabInstance: {fileID: 4738917794558609613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75438edaff39ea94592a8d0f5a22a436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3012772411033648940 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7497226930898368481, guid: b54148df196df1444850374a102f7efe,
+    type: 3}
+  m_PrefabInstance: {fileID: 4738917794558609613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75438edaff39ea94592a8d0f5a22a436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3012772411257586657 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7497226930726013740, guid: b54148df196df1444850374a102f7efe,
+    type: 3}
+  m_PrefabInstance: {fileID: 4738917794558609613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75438edaff39ea94592a8d0f5a22a436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5041312466041056988 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 302394671493129745, guid: b54148df196df1444850374a102f7efe,
+    type: 3}
+  m_PrefabInstance: {fileID: 4738917794558609613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75438edaff39ea94592a8d0f5a22a436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3629334701536395627 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8329961728240699814, guid: b54148df196df1444850374a102f7efe,
+    type: 3}
+  m_PrefabInstance: {fileID: 4738917794558609613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75438edaff39ea94592a8d0f5a22a436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4640351362993216619 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 117606353375351974, guid: b54148df196df1444850374a102f7efe,
+    type: 3}
+  m_PrefabInstance: {fileID: 4738917794558609613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75438edaff39ea94592a8d0f5a22a436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4190555757823437857 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8927221749749720300, guid: b54148df196df1444850374a102f7efe,
+    type: 3}
+  m_PrefabInstance: {fileID: 4738917794558609613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75438edaff39ea94592a8d0f5a22a436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
