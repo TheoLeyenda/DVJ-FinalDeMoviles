@@ -39,10 +39,14 @@ public class EnemyGenerate : MonoBehaviour
     private bool finishWaves;
     private int indexWave;
     private int enemysDie;
+    private float delayGeneratorInfinite;
+    private Wave wave;
     //private bool swarm;//Enjambre (boleano que controla si los enemigos a salir salen en enjambre o no)
 
     private void Start()
     {
+        wave = new Wave();
+        delayGeneratorInfinite = 0;
         auxTypeGenerator = typeGenerator;
         waves.Add(new Wave());
         indexWave = 0;
@@ -205,7 +209,48 @@ public class EnemyGenerate : MonoBehaviour
                 Para hacer esto hacer que los datos de la wave actual se llenen de forma automatica. asi por cada nueva 
                 ronda se utiliza la misma wave solo que con datos renovados 
             */
+
+
+            //FALTA PROBAR Y SI FUNCIONA BIEN IMPLEMENTAR SISTEMA DE RONDAS A ESTE GENERADOR TAMBIEN
+            //(POR AHORA GENERA ENEMIGOS INFINITOS SIN DESCANSO).
+            GameObject go;
+
+            if (delayGeneratorInfinite <= 0)
+            {
+                float Height = 0;
+                int maxEnemyGrup = 10;
+                int minEnemyGrup = 3;
+                int porcentageGrupGenetation = Random.Range(0, 101);
+                int enemySelected = Random.Range(0, listPools.Count);
+                int countEnemyGrup = Random.Range(minEnemyGrup, maxEnemyGrup + 1);
+
+                if (porcentageGrupGenetation > 50)
+                {
+                    for (int i = 0; i < countEnemyGrup; i++)
+                    {
+                        Height = listPools[enemySelected].objectHeight;
+                        go = listPools[enemySelected].pool.GetObject();
+                        go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
+                        go.transform.rotation = transform.rotation;
+                    }
+                    delayGeneratorInfinite = Random.Range(minDelaySpawn, maxDelaySpawn);
+                }
+                else if (porcentageGrupGenetation <= 50)
+                {
+                    Height = listPools[enemySelected].objectHeight;
+                    go = listPools[enemySelected].pool.GetObject();
+                    go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
+                    go.transform.rotation = transform.rotation;
+                    delayGeneratorInfinite = Random.Range(minDelaySpawn, maxDelaySpawn);
+                }
+
+            }
+            else
+            {
+                delayGeneratorInfinite = delayGeneratorInfinite - Time.deltaTime;
+            }
         }
+            
     }
     public void CheckNextWave(TypeGenerator curremtTypeGenerator)
     {
