@@ -27,6 +27,7 @@ public class EnemyGenerate : MonoBehaviour
     private NameEnemys nameEnemys;
     private TypeGenerator auxTypeGenerator;
     public TypeGenerator typeGenerator;
+    public float porcentageGrupInSurvivalMode;
     public float rangeGenerationX;
     public float rangeGenerationZ;
     public float delayBetweenWaves;
@@ -224,7 +225,7 @@ public class EnemyGenerate : MonoBehaviour
                 int enemySelected = Random.Range(0, listPools.Count);
                 int countEnemyGrup = Random.Range(minEnemyGrup, maxEnemyGrup + 1);
 
-                if (porcentageGrupGenetation > 50)
+                if (porcentageGrupGenetation > porcentageGrupInSurvivalMode)
                 {
                     for (int i = 0; i < countEnemyGrup; i++)
                     {
@@ -235,7 +236,7 @@ public class EnemyGenerate : MonoBehaviour
                     }
                     delayGeneratorInfinite = Random.Range(minDelaySpawn, maxDelaySpawn);
                 }
-                else if (porcentageGrupGenetation <= 50)
+                else if (porcentageGrupGenetation <= porcentageGrupInSurvivalMode)
                 {
                     Height = listPools[enemySelected].objectHeight;
                     go = listPools[enemySelected].pool.GetObject();
