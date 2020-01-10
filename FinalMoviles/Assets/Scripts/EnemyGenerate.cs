@@ -39,6 +39,7 @@ public class EnemyGenerate : MonoBehaviour
     public float maxDelaySpawn = 1.5f;
     private Pool currentPool;
     private bool finishWaves;
+    //[SerializeField]
     private int indexWave;
     private int enemysDie;
     private float delayGeneratorInfinite;
@@ -324,7 +325,7 @@ public class EnemyGenerate : MonoBehaviour
                 {
                     countEnemysRount_InfiniteGenered = countEnemysRount_InfiniteGenered + addEnemysForRound_InfiniteGenerated;
                 }
-                Debug.Log(indexWave);
+                //Debug.Log(indexWave);
             }
             else if(EnemysRount_InfiniteGenered >= countEnemysRount_InfiniteGenered)
             {

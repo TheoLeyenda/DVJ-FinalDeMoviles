@@ -120,7 +120,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 1011b85de2dd3c543a1b3e747456b473, type: 2}
---- !u!84 &41340492
+--- !u!84 &162657004
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -295,10 +295,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 745220679, guid: 770274626b5a55541bc7ad8e0aa82746, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6742103842668120890, guid: 770274626b5a55541bc7ad8e0aa82746,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -358,7 +354,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 41340492}
+      objectReference: {fileID: 162657004}
     - target: {fileID: 1811191446014955359, guid: 770274626b5a55541bc7ad8e0aa82746,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -374,18 +370,7 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.00006103514
       objectReference: {fileID: 0}
-    - target: {fileID: 6813003764576035791, guid: 770274626b5a55541bc7ad8e0aa82746,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6742103842900459713, guid: 770274626b5a55541bc7ad8e0aa82746,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7442281809517752574, guid: 770274626b5a55541bc7ad8e0aa82746,
-        type: 3}
+    - target: {fileID: 745220679, guid: 770274626b5a55541bc7ad8e0aa82746, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
@@ -428,6 +413,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 40.0797
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813003764576035791, guid: 770274626b5a55541bc7ad8e0aa82746,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742103842900459713, guid: 770274626b5a55541bc7ad8e0aa82746,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442281809517752574, guid: 770274626b5a55541bc7ad8e0aa82746,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 770274626b5a55541bc7ad8e0aa82746, type: 3}
