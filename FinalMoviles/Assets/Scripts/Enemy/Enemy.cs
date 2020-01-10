@@ -22,10 +22,12 @@ public class Enemy : MonoBehaviour
     public bool inPool;
     public TypeEnemy typeEnemy;
     public string nameEnemy;
+    private bool finishRoute;
 
     public static event Action<Enemy> OnDieAction;
     void Start()
     {
+        finishRoute = false;
         acceletartion = acceletartion * 10;
         auxSpeed = speed;
         followRoute = GetComponent<FollowRoute>();
@@ -45,9 +47,10 @@ public class Enemy : MonoBehaviour
     }
     public void CheckFinishRouteEnemy()
     {
-        if (followRoute.CheckFinishRoute())
+        if (followRoute.CheckFinishRoute() || finishRoute)
         {
             //SI ANDA MAL LA DESAPARICION O APARICION DEL ENEMIGO PROGRAMAR EL TEMA DEL RECICLADO DEL POOL
+            finishRoute = false;
             if (EnemyPrefab != null)
             {
                 if (OnDieAction != null)
@@ -79,6 +82,13 @@ public class Enemy : MonoBehaviour
                     OnDieAction(this);
                 gameObject.SetActive(false);
             }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "FinishPoint")
+        {
+            finishRoute = true;
         }
     }
 }
