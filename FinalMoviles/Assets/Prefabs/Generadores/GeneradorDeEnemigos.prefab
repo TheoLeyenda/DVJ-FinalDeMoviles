@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a7f0820da3c8746bcbdcc21af943ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeGenerator: 1
+  typeGenerator: 2
+  porcentageGrupInSurvivalMode: 85
+  addEnemysForRound_InfiniteGenerated: 5
   rangeGenerationX: 3.5
   rangeGenerationZ: 0
   delayBetweenWaves: 5
@@ -83,7 +85,7 @@ MonoBehaviour:
   - indexDelayGenerationSpawn: 0
     indexDataCountEnemySpawns: 0
     currentEnemysGenerate: 0
-    countTotalEnemysWave: 25
+    countTotalEnemysWave: 0
     delayGenerationEnemys: []
     dataCountEnemySpawns:
     - countEnemysSpawn: 1
@@ -104,8 +106,47 @@ MonoBehaviour:
     - countEnemysSpawn: 1
       enemysGenerate: 5
       swarn: 0
+    - countEnemysSpawn: 1
+      enemysGenerate: 5
+      swarn: 0
     - countEnemysSpawn: 5
       enemysGenerate: 5
+      swarn: 1
+    - countEnemysSpawn: 1
+      enemysGenerate: 5
+      swarn: 0
+    - countEnemysSpawn: 1
+      enemysGenerate: 5
+      swarn: 0
+    - countEnemysSpawn: 1
+      enemysGenerate: 5
+      swarn: 0
+    - countEnemysSpawn: 5
+      enemysGenerate: 5
+      swarn: 1
+  - indexDelayGenerationSpawn: 0
+    indexDataCountEnemySpawns: 0
+    currentEnemysGenerate: 0
+    countTotalEnemysWave: 0
+    delayGenerationEnemys: []
+    dataCountEnemySpawns:
+    - countEnemysSpawn: 1
+      enemysGenerate: 5
+      swarn: 0
+    - countEnemysSpawn: 1
+      enemysGenerate: 5
+      swarn: 0
+    - countEnemysSpawn: 1
+      enemysGenerate: 5
+      swarn: 0
+    - countEnemysSpawn: 3
+      enemysGenerate: 5
+      swarn: 1
+    - countEnemysSpawn: 1
+      enemysGenerate: 5
+      swarn: 0
+    - countEnemysSpawn: 3
+      enemysGenerate: 4
       swarn: 1
     - countEnemysSpawn: 1
       enemysGenerate: 5
@@ -116,53 +157,78 @@ MonoBehaviour:
     - countEnemysSpawn: 1
       enemysGenerate: 5
       swarn: 0
-    - countEnemysSpawn: 1
-      enemysGenerate: 5
-      swarn: 0
-    - countEnemysSpawn: 1
-      enemysGenerate: 5
-      swarn: 0
     - countEnemysSpawn: 5
       enemysGenerate: 5
       swarn: 1
-  - indexDelayGenerationSpawn: 0
-    indexDataCountEnemySpawns: 0
-    currentEnemysGenerate: 0
-    countTotalEnemysWave: 35
-    delayGenerationEnemys: []
-    dataCountEnemySpawns: []
-  - indexDelayGenerationSpawn: 0
-    indexDataCountEnemySpawns: 0
-    currentEnemysGenerate: 0
-    countTotalEnemysWave: 0
-    delayGenerationEnemys: []
-    dataCountEnemySpawns: []
-  - indexDelayGenerationSpawn: 0
-    indexDataCountEnemySpawns: 0
-    currentEnemysGenerate: 0
-    countTotalEnemysWave: 0
-    delayGenerationEnemys: []
-    dataCountEnemySpawns: []
-  - indexDelayGenerationSpawn: 0
-    indexDataCountEnemySpawns: 0
-    currentEnemysGenerate: 0
-    countTotalEnemysWave: 0
-    delayGenerationEnemys: []
-    dataCountEnemySpawns: []
+    - countEnemysSpawn: 1
+      enemysGenerate: 4
+      swarn: 0
+    - countEnemysSpawn: 2
+      enemysGenerate: 4
+      swarn: 1
+    - countEnemysSpawn: 1
+      enemysGenerate: 0
+      swarn: 0
+    - countEnemysSpawn: 5
+      enemysGenerate: 0
+      swarn: 1
+    - countEnemysSpawn: 1
+      enemysGenerate: 0
+      swarn: 0
   - indexDelayGenerationSpawn: 0
     indexDataCountEnemySpawns: 0
     currentEnemysGenerate: 0
     countTotalEnemysWave: 0
     delayGenerationEnemys: []
-    dataCountEnemySpawns: []
+    dataCountEnemySpawns:
+    - countEnemysSpawn: 5
+      enemysGenerate: 0
+      swarn: 1
+    - countEnemysSpawn: 1
+      enemysGenerate: 0
+      swarn: 0
+    - countEnemysSpawn: 1
+      enemysGenerate: 0
+      swarn: 0
+    - countEnemysSpawn: 1
+      enemysGenerate: 0
+      swarn: 0
+    - countEnemysSpawn: 1
+      enemysGenerate: 0
+      swarn: 0
   - indexDelayGenerationSpawn: 0
     indexDataCountEnemySpawns: 0
     currentEnemysGenerate: 0
     countTotalEnemysWave: 0
     delayGenerationEnemys: []
-    dataCountEnemySpawns: []
-  minDelaySpawn: 0.2
-  maxDelaySpawn: 1.5
+    dataCountEnemySpawns:
+    - countEnemysSpawn: 4
+      enemysGenerate: 0
+      swarn: 1
+    - countEnemysSpawn: 1
+      enemysGenerate: 0
+      swarn: 0
+    - countEnemysSpawn: 1
+      enemysGenerate: 0
+      swarn: 0
+    - countEnemysSpawn: 1
+      enemysGenerate: 0
+      swarn: 0
+  - indexDelayGenerationSpawn: 0
+    indexDataCountEnemySpawns: 0
+    currentEnemysGenerate: 0
+    countTotalEnemysWave: 0
+    delayGenerationEnemys: []
+    dataCountEnemySpawns:
+    - countEnemysSpawn: 5
+      enemysGenerate: 0
+      swarn: 1
+    - countEnemysSpawn: 5
+      enemysGenerate: 0
+      swarn: 1
+  minDelaySpawn: 1
+  maxDelaySpawn: 3
+  countEnemysRount_InfiniteGenered: 0
 --- !u!1001 &4738917794558609613
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -178,17 +244,17 @@ PrefabInstance:
     - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5015658
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.24039505
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.0139583
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
         type: 3}
@@ -244,6 +310,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.58823544
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226929606045414, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: count
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226930641479967, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: count
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226929732691638, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: count
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226930595062474, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: count
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226930898368481, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: count
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226930726013740, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: count
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 302394671493129745, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: count
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329961728240699814, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: count
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 117606353375351974, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: count
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927221749749720300, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: count
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b54148df196df1444850374a102f7efe, type: 3}

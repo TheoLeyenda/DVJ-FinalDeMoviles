@@ -28,6 +28,7 @@ public class EnemyGenerate : MonoBehaviour
     private TypeGenerator auxTypeGenerator;
     public TypeGenerator typeGenerator;
     public float porcentageGrupInSurvivalMode;
+    public int addEnemysForRound_InfiniteGenerated;
     public float rangeGenerationX;
     public float rangeGenerationZ;
     public float delayBetweenWaves;
@@ -41,12 +42,29 @@ public class EnemyGenerate : MonoBehaviour
     private int indexWave;
     private int enemysDie;
     private float delayGeneratorInfinite;
-    private Wave wave;
+    public int countEnemysRount_InfiniteGenered;
+    private int EnemysRount_InfiniteGenered;
+    private bool infinite;
     //private bool swarm;//Enjambre (boleano que controla si los enemigos a salir salen en enjambre o no)
 
     private void Start()
     {
-        wave = new Wave();
+        if (addEnemysForRound_InfiniteGenerated <= 0)
+        {
+            addEnemysForRound_InfiniteGenerated = 5;
+        }
+        if (typeGenerator == TypeGenerator.Infinite)
+        {
+            infinite = true;
+        }
+        else
+        {
+            infinite = false;
+        }
+        if (countEnemysRount_InfiniteGenered <= 0)
+        {
+            countEnemysRount_InfiniteGenered = 25;
+        }
         delayGeneratorInfinite = 0;
         auxTypeGenerator = typeGenerator;
         waves.Add(new Wave());
@@ -130,7 +148,6 @@ public class EnemyGenerate : MonoBehaviour
                 if (indexWave < waves.Count)
                 {
                     //Debug.Log(waves[indexWave].delayGenerationEnemys.Length);
-                    Debug.Log("index: " + indexWave);
                     //Debug.Log("indexDelayGenerationSpawn: "+ waves[indexWave].indexDelayGenerationSpawn);
 
                     float currentDelay = waves[indexWave].delayGenerationEnemys[waves[indexWave].indexDelayGenerationSpawn];
@@ -174,7 +191,6 @@ public class EnemyGenerate : MonoBehaviour
                         else
                         {
                             //Genero al enemigo de forma individual.
-                            Debug.Log(currentPool);
                             if (currentPool != null)
                             {
                                 go = currentPool.GetObject();
@@ -215,67 +231,106 @@ public class EnemyGenerate : MonoBehaviour
             //FALTA PROBAR Y SI FUNCIONA BIEN IMPLEMENTAR SISTEMA DE RONDAS A ESTE GENERADOR TAMBIEN
             //(POR AHORA GENERA ENEMIGOS INFINITOS SIN DESCANSO).
             GameObject go;
-
-            if (delayGeneratorInfinite <= 0)
+            int iter = 0;
+            if (delayBetweenWaves <= 0)
             {
-                float Height = 0;
-                int maxEnemyGrup = 10;
-                int minEnemyGrup = 3;
-                int porcentageGrupGenetation = Random.Range(0, 101);
-                int enemySelected = Random.Range(0, listPools.Count);
-                int countEnemyGrup = Random.Range(minEnemyGrup, maxEnemyGrup + 1);
-
-                if (porcentageGrupGenetation > porcentageGrupInSurvivalMode)
+                if (EnemysRount_InfiniteGenered < countEnemysRount_InfiniteGenered)
                 {
-                    for (int i = 0; i < countEnemyGrup; i++)
+                    if (delayGeneratorInfinite <= 0)
                     {
-                        Height = listPools[enemySelected].objectHeight;
-                        go = listPools[enemySelected].pool.GetObject();
-                        go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
-                        go.transform.rotation = transform.rotation;
-                    }
-                    delayGeneratorInfinite = Random.Range(minDelaySpawn, maxDelaySpawn);
-                }
-                else if (porcentageGrupGenetation <= porcentageGrupInSurvivalMode)
-                {
-                    Height = listPools[enemySelected].objectHeight;
-                    go = listPools[enemySelected].pool.GetObject();
-                    go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
-                    go.transform.rotation = transform.rotation;
-                    delayGeneratorInfinite = Random.Range(minDelaySpawn, maxDelaySpawn);
-                }
+                        float Height = 0;
+                        int maxEnemyGrup = 10;
+                        int minEnemyGrup = 3;
+                        int porcentageGrupGenetation = Random.Range(0, 101);
+                        int enemySelected = Random.Range(0, listPools.Count);
+                        int countEnemyGrup = Random.Range(minEnemyGrup, maxEnemyGrup + 1);
 
+                        if (porcentageGrupGenetation > porcentageGrupInSurvivalMode)
+                        {
+                            while (iter < countEnemyGrup && EnemysRount_InfiniteGenered < countEnemysRount_InfiniteGenered)
+                            {
+                                Height = listPools[enemySelected].objectHeight;
+                                go = listPools[enemySelected].pool.GetObject();
+                                go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
+                                go.transform.rotation = transform.rotation;
+                                EnemysRount_InfiniteGenered++;
+                                iter++;
+                            }
+                            delayGeneratorInfinite = Random.Range(minDelaySpawn, maxDelaySpawn);
+                        }
+                        else if (porcentageGrupGenetation <= porcentageGrupInSurvivalMode)
+                        {
+                            if (EnemysRount_InfiniteGenered < countEnemysRount_InfiniteGenered)
+                            {
+                                Height = listPools[enemySelected].objectHeight;
+                                go = listPools[enemySelected].pool.GetObject();
+                                go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
+                                go.transform.rotation = transform.rotation;
+                                delayGeneratorInfinite = Random.Range(minDelaySpawn, maxDelaySpawn);
+                                EnemysRount_InfiniteGenered++;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        delayGeneratorInfinite = delayGeneratorInfinite - Time.deltaTime;
+                    }
+                }
             }
             else
             {
-                delayGeneratorInfinite = delayGeneratorInfinite - Time.deltaTime;
+                delayBetweenWaves = delayBetweenWaves - Time.deltaTime;
             }
         }
             
     }
     public void CheckNextWave(TypeGenerator curremtTypeGenerator)
     {
-        if (indexWave < waves.Count)
+        if (!infinite)
         {
-            if (waves[indexWave].currentEnemysGenerate >= waves[indexWave].countTotalEnemysWave
-                && (enemysDie >= waves[indexWave].countTotalEnemysWave))
+            if (indexWave < waves.Count)
             {
-                enemysDie = 0;
-                indexWave++;
-                delayBetweenWaves = auxDelayBetweenWaves;
-                currentPool = null;
-                typeGenerator = curremtTypeGenerator;
+                if (waves[indexWave].currentEnemysGenerate >= waves[indexWave].countTotalEnemysWave
+                    && (enemysDie >= waves[indexWave].countTotalEnemysWave))
+                {
+                    enemysDie = 0;
+                    indexWave++;
+                    delayBetweenWaves = auxDelayBetweenWaves;
+                    currentPool = null;
+                    typeGenerator = curremtTypeGenerator;
+                }
+                else if (indexWave >= waves.Count - 1 ||
+                    (waves[indexWave].currentEnemysGenerate >= waves[indexWave].countTotalEnemysWave
+                    && (enemysDie < waves[indexWave].countTotalEnemysWave)))
+                {
+                    typeGenerator = TypeGenerator.None;
+                }
             }
-            else if (indexWave >= waves.Count - 1 ||
-                (waves[indexWave].currentEnemysGenerate >= waves[indexWave].countTotalEnemysWave
-                && (enemysDie < waves[indexWave].countTotalEnemysWave)))
+            else
             {
                 typeGenerator = TypeGenerator.None;
             }
         }
-        else
+        else if (infinite)
         {
-            typeGenerator = TypeGenerator.None;
+            if (enemysDie >= countEnemysRount_InfiniteGenered)
+            {
+                indexWave++;
+                delayBetweenWaves = auxDelayBetweenWaves;
+                typeGenerator = curremtTypeGenerator;
+                enemysDie = 0;
+                EnemysRount_InfiniteGenered = 0;
+                if (countEnemysRount_InfiniteGenered + addEnemysForRound_InfiniteGenerated < listPools[0].pool.count && countEnemysRount_InfiniteGenered < listPools[0].pool.count)
+                {
+                    countEnemysRount_InfiniteGenered = countEnemysRount_InfiniteGenered + addEnemysForRound_InfiniteGenerated;
+                }
+                Debug.Log(indexWave);
+            }
+            else if(EnemysRount_InfiniteGenered >= countEnemysRount_InfiniteGenered)
+            {
+                typeGenerator = TypeGenerator.None;
+            }
+            
         }
 
     }
