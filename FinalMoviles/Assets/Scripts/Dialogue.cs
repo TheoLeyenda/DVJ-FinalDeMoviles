@@ -43,6 +43,7 @@ public class Dialogue : MonoBehaviour
             ActivatedObjects,
             DisableButton,
             FredomPlayer,
+            FreezePlayer,
         }
         public void ActivateObjectEvent(GameObject go)
         {
@@ -72,6 +73,10 @@ public class Dialogue : MonoBehaviour
             {
                 buttons[i].interactable = false;
             }
+        }
+        public void FreezePlayer(Rigidbody rig)
+        {
+            rig.constraints = RigidbodyConstraints.FreezeAll;
         }
     }
     private void OnEnable()
@@ -104,12 +109,13 @@ public class Dialogue : MonoBehaviour
         {
             CheckDialogue();
         }
+        
     }
 
     public void CheckDialogue()
     {
         if (indexDialogues < dialogues.Count)
-        { 
+        {
             if (dialogues[indexDialogues].events != DataDialogue.Events.NotNextDialogue
             && dialogues[indexDialogues].events2 != DataDialogue.Events.NotNextDialogue
             && dialogues[indexDialogues].events3 != DataDialogue.Events.NotNextDialogue
@@ -190,6 +196,15 @@ public class Dialogue : MonoBehaviour
                 rigPlayer.constraints = RigidbodyConstraints.None;
                 rigPlayer.constraints = RigidbodyConstraints.FreezeRotation;
             }
+            if (dialogues[indexDialogues].events == DataDialogue.Events.FreezePlayer
+               || dialogues[indexDialogues].events2 == DataDialogue.Events.FreezePlayer
+               || dialogues[indexDialogues].events3 == DataDialogue.Events.FreezePlayer
+               || dialogues[indexDialogues].events4 == DataDialogue.Events.FreezePlayer
+               || dialogues[indexDialogues].events5 == DataDialogue.Events.FreezePlayer)
+            {
+                dialogues[indexDialogues].FreezePlayer(rigPlayer);
+            }
+            
             textDialogues.text = dialogues[indexDialogues].dialogo;
         }
         else if (indexDialogues >= dialogues.Count)

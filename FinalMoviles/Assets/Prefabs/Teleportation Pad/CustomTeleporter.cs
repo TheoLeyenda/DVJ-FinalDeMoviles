@@ -32,6 +32,7 @@ public class CustomTeleporter : MonoBehaviour
     public bool teleportOccupet;
     public float DelayCamvasActivate = 1f;
     private float auxDelayCamvasActivate = 1f;
+
     public static event Action<CustomTeleporter> OnTriggerWhitMe;
 
     void Start ()
@@ -62,8 +63,6 @@ public class CustomTeleporter : MonoBehaviour
             teleportPadSound.volume = 0;
             PS.Clear();
         }
-        //Debug.Log(delayNotActivateCamvas);
-        //Debug.Log(ActivateCamvas);
 
     }
 

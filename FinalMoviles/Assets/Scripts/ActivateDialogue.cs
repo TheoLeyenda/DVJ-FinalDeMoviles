@@ -6,6 +6,7 @@ public class ActivateDialogue : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject go_dialogue;
+    public bool disableCollider;
     private CapsuleCollider CC;
     private void Start()
     {
@@ -16,7 +17,10 @@ public class ActivateDialogue : MonoBehaviour
         if(other.tag == "Player")
         {
             go_dialogue.SetActive(true);
-            CC.enabled = false;
+            if (disableCollider)
+            {
+                CC.enabled = false;
+            }
         }
     }
 }

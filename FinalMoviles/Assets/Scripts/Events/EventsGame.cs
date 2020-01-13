@@ -11,14 +11,4 @@ public class EventsGame : MonoBehaviour
         None,
         Tutorial,
     }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
