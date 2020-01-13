@@ -12,16 +12,40 @@ public class Construction : MonoBehaviour
         Y,
         Z,
     }
+    public enum PivotRotation
+    {
+        None,
+        X,
+        Y,
+        Z,
+    }
     public float life;
     public float rangeOfView;
     protected bool constructed;
     public bool rotateStart;
     public PivotMovement pivotMovement;
+    public PivotRotation pivotRotation;
+    public float rotation;
     // Esto sirve para acomodar el edificio en caso de que este no este en el piso cuando se genere
     [Header("Start Movement Construction")]
     public float valueDown;
     public float valueUp;
-    
+
+    private void Start()
+    {
+        if (pivotRotation == PivotRotation.X)
+        {
+            transform.Rotate(Vector3.right, rotation);
+        }
+        else if (pivotRotation == PivotRotation.Y)
+        {
+            transform.Rotate(Vector3.up, rotation);
+        }
+        else if (pivotRotation == PivotRotation.Z)
+        {
+            transform.Rotate(Vector3.back, rotation);
+        }
+    }
     public void SetConstructed(bool _constructed)
     {
         constructed = _constructed;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System;
 public class ConstructionManager : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -27,10 +27,16 @@ public class ConstructionManager : MonoBehaviour
     private float magnitudeFinishMovementCamera = 0.1f;
     private bool inGeneralVision = false;
     private GameObject currentZoneConstruction;
-
+    private bool enableClickConstruction = true;
     //public Camera cameraInConstruction;
+    public static event Action<ConstructionManager> OnClickConstructionZone;
+    public static event Action<ConstructionManager> OnClickGeneralView;
+    public static event Action<ConstructionManager> OnClickPlayButton;
+
     private void OnEnable()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         StartGameButton.SetActive(false);
         indexConstructionZone = 0;
         SetActiveObjects(false,objectsDisables);
@@ -67,13 +73,11 @@ public class ConstructionManager : MonoBehaviour
         bool enableStartGame = true;
         for (int i = 0; i < constructionZone.Count; i++)
         {
-            //Debug.Log("construccion "+i+":"+constructionZone[i].activeSelf);
             if (constructionZone[i].activeSelf)
             {
                 enableStartGame = false;
             }
         }
-        //Debug.Log("EnableStartGame: "+enableStartGame);
         gm.SetEnableStartGame(enableStartGame);
     }
     public void CheckClickInConstructionZone()
@@ -83,12 +87,17 @@ public class ConstructionManager : MonoBehaviour
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, rangeOfRayCast) && Input.GetButton("InputSeleccion") && !camvasContruction.activeSelf)
+            if (Physics.Raycast(ray, out hit, rangeOfRayCast) && Input.GetButtonDown("InputSeleccion") && !camvasContruction.activeSelf && enableClickConstruction)
             {
                 if (hit.transform != null)
                 {
                     if (hit.transform.tag == "ZonaConstruccion")
                     {
+                        //Debug.Log("ENTRE");
+                        if (OnClickConstructionZone != null && gm.InTutorial)
+                        {
+                            OnClickConstructionZone(this);
+                        }
                         camvasContruction.SetActive(true);
                         currentZoneConstruction = hit.transform.gameObject;
                         buttonDerecha.SetActive(false);
@@ -99,9 +108,14 @@ public class ConstructionManager : MonoBehaviour
             }
         }
     }
-    public void VistaGeneral()
+    public void GeneralView()
     {
+        enableClickConstruction = !enableClickConstruction;
         inGeneralVision = !inGeneralVision;
+        if (gm.InTutorial && OnClickGeneralView != null)
+        {
+            OnClickGeneralView(this);
+        }
         if (inGeneralVision)
         {
             CheckStartGameEnable();
@@ -185,6 +199,10 @@ public class ConstructionManager : MonoBehaviour
     }
     public void CloseStageConstruction()
     {
+        if (gm.InTutorial && OnClickPlayButton != null)
+        {
+            OnClickPlayButton(this);
+        }
         gameObject.SetActive(false);
     }
     public GameObject GetCurrentZoneConstruction()

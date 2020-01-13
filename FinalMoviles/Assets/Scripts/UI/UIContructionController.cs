@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class UIContructionController : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class UIContructionController : MonoBehaviour
         public string nameLockedConstruction = "Bloqueado";
         public string nameConstruction;
         public bool lockedButton;
+
         public void CheckDataButton()
         {
             if (lockedButton)
@@ -45,13 +47,24 @@ public class UIContructionController : MonoBehaviour
     private GameObject currentConstruction;
     private int currentIndex;
     private Construction construction;
+    public GameManager gm;
     public ConstructionManager CM;
     public string textInformacion;
     public string textTitulo;
     public Text titulo;
     public List<UIButtonConstruction> buttons;
     public GameObject camvasConfirmationConstruction;
-    private void OnEnable()
+
+    public static event Action<UIContructionController> OnClickButtonConstruction;
+    public static event Action<UIContructionController> OnClickButtonCancel;
+    public static event Action<UIContructionController> OnClickButtonAcepted;
+    public static event Action<UIContructionController> OnClickButtonInformation;
+    public static event Action<UIContructionController> OnClickButtonBack;
+    private void Start()
+    {
+        On();
+    }
+    public void On()
     {
         for (int i = 0; i < buttons.Count; i++)
         {
@@ -63,6 +76,10 @@ public class UIContructionController : MonoBehaviour
     }
     public void Information(int index)
     {
+        if (gm.InTutorial && OnClickButtonInformation != null)
+        {
+            OnClickButtonInformation(this);
+        }
         if (index < buttons.Count && index >= 0)
         {
             for (int i = 0; i < buttons.Count; i++)
@@ -79,6 +96,10 @@ public class UIContructionController : MonoBehaviour
     }
     public void BackToConstruction()
     {
+        if (gm.InTutorial && OnClickButtonBack != null)
+        {
+            OnClickButtonBack(this);
+        }
         for (int i = 0; i < buttons.Count; i++)
         {
             if (buttons[i].go_Information.activeSelf)
@@ -99,6 +120,10 @@ public class UIContructionController : MonoBehaviour
     {
         if (index < buttons.Count && index >= 0)
         {
+            if (OnClickButtonConstruction != null && gm.InTutorial)
+            {
+                OnClickButtonConstruction(this);
+            }
             GameObject go;
             go = buttons[index].poolConstruction.GetObject();
             currentConstruction = go;
@@ -128,6 +153,10 @@ public class UIContructionController : MonoBehaviour
     {
         if (construction != null)
         {
+            if (gm.InTutorial && OnClickButtonAcepted != null)
+            {
+                OnClickButtonAcepted(this);
+            }
             CM.GetCurrentZoneConstruction().SetActive(false);
             construction.SetConstructed(true);
             construction = null;
@@ -139,6 +168,10 @@ public class UIContructionController : MonoBehaviour
     {
         if (construction != null)
         {
+            if (OnClickButtonCancel != null && gm.InTutorial)
+            {
+                OnClickButtonCancel(this);
+            }
             buttons[currentIndex].poolConstruction.Recycle(construction.gameObject);
             construction.gameObject.SetActive(false);
             CM.GetCurrentZoneConstruction().SetActive(true);
