@@ -532,7 +532,7 @@ namespace DarkTreeFPS
             var index = 0;
 
             var neededAmmo = maxAmmo - currentAmmo;
-            if (ammoItems.Count > 0)
+            if (weaponManager.PrimaryGun != this)
             {
                 if (ammoItems[index].ammo >= neededAmmo)
                 {

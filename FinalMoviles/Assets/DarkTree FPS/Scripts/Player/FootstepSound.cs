@@ -15,6 +15,7 @@ namespace DarkTreeFPS
         public AudioClip[] dirtSteps;
         public AudioClip[] concreteSteps;
         public AudioClip[] metalSteps;
+        public AudioClip[] enemySteps;
 
         GetCollisionTag collisionTag;
 
@@ -59,6 +60,9 @@ namespace DarkTreeFPS
                         break;
                     case "Metal":
                         audioSource.PlayOneShot(metalSteps[Random.Range(0, metalSteps.Length)]);
+                        break;
+                    case "Enemy":
+                        //audioSource.PlayOneShot(metalSteps[Random.Range(0, metalSteps.Length)]);
                         break;
                     default:
                         audioSource.PlayOneShot(dirtSteps[Random.Range(0, dirtSteps.Length)]);

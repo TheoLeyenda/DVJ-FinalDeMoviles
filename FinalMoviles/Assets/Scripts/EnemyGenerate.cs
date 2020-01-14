@@ -46,6 +46,7 @@ public class EnemyGenerate : MonoBehaviour
     public int countEnemysRount_InfiniteGenered;
     private int EnemysRount_InfiniteGenered;
     private bool infinite;
+    public bool DisableGenerator;
     //private bool swarm;//Enjambre (boleano que controla si los enemigos a salir salen en enjambre o no)
 
     private void Start()
@@ -93,6 +94,10 @@ public class EnemyGenerate : MonoBehaviour
             waves[i].indexDataCountEnemySpawns = 0;
             waves[i].currentEnemysGenerate = 0;
             
+        }
+        if (DisableGenerator)
+        {
+            gameObject.SetActive(false);
         }
     }
     private void OnEnable()
@@ -219,18 +224,6 @@ public class EnemyGenerate : MonoBehaviour
         }
         else if (typeGenerator == TypeGenerator.Infinite)
         {
-            //Programar un estilo de generacion infinita en donde cada ronda sera progresivamente mas dificil a
-            //la anterior, ademas hacer que los enemigos se elijan completamente aleatoria ya sea un conjunto de enemigos
-            //juntos generados de golpe o varios enemigos individuales caminando.
-
-            /* 
-                Para hacer esto hacer que los datos de la wave actual se llenen de forma automatica. asi por cada nueva 
-                ronda se utiliza la misma wave solo que con datos renovados 
-            */
-
-
-            //FALTA PROBAR Y SI FUNCIONA BIEN IMPLEMENTAR SISTEMA DE RONDAS A ESTE GENERADOR TAMBIEN
-            //(POR AHORA GENERA ENEMIGOS INFINITOS SIN DESCANSO).
             GameObject go;
             int iter = 0;
             if (delayBetweenWaves <= 0)

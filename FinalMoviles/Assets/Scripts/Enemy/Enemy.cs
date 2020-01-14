@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
         Fighter,// Al ver al jugador lo atacan
         ConstructionDestroyer, //Al ver una construccion la atacan
     }
+    public ParticleSystem blood;
     public GameObject EnemyPrefab;
     public FollowRoute auxFollowRoute;
     private FollowRoute followRoute;
@@ -34,9 +35,10 @@ public class Enemy : MonoBehaviour
         if (followRoute == null && auxFollowRoute != null)
         {
             followRoute = auxFollowRoute;
+            followRoute.GetAgent().speed = speed;
+            followRoute.GetAgent().acceleration = acceletartion;
         }
-        followRoute.GetAgent().speed = speed;
-        followRoute.GetAgent().acceleration = acceletartion;
+       
     }
 
     // Update is called once per frame
@@ -87,6 +89,13 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "FinishPoint")
+        {
+            finishRoute = true;
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "FinishPoint")
         {
             finishRoute = true;
         }
