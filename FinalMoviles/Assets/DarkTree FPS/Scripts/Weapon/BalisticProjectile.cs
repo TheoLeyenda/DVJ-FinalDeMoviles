@@ -19,7 +19,7 @@ namespace DarkTreeFPS
 
         private float time;
 
-        private float livingTime = 10f;
+        private float livingTime = 1f;
 
         private bool collisionEnemy;
         Vector3 lastPosition;
@@ -42,11 +42,19 @@ namespace DarkTreeFPS
                     if (typeBullet == TypeBullet.Rifle)
                     {
                         range = Random.Range(10, 15);
+                        if (e.scalerBloodVar > 0)
+                        {
+                            range = range / (e.scalerBloodVar);
+                        }
                         e.blood.gameObject.transform.localScale = new Vector3(range, range, range);
                     }
                     else if (typeBullet == TypeBullet.Pistol)
                     {
                         range = Random.Range(5, 10);
+                        if (e.scalerBloodVar > 0)
+                        {
+                            range = range / (e.scalerBloodVar);
+                        }
                         e.blood.gameObject.transform.localScale = new Vector3(range, range, range);
                     }
                     e.blood.Play();

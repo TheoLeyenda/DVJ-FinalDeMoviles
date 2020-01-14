@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
         ConstructionDestroyer, //Al ver una construccion la atacan
     }
     public ParticleSystem blood;
+    public int scalerBloodVar;
     public GameObject EnemyPrefab;
     public FollowRoute auxFollowRoute;
     private FollowRoute followRoute;
