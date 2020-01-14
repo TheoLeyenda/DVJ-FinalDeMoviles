@@ -21,7 +21,6 @@ namespace DarkTreeFPS
 
         private Button useButton;
         public GameObject buttonPickUp;
-           
         private void Start()
         {
             grab = false;

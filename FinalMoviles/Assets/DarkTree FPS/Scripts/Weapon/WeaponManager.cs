@@ -17,6 +17,8 @@ namespace DarkTreeFPS
         public bool haveMeleeWeaponByDefault = true;
         public Weapon melleeDefaultWeapon;
         public Weapon grenade;
+        public Weapon PrimaryGun;
+        public int ammoPrimaryGun;
         public bool enableGrenade;
         public List<Slot> slots;
         [Range(1, 9)]
@@ -48,11 +50,23 @@ namespace DarkTreeFPS
 
         private Inventory inventory;
 
+        private GameManager gm;
+
+        public bool enableShoot = false;
         [HideInInspector]
         //public Weapon currentWeapon;
 
         public void ON()
         {
+            gm = GameObject.Find("GamePrefab").GetComponent<GameManager>();
+            if (gm.InTutorial)
+            {
+                enableShoot = false;
+            }
+            else
+            {
+                enableShoot = true;
+            }
             Sway swayObject = FindObjectOfType<Sway>();
             if (swayObject != null)
             {
@@ -72,6 +86,12 @@ namespace DarkTreeFPS
                 {
                     slots[0].storedWeapon = melleeDefaultWeapon;
                     activeSlot = slots[0];
+                }
+                else
+                {
+                    slots[0].storedWeapon = PrimaryGun;
+                    activeSlot = slots[0];
+                    slots[0].storedWeapon.currentAmmo = 0;
                 }
                 if (enableGrenade)
                 {
@@ -116,7 +136,17 @@ namespace DarkTreeFPS
         {
             //ON();
         }
-
+        public void CheckEnableShoot()
+        {
+            if (!enableShoot)
+            {
+                PrimaryGun.currentAmmo = 0;
+            }
+            else
+            {
+                PrimaryGun._totalAmmo = 120;
+            }
+        }
         private void Update()
         {
             //Check if we are trying to switch weapons we have
@@ -130,6 +160,7 @@ namespace DarkTreeFPS
                 DropAllWeapons();
             }
             CheckAimCurrentWeapon();
+            CheckEnableShoot();
         }
         public void FireCurrentWeapon()
         {
@@ -138,6 +169,7 @@ namespace DarkTreeFPS
             {
                 if (Input.GetKey(activeSlot.storedWeapon.input.Fire) && !PlayerStats.isPlayerDead && activeSlot.storedWeapon.weaponType != WeaponType.Pistol && !InventoryManager.showInventory && activeSlot.storedWeapon.fireMode == Weapon.FireMode.automatic)  //Statement to restrict auto-fire for pistol weapon type. Riffle and others are automatic
                 {
+                    Debug.Log("ENTRE");
                     activeSlot.storedWeapon.Fire();
                 }
                 else if (Input.GetKeyDown(activeSlot.storedWeapon.input.Fire) && !PlayerStats.isPlayerDead && (activeSlot.storedWeapon.weaponType == WeaponType.Pistol || activeSlot.storedWeapon.fireMode == Weapon.FireMode.single) && !InventoryManager.showInventory)

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DarkTreeFPS;
 
 public class EventStartBattel : EventsGame
 {
@@ -9,6 +10,7 @@ public class EventStartBattel : EventsGame
     public Dialogue dialogue;
     public EnemyGenerate enemyGenerate;
     public GameManager gm;
+    public WeaponManager weaponManager;
     private void Update()
     {
         if (once && enemyGenerate.gameObject.activeSelf)
@@ -25,6 +27,7 @@ public class EventStartBattel : EventsGame
                 once = false;
                 dialogue.BarDialogue.SetActive(true);
                 dialogue.CheckDialogue();
+                weaponManager.enableShoot = true;
             }
         }
     }

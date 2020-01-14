@@ -51,6 +51,7 @@ namespace DarkTreeFPS
         [Header("Fire mode")]
         public FireMode fireMode;
 
+        public int _totalAmmo;
         #region Utility variables
 
         //Here is a utility variables which get value from other scripts, set values to other scripts or used for calculations etc. 
@@ -531,27 +532,9 @@ namespace DarkTreeFPS
             var index = 0;
 
             var neededAmmo = maxAmmo - currentAmmo;
-
-            if (ammoItems[index].ammo >= neededAmmo)
+            if (ammoItems.Count > 0)
             {
-                ammoItems[index].ammo -= neededAmmo;
-                currentAmmo += neededAmmo;
-
-                if (ammoItems[index].ammo == 0)
-                    inventory.RemoveItem(ammoItems[index], true);
-            }
-            else if (ammoItems[index].ammo < neededAmmo)
-            {
-                currentAmmo += ammoItems[index].ammo;
-                neededAmmo -= ammoItems[index].ammo;
-                ammoItems[index].ammo = 0;
-
-                if (ammoItems[index].ammo == 0)
-                    inventory.RemoveItem(ammoItems[index], true);
-
-                ++index;
-
-                try
+                if (ammoItems[index].ammo >= neededAmmo)
                 {
                     ammoItems[index].ammo -= neededAmmo;
                     currentAmmo += neededAmmo;
@@ -559,10 +542,34 @@ namespace DarkTreeFPS
                     if (ammoItems[index].ammo == 0)
                         inventory.RemoveItem(ammoItems[index], true);
                 }
-                catch
+                else if (ammoItems[index].ammo < neededAmmo)
                 {
-                    //Do nothing. If ammo not enough, construction may drop exception. We catch exception there in this case and do nothing. Because construction works OK
+                    currentAmmo += ammoItems[index].ammo;
+                    neededAmmo -= ammoItems[index].ammo;
+                    ammoItems[index].ammo = 0;
+
+                    if (ammoItems[index].ammo == 0)
+                        inventory.RemoveItem(ammoItems[index], true);
+
+                    ++index;
+
+                    try
+                    {
+                        ammoItems[index].ammo -= neededAmmo;
+                        currentAmmo += neededAmmo;
+
+                        if (ammoItems[index].ammo == 0)
+                            inventory.RemoveItem(ammoItems[index], true);
+                    }
+                    catch
+                    {
+                        //Do nothing. If ammo not enough, construction may drop exception. We catch exception there in this case and do nothing. Because construction works OK
+                    }
                 }
+            }
+            else if (weaponManager.PrimaryGun == this)
+            {
+                currentAmmo = weaponManager.ammoPrimaryGun;
             }
             /*
             for(int i = currentAmmo; i < maxAmmo; ++i) //For ammo < max ammo
@@ -950,7 +957,7 @@ namespace DarkTreeFPS
             ammoText.text = string.Format("{0}|{1}\n Mode:{2}", currentAmmo, CalculateTotalAmmo(), mode);
             
         }
-
+        //
         public int CalculateTotalAmmo()
         {
             int totalAmmo = new int();
@@ -962,7 +969,10 @@ namespace DarkTreeFPS
                     totalAmmo += item.ammo;
                 }
             }
-
+            if (weaponManager.PrimaryGun == this)
+            {
+                totalAmmo = _totalAmmo;
+            }
             return totalAmmo;
         }
 

@@ -23,6 +23,9 @@ public class DisableButton : MonoBehaviour
     }
     private void OnDisable()
     {
-        buttonInformation.interactable = true;
+        if (buttonInformation.gameObject.activeSelf)
+        {
+            buttonInformation.interactable = true;
+        }
     }
 }
