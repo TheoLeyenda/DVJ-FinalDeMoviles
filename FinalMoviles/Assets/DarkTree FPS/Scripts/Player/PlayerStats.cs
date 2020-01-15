@@ -5,6 +5,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace DarkTreeFPS
 {
@@ -50,6 +51,7 @@ namespace DarkTreeFPS
         private Color damageScreenColor_temp;
 
         public static bool isPlayerDead = false;
+
 
         #region utility objects
         private Rigidbody playerRigidbody;
@@ -106,7 +108,7 @@ namespace DarkTreeFPS
                 health = 100;
             }
 
-            ConsumableManager(useConsumeSystem);
+            //ConsumableManager(useConsumeSystem);
             DrawHealthStats();
             DrawPlayerStats();
         }

@@ -13,6 +13,11 @@ namespace DarkTreeFPS
             Pistol,
             Rifle,
         }
+        public enum Shooter
+        {
+            Player,
+            Enemy,
+        }
         public TypeBullet typeBullet; 
         [HideInInspector]
         public float airResistance = 0.1f;
@@ -25,50 +30,75 @@ namespace DarkTreeFPS
         Vector3 lastPosition;
 
         public Weapon weapon;
+
+        public TurtleShell turtleShell;
+
+        public Shooter shooter;
+
+        public PlayerStats playerStats;
+        private void Start()
+        {
+            
+        }
         private void OnEnable()
         {
-            GetComponent<Rigidbody>().AddForce(transform.forward * initialVelocity);
+            if (shooter == Shooter.Player)
+            {
+                GetComponent<Rigidbody>().AddForce(transform.forward * initialVelocity);
+            }
 
             lastPosition = transform.position;
             RaycastHit hit;
             if (Physics.Raycast(lastPosition, transform.forward, out hit, initialVelocity))
             {
-                if (hit.transform.tag == "Enemy")
+                if (turtleShell == null && shooter == Shooter.Player)
                 {
-                    Enemy e = hit.transform.gameObject.GetComponent<Enemy>();
-                    e.blood.gameObject.SetActive(true);
-                    e.blood.transform.position = hit.point;
-                    float range;
-                    if (typeBullet == TypeBullet.Rifle)
+                    if (hit.transform.tag == "Enemy")
                     {
-                        range = Random.Range(10, 15);
-                        if (e.scalerBloodVar > 0)
+                        
+                        Enemy e = hit.transform.gameObject.GetComponent<Enemy>();
+                        e.blood.gameObject.SetActive(true);
+                        e.blood.transform.position = hit.point;
+                        float range;
+                        if (typeBullet == TypeBullet.Rifle)
                         {
-                            range = range / (e.scalerBloodVar);
+                            range = Random.Range(10, 15);
+                            if (e.scalerBloodVar > 0)
+                            {
+                                range = range / (e.scalerBloodVar);
+                            }
+                            e.blood.gameObject.transform.localScale = new Vector3(range, range, range);
                         }
-                        e.blood.gameObject.transform.localScale = new Vector3(range, range, range);
-                    }
-                    else if (typeBullet == TypeBullet.Pistol)
-                    {
-                        range = Random.Range(5, 10);
-                        if (e.scalerBloodVar > 0)
+                        else if (typeBullet == TypeBullet.Pistol)
                         {
-                            range = range / (e.scalerBloodVar);
+                            range = Random.Range(5, 10);
+                            if (e.scalerBloodVar > 0)
+                            {
+                                range = range / (e.scalerBloodVar);
+                            }
+                            e.blood.gameObject.transform.localScale = new Vector3(range, range, range);
                         }
-                        e.blood.gameObject.transform.localScale = new Vector3(range, range, range);
-                    }
-                    e.blood.Play();
-                    e.life = e.life - Random.Range(weapon.damageMin, weapon.damageMax);
+                        e.blood.Play();
+                        e.life = e.life - Random.Range(weapon.damageMin, weapon.damageMax);
 
-                    gameObject.SetActive(false);
-                }
-                if (hit.transform.tag == "Shild")
-                {
-                    Shild s = hit.transform.gameObject.GetComponent<Shild>();
-                    s.shildFBX.gameObject.SetActive(true);
-                    s.shildFBX.transform.position = hit.point;
-                    s.shildFBX.Play();
-                    gameObject.SetActive(false);
+                        gameObject.SetActive(false);
+                    }
+                    if (hit.transform.tag == "Shild")
+                    {
+                        Shild s = hit.transform.gameObject.GetComponent<Shild>();
+                        s.shildFBX.gameObject.SetActive(true);
+                        s.shildFBX.transform.position = hit.point;
+                        s.shildFBX.Play();
+
+                        if (s.turtleShell != null)
+                        {
+                            //transform.Rotate(Vector3.up, 180);
+                            GetComponent<Rigidbody>().velocity = Vector3.zero;
+                            s.turtleShell.CounterAttack(hit.point);
+                            //transform.Rotate(Vector3.up, 180);
+                        }
+                        gameObject.SetActive(false);
+                    }
                 }
             }
         }
@@ -87,9 +117,9 @@ namespace DarkTreeFPS
                 gameObject.SetActive(false);
             }
         }
-        /*private void OnCollisionEnter(Collision other)
+        private void OnCollisionEnter(Collision other)
         {
-            if (other.transform.tag == "Enemy")
+            /*if (other.transform.tag == "Enemy")
             {
                 blood.gameObject.SetActive(true);
                 //transform.Rotate(Vector3.up, 180)
@@ -98,15 +128,25 @@ namespace DarkTreeFPS
                 
                 collisionEnemy = true;
                 Debug.Log("ENTRE");
+            }*/
+            if (other.transform.tag == "Player" && turtleShell != null)
+            {
+                PlayerStats player = other.gameObject.GetComponent<PlayerStats>();
+                player.health = player.health - turtleShell.counterAttackDamage;
+                gameObject.SetActive(false);
             }
-        }*/
+            else if(other.transform.tag != "Player" && other.transform.tag != "Enemy" && other.transform.tag != "Shild" && shooter == Shooter.Enemy)
+            {
+                gameObject.SetActive(false);
+            }
+        }
 
         private void OnDisable()
         {
-            //Debug.Log("DISABLE");
             collisionEnemy = false;
             time = 0;
             GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             transform.position = Vector3.zero;
         }
     }

@@ -8,6 +8,7 @@ public class MiniMapController : MonoBehaviour {
     //public bool isRadialMask = false;
     //public Vector2 radialPadding = new Vector2(0.2f,0.2f);
     public bool FindMap;
+
     [HideInInspector]
 	public Transform shapeColliderGO;
 	//[HideInInspector]
@@ -24,6 +25,8 @@ public class MiniMapController : MonoBehaviour {
 
 	[Tooltip("The target which the minimap will be following")]
 	public Transform target;
+    public Transform transformPlayerPC;
+    public Transform transformPlayerAndroid;
 	//UI related variables
 	[Tooltip("Set which layers to show in the minimap")]
 	public LayerMask minimapLayers;
@@ -71,15 +74,13 @@ public class MiniMapController : MonoBehaviour {
         GameObject go;
         if (!FindMap)
         {
-            go = GameObject.Find("PlayerPC");
-            if (go == null)
-            {
-                go = GameObject.Find("PlayerAndroid");
-            }
-            if (go != null)
-            {
-                target = go.transform;
-            }
+#if UNITY_ANDROID
+            target = transformPlayerAndroid;
+#endif
+#if UNITY_STANDALONE
+            target = transformPlayerPC;
+#endif
+
         }
         else
         {
@@ -178,9 +179,9 @@ public class MiniMapController : MonoBehaviour {
 		mapCamera.orthographicSize = camSize;
 		mapCamera.farClipPlane = camFarClip;
 		if (target == null) {
-			#if UNITY_EDITOR
+#if UNITY_EDITOR
 			Debug.Log ("Please assign the target");
-			#endif
+#endif
 		} else {
 			mapCamera.transform.eulerAngles = rotationOfCam;
 

@@ -317,7 +317,7 @@ namespace DarkTreeFPS
                 {
                     DisableAim();
                 }*/
-                if (Input.GetKey(input.Aim))
+                if (Input.GetKeyDown(input.Aim))
                 {
                     weaponManager.SetPointer();
                 }
@@ -394,6 +394,8 @@ namespace DarkTreeFPS
 
                         //Calculating when next fire call allowed
                         nextFireTime = Time.time + fireRate;
+
+
                     }
                     else
                     {
@@ -760,7 +762,6 @@ namespace DarkTreeFPS
                 spreadWithMovementFactor /= 3;
 
             Vector3 spreadVector = new Vector3(Random.Range(-spreadWithMovementFactor, spreadWithMovementFactor), Random.Range(-spreadWithMovementFactor, spreadWithMovementFactor), Random.Range(-spreadWithMovementFactor, spreadWithMovementFactor));
-
 
             if (distanceToPlayer > 1 && !weaponManager.UseNonPhysicalReticle && !setAim)
             {

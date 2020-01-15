@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
         Fighter,// Al ver al jugador lo atacan
         ConstructionDestroyer, //Al ver una construccion la atacan
     }
+    public int Damage;
     public ParticleSystem blood;
     public float scalerBloodVar;
     public GameObject EnemyPrefab;
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour
     public TypeEnemy typeEnemy;
     public string nameEnemy;
     private bool finishRoute;
+
 
     public static event Action<Enemy> OnDieAction;
     void Start()
@@ -42,14 +44,14 @@ public class Enemy : MonoBehaviour
             followRoute.GetAgent().speed = speed;
             followRoute.GetAgent().acceleration = acceletartion;
         }
-       
+
     }
 
     // Update is called once per frame
     void Update()
     {
         CheckFinishRouteEnemy();
-        CheckDeadEnemy();
+        CheckDieEnemy();
     }
     public void CheckFinishRouteEnemy()
     {
@@ -71,25 +73,30 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-    public void CheckDeadEnemy()
+    public void CheckDieEnemy()
     {
         if (life <= 0)
         {
             //SI ANDA MAL LA DESAPARICION O APARICION DEL ENEMIGO PROGRAMAR EL TEMA DEL RECICLADO DEL POOL
-            if (EnemyPrefab != null)
-            {
-                if (OnDieAction != null)
-                    OnDieAction(this);
-                EnemyPrefab.SetActive(false);
-            }
-            else
-            {
-                if (OnDieAction != null)
-                    OnDieAction(this);
-                gameObject.SetActive(false);
-            }
+            DieEnemy();
         }
     }
+    public void DieEnemy()
+    {
+        if (EnemyPrefab != null)
+        {
+            if (OnDieAction != null)
+                OnDieAction(this);
+            EnemyPrefab.SetActive(false);
+        }
+        else
+        {
+            if (OnDieAction != null)
+                OnDieAction(this);
+            gameObject.SetActive(false);
+        }
+    }
+    public virtual void Attack() { }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "FinishPoint")

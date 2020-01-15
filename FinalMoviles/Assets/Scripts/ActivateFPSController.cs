@@ -10,7 +10,7 @@ public class ActivateFPSController : MonoBehaviour
     public GameObject CamvasInventory;
     public GameObject CamvasMain;
     public GameObject WeaponManager;
-    private void Awake()
+    private void OnEnable()
     {
 #if !UNITY_ANDROID
         prefabPlayerPC.SetActive(true);
