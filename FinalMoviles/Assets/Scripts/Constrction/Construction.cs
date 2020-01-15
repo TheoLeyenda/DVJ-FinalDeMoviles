@@ -20,7 +20,6 @@ public class Construction : MonoBehaviour
         Z,
     }
     public float life;
-    public float rangeOfView;
     protected bool constructed;
     public bool rotateStart;
     public PivotMovement pivotMovement;
