@@ -65,7 +65,15 @@ namespace DarkTreeFPS
                     //GetComponent<Rigidbody>().velocity = Vector3.zero;
                     //collisionEnemy = true;
 
-                    Debug.Log("ENTRE");
+                    //Debug.Log("ENTRE");
+                    gameObject.SetActive(false);
+                }
+                if (hit.transform.tag == "Shild")
+                {
+                    Shild s = hit.transform.gameObject.GetComponent<Shild>();
+                    s.shildFBX.gameObject.SetActive(true);
+                    s.shildFBX.transform.position = hit.point;
+                    s.shildFBX.Play();
                     gameObject.SetActive(false);
                 }
             }
