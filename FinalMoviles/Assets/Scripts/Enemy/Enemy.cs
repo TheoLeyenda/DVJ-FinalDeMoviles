@@ -29,6 +29,9 @@ public class Enemy : MonoBehaviour
     public static event Action<Enemy> OnDieAction;
     void Start()
     {
+#if UNITY_ANDROID
+        speed = speed / 2;
+#endif
         finishRoute = false;
         acceletartion = acceletartion * 10;
         auxSpeed = speed;
