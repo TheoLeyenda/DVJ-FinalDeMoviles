@@ -192,7 +192,7 @@ namespace DarkTreeFPS
             }
         }
         public void SetPointer()
-        {
+        { 
             if (activeSlot.storedWeapon.weaponName != "Knife")
                 isPointer = !isPointer;
         }

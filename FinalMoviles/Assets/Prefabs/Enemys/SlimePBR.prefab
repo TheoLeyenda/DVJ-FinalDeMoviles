@@ -443,7 +443,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!65 &380377670
 BoxCollider:
@@ -456,8 +456,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0823314, y: 0.87476575, z: 1.1063662}
-  m_Center: {x: -0.016223531, y: 0.49507827, z: 0.011832476}
+  m_Size: {x: 0.59794116, y: 0.87476575, z: 0.54029465}
+  m_Center: {x: -0.0041924915, y: 0.49507827, z: 0.047681123}
 --- !u!114 &380377669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,6 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blood: {fileID: 198342849765755766}
+  scalerBloodVar: 0
   EnemyPrefab: {fileID: 0}
   auxFollowRoute: {fileID: 0}
   speed: 0
@@ -523,7 +524,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1919012471076396}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.3
+  m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50

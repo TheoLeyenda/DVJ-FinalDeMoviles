@@ -58,14 +58,8 @@ namespace DarkTreeFPS
                         e.blood.gameObject.transform.localScale = new Vector3(range, range, range);
                     }
                     e.blood.Play();
-                    //blood.gameObject.SetActive(true);
-                    //transform.Rotate(Vector3.up, 180)
-                    //blood.transform.position = hit.point;
-                    //blood.Play();
-                    //GetComponent<Rigidbody>().velocity = Vector3.zero;
-                    //collisionEnemy = true;
+                    e.life = e.life - Random.Range(weapon.damageMin, weapon.damageMax);
 
-                    //Debug.Log("ENTRE");
                     gameObject.SetActive(false);
                 }
                 if (hit.transform.tag == "Shild")

@@ -308,14 +308,18 @@ namespace DarkTreeFPS
                     if (!reloading && !controller.isClimbing)
                         ReloadBegin();
                 }
-                
-                if (Input.GetKey(input.Aim))
+
+                /*if (Input.GetKey(input.Aim))
                 {
                     ActiveAim();
                 }
                 else
                 {
                     DisableAim();
+                }*/
+                if (Input.GetKey(input.Aim))
+                {
+                    weaponManager.SetPointer();
                 }
                 SetAim();
                 UpdateAmmoText();
