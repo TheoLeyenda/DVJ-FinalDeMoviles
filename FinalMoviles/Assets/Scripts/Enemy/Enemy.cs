@@ -5,14 +5,9 @@ using System;
 public class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
-    public enum TypeEnemy
-    {
-        Normal, // van normalmente al punto final del recorrido
-        Runner, // Corren al punto final del recorrido
-        Fighter,// Al ver al jugador lo atacan
-        ConstructionDestroyer, //Al ver una construccion la atacan
-    }
-    public int Damage;
+
+    public int Damage;//daño a estructuras por defencto.
+    public int DamageLifes; //daño a las vidas del jugador al pasar de punto A a punto B. 
     public ParticleSystem blood;
     public float scalerBloodVar;
     public GameObject EnemyPrefab;
@@ -23,7 +18,6 @@ public class Enemy : MonoBehaviour
     public float acceletartion;
     public float life = 100;
     public bool inPool;
-    public TypeEnemy typeEnemy;
     public string nameEnemy;
     private bool finishRoute;
 
