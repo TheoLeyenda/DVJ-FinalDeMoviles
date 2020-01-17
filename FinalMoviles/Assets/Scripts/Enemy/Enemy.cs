@@ -93,13 +93,6 @@ public class Enemy : MonoBehaviour
         }
     }
     public virtual void Attack() { }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "FinishPoint")
-        {
-            finishRoute = true;
-        }
-    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "FinishPoint")
