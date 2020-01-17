@@ -23,6 +23,7 @@ public class StoneMonster : Enemy
         base.Start();
         constructionInRange = false;
         timerStartAttackConstruction = Random.Range(minRangeDelay, maxRangeDelay);
+        //Debug.Log(timerStartAttackConstruction);
     }
     
     // Update is called once per frame
@@ -54,7 +55,6 @@ public class StoneMonster : Enemy
                 }
                 if (target.construction.life <= 0)
                 {
-                    Debug.Log(auxSpeed);
                     followRoute.GetAgent().speed = auxSpeed;
                     target = null;
                     inRangeAttack = false;
@@ -80,14 +80,14 @@ public class StoneMonster : Enemy
         {
             transform.LookAt(new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z));
             GameObject go = poolProyectile.GetObject();
-            FireBall fireBall = go.GetComponent<FireBall>();
+            FireBall fireBall = go.GetComponentInChildren<FireBall>();
             fireBall.shooter = this;
             go.transform.rotation = generator.transform.rotation;
             go.transform.position = generator.transform.position;
-            fireBall.Implulse(powerShoot);
+            go.GetComponent<Rigidbody>().AddForce(transform.forward * powerShoot, ForceMode.Impulse);
         }
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(other.tag == "Construccion")
         {

@@ -5,11 +5,16 @@ using UnityEngine;
 public class FireBall : MonoBehaviour
 {
     // Start is called before the first frame update
-    public ParticleSystem explotionParticle;
+    public ParticleSystem[] explotionParticle;
     public StoneMonster shooter;
     private bool inExplotion;
     public float timeLife;
     public float auxTimeLife;
+
+    public MeshRenderer meshRenderer;
+    public SphereCollider sphereCollider;
+    public TrailRenderer trailRenderer;
+    public AudioSource audioSource;
 
     private void OnDisable()
     {
@@ -17,6 +22,10 @@ public class FireBall : MonoBehaviour
         timeLife = auxTimeLife;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        sphereCollider.enabled = true;
+        meshRenderer.enabled = true;
+        trailRenderer.enabled = true;
+        audioSource.volume = 0.5f;
     }
     public void Implulse(float initialVelocity)
     {
@@ -36,21 +45,23 @@ public class FireBall : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-
-        if(inExplotion && !explotionParticle.isPlaying)
-        {
-            timeLife = 0f;
-        }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Construccion")
         {
+            int indexParticleSystem = Random.Range(0, explotionParticle.Length);
             Wall wall = other.GetComponent<Wall>();
             Construction construction = wall.construction;
             construction.life = construction.life - shooter.DamageProjectileConstructions;
-            explotionParticle.Play();
+            explotionParticle[indexParticleSystem].Play();
             inExplotion = true;
+            sphereCollider.enabled = false;
+            meshRenderer.enabled = false;
+            trailRenderer.enabled = false;
+            trailRenderer.Clear();
+            timeLife = explotionParticle[indexParticleSystem].main.duration;
+            audioSource.volume = 0f;
         }
     }
 }
