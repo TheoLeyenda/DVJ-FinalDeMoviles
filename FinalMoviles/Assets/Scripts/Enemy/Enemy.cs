@@ -6,15 +6,16 @@ public class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public int Damage;//daño a estructuras por defencto.
+    public int DamageMeleConstruction;//daño a estructuras por defencto.
     public int DamageLifes; //daño a las vidas del jugador al pasar de punto A a punto B. 
     public ParticleSystem blood;
     public float scalerBloodVar;
     public GameObject EnemyPrefab;
     public FollowRoute auxFollowRoute;
-    private FollowRoute followRoute;
+    protected FollowRoute followRoute;
     public float speed;
     protected float auxSpeed;
+    protected float auxAceleration;
     public float acceletartion;
     public float life = 100;
     public bool inPool;
@@ -23,13 +24,14 @@ public class Enemy : MonoBehaviour
 
 
     public static event Action<Enemy> OnDieAction;
-    void Start()
+    protected virtual void Start()
     {
 #if UNITY_ANDROID
         speed = speed / 2;
 #endif
         finishRoute = false;
         acceletartion = acceletartion * 10;
+        auxAceleration = acceletartion;
         auxSpeed = speed;
         followRoute = GetComponent<FollowRoute>();
         if (followRoute == null && auxFollowRoute != null)

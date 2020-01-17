@@ -27,7 +27,7 @@ public class FollowRoute : MonoBehaviour
         {
             agent = navMeshAgent;
         }
-        finishPoint = null;
+        //finishPoint = null;
     }
     private void OnEnable()
     {
@@ -52,9 +52,12 @@ public class FollowRoute : MonoBehaviour
 
     void Update()
     {
-        if (finishPoint != null)
+        if (agent != null)
         {
-            agent.SetDestination(finishPoint.transform.position);
+            if (finishPoint != null && agent.enabled)
+            {
+                agent.SetDestination(finishPoint.transform.position);
+            }
         }
     }
     void OnFollowRoute()

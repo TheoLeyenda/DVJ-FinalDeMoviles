@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab889a30eb05b743a96f5f64994978f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 0
+  life: 100
   rotateStart: 1
   pivotMovement: 2
   pivotRotation: 0
@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2210754497806953394}
   - component: {fileID: 1486264283087016707}
+  - component: {fileID: 1899526934572596239}
   m_Layer: 0
   m_Name: Pared
   m_TagString: Construccion
@@ -163,6 +164,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8, y: 4.545683, z: 1.6000001}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1899526934572596239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3598747061811413985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8897d48f0226a4046baeb65e9d18a18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  construction: {fileID: 1850300247632908416}
 --- !u!1001 &5250586847273840707
 PrefabInstance:
   m_ObjectHideFlags: 0
