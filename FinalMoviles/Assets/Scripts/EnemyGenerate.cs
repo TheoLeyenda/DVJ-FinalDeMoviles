@@ -7,6 +7,7 @@ public class EnemyGenerate : MonoBehaviour
     // Start is called before the first frame update
     public enum NameEnemys
     {
+        None,
         Slime_2,
         Rabbit,
         Ghost_White,
@@ -110,7 +111,10 @@ public class EnemyGenerate : MonoBehaviour
     }
     public void AddEnemysDie(Enemy e)
     {
-        enemysDie++;
+        if (e.nameEnemy != "MiniSpider" && e.nameEnemy != "MiniSlime")
+        {
+            enemysDie++;
+        }
     }
     [System.Serializable]
     public class PoolsData
@@ -175,7 +179,7 @@ public class EnemyGenerate : MonoBehaviour
                         if (waves[indexWave].dataCountEnemySpawns[waves[indexWave].indexDataCountEnemySpawns].swarn)
                         {
 
-                            //Genero al enemigo de forma individual
+                            //Genero al enemigo de forma grupal
                             if (currentPool != null)
                             {
                                 for (int i = 0; i < waves[indexWave].dataCountEnemySpawns[waves[indexWave].indexDataCountEnemySpawns].countEnemysSpawn; i++)
@@ -189,6 +193,15 @@ public class EnemyGenerate : MonoBehaviour
                                     go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
                                     go.transform.rotation = transform.rotation;
                                     waves[indexWave].currentEnemysGenerate++;
+                                    Enemy enemy = go.GetComponent<Enemy>();
+                                    if(enemy != null)
+                                    {
+                                        if (enemy.nameEnemy == "Spider")
+                                        {
+                                            Spider spider = enemy.GetComponent<Spider>();
+                                            spider.generateSoons = false;
+                                        }
+                                    }
                                 }
                                 waves[indexWave].indexDataCountEnemySpawns++;
                                 waves[indexWave].indexDelayGenerationSpawn++;
@@ -205,6 +218,15 @@ public class EnemyGenerate : MonoBehaviour
                                 waves[indexWave].currentEnemysGenerate++;
                                 waves[indexWave].indexDataCountEnemySpawns++;
                                 waves[indexWave].indexDelayGenerationSpawn++;
+                                Enemy enemy = go.GetComponent<Enemy>();
+                                if (enemy != null)
+                                {
+                                    if (enemy.nameEnemy == "Spider")
+                                    {
+                                        Spider spider = enemy.GetComponent<Spider>();
+                                        spider.generateSoons = true;
+                                    }
+                                }
                             }
                         }
                     }

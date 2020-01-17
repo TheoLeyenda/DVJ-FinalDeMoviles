@@ -1,5 +1,82 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1448720580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1448720581}
+  m_Layer: 0
+  m_Name: GeneratorSoons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1448720581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448720580}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4251409082942358}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1937958518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1937958519}
+  - component: {fileID: 1937958520}
+  m_Layer: 0
+  m_Name: PoolSoons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1937958519
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937958518}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4251409082942358}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1937958520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937958518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75438edaff39ea94592a8d0f5a22a436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ball: {fileID: 507839984096575205, guid: 4c3c6a8b2387af34ba25f41f072a9790, type: 3}
+  parentName: Enemigos Generados
+  count: 300
+  GeneratePoolOnEnable: 0
 --- !u!1 &1013175443895534
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,8 +1135,8 @@ GameObject:
   - component: {fileID: 240957570}
   - component: {fileID: 240957575}
   - component: {fileID: 240957574}
-  - component: {fileID: 240957573}
   - component: {fileID: 240957572}
+  - component: {fileID: 1947755843}
   m_Layer: 0
   m_Name: spider_pref
   m_TagString: Enemy
@@ -1081,6 +1158,8 @@ Transform:
   - {fileID: 4891777387128848}
   - {fileID: 4539655829154938}
   - {fileID: 4932000999226977}
+  - {fileID: 1937958519}
+  - {fileID: 1448720581}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1147,6 +1226,9 @@ MonoBehaviour:
   navMeshAgent: {fileID: 0}
   finishPoint: {fileID: 0}
   goDataRoute: {fileID: 0}
+  indexDataRoute: 0
+  pathPoints: []
+  dontRestartIndex: 0
   numRoute: 0
 --- !u!114 &240957574
 MonoBehaviour:
@@ -1167,28 +1249,6 @@ MonoBehaviour:
   initialIconRotation: 0
   clampIconInBorder: 1
   clampDistance: 100
---- !u!114 &240957573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1715103906888602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3747b236271032e43aeef967216ec6d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blood: {fileID: 198342849732753049}
-  scalerBloodVar: 1.2
-  EnemyPrefab: {fileID: 0}
-  auxFollowRoute: {fileID: 0}
-  speed: 4
-  acceletartion: 4
-  life: 100
-  inPool: 0
-  typeEnemy: 0
-  nameEnemy: Spider
 --- !u!195 &240957572
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1211,6 +1271,44 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1947755843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715103906888602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb76ac09a101c2345837eeaa392950da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageMeleConstruction: 0
+  DamageLifes: 0
+  blood: {fileID: 198342849732753049}
+  scalerBloodVar: 1.2
+  EnemyPrefab: {fileID: 0}
+  auxFollowRoute: {fileID: 240957575}
+  followRoute: {fileID: 0}
+  speed: 4
+  acceletartion: 4
+  life: 100
+  inPool: 0
+  nameEnemy: Spider
+  delayGenerationSoons: 0
+  minCountGenerateSoons: 3
+  maxCountGenerateSoons: 7
+  generator: {fileID: 1448720580}
+  generateSoons: 1
+  rangeGenerateX: 2.5
+  rangeGenerateZ: 2.5
+  poolSpiderSoons: {fileID: 1937958520}
+  speedSoons: 6
+  lifeSoons: 1
+  soonsName: MiniSpider
+  acelerationSoons: 6
+  minDelayGenerateSoons: 6
+  maxDelayGenerateSoons: 10
 --- !u!1 &1719841372004032
 GameObject:
   m_ObjectHideFlags: 0

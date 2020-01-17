@@ -12,8 +12,11 @@ public class FollowRoute : MonoBehaviour
     [SerializeField]
     private GameObject goDataRoute;
     private NavMeshAgent agent;
+    [SerializeField]
     private int indexDataRoute;
-    private List<GameObject> pathPoints;
+    [HideInInspector]
+    public List<GameObject> pathPoints;
+    public bool dontRestartIndex;
 
     // ES EL NUMERO DE DataRoute que se debe buscar para interactuar(esto se setea desde el generador de enemigos).
     public int numRoute;
@@ -21,7 +24,10 @@ public class FollowRoute : MonoBehaviour
     private void Awake()
     {
         pathPoints = new List<GameObject>();
-        indexDataRoute = 0;
+        if (!dontRestartIndex)
+        {
+            indexDataRoute = 0;
+        }
         agent = GetComponent<NavMeshAgent>();
         if (agent == null && navMeshAgent != null)
         {
@@ -31,9 +37,20 @@ public class FollowRoute : MonoBehaviour
     }
     private void OnEnable()
     {
-        OnFollowRoute();
+        if (!dontRestartIndex)
+        {
+            OnFollowRoute();
+        }
     }
     void Start()
+    {
+        FindGoDataRoute();
+        if (!dontRestartIndex)
+        {
+            OnFollowRoute();
+        }
+    }
+    public void FindGoDataRoute()
     {
         if (numRoute == 0 || numRoute == 1)
         {
@@ -47,9 +64,7 @@ public class FollowRoute : MonoBehaviour
         {
             dataRoute = goDataRoute.GetComponent<DataRoute>();
         }
-        OnFollowRoute();
     }
-
     void Update()
     {
         if (agent != null)
@@ -60,16 +75,28 @@ public class FollowRoute : MonoBehaviour
             }
         }
     }
-    void OnFollowRoute()
+    public void OnFollowRoute()
     {
         generatePath();
         if (dataRoute != null)
         {
-            indexDataRoute = 0;
+            //Debug.Log(!dontRestartIndex);
+            if (!dontRestartIndex)
+            {
+                indexDataRoute = 0;
+            }
             finishPoint = pathPoints[indexDataRoute];
         }
     }
-    void generatePath()
+    public void SetFinishPoint(GameObject _finishPoint)
+    {
+        finishPoint = _finishPoint;
+    }
+    public GameObject GetFinishPoint()
+    {
+        return finishPoint;
+    }
+    public void generatePath()
     {
         if (dataRoute != null)
         {
@@ -111,5 +138,13 @@ public class FollowRoute : MonoBehaviour
     public NavMeshAgent GetAgent()
     {
         return agent;
+    }
+    public int GetIndexRoute()
+    {
+        return indexDataRoute;
+    }
+    public void SetIndexRoute(int _indexRoute)
+    {
+        indexDataRoute = _indexRoute;
     }
 }

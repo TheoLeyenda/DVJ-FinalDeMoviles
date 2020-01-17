@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public float scalerBloodVar;
     public GameObject EnemyPrefab;
     public FollowRoute auxFollowRoute;
-    protected FollowRoute followRoute;
+    public FollowRoute followRoute;
     public float speed;
     protected float auxSpeed;
     protected float auxAceleration;
@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour
         auxAceleration = acceletartion;
         auxSpeed = speed;
         followRoute = GetComponent<FollowRoute>();
+        //Debug.Log(followRoute);
         if (followRoute == null && auxFollowRoute != null)
         {
             followRoute = auxFollowRoute;
