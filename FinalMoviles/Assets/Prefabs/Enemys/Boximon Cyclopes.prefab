@@ -235,6 +235,9 @@ MonoBehaviour:
   navMeshAgent: {fileID: 0}
   finishPoint: {fileID: 0}
   goDataRoute: {fileID: 0}
+  indexDataRoute: 0
+  pathPoints: []
+  dontRestartIndex: 0
   numRoute: 0
 --- !u!114 &877151063
 MonoBehaviour:
@@ -267,16 +270,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3747b236271032e43aeef967216ec6d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageMeleConstruction: 0
+  DamageLifes: 0
   blood: {fileID: 198342849488787207}
   scalerBloodVar: 0
   EnemyPrefab: {fileID: 0}
   auxFollowRoute: {fileID: 0}
+  followRoute: {fileID: 0}
   speed: 4
   acceletartion: 4
   life: 100
   inPool: 0
-  typeEnemy: 0
   nameEnemy: BoximonCyclopes
+  deffense: 0
+  countEnemyValue: 1
+  typeEnemy: 0
 --- !u!195 &877151069
 NavMeshAgent:
   m_ObjectHideFlags: 0

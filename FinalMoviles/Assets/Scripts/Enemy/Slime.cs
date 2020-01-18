@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class Slime : Enemy
 {
     // Start is called before the first frame update
@@ -9,6 +9,9 @@ public class Slime : Enemy
     public Enemy[] slimes;
     //public float delayDisable = 0.01f;
     public GameObject parent;
+
+    public static event Action<Slime> OnGenerateSoonsSlimes;
+
     protected override void Start()
     {
         base.Start();
@@ -41,14 +44,7 @@ public class Slime : Enemy
         }
         if (allSlimeActivate)
         {
-            //if (delayDisable <= 0)
-            //{
-                CheckDieEnemy();
-            //}
-            //else
-            //{
-            //    delayDisable = delayDisable - Time.deltaTime;
-            //}
+            CheckDieEnemy();
         }
         if (spawns.Length == slimes.Length && life <= 0)
         {
@@ -62,6 +58,10 @@ public class Slime : Enemy
                 slimes[i].followRoute.enabled = true;
                 slimes[i].EnemyPrefab.transform.SetParent(null);
                 slimes[i].EnemyPrefab.SetActive(true);
+                if (OnGenerateSoonsSlimes != null)
+                {
+                    OnGenerateSoonsSlimes(this);
+                }
             }
         }
         

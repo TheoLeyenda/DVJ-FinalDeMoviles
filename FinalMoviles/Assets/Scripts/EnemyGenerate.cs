@@ -104,16 +104,24 @@ public class EnemyGenerate : MonoBehaviour
     private void OnEnable()
     {
         Enemy.OnDieAction += AddEnemysDie;
+        Slime.OnGenerateSoonsSlimes += AddCountTotalEnemysWave;
     }
     private void OnDisable()
     {
         Enemy.OnDieAction -= AddEnemysDie;
+        Slime.OnGenerateSoonsSlimes -= AddCountTotalEnemysWave;
+    }
+    public void AddCountTotalEnemysWave(Slime s)
+    {
+        waves[indexWave].countTotalEnemysWave++;
+        waves[indexWave].currentEnemysGenerate++;
     }
     public void AddEnemysDie(Enemy e)
     {
-        if (e.nameEnemy != "MiniSpider" && e.nameEnemy != "MiniSlime")
+        if (e.nameEnemy != "MiniSpider")
         {
             enemysDie++;
+            //Debug.Log("Enemigos muertos: "+ enemysDie);
         }
     }
     [System.Serializable]
@@ -308,16 +316,17 @@ public class EnemyGenerate : MonoBehaviour
         {
             if (indexWave < waves.Count)
             {
-                if (waves[indexWave].currentEnemysGenerate >= waves[indexWave].countTotalEnemysWave
-                    && (enemysDie >= waves[indexWave].countTotalEnemysWave))
+                if (waves[indexWave].currentEnemysGenerate >= waves[indexWave].countTotalEnemysWave &&
+                    (enemysDie >= waves[indexWave].countTotalEnemysWave))
                 {
                     enemysDie = 0;
                     indexWave++;
                     delayBetweenWaves = auxDelayBetweenWaves;
                     currentPool = null;
                     typeGenerator = curremtTypeGenerator;
+                    //Debug.Log("indexWave:"+ indexWave);
                 }
-                else if (indexWave >= waves.Count - 1 ||
+                else if (indexWave >= waves.Count - 1  ||
                     (waves[indexWave].currentEnemysGenerate >= waves[indexWave].countTotalEnemysWave
                     && (enemysDie < waves[indexWave].countTotalEnemysWave)))
                 {

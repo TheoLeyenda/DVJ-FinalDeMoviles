@@ -88,17 +88,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f31a19bb7af6af446843637b922cb1fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 5
+  DamageMeleConstruction: 0
+  DamageLifes: 0
   blood: {fileID: 198342848477524025}
   scalerBloodVar: 1.2
   EnemyPrefab: {fileID: 1774625739149480}
   auxFollowRoute: {fileID: 1799334990}
+  followRoute: {fileID: 0}
   speed: 2
   acceletartion: 2
   life: 100
   inPool: 0
-  typeEnemy: 0
   nameEnemy: TurtleShell
+  deffense: 0
+  countEnemyValue: 1
+  typeEnemy: 0
   PoolBullets: {fileID: 5035702293760241657}
   counterAttackDamage: 2
   counterAttackVelocity: 150
@@ -976,6 +980,9 @@ MonoBehaviour:
   navMeshAgent: {fileID: 0}
   finishPoint: {fileID: 0}
   goDataRoute: {fileID: 0}
+  indexDataRoute: 0
+  pathPoints: []
+  dontRestartIndex: 0
   numRoute: 0
 --- !u!114 &1799334989
 MonoBehaviour:

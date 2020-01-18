@@ -371,6 +371,9 @@ MonoBehaviour:
   life: 1
   inPool: 0
   nameEnemy: MiniSpider
+  deffense: 0
+  countEnemyValue: 0
+  typeEnemy: 0
 --- !u!195 &507255458656108027
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1599,6 +1602,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: bloodFX
       objectReference: {fileID: 0}
+    - target: {fileID: 198342849822023124, guid: 14740899a922691429cebeb5142e6860,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.62352943
+      objectReference: {fileID: 0}
+    - target: {fileID: 198342849822023124, guid: 14740899a922691429cebeb5142e6860,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.050980393
+      objectReference: {fileID: 0}
+    - target: {fileID: 198342849822023124, guid: 14740899a922691429cebeb5142e6860,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.050980393
+      objectReference: {fileID: 0}
     - target: {fileID: 4932000250680620, guid: 14740899a922691429cebeb5142e6860, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1654,21 +1672,6 @@ PrefabInstance:
     - target: {fileID: 4932000250680620, guid: 14740899a922691429cebeb5142e6860, type: 3}
       propertyPath: m_LocalScale.z
       value: 6750.0054
-      objectReference: {fileID: 0}
-    - target: {fileID: 198342849822023124, guid: 14740899a922691429cebeb5142e6860,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.62352943
-      objectReference: {fileID: 0}
-    - target: {fileID: 198342849822023124, guid: 14740899a922691429cebeb5142e6860,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.050980393
-      objectReference: {fileID: 0}
-    - target: {fileID: 198342849822023124, guid: 14740899a922691429cebeb5142e6860,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.050980393
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14740899a922691429cebeb5142e6860, type: 3}

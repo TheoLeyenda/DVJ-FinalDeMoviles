@@ -59,17 +59,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3747b236271032e43aeef967216ec6d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
+  DamageMeleConstruction: 0
+  DamageLifes: 0
   blood: {fileID: 198342848427532685}
   scalerBloodVar: 2
   EnemyPrefab: {fileID: 1000013827195344}
   auxFollowRoute: {fileID: 61201498}
+  followRoute: {fileID: 0}
   speed: 4
   acceletartion: 4
   life: 100
   inPool: 0
-  typeEnemy: 0
   nameEnemy: Bat
+  deffense: 0
+  countEnemyValue: 1
+  typeEnemy: 0
 --- !u!54 &657137698
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1354,6 +1358,9 @@ MonoBehaviour:
   navMeshAgent: {fileID: 61201499}
   finishPoint: {fileID: 0}
   goDataRoute: {fileID: 0}
+  indexDataRoute: 0
+  pathPoints: []
+  dontRestartIndex: 0
   numRoute: 0
 --- !u!1 &1000013833150240
 GameObject:

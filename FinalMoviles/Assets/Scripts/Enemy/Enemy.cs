@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     public string nameEnemy;
     private bool finishRoute;
     public float deffense;
-
+    public int countEnemyValue;
     public enum TypeEnemy
     {
         none,

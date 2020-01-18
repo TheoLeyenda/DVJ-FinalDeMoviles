@@ -46,17 +46,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3747b236271032e43aeef967216ec6d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
+  DamageMeleConstruction: 0
+  DamageLifes: 0
   blood: {fileID: 198342848218446013}
   scalerBloodVar: 1.2
   EnemyPrefab: {fileID: 7336173271019878106}
   auxFollowRoute: {fileID: 3070310089340406422}
+  followRoute: {fileID: 0}
   speed: 4
   acceletartion: 4
   life: 100
   inPool: 0
-  typeEnemy: 0
   nameEnemy: Rabbit
+  deffense: 0
+  countEnemyValue: 1
+  typeEnemy: 0
 --- !u!54 &2130593269
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -852,6 +856,9 @@ MonoBehaviour:
   navMeshAgent: {fileID: 3070310089340406420}
   finishPoint: {fileID: 0}
   goDataRoute: {fileID: 0}
+  indexDataRoute: 0
+  pathPoints: []
+  dontRestartIndex: 0
   numRoute: 0
 --- !u!1 &8043178572282943098
 GameObject:
