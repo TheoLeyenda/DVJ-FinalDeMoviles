@@ -60,18 +60,13 @@ public class Spider : Enemy
                 float x = Random.Range(-rangeGenerateX, rangeGenerateX);
                 float z = Random.Range(-rangeGenerateZ, rangeGenerateZ);
                 GameObject go;
-                //RaycastHit hit;
 
-                //Si no hay ningun problema al generar los enemigos omitir la parte del raycast.
-                //Si se generan fuera de la cancha y esto genera problemas crear el muro en todos los niveles y hacer raycast
-                //para que las arañas hijo no se generen fuera del camino.
-
-                Vector3 generatePosition = new Vector3(x + generator.transform.position.x, generator.transform.position.y, z + generator.transform.position.z);
                 go = poolSpiderSoons.GetObject();
-                Debug.Log(generatePosition);
-                go.transform.position = generatePosition;
-                go.transform.rotation = transform.rotation;
                 Enemy enemy = go.GetComponent<Enemy>();
+                //Debug.Log(generatePosition);
+                go.transform.position = transform.position + new Vector3(x, generator.transform.position.y, z);
+                go.transform.rotation = transform.rotation;
+
 #if UNITY_STANDALONE
                 enemy.followRoute.GetAgent().speed = speedSoons;
                 enemy.followRoute.GetAgent().acceleration = acelerationSoons;
@@ -84,16 +79,18 @@ public class Spider : Enemy
                 enemy.nameEnemy = soonsName;
                 enemy.followRoute.FindGoDataRoute();
                 enemy.followRoute.generatePath();
-                if (enemy.followRoute.GetIndexRoute() + 1 <= enemy.followRoute.pathPoints.Count - 1)
+                if (enemy.followRoute.GetIndexRoute() < enemy.followRoute.pathPoints.Count - 1)
                 {
-                    enemy.followRoute.SetIndexRoute(followRoute.GetIndexRoute() + 1);
-                    enemy.followRoute.SetFinishPoint(enemy.followRoute.pathPoints[followRoute.GetIndexRoute() + 1]);
-                    //Debug.Log("ENTRE");
-                    //Debug.Log(followRoute.GetIndexRoute() + 1);
+                    enemy.followRoute.SetIndexRoute(followRoute.GetIndexRoute());
+                    enemy.followRoute.SetFinishPoint(enemy.followRoute.pathPoints[followRoute.GetIndexRoute()]);
                 }
             }
             delayGenerationSoons = Random.Range(minDelayGenerateSoons, maxDelayGenerateSoons);
             countGenerateSoons = Random.Range(minCountGenerateSoons, maxCountGenerateSoons);
+        }
+        else
+        {
+            generateSoons = false;
         }
     }
 }

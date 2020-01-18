@@ -79,7 +79,14 @@ namespace DarkTreeFPS
                             e.blood.gameObject.transform.localScale = new Vector3(range, range, range);
                         }
                         e.blood.Play();
-                        e.life = e.life - Random.Range(weapon.damageMin, weapon.damageMax);
+                        if (e.typeEnemy == Enemy.TypeEnemy.defensive)
+                        {
+                            e.life = e.life - Random.Range(weapon.damageMin, weapon.damageMax) / e.deffense;
+                        }
+                        else
+                        {
+                            e.life = e.life - Random.Range(weapon.damageMin, weapon.damageMax);
+                        }
 
                         gameObject.SetActive(false);
                     }

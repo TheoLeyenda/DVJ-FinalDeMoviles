@@ -12,6 +12,7 @@ public class Pool : MonoBehaviour {
     private int id;
     private bool substractValuesBalls;
     public bool GeneratePoolOnEnable;
+    private bool once = false;
     // Use this for initialization
     void Awake()
     {
@@ -19,9 +20,11 @@ public class Pool : MonoBehaviour {
     }
     private void OnEnable()
     {
-        if (GeneratePoolOnEnable)
+        if (GeneratePoolOnEnable && !once)
         {
+            FindParent(parentName);
             GeneratePool();
+            once = true;
         }
     }
     private void Start()

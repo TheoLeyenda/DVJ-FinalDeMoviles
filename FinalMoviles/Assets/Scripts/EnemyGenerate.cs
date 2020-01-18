@@ -200,6 +200,7 @@ public class EnemyGenerate : MonoBehaviour
                                         {
                                             Spider spider = enemy.GetComponent<Spider>();
                                             spider.generateSoons = false;
+                                            spider.poolSpiderSoons.enabled = false;
                                         }
                                     }
                                 }
@@ -225,6 +226,7 @@ public class EnemyGenerate : MonoBehaviour
                                     {
                                         Spider spider = enemy.GetComponent<Spider>();
                                         spider.generateSoons = true;
+                                        spider.poolSpiderSoons.enabled = true;
                                     }
                                 }
                             }

@@ -64,6 +64,7 @@ public class FollowRoute : MonoBehaviour
         {
             dataRoute = goDataRoute.GetComponent<DataRoute>();
         }
+        Debug.Log(dataRoute);
     }
     void Update()
     {
@@ -105,11 +106,12 @@ public class FollowRoute : MonoBehaviour
                 int random = Random.Range(0, dataRoute.curves[i].points.Length);
                 pathPoints.Insert(i, dataRoute.curves[i].points[random]);
             }
+            Debug.Log("inicialice el data route");
         }
     }
     public bool CheckFinishRoute()
     {
-        if (finishPoint != null)
+        if (finishPoint != null && pathPoints.Count > 0)
         {
             Vector3 a = finishPoint.transform.position - transform.position;
             if (a.magnitude <= agent.stoppingDistance)
@@ -129,6 +131,11 @@ public class FollowRoute : MonoBehaviour
             {
                 return false;
             }
+        }
+        else if (pathPoints.Count <= 0)
+        {
+            generatePath();
+            return false;
         }
         else
         {

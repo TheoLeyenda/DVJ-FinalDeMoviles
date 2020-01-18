@@ -21,7 +21,15 @@ public class Enemy : MonoBehaviour
     public bool inPool;
     public string nameEnemy;
     private bool finishRoute;
+    public float deffense;
 
+    public enum TypeEnemy
+    {
+        none,
+        defensive,
+    }
+
+    public TypeEnemy typeEnemy;
 
     public static event Action<Enemy> OnDieAction;
     protected virtual void Start()
