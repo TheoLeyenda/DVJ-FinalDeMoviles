@@ -42,6 +42,10 @@ public class FollowRoute : MonoBehaviour
             OnFollowRoute();
         }
     }
+    private void OnDisable()
+    {
+        indexDataRoute = 0;
+    }
     void Start()
     {
         FindGoDataRoute();

@@ -17,6 +17,7 @@ namespace DarkTreeFPS
 
     public class PlayerStats : MonoBehaviour
     {
+        public GameObject HeadPlayer;
         [Header("Health")]
         [Tooltip("Player's health")]
         public int health = 100;

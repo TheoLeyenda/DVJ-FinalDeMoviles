@@ -62,6 +62,11 @@ public class StoneMonster : Enemy
             }
         }
     }
+    private void OnDisable()
+    {
+        inRangeAttack = false;
+        timerStartAttackConstruction = Random.Range(minRangeDelay, maxRangeDelay);
+    }
     public void CheckDelayAttack()
     {
         if (delayAttack > 0)
