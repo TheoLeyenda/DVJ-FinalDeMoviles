@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     public string nameEnemy;
     private bool finishRoute;
     public float deffense;
+    private bool dead = false;
     public enum TypeEnemy
     {
         none,
@@ -57,6 +58,7 @@ public class Enemy : MonoBehaviour
     {
         life = maxLife;
         auxLife = life;
+        dead = false;
     }
     // Update is called once per frame
     protected virtual void Update()
@@ -169,12 +171,13 @@ public class Enemy : MonoBehaviour
                 animator.SetBool("Move", false);
             }
         }
-        if(life <= 0)
+        if(life <= 0 && !dead)
         {
             followRoute.GetAgent().speed = 0;
-            animator.SetBool("Dead", true);
+            animator.SetBool("Dead",true);
             animator.SetBool("Idle", false);
             animator.SetBool("Move", false);
+            dead = true;
         }
     }
 }

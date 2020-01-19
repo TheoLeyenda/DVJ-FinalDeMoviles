@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 507255458656108025}
   - component: {fileID: 507255458656108026}
   - component: {fileID: 507255458656108027}
+  - component: {fileID: 968420904}
   m_Layer: 0
   m_Name: Mini Spider
   m_TagString: Enemy
@@ -271,7 +272,7 @@ Animator:
   m_GameObject: {fileID: 507839984096575205}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 7a538f29bad700d47a681a6568b943b4, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e981bdb5a44f51e4bb58e695cf7b5c97, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -359,6 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3747b236271032e43aeef967216ec6d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 457625428998130893}
   DamageMeleConstruction: 0
   DamageLifes: 0
   blood: {fileID: 417293128706339814}
@@ -368,11 +370,11 @@ MonoBehaviour:
   followRoute: {fileID: 507255458656108024}
   speed: 4
   acceletartion: 4
+  maxLife: 100
   life: 1
   inPool: 0
   nameEnemy: MiniSpider
   deffense: 0
-  countEnemyValue: 0
   typeEnemy: 0
 --- !u!195 &507255458656108027
 NavMeshAgent:
@@ -396,6 +398,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &968420904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507839984096575205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f10285dc01d4e46b008f987fdc8ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 507255458656108026}
 --- !u!1 &507849067028798399
 GameObject:
   m_ObjectHideFlags: 0

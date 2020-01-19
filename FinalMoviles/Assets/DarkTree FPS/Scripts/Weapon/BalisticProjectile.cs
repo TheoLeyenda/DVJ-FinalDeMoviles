@@ -60,7 +60,10 @@ namespace DarkTreeFPS
                         Enemy e = hit.transform.gameObject.GetComponent<Enemy>();
                         e.blood.gameObject.SetActive(true);
                         e.blood.transform.position = hit.point;
-                        e.animator.Play("Damage");
+                        if (e.life > 0)
+                        {
+                            e.animator.Play("Damage");
+                        }
                         float range;
                         if (typeBullet == TypeBullet.Rifle)
                         {

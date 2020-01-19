@@ -1137,6 +1137,7 @@ GameObject:
   - component: {fileID: 240957574}
   - component: {fileID: 240957572}
   - component: {fileID: 1947755843}
+  - component: {fileID: 1903074893}
   m_Layer: 0
   m_Name: spider_pref
   m_TagString: Enemy
@@ -1173,7 +1174,7 @@ Animator:
   m_GameObject: {fileID: 1715103906888602}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 7a538f29bad700d47a681a6568b943b4, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e981bdb5a44f51e4bb58e695cf7b5c97, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1283,6 +1284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb76ac09a101c2345837eeaa392950da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 95681433750800818}
   DamageMeleConstruction: 0
   DamageLifes: 0
   blood: {fileID: 198342849732753049}
@@ -1292,17 +1294,17 @@ MonoBehaviour:
   followRoute: {fileID: 0}
   speed: 4
   acceletartion: 4
+  maxLife: 100
   life: 100
   inPool: 0
   nameEnemy: Spider
   deffense: 0
-  countEnemyValue: 1
   typeEnemy: 0
   delayGenerationSoons: 0
   minCountGenerateSoons: 3
   maxCountGenerateSoons: 7
   generator: {fileID: 1448720580}
-  generateSoons: 1
+  generateSoons: 0
   rangeGenerateX: 2.5
   rangeGenerateZ: 2.5
   poolSpiderSoons: {fileID: 1937958520}
@@ -1312,6 +1314,19 @@ MonoBehaviour:
   acelerationSoons: 6
   minDelayGenerateSoons: 6
   maxDelayGenerateSoons: 10
+--- !u!114 &1903074893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715103906888602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f10285dc01d4e46b008f987fdc8ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1947755843}
 --- !u!1 &1719841372004032
 GameObject:
   m_ObjectHideFlags: 0
