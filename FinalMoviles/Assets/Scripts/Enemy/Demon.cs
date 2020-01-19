@@ -75,13 +75,17 @@ public class Demon : Enemy
     }
     public void CheckDelayAttack()
     {
-        if (delayAttack > 0)
+        if (life > 0)
         {
-            delayAttack = delayAttack - Time.deltaTime;
-        }
-        else
-        {
-            Attack();
+            if (delayAttack > 0)
+            {
+                delayAttack = delayAttack - Time.deltaTime;
+            }
+            else
+            {
+                animator.Play("Attack");
+                Attack();
+            }
         }
     }
     public override void Attack()

@@ -5,7 +5,7 @@ using System;
 public class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    public Animator animator;
     public int DamageMeleConstruction;//daño a estructuras por defencto.
     public int DamageLifes; //daño a las vidas del jugador al pasar de punto A a punto B. 
     public ParticleSystem blood;
@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     public float acceletartion;
     public float maxLife = 100;
     public float life = 100;
+    protected float auxLife;
     public bool inPool;
     public string nameEnemy;
     private bool finishRoute;
@@ -49,17 +50,20 @@ public class Enemy : MonoBehaviour
             followRoute.GetAgent().speed = speed;
             followRoute.GetAgent().acceleration = acceletartion;
         }
+        auxLife = life;
 
     }
     private void OnDisable()
     {
         life = maxLife;
+        auxLife = life;
     }
     // Update is called once per frame
     protected virtual void Update()
     {
         CheckFinishRouteEnemy();
-        CheckDieEnemy();
+        //CheckDieEnemy();
+        CheckAnimations();
     }
     public void CheckFinishRouteEnemy()
     {
@@ -117,15 +121,19 @@ public class Enemy : MonoBehaviour
                 {
                     case SphereHealing.AddCountLife.MaxLife:
                         life = life + maxLife;
+                        auxLife = life;
                         break;
                     case SphereHealing.AddCountLife.OneQuarter:
                         life = life + maxLife / 4;
+                        auxLife = life;
                         break;
                     case SphereHealing.AddCountLife.OneThird:
                         life = life + maxLife / 3;
+                        auxLife = life;
                         break;
                     case SphereHealing.AddCountLife.OneTwo:
                         life = life + maxLife / 2;
+                        auxLife = life;
                         break;
                 }
                 
@@ -141,6 +149,32 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "FinishPoint")
         {
             finishRoute = true;
+        }
+    }
+    public virtual void CheckAnimations()
+    {
+        if (followRoute != null)
+        {
+            if (followRoute.GetAgent().speed > 0)
+            {
+                //animator.Play("Move");
+                animator.SetBool("Dead", false);
+                animator.SetBool("Idle", false);
+                animator.SetBool("Move", true);
+            }
+            else if (followRoute.GetAgent().speed <= 0 && !animator.GetBool("Dead"))
+            {
+                animator.SetBool("Dead", false);
+                animator.SetBool("Idle", true);
+                animator.SetBool("Move", false);
+            }
+        }
+        if(life <= 0)
+        {
+            followRoute.GetAgent().speed = 0;
+            animator.SetBool("Dead", true);
+            animator.SetBool("Idle", false);
+            animator.SetBool("Move", false);
         }
     }
 }

@@ -4951,6 +4951,7 @@ GameObject:
   - component: {fileID: 877151063}
   - component: {fileID: 877151069}
   - component: {fileID: 206964319}
+  - component: {fileID: 2025104660}
   m_Layer: 0
   m_Name: Boximon Cyclopes
   m_TagString: Enemy
@@ -5107,6 +5108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f526e4329e41dc0438c1060ce92232d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 95782878299265946}
   DamageMeleConstruction: 0
   DamageLifes: 0
   blood: {fileID: 198342849488787207}
@@ -5126,6 +5128,19 @@ MonoBehaviour:
   sphereHealing: {fileID: 108788232}
   minDelayMagicCuration: 7
   maxDelayMagicCuration: 13
+--- !u!114 &2025104660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111084942782338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f10285dc01d4e46b008f987fdc8ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 206964319}
 --- !u!1 &1159647506406770
 GameObject:
   m_ObjectHideFlags: 0
@@ -5210,8 +5225,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203221409120484}
-  m_LocalRotation: {x: -7.1054274e-15, y: 1.2300172e-14, z: -7.1054274e-15, w: 1}
-  m_LocalPosition: {x: -0.08259887, y: 0, z: 2.0319596e-15}
+  m_LocalRotation: {x: -0, y: -0, z: 0.000000029802322, w: 1}
+  m_LocalPosition: {x: -0.082598865, y: 0, z: 2.0319609e-15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4345885517831564}
@@ -5272,8 +5287,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284224065372050}
-  m_LocalRotation: {x: 7.10543e-15, y: 2.5571745e-14, z: 7.1054274e-15, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.000000029802322, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4638460949033090}
@@ -5680,8 +5695,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630493012256686}
-  m_LocalRotation: {x: 1.4210856e-14, y: 2.5571745e-14, z: 1.4210855e-14, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.000000029802322, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4436562643560826}
@@ -6017,8 +6032,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1961965172925756}
-  m_LocalRotation: {x: 0, y: 1.2300171e-14, z: -0, w: 1}
-  m_LocalPosition: {x: -0.08259887, y: 0, z: 2.0319596e-15}
+  m_LocalRotation: {x: -0, y: -0, z: 0.000000029802322, w: 1}
+  m_LocalPosition: {x: -0.082598865, y: 0, z: 2.0319609e-15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4079126096503738}
@@ -6155,15 +6170,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14740899a922691429cebeb5142e6860, type: 3}
---- !u!198 &198342849488787207 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 198342849822023124, guid: 14740899a922691429cebeb5142e6860,
-    type: 3}
-  m_PrefabInstance: {fileID: 753257171}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4932000705978367 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4932000250680620, guid: 14740899a922691429cebeb5142e6860,
+    type: 3}
+  m_PrefabInstance: {fileID: 753257171}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &198342849488787207 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198342849822023124, guid: 14740899a922691429cebeb5142e6860,
     type: 3}
   m_PrefabInstance: {fileID: 753257171}
   m_PrefabAsset: {fileID: 0}

@@ -23,14 +23,20 @@ public class Orc : Enemy
     }
     public void CheckCuration()
     {
-        if (delayMagicCuration > 0)
+        if (life > 0)
         {
-            delayMagicCuration = delayMagicCuration - Time.deltaTime;
-        }
-        else if (delayMagicCuration <= 0)
-        {
-            MagicCuration();
-            delayMagicCuration = Random.Range(minDelayMagicCuration, maxDelayMagicCuration);
+            if (delayMagicCuration > 0)
+            {
+                delayMagicCuration = delayMagicCuration - Time.deltaTime;
+            }
+            else if (delayMagicCuration <= 0)
+            {
+                if (life > 0)
+                {
+                    MagicCuration();
+                }
+                delayMagicCuration = Random.Range(minDelayMagicCuration, maxDelayMagicCuration);
+            }
         }
     }
     public void MagicCuration()
@@ -39,21 +45,27 @@ public class Orc : Enemy
         {
             case SphereHealing.AddCountLife.MaxLife:
                 life = life + maxLife;
+                auxLife = life;
                 break;
             case SphereHealing.AddCountLife.OneQuarter:
                 life = life + maxLife / 4;
+                auxLife = life;
                 break;
             case SphereHealing.AddCountLife.OneThird:
                 life = life + maxLife / 3;
+                auxLife = life;
                 break;
             case SphereHealing.AddCountLife.OneTwo:
                 life = life + maxLife / 2;
+                auxLife = life;
                 break;
         }
         if (life > maxLife)
         {
             life = maxLife;
         }
+        //animator.Play("Jump");
+        animator.SetTrigger("Jump");
         sphereHealing.gameObject.SetActive(true);
     }
 }
