@@ -33,7 +33,15 @@ public class Ghost : Enemy
     protected override void Update()
     {
         base.Update();
-        CheckStateGhost();
+        if (life > 0)
+        {
+            CheckStateGhost();
+        }
+        else
+        {
+            skinnedMeshRenderer.material = normalMaterial;
+            boxCollider.enabled = true;
+        }
     }
     public void CheckStateGhost()
     {
