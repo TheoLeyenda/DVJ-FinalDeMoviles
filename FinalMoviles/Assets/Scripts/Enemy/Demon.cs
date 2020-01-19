@@ -7,17 +7,11 @@ public class Demon : Enemy
 {
     // Start is called before the first frame update
     private bool enableAttack;
-    //private bool enableHealing;
     private PlayerStats TargetPlayer;
-    //public float delayMagicCuration;
     public float delayStartAttack;
     public float delayAttack;
     public float auxDelayAttack;
-    //[Header("Rangos del delay de curacion")]
-    //public float minDelayMagicCuration;
-    //public float maxDelayMagicCuration;
     public Pool poolLance;
-    //public SphereHealing sphereHealing;
     public bool attackConstruction;
     public GameObject generatorLance;
     [Header("Rango del delay del comienzo de ataque")]
@@ -27,8 +21,6 @@ public class Demon : Enemy
     {
         base.Start();
         enableAttack = false;
-        //enableHealing = false;
-        //delayMagicCuration = Random.Range(minDelayMagicCuration, maxDelayMagicCuration);
         delayStartAttack = Random.Range(minDelayStartAttack, maxDelayStartAttack);
     }
 
@@ -38,21 +30,6 @@ public class Demon : Enemy
         base.Update();
         CheckAttack();
     }
-    /*public void CheckCuration()
-    {
-        if (enableHealing)
-        {
-            if (delayMagicCuration > 0)
-            {
-                delayMagicCuration = delayMagicCuration - Time.deltaTime;
-            }
-            else if (delayMagicCuration <= 0)
-            {
-                MagicCuration();
-                delayMagicCuration = Random.Range(minDelayMagicCuration, maxDelayMagicCuration);
-            }
-        }
-    }*/
     private void OnDisable()
     {
         enableAttack = false;
@@ -118,18 +95,6 @@ public class Demon : Enemy
         lance.rig.AddForce(lance.transform.forward * lance.initialVelocity, ForceMode.Impulse);
         delayAttack = auxDelayAttack;
     }
-    /*public void MagicCuration()
-    {
-        sphereHealing.gameObject.SetActive(true);
-    }*/
-    /*public void SetEnableHealing(bool _enableHealing)
-    {
-        enableHealing = _enableHealing;
-    }*/
-    /*public bool GetEnableHealing()
-    {
-        return enableHealing;
-    }*/
     public void SetEnableAttack(bool _enableAttack)
     {
         enableAttack = _enableAttack;

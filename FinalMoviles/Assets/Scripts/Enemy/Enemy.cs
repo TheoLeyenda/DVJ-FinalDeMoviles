@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     protected float auxSpeed;
     protected float auxAceleration;
     public float acceletartion;
+    public float maxLife = 100;
     public float life = 100;
     public bool inPool;
     public string nameEnemy;
@@ -50,7 +51,10 @@ public class Enemy : MonoBehaviour
         }
 
     }
-
+    private void OnDisable()
+    {
+        life = maxLife;
+    }
     // Update is called once per frame
     protected virtual void Update()
     {
@@ -101,6 +105,37 @@ public class Enemy : MonoBehaviour
         }
     }
     public virtual void Attack() { }
+    private void OnTriggerEnter(Collider other)
+    {
+        //ACA PROGRAMAR LA SUBIDA DE VIDA.
+        if (other.tag == "LifeAura")
+        {
+            SphereHealing sphereHealing = other.GetComponent<SphereHealing>();
+            if (sphereHealing != null)
+            {
+                switch (sphereHealing.addCountLife)
+                {
+                    case SphereHealing.AddCountLife.MaxLife:
+                        life = life + maxLife;
+                        break;
+                    case SphereHealing.AddCountLife.OneQuarter:
+                        life = life + maxLife / 4;
+                        break;
+                    case SphereHealing.AddCountLife.OneThird:
+                        life = life + maxLife / 3;
+                        break;
+                    case SphereHealing.AddCountLife.OneTwo:
+                        life = life + maxLife / 2;
+                        break;
+                }
+                
+                if (life > maxLife)
+                {
+                    life = maxLife;
+                }
+            }
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "FinishPoint")
