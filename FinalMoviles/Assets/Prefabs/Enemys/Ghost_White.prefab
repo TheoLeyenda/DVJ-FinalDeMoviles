@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1499322971}
-  - component: {fileID: 1499322974}
   - component: {fileID: 1499322973}
   - component: {fileID: 1499322972}
+  - component: {fileID: 525463789}
   m_Layer: 0
   m_Name: EnemyPrefab
   m_TagString: Enemy
@@ -34,33 +34,6 @@ Transform:
   m_Father: {fileID: 4000010394429140}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1499322974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1499322970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3747b236271032e43aeef967216ec6d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DamageMeleConstruction: 0
-  DamageLifes: 0
-  blood: {fileID: 198096718022871804}
-  scalerBloodVar: 0.5
-  EnemyPrefab: {fileID: 1000011659465104}
-  auxFollowRoute: {fileID: 1180065028}
-  followRoute: {fileID: 0}
-  speed: 4
-  acceletartion: 4
-  life: 100
-  inPool: 0
-  nameEnemy: Ghost_White
-  deffense: 0
-  countEnemyValue: 1
-  typeEnemy: 0
 --- !u!54 &1499322973
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -90,6 +63,41 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.024791002, y: 0.039304476, z: 0.02728183}
   m_Center: {x: 0.00056543207, y: -0.0036975686, z: -0.0012785167}
+--- !u!114 &525463789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499322970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab6cc7841871da4c81a592dc5e1d27b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageMeleConstruction: 0
+  DamageLifes: 0
+  blood: {fileID: 198096718022871804}
+  scalerBloodVar: 0.5
+  EnemyPrefab: {fileID: 1000011659465104}
+  auxFollowRoute: {fileID: 1180065028}
+  followRoute: {fileID: 0}
+  speed: 4
+  acceletartion: 4
+  maxLife: 100
+  life: 100
+  inPool: 0
+  nameEnemy: Ghost_White
+  deffense: 0
+  typeEnemy: 0
+  trasparentMaterial: {fileID: 2100000, guid: 1e99c1ad05c59c943ba095f8c585b7a9, type: 2}
+  normalMaterial: {fileID: 2100000, guid: e45b40dde5630f3488fd950d7ca4f260, type: 2}
+  skinnedMeshRenderer: {fileID: 137000011580510210}
+  boxCollider: {fileID: 1499322972}
+  DelayEnable: 5
+  auxDelayEnable: 5
+  DelayDisable: 3
+  auxDelayDisable: 3
 --- !u!1 &1000010101726276
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,11 +694,6 @@ PrefabInstance:
         type: 3}
       propertyPath: ShapeModule.type
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 198096718137815388, guid: f2c9485d98ea91543a36be2ebd754b81,
-        type: 3}
-      propertyPath: ShapeModule.radiusThickness
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c9485d98ea91543a36be2ebd754b81, type: 3}
