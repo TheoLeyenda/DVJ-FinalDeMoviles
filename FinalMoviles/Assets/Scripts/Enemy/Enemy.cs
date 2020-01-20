@@ -162,7 +162,6 @@ public class Enemy : MonoBehaviour
             {
                 if (followRoute.GetAgent().speed > 0)
                 {
-                    //animator.Play("Move");
                     animator.SetBool("Dead", false);
                     animator.SetBool("Idle", false);
                     animator.SetBool("Move", true);
@@ -175,7 +174,7 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-        if(life <= 0 && !dead)
+        if(life <= 0 && !dead && nameEnemy != "TurtleShell")
         {
             followRoute.GetAgent().speed = 0;
             animator.SetBool("Dead",true);

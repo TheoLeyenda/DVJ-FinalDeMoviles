@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f31a19bb7af6af446843637b922cb1fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 95237074988894122}
   DamageMeleConstruction: 0
   DamageLifes: 0
   blood: {fileID: 198342848477524025}
@@ -97,15 +98,18 @@ MonoBehaviour:
   followRoute: {fileID: 0}
   speed: 2
   acceletartion: 2
+  maxLife: 100
   life: 100
   inPool: 0
   nameEnemy: TurtleShell
   deffense: 0
-  countEnemyValue: 1
   typeEnemy: 0
   PoolBullets: {fileID: 5035702293760241657}
   counterAttackDamage: 2
   counterAttackVelocity: 150
+  boxColliderShild: {fileID: 1799334985}
+  boxColliderDamage1: {fileID: 64982206}
+  boxColliderDamage2: {fileID: 64982207}
 --- !u!1 &1092081978186012
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,6 +895,7 @@ GameObject:
   - component: {fileID: 1799334989}
   - component: {fileID: 1799334987}
   - component: {fileID: 1945693554}
+  - component: {fileID: 357989178}
   m_Layer: 0
   m_Name: TurtleShellPBR
   m_TagString: Shild
@@ -1039,6 +1044,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shildFBX: {fileID: 198524436208511025}
   turtleShell: {fileID: 833852480}
+--- !u!114 &357989178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774625739149480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f10285dc01d4e46b008f987fdc8ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 833852480}
 --- !u!1 &1822049695589022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1468,15 +1486,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32bcada39784f5544b9dbd4600d15d49, type: 3}
---- !u!198 &198524436208511025 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 198524437032286804, guid: 32bcada39784f5544b9dbd4600d15d49,
-    type: 3}
-  m_PrefabInstance: {fileID: 939151973}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4420822312791459 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4420821924446150, guid: 32bcada39784f5544b9dbd4600d15d49,
+    type: 3}
+  m_PrefabInstance: {fileID: 939151973}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &198524436208511025 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198524437032286804, guid: 32bcada39784f5544b9dbd4600d15d49,
     type: 3}
   m_PrefabInstance: {fileID: 939151973}
   m_PrefabAsset: {fileID: 0}
@@ -1549,15 +1567,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14740899a922691429cebeb5142e6860, type: 3}
---- !u!4 &4931999976782017 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4932000250680620, guid: 14740899a922691429cebeb5142e6860,
-    type: 3}
-  m_PrefabInstance: {fileID: 1885122029}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &198342848477524025 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198342849822023124, guid: 14740899a922691429cebeb5142e6860,
+    type: 3}
+  m_PrefabInstance: {fileID: 1885122029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4931999976782017 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4932000250680620, guid: 14740899a922691429cebeb5142e6860,
     type: 3}
   m_PrefabInstance: {fileID: 1885122029}
   m_PrefabAsset: {fileID: 0}

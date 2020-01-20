@@ -10,7 +10,31 @@ public class TurtleShell : Enemy
     public Pool PoolBullets;
     public int counterAttackDamage;
     public float counterAttackVelocity;
+    public BoxCollider boxColliderShild;
+    public BoxCollider boxColliderDamage1;
+    public BoxCollider boxColliderDamage2;
 
+    protected override void Update()
+    {
+        base.Update();
+        if (life <= 0 && nameEnemy == "TurtleShell")
+        {
+            boxColliderDamage1.enabled = false;
+            boxColliderDamage2.enabled = false;
+            boxColliderShild.enabled = false;
+        }
+        if (!boxColliderDamage1.enabled && !boxColliderDamage2.enabled && !boxColliderShild.enabled)
+        {
+            nameEnemy = "";
+        }
+    }
+    private void OnDisable()
+    {
+        nameEnemy = "TurtleShell";
+        boxColliderDamage1.enabled = true;
+        boxColliderDamage2.enabled = true;
+        boxColliderShild.enabled = true;
+    }
     public void CounterAttack(Vector3 position)
     {
         GameObject go = PoolBullets.GetObject();
