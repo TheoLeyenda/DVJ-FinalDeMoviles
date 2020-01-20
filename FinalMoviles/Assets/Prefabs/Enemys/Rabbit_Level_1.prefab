@@ -31,8 +31,8 @@ Transform:
   m_LocalScale: {x: 0.6666666, y: 0.6666666, z: 0.6666666}
   m_Children:
   - {fileID: 4931999703019589}
-  m_Father: {fileID: 8293299957020964004}
-  m_RootOrder: 1
+  m_Father: {fileID: 8338328092339184752}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2130593270
 MonoBehaviour:
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3747b236271032e43aeef967216ec6d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 4403966977028696499}
   DamageMeleConstruction: 0
   DamageLifes: 0
   blood: {fileID: 198342848218446013}
@@ -55,11 +56,11 @@ MonoBehaviour:
   followRoute: {fileID: 0}
   speed: 4
   acceletartion: 4
+  maxLife: 100
   life: 100
   inPool: 0
   nameEnemy: Rabbit
   deffense: 0
-  countEnemyValue: 1
   typeEnemy: 0
 --- !u!54 &2130593269
 Rigidbody:
@@ -398,7 +399,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8338328092339184752}
-  - {fileID: 2130593267}
   m_Father: {fileID: 6022451109892457673}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -648,6 +648,7 @@ Transform:
   - {fileID: 1951769681473134086}
   - {fileID: 7445194531576388555}
   - {fileID: 6512517652216752547}
+  - {fileID: 2130593267}
   m_Father: {fileID: 8293299957020964004}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
