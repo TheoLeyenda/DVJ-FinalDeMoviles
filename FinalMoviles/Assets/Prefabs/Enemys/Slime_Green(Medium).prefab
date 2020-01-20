@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 5344600182877259420}
   - component: {fileID: 5344600182877259421}
   - component: {fileID: 5344600182877259422}
+  - component: {fileID: 5086397854914054849}
   m_Layer: 0
   m_Name: Slime_Green(Medium)
   m_TagString: Untagged
@@ -262,7 +263,7 @@ Animator:
   m_GameObject: {fileID: 5343617771345974536}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e607f74860c67814e93c914b710142d5, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 74d3e9f1e6965524bad3bdf5e172708b, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -331,6 +332,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5086397854914054849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5343617771345974536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f10285dc01d4e46b008f987fdc8ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1769270813}
 --- !u!1 &5343617771448818664
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,6 +885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d484b9b62c036bb48917296d388bfb60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 5438755771649013082}
   DamageMeleConstruction: 0
   DamageLifes: 0
   blood: {fileID: 5254419050280493538}
@@ -880,11 +895,11 @@ MonoBehaviour:
   followRoute: {fileID: 5344600182877259420}
   speed: 4
   acceletartion: 4
+  maxLife: 100
   life: 100
   inPool: 0
   nameEnemy: Slime_2
   deffense: 1.2
-  countEnemyValue: 0
   typeEnemy: 1
   spawns:
   - {fileID: 198734087}

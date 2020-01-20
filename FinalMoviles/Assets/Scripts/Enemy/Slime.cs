@@ -37,7 +37,7 @@ public class Slime : Enemy
         bool allSlimeActivate = true;
         for (int i = 0; i < slimes.Length; i++)
         {
-            if (!slimes[i].EnemyPrefab.activeSelf && slimes[i].transform.parent == null && !followRoute.enabled)
+            if (!slimes[i].EnemyPrefab.activeSelf)
             {
                 allSlimeActivate = false;
             }
@@ -54,7 +54,14 @@ public class Slime : Enemy
                 slimes[i].followRoute.FindGoDataRoute();
                 slimes[i].followRoute.generatePath();
                 slimes[i].followRoute.SetIndexRoute(followRoute.GetIndexRoute());
-                slimes[i].followRoute.SetFinishPoint(slimes[i].followRoute.pathPoints[followRoute.GetIndexRoute()]);
+                if (slimes[i].followRoute.pathPoints.Count > 0)
+                {
+                    slimes[i].followRoute.SetFinishPoint(slimes[i].followRoute.pathPoints[followRoute.GetIndexRoute()]);
+                }
+                else
+                {
+                    slimes[i].followRoute.SetFinishPoint(followRoute.GetFinishPoint());
+                }
                 slimes[i].followRoute.enabled = true;
                 slimes[i].EnemyPrefab.transform.SetParent(null);
                 slimes[i].EnemyPrefab.SetActive(true);

@@ -59,6 +59,7 @@ public class Enemy : MonoBehaviour
         life = maxLife;
         auxLife = life;
         dead = false;
+        followRoute.GetAgent().speed = speed;
     }
     // Update is called once per frame
     protected virtual void Update()
@@ -157,18 +158,21 @@ public class Enemy : MonoBehaviour
     {
         if (followRoute != null)
         {
-            if (followRoute.GetAgent().speed > 0)
+            if (life > 0)
             {
-                //animator.Play("Move");
-                animator.SetBool("Dead", false);
-                animator.SetBool("Idle", false);
-                animator.SetBool("Move", true);
-            }
-            else if (followRoute.GetAgent().speed <= 0 && !animator.GetBool("Dead"))
-            {
-                animator.SetBool("Dead", false);
-                animator.SetBool("Idle", true);
-                animator.SetBool("Move", false);
+                if (followRoute.GetAgent().speed > 0)
+                {
+                    //animator.Play("Move");
+                    animator.SetBool("Dead", false);
+                    animator.SetBool("Idle", false);
+                    animator.SetBool("Move", true);
+                }
+                else if (followRoute.GetAgent().speed <= 0 && !animator.GetBool("Dead"))
+                {
+                    animator.SetBool("Dead", false);
+                    animator.SetBool("Idle", true);
+                    animator.SetBool("Move", false);
+                }
             }
         }
         if(life <= 0 && !dead)
@@ -178,6 +182,10 @@ public class Enemy : MonoBehaviour
             animator.SetBool("Idle", false);
             animator.SetBool("Move", false);
             dead = true;
+            if (nameEnemy == "Slime_2(Small)")
+            {
+                DieEnemy();
+            }
         }
     }
 }
