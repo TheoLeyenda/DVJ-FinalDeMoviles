@@ -30,7 +30,7 @@ public class StoneMonster : Enemy
     protected override void Update()
     {
         CheckFinishRouteEnemy();
-        CheckDieEnemy();
+        CheckAnimations();
         CheckInRageAttack();
     }
     public void CheckInRageAttack()
@@ -75,6 +75,7 @@ public class StoneMonster : Enemy
         }
         else if (delayAttack <= 0)
         {
+            animator.Play("Attack");
             Attack();//Cambiar esto por la animacion de ataque cuando esten todas las animaciones.
             delayAttack = auxDelayAttack;
         } 

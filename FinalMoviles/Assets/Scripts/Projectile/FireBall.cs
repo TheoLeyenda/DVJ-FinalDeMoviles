@@ -46,9 +46,24 @@ public class FireBall : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Construccion")
+        {
+            int indexParticleSystem = Random.Range(0, explotionParticle.Length);
+            Wall wall = other.GetComponent<Wall>();
+            Construction construction = wall.construction;
+            construction.life = construction.life - shooter.DamageProjectileConstructions;
+            explotionParticle[indexParticleSystem].Play();
+            inExplotion = true;
+            sphereCollider.enabled = false;
+            meshRenderer.enabled = false;
+            trailRenderer.enabled = false;
+            trailRenderer.Clear();
+            timeLife = explotionParticle[indexParticleSystem].main.duration;
+            audioSource.volume = 0f;
+        }
+        else if(other.tag == "Wall")
         {
             int indexParticleSystem = Random.Range(0, explotionParticle.Length);
             Wall wall = other.GetComponent<Wall>();
