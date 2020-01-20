@@ -169,6 +169,19 @@ MonoBehaviour:
   rotation: 0
   valueDown: 0.8
   valueUp: 0
+--- !u!114 &852006923197594454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400295092571689027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8897d48f0226a4046baeb65e9d18a18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  construction: {fileID: 6949115847073842420}
 --- !u!1001 &6171129654520615185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -184,7 +197,7 @@ PrefabInstance:
     - target: {fileID: 5776539412590870866, guid: 24c2b9a52fc73dd45be0f4cb79d3fbf1,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: MeleTarget
       objectReference: {fileID: 0}
     - target: {fileID: 5776539412590648690, guid: 24c2b9a52fc73dd45be0f4cb79d3fbf1,
         type: 3}
@@ -244,6 +257,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1938730759478013600, guid: 24c2b9a52fc73dd45be0f4cb79d3fbf1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 24c2b9a52fc73dd45be0f4cb79d3fbf1, type: 3}
+--- !u!1 &400295092571689027 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5776539412590870866, guid: 24c2b9a52fc73dd45be0f4cb79d3fbf1,
+    type: 3}
+  m_PrefabInstance: {fileID: 6171129654520615185}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &400295092572048483 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5776539412590648690, guid: 24c2b9a52fc73dd45be0f4cb79d3fbf1,

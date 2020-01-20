@@ -618,9 +618,10 @@ GameObject:
   - component: {fileID: 3334488}
   - component: {fileID: 2374010}
   - component: {fileID: 6442560}
+  - component: {fileID: 3057385096902713434}
   m_Layer: 0
   m_Name: ruined_house
-  m_TagString: Untagged
+  m_TagString: MeleTarget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -699,6 +700,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300010, guid: dbbe8449a89d88d47a9dab3455c2121d, type: 3}
+--- !u!114 &3057385096902713434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8897d48f0226a4046baeb65e9d18a18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  construction: {fileID: 1116388164756564808}
 --- !u!1 &177342
 GameObject:
   m_ObjectHideFlags: 0

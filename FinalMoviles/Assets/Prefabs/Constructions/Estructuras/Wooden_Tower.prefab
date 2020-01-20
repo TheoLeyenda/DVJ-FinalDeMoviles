@@ -13,9 +13,11 @@ GameObject:
   - component: {fileID: 23526822571480676}
   - component: {fileID: 64313892883638518}
   - component: {fileID: 1850300247632908416}
+  - component: {fileID: 8605614862672993640}
+  - component: {fileID: 62475189317980029}
   m_Layer: 0
   m_Name: Wooden_Tower
-  m_TagString: Untagged
+  m_TagString: MeleTarget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,6 +121,32 @@ MonoBehaviour:
   rotation: 0
   valueDown: 0.8
   valueUp: 0
+--- !u!114 &8605614862672993640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153161988749112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8897d48f0226a4046baeb65e9d18a18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  construction: {fileID: 1850300247632908416}
+--- !u!65 &62475189317980029
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153161988749112}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.082481, y: 1.6347971, z: 1.9107885}
+  m_Center: {x: -0.8970493, y: 0.81739855, z: -0.9803116}
 --- !u!1 &3598747061811413985
 GameObject:
   m_ObjectHideFlags: 0

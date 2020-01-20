@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 3390870}
   - component: {fileID: 2397828}
   - component: {fileID: 1587505388}
+  - component: {fileID: 7443374490284705840}
   m_Layer: 0
   m_Name: Box001
-  m_TagString: Untagged
+  m_TagString: MeleTarget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,6 +94,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 9744d43af9634234ca47a970ec215429, type: 3}
+--- !u!114 &7443374490284705840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8897d48f0226a4046baeb65e9d18a18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  construction: {fileID: -2619755938306944405}
 --- !u!1 &144790
 GameObject:
   m_ObjectHideFlags: 0
