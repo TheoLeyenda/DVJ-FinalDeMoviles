@@ -10,4 +10,11 @@ public class DeadEnemy : MonoBehaviour
     {
         enemy.DieEnemy();
     }
+    public void DamageConstruction()
+    {
+        if (enemy.construction != null)
+        {
+            enemy.construction.life = enemy.construction.life - enemy.DamageMeleConstruction;
+        }
+    }
 }

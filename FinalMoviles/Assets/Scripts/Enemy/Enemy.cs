@@ -25,6 +25,14 @@ public class Enemy : MonoBehaviour
     private bool finishRoute;
     public float deffense;
     private bool dead = false;
+    [Header("Data Mele Attack")]
+    protected bool meleAttack;
+    public float rangeMeleAttack;
+    public float delayMeleAttack;
+    public float auxDelayMeleAttack;
+    [HideInInspector]
+    public Construction construction;
+
     public enum TypeEnemy
     {
         none,
@@ -60,6 +68,7 @@ public class Enemy : MonoBehaviour
         auxLife = life;
         dead = false;
         followRoute.GetAgent().speed = speed;
+        meleAttack = false;
     }
     // Update is called once per frame
     protected virtual void Update()
@@ -85,6 +94,41 @@ public class Enemy : MonoBehaviour
                 if (OnDieAction != null)
                     OnDieAction(this);
                 gameObject.SetActive(false);
+            }
+        }
+    }
+    public void CheckMeleAttack()
+    {
+        if (nameEnemy != "BoximonFiery" && nameEnemy != "StoneMonster")
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, -Vector3.up, out hit, 100.0f))
+            {
+                if (hit.transform.tag == "MeleTarget")
+                {
+                    Wall wall = hit.transform.gameObject.GetComponent<Wall>();
+                    if (wall != null)
+                    {
+                        construction = wall.construction;
+                        followRoute.GetAgent().speed = 0;
+                    }
+                    else
+                    {
+                        construction = null;
+                        followRoute.GetAgent().speed = speed;
+                    }
+                }
+            }
+            if (construction != null)
+            {
+                if (delayMeleAttack > 0)
+                {
+                    delayMeleAttack = delayMeleAttack - Time.deltaTime;
+                }
+                else
+                {
+                    animator.Play("MeleAttack");
+                }
             }
         }
     }
