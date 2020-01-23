@@ -7,9 +7,7 @@ using System;
 public class CustomTeleporter : MonoBehaviour
 {
     public ParticleSystem PS;
-    [HideInInspector]
     public FPSController fpsAndroid;
-    [HideInInspector]
     public FPSController fpsPC;
     public GameObject camvasTeleport;
 	public bool instantTeleport;
@@ -38,7 +36,17 @@ public class CustomTeleporter : MonoBehaviour
     void Start ()
 	{
 		curTeleportTime = teleportTime;
-	}
+        if (fpsAndroid != null && fpsPC != null)
+        {
+
+#if UNITY_ANDROID
+            subject = fpsAndroid.transform;
+#endif
+#if UNITY_STANDALONE
+            subject = fpsPC.transform;
+#endif
+        }
+    }
 
 
     /*void Update ()
@@ -76,7 +84,7 @@ public class CustomTeleporter : MonoBehaviour
                 {
                     int chosenPad = UnityEngine.Random.Range(0, destinationPad.Count);
                     destinationPad[chosenPad].GetComponent<CustomTeleporter>().arrived = true;
-                    subject.transform.position = destinationPad[chosenPad].transform.position + new Vector3(0, teleportationHeightOffset + 1, 0);
+                    subject.transform.position = destinationPad[chosenPad].transform.position + new Vector3(0, teleportationHeightOffset + 1.5f, 0);
                     teleportSound.Play();
                     camvasTeleport.SetActive(false);
                 }
@@ -85,7 +93,7 @@ public class CustomTeleporter : MonoBehaviour
                     if (destinationPad[0] != null)
                     {
                         destinationPad[0].GetComponent<CustomTeleporter>().arrived = true;
-                        subject.transform.position = destinationPad[0].transform.position + new Vector3(0, teleportationHeightOffset + 1, 0);
+                        subject.transform.position = destinationPad[0].transform.position + new Vector3(0, teleportationHeightOffset + 1.5f, 0);
                         teleportSound.Play();
                         camvasTeleport.SetActive(false);
                         DelayCamvasActivate = auxDelayCamvasActivate;
@@ -102,7 +110,7 @@ public class CustomTeleporter : MonoBehaviour
                     {
                         int chosenPad = UnityEngine.Random.Range(0, destinationPad.Count);
                         destinationPad[chosenPad].GetComponent<CustomTeleporter>().arrived = true;
-                        subject.transform.position = destinationPad[chosenPad].transform.position + new Vector3(0, teleportationHeightOffset + 1, 0);
+                        subject.transform.position = destinationPad[chosenPad].transform.position + new Vector3(0, teleportationHeightOffset + 1.5f, 0);
                         teleportSound.Play();
                         camvasTeleport.SetActive(false);
                     }
@@ -111,7 +119,7 @@ public class CustomTeleporter : MonoBehaviour
                         if (destinationPad[0] != null)
                         {
                             destinationPad[0].GetComponent<CustomTeleporter>().arrived = true;
-                            subject.transform.position = destinationPad[0].transform.position + new Vector3(0, teleportationHeightOffset + 1, 0);
+                            subject.transform.position = destinationPad[0].transform.position + new Vector3(0, teleportationHeightOffset + 1.5f, 0);
                             teleportSound.Play();
                             camvasTeleport.SetActive(false);
                         }
@@ -132,7 +140,7 @@ public class CustomTeleporter : MonoBehaviour
                             {
                                 int chosenPad = UnityEngine.Random.Range(0, destinationPad.Count);
                                 destinationPad[chosenPad].GetComponent<CustomTeleporter>().arrived = true;
-                                subject.transform.position = destinationPad[chosenPad].transform.position + new Vector3(0, teleportationHeightOffset + 1, 0);
+                                subject.transform.position = destinationPad[chosenPad].transform.position + new Vector3(0, teleportationHeightOffset + 1.5f, 0);
                                 teleportSound.Play();
                                 camvasTeleport.SetActive(false);
                             }
@@ -141,7 +149,7 @@ public class CustomTeleporter : MonoBehaviour
                                 if (destinationPad[0] != null)
                                 {
                                     destinationPad[0].GetComponent<CustomTeleporter>().arrived = true;
-                                    subject.transform.position = destinationPad[0].transform.position + new Vector3(0, teleportationHeightOffset + 1, 0);
+                                    subject.transform.position = destinationPad[0].transform.position + new Vector3(0, teleportationHeightOffset + 1.5f, 0);
                                     teleportSound.Play();
                                     camvasTeleport.SetActive(false);
                                 }
@@ -152,7 +160,7 @@ public class CustomTeleporter : MonoBehaviour
                     {
                         int chosenPad = UnityEngine.Random.Range(0, destinationPad.Count);
                         destinationPad[chosenPad].GetComponent<CustomTeleporter>().arrived = true;
-                        subject.transform.position = destinationPad[chosenPad].transform.position + new Vector3(0, teleportationHeightOffset + 1, 0);
+                        subject.transform.position = destinationPad[chosenPad].transform.position + new Vector3(0, teleportationHeightOffset + 1.5f, 0);
                         teleportSound.Play();
                         camvasTeleport.SetActive(false);
                     }
@@ -161,7 +169,7 @@ public class CustomTeleporter : MonoBehaviour
                         if (destinationPad[0] != null)
                         {
                             destinationPad[0].GetComponent<CustomTeleporter>().arrived = true;
-                            subject.transform.position = destinationPad[0].transform.position + new Vector3(0, teleportationHeightOffset + 1, 0);
+                            subject.transform.position = destinationPad[0].transform.position + new Vector3(0, teleportationHeightOffset + 1.5f, 0);
                             teleportSound.Play();
                             camvasTeleport.SetActive(false);
                         }
@@ -188,8 +196,6 @@ public class CustomTeleporter : MonoBehaviour
                 {
                     DelayCamvasActivate = DelayCamvasActivate - Time.deltaTime;
                 }
-                
-
                 subject = trig.transform;
 				inside = true;
                 teleportOccupet = true;

@@ -48,6 +48,7 @@ public class EnemyGenerate : MonoBehaviour
     private int EnemysRount_InfiniteGenered;
     private bool infinite;
     public bool DisableGenerator;
+    public int numRoute;
     //private bool swarm;//Enjambre (boleano que controla si los enemigos a salir salen en enjambre o no)
 
     private void Start()
@@ -200,6 +201,9 @@ public class EnemyGenerate : MonoBehaviour
                                     //APARECEN EN X o Z ALEATORIO
                                     go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
                                     go.transform.rotation = transform.rotation;
+                                    FollowRoute followRoute = go.GetComponent<FollowRoute>();
+                                    followRoute.numRoute = numRoute;
+                                    followRoute.FindGoDataRoute();
                                     waves[indexWave].currentEnemysGenerate++;
                                     Enemy enemy = go.GetComponent<Enemy>();
                                     if(enemy != null)
@@ -224,6 +228,9 @@ public class EnemyGenerate : MonoBehaviour
                                 go = currentPool.GetObject();
                                 go.transform.rotation = transform.rotation;
                                 go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
+                                FollowRoute followRoute = go.GetComponent<FollowRoute>();
+                                followRoute.numRoute = numRoute;
+                                followRoute.FindGoDataRoute();
                                 waves[indexWave].currentEnemysGenerate++;
                                 waves[indexWave].indexDataCountEnemySpawns++;
                                 waves[indexWave].indexDelayGenerationSpawn++;
@@ -279,8 +286,21 @@ public class EnemyGenerate : MonoBehaviour
                                 go = listPools[enemySelected].pool.GetObject();
                                 go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
                                 go.transform.rotation = transform.rotation;
+                                FollowRoute followRoute = go.GetComponent<FollowRoute>();
+                                followRoute.numRoute = numRoute;
+                                followRoute.FindGoDataRoute();
                                 EnemysRount_InfiniteGenered++;
                                 iter++;
+                                Enemy enemy = go.GetComponent<Enemy>();
+                                if (enemy != null)
+                                {
+                                    if (enemy.nameEnemy == "Spider")
+                                    {
+                                        Spider spider = enemy.GetComponent<Spider>();
+                                        spider.generateSoons = false;
+                                        spider.poolSpiderSoons.enabled = false;
+                                    }
+                                }
                             }
                             delayGeneratorInfinite = Random.Range(minDelaySpawn, maxDelaySpawn);
                         }
@@ -292,8 +312,21 @@ public class EnemyGenerate : MonoBehaviour
                                 go = listPools[enemySelected].pool.GetObject();
                                 go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
                                 go.transform.rotation = transform.rotation;
+                                FollowRoute followRoute = go.GetComponent<FollowRoute>();
+                                followRoute.numRoute = numRoute;
+                                followRoute.FindGoDataRoute();
                                 delayGeneratorInfinite = Random.Range(minDelaySpawn, maxDelaySpawn);
                                 EnemysRount_InfiniteGenered++;
+                                Enemy enemy = go.GetComponent<Enemy>();
+                                if (enemy != null)
+                                {
+                                    if (enemy.nameEnemy == "Spider")
+                                    {
+                                        Spider spider = enemy.GetComponent<Spider>();
+                                        spider.generateSoons = true;
+                                        spider.poolSpiderSoons.enabled = true;
+                                    }
+                                }
                             }
                         }
                     }

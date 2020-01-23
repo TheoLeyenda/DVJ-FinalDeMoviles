@@ -153,7 +153,7 @@ public class UIContructionController : MonoBehaviour
     {
         if (construction != null)
         {
-            if (gm.InTutorial && OnClickButtonAcepted != null)
+            if (OnClickButtonAcepted != null)
             {
                 OnClickButtonAcepted(this);
             }

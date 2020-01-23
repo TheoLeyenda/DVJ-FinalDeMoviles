@@ -6,10 +6,12 @@ public class ActivateObject : MonoBehaviour
 {
     public void EnableObject(GameObject go)
     {
+        if(!go.activeSelf)
         go.SetActive(true);       
     }
     public void DisableObject(GameObject go)
     {
+        if(go.activeSelf)
         go.SetActive(false);
     }
 }

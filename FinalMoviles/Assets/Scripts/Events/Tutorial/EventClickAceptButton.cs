@@ -10,9 +10,11 @@ public class EventClickAceptButton : EventsGame
     public EventClickInConstructionZone eventClickInConstructionZone;
     private int countConfirmConstruction;
     private bool once = false;
+    private GameManager gm;
     private void Start()
     {
         countConfirmConstruction = 0;
+        gm = GameObject.Find("GamePrefab").GetComponent<GameManager>();
     }
     private void OnEnable()
     {
@@ -24,9 +26,9 @@ public class EventClickAceptButton : EventsGame
     }
     public void EventClickAceptConstruction(UIContructionController ucc)
     {
-        if (eventOf == EventOf.Tutorial)
+        countConfirmConstruction++;
+        if (gm.InTutorial)
         {
-            countConfirmConstruction++;
             if (!once)
             {
                 eventClickInConstructionZone.SetEnableInformationButton(true);
@@ -46,6 +48,16 @@ public class EventClickAceptButton : EventsGame
                 dialogue.BarDialogue.SetActive(true);
             }
         }
+        /*else if (!gm.InTutorial)
+        {
+            Debug.Log(countConfirmConstruction+"="+constructionManager.constructionZone.Count);
+            Debug.Log(gm.GetEnableStartGame());
+            if (countConfirmConstruction >= constructionManager.constructionZone.Count)
+            {
+                gm.SetEnableStartGame(true);
+            }
+        }*/
+
     }
     public int GetCountConfirmConstruction()
     {
