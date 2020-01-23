@@ -1251,20 +1251,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 95206688057043068}
-  DamageMeleConstruction: 0
-  DamageLifes: 0
+  DamageMeleConstruction: 3
+  DamageLifes: 2
   blood: {fileID: 2646462176679314221}
   scalerBloodVar: 0
   EnemyPrefab: {fileID: 0}
-  auxFollowRoute: {fileID: 0}
-  followRoute: {fileID: 0}
+  auxFollowRoute: {fileID: 1079187009}
+  followRoute: {fileID: 1079187009}
   speed: 4
   acceletartion: 4
-  maxLife: 100
-  life: 100
+  maxLife: 150
+  life: 150
   inPool: 0
   nameEnemy: BoximonFiery
   deffense: 0
+  rangeMeleAttack: 0
+  delayMeleAttack: 0
+  auxDelayMeleAttack: 0
+  construction: {fileID: 0}
   typeEnemy: 0
   delayStartAttack: 0
   delayAttack: 1.5

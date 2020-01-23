@@ -244,21 +244,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rabbit_Level_1 (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 9181536080346133521, guid: ce23c9df543846a46bab4c3171ad0f73,
-        type: 3}
-      propertyPath: EnemyPrefab
-      value: 
-      objectReference: {fileID: 7336173271019878106}
-    - target: {fileID: 9181536080346133521, guid: ce23c9df543846a46bab4c3171ad0f73,
-        type: 3}
-      propertyPath: auxFollowRoute
-      value: 
-      objectReference: {fileID: 3070310089340406422}
-    - target: {fileID: 9181536080346133521, guid: ce23c9df543846a46bab4c3171ad0f73,
-        type: 3}
-      propertyPath: followRoute
-      value: 
-      objectReference: {fileID: 3070310089340406422}
     - target: {fileID: 4184383527061335911, guid: ce23c9df543846a46bab4c3171ad0f73,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -313,6 +298,66 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9181536080346133521, guid: ce23c9df543846a46bab4c3171ad0f73,
+        type: 3}
+      propertyPath: DamageMeleConstruction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9181536080346133521, guid: ce23c9df543846a46bab4c3171ad0f73,
+        type: 3}
+      propertyPath: EnemyPrefab
+      value: 
+      objectReference: {fileID: 7336173271019878106}
+    - target: {fileID: 9181536080346133521, guid: ce23c9df543846a46bab4c3171ad0f73,
+        type: 3}
+      propertyPath: auxFollowRoute
+      value: 
+      objectReference: {fileID: 3070310089340406422}
+    - target: {fileID: 9181536080346133521, guid: ce23c9df543846a46bab4c3171ad0f73,
+        type: 3}
+      propertyPath: followRoute
+      value: 
+      objectReference: {fileID: 3070310089340406422}
+    - target: {fileID: 9181536080346133521, guid: ce23c9df543846a46bab4c3171ad0f73,
+        type: 3}
+      propertyPath: rangeMeleAttack
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9181536080346133521, guid: ce23c9df543846a46bab4c3171ad0f73,
+        type: 3}
+      propertyPath: delayMeleAttack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9181536080346133521, guid: ce23c9df543846a46bab4c3171ad0f73,
+        type: 3}
+      propertyPath: auxDelayMeleAttack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9181536080346133521, guid: ce23c9df543846a46bab4c3171ad0f73,
+        type: 3}
+      propertyPath: maxLife
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 9181536080346133521, guid: ce23c9df543846a46bab4c3171ad0f73,
+        type: 3}
+      propertyPath: life
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 9181536080346133521, guid: ce23c9df543846a46bab4c3171ad0f73,
+        type: 3}
+      propertyPath: speed
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9181536080346133521, guid: ce23c9df543846a46bab4c3171ad0f73,
+        type: 3}
+      propertyPath: acceletartion
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9181536080346133521, guid: ce23c9df543846a46bab4c3171ad0f73,
+        type: 3}
+      propertyPath: DamageLifes
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce23c9df543846a46bab4c3171ad0f73, type: 3}

@@ -22,6 +22,10 @@ public class Demon : Enemy
         base.Start();
         enableAttack = false;
         delayStartAttack = Random.Range(minDelayStartAttack, maxDelayStartAttack);
+#if UNITY_ANDROID
+        delayAttack = 3;
+        auxDelayAttack = 3;
+#endif
     }
 
     // Update is called once per frame

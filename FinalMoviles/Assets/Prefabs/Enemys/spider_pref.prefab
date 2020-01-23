@@ -1154,7 +1154,7 @@ Transform:
   m_GameObject: {fileID: 1715103906888602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4891777387128848}
   - {fileID: 4539655829154938}
@@ -1285,24 +1285,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 95681433750800818}
-  DamageMeleConstruction: 0
-  DamageLifes: 0
+  DamageMeleConstruction: 3
+  DamageLifes: 2
   blood: {fileID: 198342849732753049}
   scalerBloodVar: 1.2
   EnemyPrefab: {fileID: 0}
   auxFollowRoute: {fileID: 240957575}
-  followRoute: {fileID: 0}
-  speed: 4
-  acceletartion: 4
-  maxLife: 100
-  life: 100
+  followRoute: {fileID: 240957575}
+  speed: 3
+  acceletartion: 3
+  maxLife: 250
+  life: 250
   inPool: 0
   nameEnemy: Spider
   deffense: 0
+  rangeMeleAttack: 2
+  delayMeleAttack: 1
+  auxDelayMeleAttack: 1
+  construction: {fileID: 0}
   typeEnemy: 0
   delayGenerationSoons: 0
   minCountGenerateSoons: 3
-  maxCountGenerateSoons: 7
+  maxCountGenerateSoons: 6
   generator: {fileID: 1448720580}
   generateSoons: 0
   rangeGenerateX: 2.5
@@ -1312,8 +1316,8 @@ MonoBehaviour:
   lifeSoons: 1
   soonsName: MiniSpider
   acelerationSoons: 6
-  minDelayGenerateSoons: 6
-  maxDelayGenerateSoons: 10
+  minDelayGenerateSoons: 8
+  maxDelayGenerateSoons: 12
 --- !u!114 &1903074893
 MonoBehaviour:
   m_ObjectHideFlags: 0

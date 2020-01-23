@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af26548d734bc5847a71f2e7cdd8b421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addCountLife: 0
+  addCountLife: 1
   timeLife: 2
   auxTimeLife: 2
 --- !u!1 &1700021016
@@ -5109,20 +5109,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 95782878299265946}
-  DamageMeleConstruction: 0
-  DamageLifes: 0
+  DamageMeleConstruction: 1
+  DamageLifes: 2
   blood: {fileID: 198342849488787207}
   scalerBloodVar: 0
   EnemyPrefab: {fileID: 0}
-  auxFollowRoute: {fileID: 0}
-  followRoute: {fileID: 0}
-  speed: 4
-  acceletartion: 4
+  auxFollowRoute: {fileID: 877151062}
+  followRoute: {fileID: 877151062}
+  speed: 3
+  acceletartion: 3
   maxLife: 100
-  life: 10
+  life: 100
   inPool: 0
   nameEnemy: BoximonCyclopes
   deffense: 0
+  rangeMeleAttack: 2
+  delayMeleAttack: 1.5
+  auxDelayMeleAttack: 1.5
+  construction: {fileID: 0}
   typeEnemy: 0
   delayMagicCuration: 0
   sphereHealing: {fileID: 108788232}

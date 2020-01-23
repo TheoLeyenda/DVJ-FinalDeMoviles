@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Rocks
-  m_Shader: {fileID: 2, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: db51c08060a7724408bf513f2abd92e1, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -35,7 +35,12 @@ Material:
         m_Texture: {fileID: 2800000, guid: 3319fb9ab31d1b84180050412c4d72ae, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SphereMap:
+        m_Texture: {fileID: 2800000, guid: dd2a0b130d4d8984f931b6b50ef7b892, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Opacity: 1
+    - _SphLitFactor: 2
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

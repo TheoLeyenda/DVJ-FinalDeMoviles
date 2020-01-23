@@ -17,6 +17,10 @@ public class TurtleShell : Enemy
     protected override void Update()
     {
         base.Update();
+        if (animator.enabled)
+        {
+            CheckMeleAttack();
+        }
         if (life <= 0 && nameEnemy == "TurtleShell")
         {
             boxColliderDamage1.enabled = false;

@@ -26,10 +26,10 @@ public class Enemy : MonoBehaviour
     public float deffense;
     private bool dead = false;
     [Header("Data Mele Attack")]
-    protected bool meleAttack;
     public float rangeMeleAttack;
     public float delayMeleAttack;
     public float auxDelayMeleAttack;
+    protected bool meleAttack;
     [HideInInspector]
     public Construction construction;
 
@@ -67,7 +67,10 @@ public class Enemy : MonoBehaviour
         life = maxLife;
         auxLife = life;
         dead = false;
-        followRoute.GetAgent().speed = speed;
+        if (followRoute != null)
+        {
+            followRoute.GetAgent().speed = speed;
+        }
         meleAttack = false;
     }
     // Update is called once per frame
@@ -76,6 +79,7 @@ public class Enemy : MonoBehaviour
         CheckFinishRouteEnemy();
         //CheckDieEnemy();
         CheckAnimations();
+        CheckMeleAttack();
     }
     public void CheckFinishRouteEnemy()
     {
@@ -99,35 +103,48 @@ public class Enemy : MonoBehaviour
     }
     public void CheckMeleAttack()
     {
-        if (nameEnemy != "BoximonFiery" && nameEnemy != "StoneMonster")
+        if (life > 0)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, -Vector3.up, out hit, 100.0f))
+            if (nameEnemy != "BoximonFiery" && nameEnemy != "StoneMonster")
             {
-                if (hit.transform.tag == "MeleTarget")
+                RaycastHit hit;
+                Vector3 position = transform.position;
+                if (nameEnemy == "TurtleShell")
                 {
-                    Wall wall = hit.transform.gameObject.GetComponent<Wall>();
-                    if (wall != null)
+                    position = position + new Vector3(0,0, 2);
+                }
+                if (Physics.Raycast(position,Vector3.forward , out hit, rangeMeleAttack))
+                {
+                    
+                    if (hit.transform.tag == "MeleTarget")
                     {
-                        construction = wall.construction;
-                        followRoute.GetAgent().speed = 0;
+                        Wall wall = hit.transform.gameObject.GetComponent<Wall>();
+                        if (wall != null)
+                        {
+                            animator.SetBool("Idle", false);
+                            animator.SetBool("Move", false);
+                            construction = wall.construction;
+                            followRoute.GetAgent().speed = 0;
+                        }
+                        else
+                        {
+                            construction = null;
+                            followRoute.GetAgent().speed = speed;
+                        }
+                    }
+                }
+                if (construction != null)
+                {
+                    if (delayMeleAttack > 0)
+                    {
+                        delayMeleAttack = delayMeleAttack - Time.deltaTime;
                     }
                     else
                     {
-                        construction = null;
-                        followRoute.GetAgent().speed = speed;
+                        construction.life = construction.life - DamageMeleConstruction;
+                        delayMeleAttack = auxDelayMeleAttack;
+                        animator.Play("MeleAttack");
                     }
-                }
-            }
-            if (construction != null)
-            {
-                if (delayMeleAttack > 0)
-                {
-                    delayMeleAttack = delayMeleAttack - Time.deltaTime;
-                }
-                else
-                {
-                    animator.Play("MeleAttack");
                 }
             }
         }
@@ -210,7 +227,7 @@ public class Enemy : MonoBehaviour
                     animator.SetBool("Idle", false);
                     animator.SetBool("Move", true);
                 }
-                else if (followRoute.GetAgent().speed <= 0 && !animator.GetBool("Dead"))
+                else if (followRoute.GetAgent().speed <= 0 && !animator.GetBool("Dead") && construction == null)
                 {
                     animator.SetBool("Dead", false);
                     animator.SetBool("Idle", true);

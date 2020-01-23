@@ -410,20 +410,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4388350939936424869}
-  DamageMeleConstruction: 0
+  DamageMeleConstruction: 2
   DamageLifes: 1
   blood: {fileID: 198342848801841090}
   scalerBloodVar: 1.3
   EnemyPrefab: {fileID: 0}
-  auxFollowRoute: {fileID: 0}
-  followRoute: {fileID: 0}
+  auxFollowRoute: {fileID: 261713683}
+  followRoute: {fileID: 261713683}
   speed: 4
   acceletartion: 4
-  maxLife: 100
-  life: 100
+  maxLife: 175
+  life: 175
   inPool: 0
   nameEnemy: StoneMonster
   deffense: 0
+  rangeMeleAttack: 0
+  delayMeleAttack: 0
+  auxDelayMeleAttack: 0
+  construction: {fileID: 0}
   typeEnemy: 0
   generator: {fileID: 693369604}
   DamageProjectileConstructions: 10

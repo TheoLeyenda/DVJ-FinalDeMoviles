@@ -254,7 +254,7 @@ Transform:
   m_GameObject: {fileID: 507839984096575205}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -2.04, y: 0.51, z: 108.881}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children:
   - {fileID: 512076844476231023}
   - {fileID: 511724720779356421}
@@ -361,20 +361,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 457625428998130893}
-  DamageMeleConstruction: 0
-  DamageLifes: 0
+  DamageMeleConstruction: 1
+  DamageLifes: 1
   blood: {fileID: 417293128706339814}
   scalerBloodVar: 2
   EnemyPrefab: {fileID: 0}
   auxFollowRoute: {fileID: 507255458656108024}
   followRoute: {fileID: 507255458656108024}
-  speed: 4
-  acceletartion: 4
+  speed: 6
+  acceletartion: 6
   maxLife: 100
   life: 1
   inPool: 0
   nameEnemy: MiniSpider
   deffense: 0
+  rangeMeleAttack: 1.5
+  delayMeleAttack: 1
+  auxDelayMeleAttack: 1
+  construction: {fileID: 0}
   typeEnemy: 0
 --- !u!195 &507255458656108027
 NavMeshAgent:

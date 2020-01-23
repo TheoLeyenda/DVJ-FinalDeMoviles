@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DarkTreeFPS;
 
 public class Dialogue : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class Dialogue : MonoBehaviour
     protected int indexDialogues;
     private Rigidbody rigPlayer;
     private bool switchPosition;
+    public GameObject WindowsSkipTutorial;
     [System.Serializable]
     public class DataDialogue
     {
@@ -105,13 +107,20 @@ public class Dialogue : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetButtonDown("InputSeleccion") && BarDialogue.activeSelf)
+        if (Input.GetButtonDown("InputSeleccion") && BarDialogue.activeSelf && !WindowsSkipTutorial.activeSelf)
         {
             CheckDialogue();
         }
-        
+        else if (WindowsSkipTutorial.activeSelf)
+        {
+#if UNITY_ANDROID
+        PlayerAndroid.GetComponent<FPSController>().lockCursor = false;  
+#endif
+#if UNITY_STANDALONE
+        PlayerPC.GetComponent<FPSController>().lockCursor = false;
+#endif
+        }
     }
-
     public void CheckDialogue()
     {
         if (indexDialogues < dialogues.Count)

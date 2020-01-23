@@ -31,6 +31,10 @@ public class Slime : Enemy
     {
         CheckFinishRouteEnemy();
         CheckDie();
+        if (gameObject.activeSelf && animator.enabled)
+        {
+            CheckMeleAttack();
+        }
     }
     public void CheckDie()
     {

@@ -60,20 +60,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 95000012289870092}
-  DamageMeleConstruction: 0
-  DamageLifes: 0
+  DamageMeleConstruction: 2
+  DamageLifes: 1
   blood: {fileID: 198342848427532685}
   scalerBloodVar: 2
   EnemyPrefab: {fileID: 1000013827195344}
   auxFollowRoute: {fileID: 61201498}
-  followRoute: {fileID: 0}
-  speed: 4
-  acceletartion: 4
-  maxLife: 100
-  life: 100
+  followRoute: {fileID: 61201498}
+  speed: 6
+  acceletartion: 6
+  maxLife: 30
+  life: 30
   inPool: 0
   nameEnemy: Bat
   deffense: 0
+  rangeMeleAttack: 1.5
+  delayMeleAttack: 1
+  auxDelayMeleAttack: 1
+  construction: {fileID: 0}
   typeEnemy: 0
 --- !u!54 &657137698
 Rigidbody:
@@ -1323,7 +1327,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 0.1
+  m_Height: 0.08
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -1557,7 +1561,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000014061021640}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0866, z: 0}
+  m_LocalPosition: {x: 0, y: 0.0784, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000013674589708}

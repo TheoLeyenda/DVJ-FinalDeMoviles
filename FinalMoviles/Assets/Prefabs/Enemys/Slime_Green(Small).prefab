@@ -93,7 +93,7 @@ Transform:
   m_GameObject: {fileID: 7387371934694218553}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.801, y: 0.51, z: 109.315}
-  m_LocalScale: {x: 20, y: 40, z: 20}
+  m_LocalScale: {x: 180, y: 200, z: 180}
   m_Children:
   - {fileID: 7388313375264073127}
   - {fileID: 7388313374132138029}
@@ -709,7 +709,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7387796901652151355}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.00736, z: 0}
   m_LocalScale: {x: 0.57142854, y: 0.39999995, z: 0.57142854}
   m_Children:
   - {fileID: 7392447147292141355}
@@ -729,20 +729,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7482511023213624171}
-  DamageMeleConstruction: 0
-  DamageLifes: 0
+  DamageMeleConstruction: 1
+  DamageLifes: 1
   blood: {fileID: 7225495529376624595}
-  scalerBloodVar: 2
+  scalerBloodVar: 1.2
   EnemyPrefab: {fileID: 7387371934694218553}
   auxFollowRoute: {fileID: 7387796902349768877}
   followRoute: {fileID: 7387796902349768877}
-  speed: 4
-  acceletartion: 4
-  maxLife: 100
+  speed: 5.5
+  acceletartion: 5.5
+  maxLife: 1
   life: 1
   inPool: 0
   nameEnemy: Slime_2(Small)
   deffense: 0
+  rangeMeleAttack: 3
+  delayMeleAttack: 1.8
+  auxDelayMeleAttack: 1.8
+  construction: {fileID: 0}
   typeEnemy: 0
 --- !u!54 &7387796901652151348
 Rigidbody:
@@ -771,8 +775,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.025004305, y: 0.03789341, z: 0.025835605}
-  m_Center: {x: 0.00014451148, y: 0.020321129, z: -0.0042520496}
+  m_Size: {x: 0.025004305, y: 0.039674077, z: 0.025835605}
+  m_Center: {x: 0.0001445111, y: 0.0010746421, z: -0.0042520496}
 --- !u!1001 &7387796901217432071
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -510,20 +510,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 95161444847813696}
-  DamageMeleConstruction: 0
-  DamageLifes: 0
+  DamageMeleConstruction: 1
+  DamageLifes: 1
   blood: {fileID: 198342849765755766}
   scalerBloodVar: 0
   EnemyPrefab: {fileID: 0}
-  auxFollowRoute: {fileID: 0}
-  followRoute: {fileID: 0}
-  speed: 0
+  auxFollowRoute: {fileID: 380377669}
+  followRoute: {fileID: 380377669}
+  speed: 4
   acceletartion: 4
-  maxLife: 100
-  life: 100
+  maxLife: 50
+  life: 50
   inPool: 0
   nameEnemy: Slime
   deffense: 0
+  rangeMeleAttack: 2.5
+  delayMeleAttack: 2
+  auxDelayMeleAttack: 2
+  construction: {fileID: 0}
   typeEnemy: 0
 --- !u!195 &380377672
 NavMeshAgent:
