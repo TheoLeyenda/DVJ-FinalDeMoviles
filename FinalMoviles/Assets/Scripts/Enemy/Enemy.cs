@@ -5,6 +5,8 @@ using System;
 public class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
+    [HideInInspector]
+    public int myGenerator;
     public Animator animator;
     public int DamageMeleConstruction;//daño a estructuras por defencto.
     public int DamageLifes; //daño a las vidas del jugador al pasar de punto A a punto B. 

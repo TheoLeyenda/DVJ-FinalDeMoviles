@@ -25,6 +25,7 @@ public class EnemyGenerate : MonoBehaviour
         Finite,
         Infinite,
     }
+    public int indexGenerator;
     private NameEnemys nameEnemys;
     private TypeGenerator auxTypeGenerator;
     public TypeGenerator typeGenerator;
@@ -40,7 +41,7 @@ public class EnemyGenerate : MonoBehaviour
     public float maxDelaySpawn = 1.5f;
     private Pool currentPool;
     private bool finishWaves;
-    //[SerializeField]
+    [SerializeField]
     private int indexWave;
     private int enemysDie;
     private float delayGeneratorInfinite;
@@ -49,6 +50,13 @@ public class EnemyGenerate : MonoBehaviour
     private bool infinite;
     public bool DisableGenerator;
     public int numRoute;
+    public bool StartGenerate = false;
+    [HideInInspector]
+    public bool finishRound = true;
+    [HideInInspector]
+    public bool skipRound;
+    [HideInInspector]
+    public bool ready;
     //private bool swarm;//Enjambre (boleano que controla si los enemigos a salir salen en enjambre o no)
 
     private void Start()
@@ -95,7 +103,7 @@ public class EnemyGenerate : MonoBehaviour
             waves[i].indexDelayGenerationSpawn = 0;
             waves[i].indexDataCountEnemySpawns = 0;
             waves[i].currentEnemysGenerate = 0;
-            
+
         }
         if (DisableGenerator)
         {
@@ -119,7 +127,7 @@ public class EnemyGenerate : MonoBehaviour
     }
     public void AddEnemysDie(Enemy e)
     {
-        if (e.nameEnemy != "MiniSpider")
+        if (e.nameEnemy != "MiniSpider" && e.myGenerator == indexGenerator)
         {
             enemysDie++;
             //Debug.Log("Enemigos muertos: "+ enemysDie);
@@ -142,6 +150,7 @@ public class EnemyGenerate : MonoBehaviour
     [System.Serializable]
     public class Wave
     {
+        public bool skipWave;
         [HideInInspector]
         public int indexDelayGenerationSpawn;
         [HideInInspector]
@@ -155,108 +164,134 @@ public class EnemyGenerate : MonoBehaviour
         [HideInInspector]
         public float[] delayGenerationEnemys;
         public DataCountEnemySpawn[] dataCountEnemySpawns;
-        
+
     }
     public void CheckGenerate()
     {
         if (typeGenerator == TypeGenerator.Finite)
         {
-
-            if (delayBetweenWaves <= 0)
+            if (delayBetweenWaves <= 0 && StartGenerate && !finishRound)
             {
                 if (indexWave < waves.Count)
                 {
-                    //Debug.Log(waves[indexWave].delayGenerationEnemys.Length);
-                    //Debug.Log("indexDelayGenerationSpawn: "+ waves[indexWave].indexDelayGenerationSpawn);
-
-                    float currentDelay = waves[indexWave].delayGenerationEnemys[waves[indexWave].indexDelayGenerationSpawn];
-                    GameObject go = null;
-                    float Height = 0;
-                    for (int i = 0; i < listPools.Count; i++)
+                    if (!waves[indexWave].skipWave)
                     {
-                        //Debug.Log("dataCountEnemySpawns: "+waves[indexWave].dataCountEnemySpawns.Length);
-                        //Debug.Log("indexDataCountEnemySpawns: " + waves[indexWave].indexDataCountEnemySpawns);
-                        if (listPools[i].nameObjectPool == waves[indexWave].dataCountEnemySpawns[waves[indexWave].indexDataCountEnemySpawns].enemysGenerate.ToString())
+                        //Debug.Log(waves[indexWave].delayGenerationEnemys.Length);
+                        //Debug.Log("indexDelayGenerationSpawn: "+ waves[indexWave].indexDelayGenerationSpawn);
+                        //Debug.Log(waves[indexWave].indexDelayGenerationSpawn);
+                        float currentDelay = waves[indexWave].delayGenerationEnemys[waves[indexWave].indexDelayGenerationSpawn];
+                        GameObject go = null;
+                        float Height = 0;
+                        for (int i = 0; i < listPools.Count; i++)
                         {
-                            currentPool = listPools[i].pool;
-                            Height = listPools[i].objectHeight;
-                        }
-                    }
-                    //Debug.Log("currentDelay:" + currentDelay);
-                    if (currentDelay <= 0)
-                    {
-                        if (waves[indexWave].dataCountEnemySpawns[waves[indexWave].indexDataCountEnemySpawns].swarn)
-                        {
-
-                            //Genero al enemigo de forma grupal
-                            if (currentPool != null)
+                            //Debug.Log("dataCountEnemySpawns: "+waves[indexWave].dataCountEnemySpawns.Length);
+                            //Debug.Log("indexDataCountEnemySpawns: " + waves[indexWave].indexDataCountEnemySpawns);
+                            if (listPools[i].nameObjectPool == waves[indexWave].dataCountEnemySpawns[waves[indexWave].indexDataCountEnemySpawns].enemysGenerate.ToString())
                             {
-                                for (int i = 0; i < waves[indexWave].dataCountEnemySpawns[waves[indexWave].indexDataCountEnemySpawns].countEnemysSpawn; i++)
+                                currentPool = listPools[i].pool;
+                                Height = listPools[i].objectHeight;
+                            }
+                        }
+                        //Debug.Log("currentDelay:" + currentDelay);
+                        if (currentDelay <= 0)
+                        {
+                            if (waves[indexWave].dataCountEnemySpawns[waves[indexWave].indexDataCountEnemySpawns].swarn)
+                            {
+
+                                //Genero al enemigo de forma grupal
+                                if (currentPool != null)
+                                {
+                                    for (int i = 0; i < waves[indexWave].dataCountEnemySpawns[waves[indexWave].indexDataCountEnemySpawns].countEnemysSpawn; i++)
+                                    {
+                                        go = currentPool.GetObject();
+
+                                        //APARECE TODOS EN EL MISMA POSICION
+                                        //go.transform.position = new Vector3(transform.position.x, Height, transform.position.z);
+
+                                        //APARECEN EN X o Z ALEATORIO
+                                        go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
+                                        go.transform.rotation = transform.rotation;
+                                        FollowRoute followRoute = go.GetComponent<FollowRoute>();
+                                        followRoute.numRoute = numRoute;
+                                        followRoute.FindGoDataRoute();
+                                        waves[indexWave].currentEnemysGenerate++;
+                                        Enemy enemy = go.GetComponent<Enemy>();
+                                        if (enemy == null)
+                                        {
+                                            enemy = go.GetComponentInChildren<Enemy>();
+                                        }
+                                        if (enemy != null)
+                                        {
+                                            Debug.Log("ENTRE");
+                                            enemy.myGenerator = indexGenerator;
+                                            if (enemy.nameEnemy == "Spider")
+                                            {
+                                                Spider spider = enemy.GetComponent<Spider>();
+                                                spider.generateSoons = false;
+                                                spider.poolSpiderSoons.enabled = false;
+                                            }
+                                        }
+                                    }
+                                    waves[indexWave].indexDataCountEnemySpawns++;
+                                    waves[indexWave].indexDelayGenerationSpawn++;
+                                }
+                            }
+                            else
+                            {
+                                //Genero al enemigo de forma individual.
+                                if (currentPool != null)
                                 {
                                     go = currentPool.GetObject();
-
-                                    //APARECE TODOS EN EL MISMA POSICION
-                                    //go.transform.position = new Vector3(transform.position.x, Height, transform.position.z);
-
-                                    //APARECEN EN X o Z ALEATORIO
-                                    go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
                                     go.transform.rotation = transform.rotation;
+                                    go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
                                     FollowRoute followRoute = go.GetComponent<FollowRoute>();
                                     followRoute.numRoute = numRoute;
                                     followRoute.FindGoDataRoute();
                                     waves[indexWave].currentEnemysGenerate++;
+                                    waves[indexWave].indexDataCountEnemySpawns++;
+                                    waves[indexWave].indexDelayGenerationSpawn++;
                                     Enemy enemy = go.GetComponent<Enemy>();
-                                    if(enemy != null)
+                                    if (enemy == null)
                                     {
+                                        enemy = go.GetComponentInChildren<Enemy>();
+                                    }
+                                    if (enemy != null)
+                                    {
+                                        Debug.Log("ENTRE");
+                                        enemy.myGenerator = indexGenerator;
                                         if (enemy.nameEnemy == "Spider")
                                         {
                                             Spider spider = enemy.GetComponent<Spider>();
-                                            spider.generateSoons = false;
-                                            spider.poolSpiderSoons.enabled = false;
+                                            spider.generateSoons = true;
+                                            spider.poolSpiderSoons.enabled = true;
                                         }
                                     }
                                 }
-                                waves[indexWave].indexDataCountEnemySpawns++;
-                                waves[indexWave].indexDelayGenerationSpawn++;
                             }
                         }
                         else
                         {
-                            //Genero al enemigo de forma individual.
-                            if (currentPool != null)
-                            {
-                                go = currentPool.GetObject();
-                                go.transform.rotation = transform.rotation;
-                                go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
-                                FollowRoute followRoute = go.GetComponent<FollowRoute>();
-                                followRoute.numRoute = numRoute;
-                                followRoute.FindGoDataRoute();
-                                waves[indexWave].currentEnemysGenerate++;
-                                waves[indexWave].indexDataCountEnemySpawns++;
-                                waves[indexWave].indexDelayGenerationSpawn++;
-                                Enemy enemy = go.GetComponent<Enemy>();
-                                if (enemy != null)
-                                {
-                                    if (enemy.nameEnemy == "Spider")
-                                    {
-                                        Spider spider = enemy.GetComponent<Spider>();
-                                        spider.generateSoons = true;
-                                        spider.poolSpiderSoons.enabled = true;
-                                    }
-                                }
-                            }
+                            currentDelay -= Time.deltaTime;
+                            waves[indexWave].delayGenerationEnemys[waves[indexWave].indexDelayGenerationSpawn] = currentDelay;
                         }
                     }
-                    else
+                    else if (!ready)
                     {
-                        currentDelay -= Time.deltaTime;
-                        waves[indexWave].delayGenerationEnemys[waves[indexWave].indexDelayGenerationSpawn] = currentDelay;
+                        //Debug.Log("Ready " + indexGenerator + "READY");
+                        enemysDie = 0;
+                        delayBetweenWaves = auxDelayBetweenWaves;
+                        currentPool = null;
+                        typeGenerator = TypeGenerator.Finite;
+                        finishRound = true;
+                        StartGenerate = false;
+                        skipRound = true;
+                        ready = true;
                     }
 
                 }
 
             }
-            else
+            else if (delayBetweenWaves > 0 && StartGenerate)
             {
                 delayBetweenWaves = delayBetweenWaves - Time.deltaTime;
             }
@@ -265,7 +300,7 @@ public class EnemyGenerate : MonoBehaviour
         {
             GameObject go;
             int iter = 0;
-            if (delayBetweenWaves <= 0)
+            if (delayBetweenWaves <= 0 && StartGenerate)
             {
                 if (EnemysRount_InfiniteGenered < countEnemysRount_InfiniteGenered)
                 {
@@ -292,8 +327,13 @@ public class EnemyGenerate : MonoBehaviour
                                 EnemysRount_InfiniteGenered++;
                                 iter++;
                                 Enemy enemy = go.GetComponent<Enemy>();
+                                if (enemy == null)
+                                {
+                                    enemy = go.GetComponentInChildren<Enemy>();
+                                }
                                 if (enemy != null)
                                 {
+                                    enemy.myGenerator = indexGenerator;
                                     if (enemy.nameEnemy == "Spider")
                                     {
                                         Spider spider = enemy.GetComponent<Spider>();
@@ -301,6 +341,7 @@ public class EnemyGenerate : MonoBehaviour
                                         spider.poolSpiderSoons.enabled = false;
                                     }
                                 }
+
                             }
                             delayGeneratorInfinite = Random.Range(minDelaySpawn, maxDelaySpawn);
                         }
@@ -318,8 +359,13 @@ public class EnemyGenerate : MonoBehaviour
                                 delayGeneratorInfinite = Random.Range(minDelaySpawn, maxDelaySpawn);
                                 EnemysRount_InfiniteGenered++;
                                 Enemy enemy = go.GetComponent<Enemy>();
+                                if (enemy == null)
+                                {
+                                    enemy = go.GetComponentInChildren<Enemy>();
+                                }
                                 if (enemy != null)
                                 {
+                                    enemy.myGenerator = indexGenerator;
                                     if (enemy.nameEnemy == "Spider")
                                     {
                                         Spider spider = enemy.GetComponent<Spider>();
@@ -336,12 +382,12 @@ public class EnemyGenerate : MonoBehaviour
                     }
                 }
             }
-            else
+            else if (delayBetweenWaves > 0 && StartGenerate)
             {
                 delayBetweenWaves = delayBetweenWaves - Time.deltaTime;
             }
         }
-            
+
     }
     public void CheckNextWave(TypeGenerator curremtTypeGenerator)
     {
@@ -349,21 +395,30 @@ public class EnemyGenerate : MonoBehaviour
         {
             if (indexWave < waves.Count)
             {
-                if (waves[indexWave].currentEnemysGenerate >= waves[indexWave].countTotalEnemysWave &&
-                    (enemysDie >= waves[indexWave].countTotalEnemysWave))
+                if (enemysDie < waves[indexWave].countTotalEnemysWave && !ready)
                 {
+                    finishRound = false;
+                }
+                else if (waves[indexWave].currentEnemysGenerate >= waves[indexWave].countTotalEnemysWave &&
+                    (enemysDie >= waves[indexWave].countTotalEnemysWave) && !ready)
+                {
+                    //Debug.Log("Ready " + indexGenerator);
+                    ready = true;
                     enemysDie = 0;
                     indexWave++;
                     delayBetweenWaves = auxDelayBetweenWaves;
                     currentPool = null;
                     typeGenerator = curremtTypeGenerator;
+                    finishRound = true;
+                    StartGenerate = false;
                     //Debug.Log("indexWave:"+ indexWave);
                 }
-                else if (indexWave >= waves.Count - 1  ||
+                if (indexWave >= waves.Count - 1 ||
                     (waves[indexWave].currentEnemysGenerate >= waves[indexWave].countTotalEnemysWave
                     && (enemysDie < waves[indexWave].countTotalEnemysWave)))
                 {
                     typeGenerator = TypeGenerator.None;
+                    StartGenerate = false;
                 }
             }
             else
@@ -373,31 +428,47 @@ public class EnemyGenerate : MonoBehaviour
         }
         else if (infinite)
         {
-            if (enemysDie >= countEnemysRount_InfiniteGenered)
+            if (enemysDie < countEnemysRount_InfiniteGenered && !ready)
             {
+                finishRound = false;
+            }
+            else if (enemysDie >= countEnemysRount_InfiniteGenered && !ready)
+            {
+                enemysDie = 0;
+                //Debug.Log("Ready " + indexGenerator);
+                ready = true;
+                finishRound = true;
                 indexWave++;
                 delayBetweenWaves = auxDelayBetweenWaves;
                 typeGenerator = curremtTypeGenerator;
-                enemysDie = 0;
                 EnemysRount_InfiniteGenered = 0;
+                StartGenerate = false;
                 if (countEnemysRount_InfiniteGenered + addEnemysForRound_InfiniteGenerated < listPools[0].pool.count && countEnemysRount_InfiniteGenered < listPools[0].pool.count)
                 {
                     countEnemysRount_InfiniteGenered = countEnemysRount_InfiniteGenered + addEnemysForRound_InfiniteGenerated;
                 }
                 //Debug.Log(indexWave);
             }
-            else if(EnemysRount_InfiniteGenered >= countEnemysRount_InfiniteGenered)
+            if (EnemysRount_InfiniteGenered >= countEnemysRount_InfiniteGenered)
             {
                 typeGenerator = TypeGenerator.None;
+                StartGenerate = false;
             }
-            
         }
-
+    }
+    public int GetIndexWave()
+    {
+        return indexWave;
+    }
+    public void SetIndexWave(int _indexWave)
+    {
+        indexWave = _indexWave;
     }
     // Update is called once per frame
     void Update()
     {
         CheckGenerate();
         CheckNextWave(auxTypeGenerator);
+        //print("Ready " + indexGenerator+": " + ready);
     }
 }
