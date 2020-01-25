@@ -186,10 +186,13 @@ public class EnemyGenerate : MonoBehaviour
                         {
                             //Debug.Log("dataCountEnemySpawns: "+waves[indexWave].dataCountEnemySpawns.Length);
                             //Debug.Log("indexDataCountEnemySpawns: " + waves[indexWave].indexDataCountEnemySpawns);
-                            if (listPools[i].nameObjectPool == waves[indexWave].dataCountEnemySpawns[waves[indexWave].indexDataCountEnemySpawns].enemysGenerate.ToString())
+                            if (waves[indexWave].indexDataCountEnemySpawns < waves[indexWave].dataCountEnemySpawns.Length)
                             {
-                                currentPool = listPools[i].pool;
-                                Height = listPools[i].objectHeight;
+                                if (listPools[i].nameObjectPool == waves[indexWave].dataCountEnemySpawns[waves[indexWave].indexDataCountEnemySpawns].enemysGenerate.ToString())
+                                {
+                                    currentPool = listPools[i].pool;
+                                    Height = listPools[i].objectHeight;
+                                }
                             }
                         }
                         //Debug.Log("currentDelay:" + currentDelay);

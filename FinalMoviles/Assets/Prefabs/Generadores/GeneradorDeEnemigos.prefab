@@ -44,12 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a7f0820da3c8746bcbdcc21af943ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeGenerator: 2
+  indexGenerator: 0
+  typeGenerator: 1
   porcentageGrupInSurvivalMode: 85
   addEnemysForRound_InfiniteGenerated: 5
   rangeGenerationX: 3.5
   rangeGenerationZ: 0
-  delayBetweenWaves: 5
+  delayBetweenWaves: 1
   listPools:
   - pool: {fileID: 3012772412427642411}
     nameObjectPool: Slime_2
@@ -82,7 +83,8 @@ MonoBehaviour:
     nameObjectPool: StoneMonster
     objectHeight: 0
   waves:
-  - indexDelayGenerationSpawn: 0
+  - skipWave: 0
+    indexDelayGenerationSpawn: 0
     indexDataCountEnemySpawns: 0
     currentEnemysGenerate: 0
     countTotalEnemysWave: 0
@@ -121,10 +123,11 @@ MonoBehaviour:
     - countEnemysSpawn: 1
       enemysGenerate: 5
       swarn: 0
-    - countEnemysSpawn: 5
-      enemysGenerate: 5
-      swarn: 1
-  - indexDelayGenerationSpawn: 0
+    - countEnemysSpawn: 0
+      enemysGenerate: 0
+      swarn: 0
+  - skipWave: 0
+    indexDelayGenerationSpawn: 0
     indexDataCountEnemySpawns: 0
     currentEnemysGenerate: 0
     countTotalEnemysWave: 0
@@ -166,69 +169,41 @@ MonoBehaviour:
     - countEnemysSpawn: 2
       enemysGenerate: 4
       swarn: 1
-    - countEnemysSpawn: 1
+    - countEnemysSpawn: 0
       enemysGenerate: 0
       swarn: 0
-    - countEnemysSpawn: 5
-      enemysGenerate: 0
-      swarn: 1
-    - countEnemysSpawn: 1
-      enemysGenerate: 0
-      swarn: 0
-  - indexDelayGenerationSpawn: 0
+  - skipWave: 0
+    indexDelayGenerationSpawn: 0
     indexDataCountEnemySpawns: 0
     currentEnemysGenerate: 0
     countTotalEnemysWave: 0
     delayGenerationEnemys: []
     dataCountEnemySpawns:
     - countEnemysSpawn: 5
-      enemysGenerate: 0
+      enemysGenerate: 2
       swarn: 1
     - countEnemysSpawn: 1
-      enemysGenerate: 0
+      enemysGenerate: 2
       swarn: 0
     - countEnemysSpawn: 1
-      enemysGenerate: 0
+      enemysGenerate: 2
       swarn: 0
     - countEnemysSpawn: 1
+      enemysGenerate: 2
+      swarn: 0
+    - countEnemysSpawn: 0
       enemysGenerate: 0
       swarn: 0
-    - countEnemysSpawn: 1
-      enemysGenerate: 0
-      swarn: 0
-  - indexDelayGenerationSpawn: 0
-    indexDataCountEnemySpawns: 0
-    currentEnemysGenerate: 0
-    countTotalEnemysWave: 0
-    delayGenerationEnemys: []
-    dataCountEnemySpawns:
-    - countEnemysSpawn: 4
-      enemysGenerate: 0
-      swarn: 1
-    - countEnemysSpawn: 1
-      enemysGenerate: 0
-      swarn: 0
-    - countEnemysSpawn: 1
-      enemysGenerate: 0
-      swarn: 0
-    - countEnemysSpawn: 1
-      enemysGenerate: 0
-      swarn: 0
-  - indexDelayGenerationSpawn: 0
-    indexDataCountEnemySpawns: 0
-    currentEnemysGenerate: 0
-    countTotalEnemysWave: 0
-    delayGenerationEnemys: []
-    dataCountEnemySpawns:
-    - countEnemysSpawn: 5
-      enemysGenerate: 0
-      swarn: 1
-    - countEnemysSpawn: 5
-      enemysGenerate: 0
-      swarn: 1
   minDelaySpawn: 1
   maxDelaySpawn: 3
+  indexWave: 0
   countEnemysRount_InfiniteGenered: 0
+  DisableGenerator: 1
+  numRoute: 0
+  StartGenerate: 0
+  finishRound: 1
+  skipRound: 0
+  ready: 0
 --- !u!1001 &4738917794558609613
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -236,10 +211,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3012772410816871954}
     m_Modifications:
-    - target: {fileID: 7497226929717959897, guid: b54148df196df1444850374a102f7efe,
+    - target: {fileID: 7497226930595062474, guid: b54148df196df1444850374a102f7efe,
         type: 3}
-      propertyPath: m_Name
-      value: PoolsEnemys
+      propertyPath: count
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226930898368481, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: count
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226930726013740, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: count
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226930641479967, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: count
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226929606045414, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: count
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 7497226929717959896, guid: b54148df196df1444850374a102f7efe,
         type: 3}
@@ -311,55 +306,35 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.58823544
       objectReference: {fileID: 0}
-    - target: {fileID: 7497226929606045414, guid: b54148df196df1444850374a102f7efe,
-        type: 3}
-      propertyPath: count
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 7497226930641479967, guid: b54148df196df1444850374a102f7efe,
-        type: 3}
-      propertyPath: count
-      value: 300
-      objectReference: {fileID: 0}
     - target: {fileID: 7497226929732691638, guid: b54148df196df1444850374a102f7efe,
         type: 3}
       propertyPath: count
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 7497226930595062474, guid: b54148df196df1444850374a102f7efe,
-        type: 3}
-      propertyPath: count
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 7497226930898368481, guid: b54148df196df1444850374a102f7efe,
-        type: 3}
-      propertyPath: count
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 7497226930726013740, guid: b54148df196df1444850374a102f7efe,
-        type: 3}
-      propertyPath: count
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 302394671493129745, guid: b54148df196df1444850374a102f7efe,
-        type: 3}
-      propertyPath: count
-      value: 300
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 8329961728240699814, guid: b54148df196df1444850374a102f7efe,
         type: 3}
       propertyPath: count
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 117606353375351974, guid: b54148df196df1444850374a102f7efe,
-        type: 3}
-      propertyPath: count
-      value: 300
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 8927221749749720300, guid: b54148df196df1444850374a102f7efe,
         type: 3}
       propertyPath: count
-      value: 300
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 117606353375351974, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: count
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497226929717959897, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: m_Name
+      value: PoolsEnemys
+      objectReference: {fileID: 0}
+    - target: {fileID: 302394671493129745, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: count
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b54148df196df1444850374a102f7efe, type: 3}
