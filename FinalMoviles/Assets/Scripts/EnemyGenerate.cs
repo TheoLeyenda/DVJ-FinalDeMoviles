@@ -222,7 +222,6 @@ public class EnemyGenerate : MonoBehaviour
                                         }
                                         if (enemy != null)
                                         {
-                                            Debug.Log("ENTRE");
                                             enemy.myGenerator = indexGenerator;
                                             if (enemy.nameEnemy == "Spider")
                                             {
@@ -257,7 +256,6 @@ public class EnemyGenerate : MonoBehaviour
                                     }
                                     if (enemy != null)
                                     {
-                                        Debug.Log("ENTRE");
                                         enemy.myGenerator = indexGenerator;
                                         if (enemy.nameEnemy == "Spider")
                                         {

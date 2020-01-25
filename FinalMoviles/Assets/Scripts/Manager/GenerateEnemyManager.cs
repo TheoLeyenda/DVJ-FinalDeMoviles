@@ -12,10 +12,28 @@ public class GenerateEnemyManager : MonoBehaviour
     public float auxDelayStartRound;
     public float porcentageDisableGenerator;
     private bool AdvanceGeneration = false;
-    private bool once = true;
     private bool activateAllGenerators;
+    public UINextWave uiNextWave;
+
+    private int countfinishWave;
+    private int currentWave = 0;
+
+    private bool onceActivateElementsUiNextWave = true;
+    private bool ActivateElementsUiNextWave;
+
     private void Start()
     {
+        if (!infinityGenerator)
+        {
+            if (enemyGenerates[0] != null)
+            {
+                countfinishWave = enemyGenerates[0].waves.Count;
+            }
+        }
+        else
+        {
+            countfinishWave = 10;
+        }
         if (porcentageDisableGenerator > 100)
         {
             porcentageDisableGenerator = 100;
@@ -32,100 +50,119 @@ public class GenerateEnemyManager : MonoBehaviour
     public void CheckEnableCountdown()
     {
         bool enable = true;
-        activateAllGenerators = true;
+        ActivateElementsUiNextWave = true;
         for (int i = 0; i < enemyGenerates.Count; i++)
         {
-            //if (!enemyGenerates[i].finishRound)
-            //{
-            // Debug.Log(i);
-            //}
-            if (!enemyGenerates[i].finishRound  || !enemyGenerates[i].ready || !enemyGenerates[i].gameObject.activeSelf)
+            if (!enemyGenerates[i].finishRound || !enemyGenerates[i].ready || !enemyGenerates[i].gameObject.activeSelf)
             {
-
                 enable = false;
             }
             if (!enemyGenerates[i].gameObject.activeSelf)
             {
-                activateAllGenerators = false;
+                ActivateElementsUiNextWave = false;
             }
         }
         enableCountdown = enable;
-        if (!enableCountdown && !(once && activateAllGenerators))
+        if (ActivateElementsUiNextWave && onceActivateElementsUiNextWave)
+        { 
+            uiNextWave.activateElementsCamvasNextWave = true;
+        }
+        else if (!enableCountdown && !activateAllGenerators)
         {
             DelayStartRound = auxDelayStartRound;
+            if(uiNextWave.activateElementsCamvasNextWave)
+                uiNextWave.activateElementsCamvasNextWave = false;
         }
-        //Debug.Log(enableCountdown);
-        if (enableCountdown || (once && activateAllGenerators))
+        //Debug.Log(enableCountdown)
+        if (enableCountdown || activateAllGenerators)
         {
-            if (AdvanceGeneration)
+            
+            if (currentWave < countfinishWave)
             {
-                DelayStartRound = 0;
-                enableCountdown = false;
-                AdvanceGeneration = false;
-            }
-
-            if (DelayStartRound <= 0)
-            {
-                if (infinityGenerator && enemyGenerates.Count > 1)
+                if (AdvanceGeneration)
                 {
-                    for (int i = 0; i < enemyGenerates.Count; i++)
-                    {
-                        float a = Random.Range(0, 100);
-                        enemyGenerates[i].StartGenerate = true;
-                        enemyGenerates[i].typeGenerator = EnemyGenerate.TypeGenerator.Infinite;
-                        enemyGenerates[i].ready = false;
-                        enemyGenerates[i].skipRound = false;
-                        //enemyGenerates[i].skipRound = false;
-                        if (i > 0)
-                        {
-                            if (a >= porcentageDisableGenerator)
-                            {
-                                enemyGenerates[i].ready = true;
-                                enemyGenerates[i].skipRound = true;
-                                enemyGenerates[i].StartGenerate = false;
-                                enemyGenerates[i].typeGenerator = EnemyGenerate.TypeGenerator.None;
-                                enemyGenerates[i].finishRound = true;
-                            }
-                            
-                        }
-                    }
+                    DelayStartRound = 0;
+                    AdvanceGeneration = false;
                 }
-                if (!infinityGenerator)
+                if (!uiNextWave.activateElementsCamvasNextWave)
+                    uiNextWave.activateElementsCamvasNextWave = true;
+
+                if (DelayStartRound <= 0)
                 {
-                    for (int i = 0; i < enemyGenerates.Count; i++)
+                    if (infinityGenerator && enemyGenerates.Count > 1)
                     {
-                        if (enemyGenerates[i].GetIndexWave() < enemyGenerates[i].waves.Count)
+                        for (int i = 0; i < enemyGenerates.Count; i++)
                         {
-                            enemyGenerates[i].typeGenerator = EnemyGenerate.TypeGenerator.Finite;
+                            float a = Random.Range(0, 100);
                             enemyGenerates[i].StartGenerate = true;
+                            enemyGenerates[i].typeGenerator = EnemyGenerate.TypeGenerator.Infinite;
                             enemyGenerates[i].ready = false;
-                            enemyGenerates[i].finishRound = false;
                             enemyGenerates[i].skipRound = false;
-
-                            if (enemyGenerates[i].waves[enemyGenerates[i].GetIndexWave()].skipWave)
+                            //enemyGenerates[i].skipRound = false;
+                            if (i > 0)
                             {
-                                enemyGenerates[i].typeGenerator = EnemyGenerate.TypeGenerator.None;
-                                enemyGenerates[i].StartGenerate = false;
-                                enemyGenerates[i].ready = true;
-                                enemyGenerates[i].finishRound = true;
-                                enemyGenerates[i].skipRound = true;
-                                enemyGenerates[i].SetIndexWave(enemyGenerates[i].GetIndexWave() + 1);
+                                if (a >= porcentageDisableGenerator)
+                                {
+                                    enemyGenerates[i].ready = true;
+                                    enemyGenerates[i].skipRound = true;
+                                    enemyGenerates[i].StartGenerate = false;
+                                    enemyGenerates[i].typeGenerator = EnemyGenerate.TypeGenerator.None;
+                                    enemyGenerates[i].finishRound = true;
+                                }
+
                             }
                         }
-
                     }
+                    if (!infinityGenerator)
+                    {
+                        for (int i = 0; i < enemyGenerates.Count; i++)
+                        {
+                            if (enemyGenerates[i].GetIndexWave() < enemyGenerates[i].waves.Count)
+                            {
+                                enemyGenerates[i].typeGenerator = EnemyGenerate.TypeGenerator.Finite;
+                                enemyGenerates[i].StartGenerate = true;
+                                enemyGenerates[i].ready = false;
+                                enemyGenerates[i].finishRound = false;
+                                enemyGenerates[i].skipRound = false;
+
+                                if (enemyGenerates[i].waves[enemyGenerates[i].GetIndexWave()].skipWave)
+                                {
+                                    enemyGenerates[i].typeGenerator = EnemyGenerate.TypeGenerator.None;
+                                    enemyGenerates[i].StartGenerate = false;
+                                    enemyGenerates[i].ready = true;
+                                    enemyGenerates[i].finishRound = true;
+                                    enemyGenerates[i].skipRound = true;
+                                    enemyGenerates[i].SetIndexWave(enemyGenerates[i].GetIndexWave() + 1);
+                                }
+                            }
+
+                        }
+                        currentWave++;
+                    }
+                    DelayStartRound = auxDelayStartRound;
+                    enableCountdown = false;
+                    activateAllGenerators = false;
+
                 }
-                DelayStartRound = auxDelayStartRound;
-                enableCountdown = false;
-                once = false;
-                
+                else if (DelayStartRound > 0)
+                {
+                    DelayStartRound = DelayStartRound - Time.deltaTime;
+                }
             }
-            else if(DelayStartRound > 0)
+            else
             {
-                DelayStartRound = DelayStartRound - Time.deltaTime;
+                Debug.Log("NIVEL TERMINADO");
+                Debug.ClearDeveloperConsole();
+                //EL JUGADOR GANO EL NIVEL.
             }
         }
-        
-       
-    } 
+
+    }
+    public void ActivateAllGenerators()
+    {
+        enableCountdown = true;
+        AdvanceGeneration = true;
+        activateAllGenerators = true;
+        onceActivateElementsUiNextWave = false;
+    }
 }
