@@ -26,11 +26,14 @@ namespace DarkTreeFPS
 
         public void Useitem()
         {
-            if (item.type == ItemType.consumable)
+            if (item != null)
             {
-                inventory.UseItem(item, false);
+                if (item.type == ItemType.consumable)
+                {
+                    inventory.UseItem(item, false);
+                }
+                gameObject.SetActive(false);
             }
-            gameObject.SetActive(false);
         }
     }
 }

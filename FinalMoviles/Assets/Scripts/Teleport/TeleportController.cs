@@ -7,6 +7,7 @@ public class TeleportController : MonoBehaviour
 {
     // Start is called before the first frame update
     public List<DetectedTeleport> detectedTeleports;
+    [SerializeField]
     private List<CustomTeleporter> customTeleporters;
     public CustomTeleporter currentCustomTeleporter;
 
