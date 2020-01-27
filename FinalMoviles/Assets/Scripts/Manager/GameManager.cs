@@ -55,18 +55,21 @@ public class GameManager : MonoBehaviour
     }
     public void ResumeStoryLevel(int newIndexDialogue)
     {
-        if (tutorialElements.skipTutorial)
+        if (tutorialElements.dialogue.GetIndexDialogues() < newIndexDialogue)
         {
-            if (newIndexDialogue < tutorialElements.dialogue.dialogues.Count)
+            if (tutorialElements.skipTutorial)
             {
-                tutorialElements.dialogue.BarDialogue.SetActive(true);
-                tutorialElements.dialogue.dialogues[newIndexDialogue - 1].events = Dialogue.DataDialogue.Events.None;
-                tutorialElements.dialogue.dialogues[newIndexDialogue - 1].events2 = Dialogue.DataDialogue.Events.None;
-                tutorialElements.dialogue.dialogues[newIndexDialogue - 1].events3 = Dialogue.DataDialogue.Events.None;
-                tutorialElements.dialogue.dialogues[newIndexDialogue - 1].events4 = Dialogue.DataDialogue.Events.None;
-                tutorialElements.dialogue.dialogues[newIndexDialogue - 1].events5 = Dialogue.DataDialogue.Events.None;
-                tutorialElements.dialogue.SetIndexDialogues(newIndexDialogue - 1);
-                tutorialElements.dialogue.CheckDialogue();
+                if (newIndexDialogue < tutorialElements.dialogue.dialogues.Count)
+                {
+                    tutorialElements.dialogue.BarDialogue.SetActive(true);
+                    tutorialElements.dialogue.dialogues[newIndexDialogue - 1].events = Dialogue.DataDialogue.Events.None;
+                    tutorialElements.dialogue.dialogues[newIndexDialogue - 1].events2 = Dialogue.DataDialogue.Events.None;
+                    tutorialElements.dialogue.dialogues[newIndexDialogue - 1].events3 = Dialogue.DataDialogue.Events.None;
+                    tutorialElements.dialogue.dialogues[newIndexDialogue - 1].events4 = Dialogue.DataDialogue.Events.None;
+                    tutorialElements.dialogue.dialogues[newIndexDialogue - 1].events5 = Dialogue.DataDialogue.Events.None;
+                    tutorialElements.dialogue.SetIndexDialogues(newIndexDialogue - 1);
+                    tutorialElements.dialogue.CheckDialogue();
+                }
             }
         }
     }

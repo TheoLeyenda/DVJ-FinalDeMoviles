@@ -18,6 +18,7 @@ public class GenerateEnemyManager : MonoBehaviour
     private int countfinishWave;
     private int currentWave = 0;
 
+    [SerializeField]
     private bool onceActivateElementsUiNextWave = true;
     private bool ActivateElementsUiNextWave;
 
@@ -67,7 +68,7 @@ public class GenerateEnemyManager : MonoBehaviour
         { 
             uiNextWave.activateElementsCamvasNextWave = true;
         }
-        else if (!enableCountdown && !activateAllGenerators)
+        else if (!enableCountdown && !activateAllGenerators || currentWave >= countfinishWave)
         {
             DelayStartRound = auxDelayStartRound;
             if(uiNextWave.activateElementsCamvasNextWave)

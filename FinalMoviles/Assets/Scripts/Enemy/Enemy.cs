@@ -105,47 +105,50 @@ public class Enemy : MonoBehaviour
     }
     public void CheckMeleAttack()
     {
-        if (life > 0)
+        if (animator.isActiveAndEnabled)
         {
-            if (nameEnemy != "BoximonFiery" && nameEnemy != "StoneMonster")
+            if (life > 0)
             {
-                RaycastHit hit;
-                Vector3 position = transform.position;
-                if (nameEnemy == "TurtleShell")
+                if (nameEnemy != "BoximonFiery" && nameEnemy != "StoneMonster")
                 {
-                    position = position + new Vector3(0,0, 2);
-                }
-                if (Physics.Raycast(position,Vector3.forward , out hit, rangeMeleAttack))
-                {
-                    
-                    if (hit.transform.tag == "MeleTarget")
+                    RaycastHit hit;
+                    Vector3 position = transform.position;
+                    if (nameEnemy == "TurtleShell")
                     {
-                        Wall wall = hit.transform.gameObject.GetComponent<Wall>();
-                        if (wall != null)
+                        position = position + new Vector3(0, 0, 2);
+                    }
+                    if (Physics.Raycast(position, Vector3.forward, out hit, rangeMeleAttack))
+                    {
+
+                        if (hit.transform.tag == "MeleTarget")
                         {
-                            animator.SetBool("Idle", false);
-                            animator.SetBool("Move", false);
-                            construction = wall.construction;
-                            followRoute.GetAgent().speed = 0;
+                            Wall wall = hit.transform.gameObject.GetComponent<Wall>();
+                            if (wall != null)
+                            {
+                                animator.SetBool("Idle", false);
+                                animator.SetBool("Move", false);
+                                construction = wall.construction;
+                                followRoute.GetAgent().speed = 0;
+                            }
+                            else
+                            {
+                                construction = null;
+                                followRoute.GetAgent().speed = speed;
+                            }
+                        }
+                    }
+                    if (construction != null)
+                    {
+                        if (delayMeleAttack > 0)
+                        {
+                            delayMeleAttack = delayMeleAttack - Time.deltaTime;
                         }
                         else
                         {
-                            construction = null;
-                            followRoute.GetAgent().speed = speed;
+                            construction.life = construction.life - DamageMeleConstruction;
+                            delayMeleAttack = auxDelayMeleAttack;
+                            animator.Play("MeleAttack");
                         }
-                    }
-                }
-                if (construction != null)
-                {
-                    if (delayMeleAttack > 0)
-                    {
-                        delayMeleAttack = delayMeleAttack - Time.deltaTime;
-                    }
-                    else
-                    {
-                        construction.life = construction.life - DamageMeleConstruction;
-                        delayMeleAttack = auxDelayMeleAttack;
-                        animator.Play("MeleAttack");
                     }
                 }
             }
