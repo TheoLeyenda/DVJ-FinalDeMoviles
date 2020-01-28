@@ -22,6 +22,8 @@ public class GenerateEnemyManager : MonoBehaviour
     private bool onceActivateElementsUiNextWave = true;
     private bool ActivateElementsUiNextWave;
 
+    private bool finishGenerator = false;
+
     private void Start()
     {
         if (!infinityGenerator)
@@ -152,12 +154,17 @@ public class GenerateEnemyManager : MonoBehaviour
             }
             else
             {
+                finishGenerator = true;
                 Debug.Log("NIVEL TERMINADO");
                 Debug.ClearDeveloperConsole();
                 //EL JUGADOR GANO EL NIVEL.
             }
         }
 
+    }
+    public bool GetFinishGenerator()
+    {
+        return finishGenerator;
     }
     public void ActivateAllGenerators()
     {

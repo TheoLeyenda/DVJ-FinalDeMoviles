@@ -13,6 +13,16 @@ public class GameManager : MonoBehaviour
     private FPSController player;
     public FPSController PlayerPC;
     public FPSController PlayerAndroid;
+    public GenerateEnemyManager generateEnemyManager;
+
+    [Header("Unloked Items")]
+    public bool UnlokedItem;
+    public string UnlockedItemName;
+    public string NameLevelUnlocked;
+    [HideInInspector]
+    public GameData gd;
+
+    public UIStadistics uIStadistics;
 
     [System.Serializable]
     public struct TutorialElements
@@ -25,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        gd = GameData.instaceGameData;
         enableStartGame = false;
 
 #if UNITY_ANDROID
@@ -33,6 +44,24 @@ public class GameManager : MonoBehaviour
 #if UNITY_STANDALONE
         player = PlayerPC;
 #endif
+    }
+    private void Update()
+    {
+        if (generateEnemyManager.GetFinishGenerator() && UnlokedItem)
+        {
+            gd.UnlokedObject(NameLevelUnlocked);
+            gd.UnlokedObject(UnlockedItemName);
+            uIStadistics.camvasStadistics.SetActive(true);
+            uIStadistics.unlockedConstruction = true;
+            player.lockCursor = false;
+        }
+        else if (generateEnemyManager.GetFinishGenerator())
+        {
+            gd.UnlokedObject(NameLevelUnlocked);
+            uIStadistics.camvasStadistics.SetActive(true);
+            uIStadistics.unlockedConstruction = false;
+            player.lockCursor = false;
+        }
     }
     public void SetEnableStartGame(bool startGame)
     {

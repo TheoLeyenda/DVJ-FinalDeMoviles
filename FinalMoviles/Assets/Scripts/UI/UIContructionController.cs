@@ -54,15 +54,21 @@ public class UIContructionController : MonoBehaviour
     public Text titulo;
     public List<UIButtonConstruction> buttons;
     public GameObject camvasConfirmationConstruction;
+    private GameData gd;
 
     public static event Action<UIContructionController> OnClickButtonConstruction;
     public static event Action<UIContructionController> OnClickButtonCancel;
     public static event Action<UIContructionController> OnClickButtonAcepted;
     public static event Action<UIContructionController> OnClickButtonInformation;
     public static event Action<UIContructionController> OnClickButtonBack;
+    private void Awake()
+    {
+        gd = GameData.instaceGameData;
+        On();
+    }
     private void Start()
     {
-        On();
+        CheckConstructionUnlocked();
     }
     public void On()
     {
@@ -73,6 +79,21 @@ public class UIContructionController : MonoBehaviour
         }
         camvasConfirmationConstruction.SetActive(false);
         CM.ButtonBack.SetActive(false);
+           
+    }
+    public void CheckConstructionUnlocked()
+    {
+        for (int i = 0; i < gd.nameUnlokedObjects.Count; i++)
+        {
+            for (int j = 0; j < buttons.Count; j++)
+            {
+                if (gd.nameUnlokedObjects[i] == buttons[j].nameConstruction)
+                {
+                    buttons[j].lockedButton = false;
+                    buttons[j].CheckDataButton();
+                }
+            }
+        }
     }
     public void Information(int index)
     {
