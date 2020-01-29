@@ -16,6 +16,39 @@ public class GameData : MonoBehaviour
 
     public static GameData instaceGameData;
 
+    [System.Serializable]
+    public struct InventoryPlayer
+    {
+        public int maxAmmoScar;
+        public int maxAmmoM4;
+        public int maxAmmoSniper;
+
+        public int maxCountNukePowerUp;
+        public int maxCountLifeUpPowerUp;
+        public int maxCountRepairConstructionPowerUp;
+        public int maxCountMedikitPowerUp;
+        public int maxCountIcePowerUp;
+        public int maxCountMeteoroPowerUp;
+
+        public bool unlockedScar;
+        public bool unlockedM4;
+        public bool unlockedSniper;
+
+        public int scarAmmo;
+        public int M4Ammo;
+        public int SniperAmmo;
+
+        public int countNukePowerUp;
+        public int countLifeUpPowerUp;
+        public int countRepairConstructionPowerUp;
+        public int countMedikitPowerUp;
+        public int countIcePowerUp;
+        public int countMeteoroPowerUp; // Cambias a camara vertical y tiras meteoros por todo el mapa este 
+                                        // poder dura por cierto tiempo.
+    }
+
+    public InventoryPlayer dataPlayer;
+
     void Awake()
     {
         if (instaceGameData == null)

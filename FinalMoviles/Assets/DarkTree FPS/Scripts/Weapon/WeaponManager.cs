@@ -18,6 +18,9 @@ namespace DarkTreeFPS
         public Weapon melleeDefaultWeapon;
         public Weapon grenade;
         public Weapon PrimaryGun;
+        public Weapon M4;
+        public Weapon SCAR;
+        public Weapon Sniper;
         public int ammoPrimaryGun;
         public bool enableGrenade;
         public List<Slot> slots;
@@ -50,7 +53,11 @@ namespace DarkTreeFPS
 
         private Inventory inventory;
 
+        private GameData gd;
+
         private GameManager gm;
+
+        private int indexSlot = 0;
 
         public bool enableShoot = false;
         [HideInInspector]
@@ -89,19 +96,52 @@ namespace DarkTreeFPS
                 }
                 else
                 {
-                    slots[0].storedWeapon = PrimaryGun;
-                    activeSlot = slots[0];
-                    slots[0].storedWeapon.currentAmmo = 0;
+                    slots[indexSlot].storedWeapon = PrimaryGun;
+                    activeSlot = slots[indexSlot];
+                    slots[indexSlot].storedWeapon.currentAmmo = 0;
+                    //AGREGO LAS ARMAS COMPRADAS EN LA TIENDA
+                    if (gd.dataPlayer.unlockedM4)
+                    {
+                        indexSlot++;
+                        if (indexSlot < slots.Count)
+                        {
+                            slots[indexSlot].storedWeapon = M4;
+                            slots[indexSlot].storedWeapon.currentAmmo = M4.currentAmmo;
+                            slots[indexSlot].storedWeapon._totalAmmo = gd.dataPlayer.M4Ammo;
+                        }
+                    }
+                    if (gd.dataPlayer.unlockedScar)
+                    {
+                        indexSlot++;
+                        if (indexSlot < slots.Count)
+                        {
+                            slots[indexSlot].storedWeapon = SCAR;
+                            slots[indexSlot].storedWeapon.currentAmmo = SCAR.currentAmmo;
+                            slots[indexSlot].storedWeapon._totalAmmo = gd.dataPlayer.scarAmmo;
+                        }
+                    }
+                    if (gd.dataPlayer.unlockedSniper)
+                    {
+                        indexSlot++;
+                        if (indexSlot < slots.Count)
+                        {
+                            slots[indexSlot].storedWeapon = Sniper;
+                            slots[indexSlot].storedWeapon.currentAmmo = Sniper.currentAmmo;
+                            slots[indexSlot].storedWeapon._totalAmmo = gd.dataPlayer.SniperAmmo;
+                        }
+                    }
                 }
                 if (enableGrenade)
                 {
                     if (grenade != null)
                     {
-                        slots[3].storedWeapon = grenade;
+                        indexSlot++;
+                        if (indexSlot < slots.Count)
+                        {
+                            slots[indexSlot].storedWeapon = grenade;
+                        }
                     }
                 }
-
-
 
                 scopeImage.SetActive(false);
 
@@ -135,6 +175,7 @@ namespace DarkTreeFPS
         private void Start()
         {
             //ON();
+            gd = GameData.instaceGameData;
         }
         public void CheckEnableShoot()
         {
