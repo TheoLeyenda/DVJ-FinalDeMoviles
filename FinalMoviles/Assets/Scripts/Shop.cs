@@ -28,33 +28,31 @@ public class Shop : MonoBehaviour
         public string name;
         public int price;
         public int count;
-        public int sellPrice;
-        public Sprite spriteInShop;
-        public Sprite spriteOutStok;
-        public Image image;
+        //public Sprite spriteInShop;
+        //public Sprite spriteOutStok;
+        //public Image image;
         public Button button;
         public bool outStock;
-        public int countStock;
+        //public int countStock;
+        public Text textCount;
 
         public void CheckInShop()
         {
-            if (countStock <= 0)
-            {
-                outStock = true;
-            }
-            else if (countStock > 0)
-            {
-                outStock = false;
-            }
             if (outStock)
             {
                 button.interactable = false;
-                image.sprite = spriteOutStok;
+                /*if (spriteOutStok != null)
+                {
+                    image.sprite = spriteOutStok;
+                }*/
             }
             else if (!outStock)
             {
                 button.interactable = true;
-                image.sprite = spriteInShop;
+                /*if (spriteInShop != null)
+                {
+                    image.sprite = spriteInShop;
+                }*/
             }
         }
     }
@@ -65,86 +63,116 @@ public class Shop : MonoBehaviour
         gd = GameData.instaceGameData;
         for (int i = 0; i < itemsShop.Count; i++)
         {
+            if (gd.dataPlayer.unlockedM4 && itemsShop[i].name == "M4"
+                || gd.dataPlayer.unlockedScar && itemsShop[i].name == "SCAR"
+                || gd.dataPlayer.unlockedSniper && itemsShop[i].name == "Sniper"
+                || gd.dataPlayer.scarAmmo >= gd.dataPlayer.maxAmmoScar && itemsShop[i].name == "AmmoSCAR"
+                || gd.dataPlayer.M4Ammo >= gd.dataPlayer.maxAmmoM4 && itemsShop[i].name == "AmmoM4"
+                || gd.dataPlayer.SniperAmmo >= gd.dataPlayer.maxAmmoSniper && itemsShop[i].name == "AmmoSniper"
+                || gd.dataPlayer.countIcePowerUp >= gd.dataPlayer.maxCountIcePowerUp && itemsShop[i].name == "IcePowerUp"
+                || gd.dataPlayer.countLifeUpPowerUp >= gd.dataPlayer.maxCountLifeUpPowerUp && itemsShop[i].name == "LifeUpPowerUp"
+                || gd.dataPlayer.countMedikitPowerUp >= gd.dataPlayer.maxCountMedikitPowerUp && itemsShop[i].name == "MedikitPowerUp"
+                || gd.dataPlayer.countMeteoroPowerUp >= gd.dataPlayer.maxCountMeteoroPowerUp && itemsShop[i].name == "MeteoroPowerUp"
+                || gd.dataPlayer.countNukePowerUp >= gd.dataPlayer.maxCountNukePowerUp && itemsShop[i].name == "NukePowerUp"
+                || gd.dataPlayer.countRepairConstructionPowerUp >= gd.dataPlayer.maxCountRepairConstructionPowerUp && itemsShop[i].name == "RepairConstructionPowerUp")
+            {
+                itemsShop[i].outStock = true;
+            }
+            else
+            {
+                itemsShop[i].outStock = false;
+            }
             itemsShop[i].CheckInShop();
         }
     }
-    public void BuyItem(ItemsShoop _itemsShoop)
+    public void BuyItem(int indexItemShop)
     {
-        int index = (int)_itemsShoop;
-        switch (_itemsShoop)
+        int index = indexItemShop;
+        switch (indexItemShop)
         {
-            case ItemsShoop.AmmoM4:
+            case (int)ItemsShoop.AmmoM4:
                 if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock && gd.dataPlayer.unlockedM4)
                 {
                     if (gd.dataPlayer.M4Ammo < gd.dataPlayer.maxAmmoM4)
                     {
                         gd.generalScore -= itemsShop[index].price;
                         gd.dataPlayer.M4Ammo += itemsShop[index].count;
+                        itemsShop[index].textCount.text = ""+gd.dataPlayer.M4Ammo;
                     }
                     else if (gd.dataPlayer.M4Ammo >= gd.dataPlayer.maxAmmoM4)
                     {
                         gd.dataPlayer.M4Ammo = gd.dataPlayer.maxAmmoM4;
+                        itemsShop[index].textCount.text = "" + gd.dataPlayer.maxAmmoM4;
                     }
                 }
                 break;
-            case ItemsShoop.AmmoSCAR:
+            case (int)ItemsShoop.AmmoSCAR:
                 if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock && gd.dataPlayer.unlockedScar)
                 {
                     if (gd.dataPlayer.scarAmmo < gd.dataPlayer.maxAmmoScar)
                     {
                         gd.generalScore -= itemsShop[index].price;
                         gd.dataPlayer.scarAmmo += itemsShop[index].count;
+                        itemsShop[index].textCount.text = "" + gd.dataPlayer.scarAmmo;
                     }
                     else if (gd.dataPlayer.scarAmmo >= gd.dataPlayer.maxAmmoScar)
                     {
                         gd.dataPlayer.scarAmmo = gd.dataPlayer.maxAmmoScar;
+                        itemsShop[index].textCount.text = "" + gd.dataPlayer.maxAmmoScar;
                     }
                 }
                 break;
-            case ItemsShoop.AmmoSniper:
+            case (int)ItemsShoop.AmmoSniper:
                 if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock && gd.dataPlayer.unlockedSniper)
                 {
                     if (gd.dataPlayer.SniperAmmo < gd.dataPlayer.maxAmmoSniper)
                     {
                         gd.generalScore -= itemsShop[index].price;
                         gd.dataPlayer.SniperAmmo += itemsShop[index].count;
+                        itemsShop[index].textCount.text = "" + gd.dataPlayer.SniperAmmo;
                     }
                     else if (gd.dataPlayer.SniperAmmo >= gd.dataPlayer.maxAmmoSniper)
                     {
                         gd.dataPlayer.SniperAmmo = gd.dataPlayer.maxAmmoSniper;
+                        itemsShop[index].textCount.text = "" + gd.dataPlayer.maxAmmoSniper;
                     }
                 }
                 break;
-            case ItemsShoop.IcePowerUp:
+            case (int)ItemsShoop.IcePowerUp:
                 if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock)
                 {
                     if (gd.dataPlayer.countIcePowerUp < gd.dataPlayer.maxCountIcePowerUp)
                     {
                         gd.generalScore -= itemsShop[index].price;
                         gd.dataPlayer.countIcePowerUp += itemsShop[index].count;
+                        itemsShop[index].textCount.text = "" + gd.dataPlayer.countIcePowerUp;
+
                     }
                     else if (gd.dataPlayer.countIcePowerUp >= gd.dataPlayer.maxCountIcePowerUp)
                     {
                         gd.dataPlayer.countIcePowerUp = gd.dataPlayer.maxCountIcePowerUp;
+                        itemsShop[index].textCount.text = "" + gd.dataPlayer.maxCountIcePowerUp;
                     }
-                    
+
                 }
                 break;
-            case ItemsShoop.LifeUpPowerUp:
+            case (int)ItemsShoop.LifeUpPowerUp:
                 if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock)
                 {
                     if (gd.dataPlayer.countLifeUpPowerUp < gd.dataPlayer.maxCountLifeUpPowerUp)
                     {
                         gd.generalScore -= itemsShop[index].price;
                         gd.dataPlayer.countLifeUpPowerUp += itemsShop[index].count;
+                        itemsShop[index].textCount.text = "" + gd.dataPlayer.countLifeUpPowerUp;
                     }
                     else if (gd.dataPlayer.countLifeUpPowerUp >= gd.dataPlayer.maxCountLifeUpPowerUp)
                     {
                         gd.dataPlayer.countLifeUpPowerUp = gd.dataPlayer.maxCountLifeUpPowerUp;
+                        itemsShop[index].textCount.text = "" + gd.dataPlayer.maxCountLifeUpPowerUp;
                     }
                 }
                 break;
-            case ItemsShoop.M4:
+            case (int)ItemsShoop.M4:
                 if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock)
                 {
                     gd.generalScore -= itemsShop[index].price;
@@ -152,64 +180,71 @@ public class Shop : MonoBehaviour
                     itemsShop[index].outStock = true;
                 }
                 break;
-            case ItemsShoop.MedikitPowerUp:
+            case (int)ItemsShoop.MedikitPowerUp:
                 if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock)
                 {
                     if (gd.dataPlayer.countMedikitPowerUp < gd.dataPlayer.maxCountMedikitPowerUp)
                     {
                         gd.generalScore -= itemsShop[index].price;
                         gd.dataPlayer.countMedikitPowerUp += itemsShop[index].count;
+                        itemsShop[index].textCount.text = "" + gd.dataPlayer.countMedikitPowerUp;
                     }
                     else if (gd.dataPlayer.countMedikitPowerUp >= gd.dataPlayer.maxCountMedikitPowerUp)
                     {
                         gd.dataPlayer.countMedikitPowerUp = gd.dataPlayer.maxCountMedikitPowerUp;
+                        itemsShop[index].textCount.text = "" + gd.dataPlayer.maxCountMedikitPowerUp;
                     }
-                    
                 }
                 break;
-            case ItemsShoop.MeteoroPowerUp:
+            case (int)ItemsShoop.MeteoroPowerUp:
                 if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock)
                 {
                     if (gd.dataPlayer.countMeteoroPowerUp < gd.dataPlayer.maxCountMeteoroPowerUp)
                     {
                         gd.generalScore -= itemsShop[index].price;
                         gd.dataPlayer.countMeteoroPowerUp += itemsShop[index].count;
+                        itemsShop[index].textCount.text = "" + gd.dataPlayer.countMeteoroPowerUp;
                     }
                     else if (gd.dataPlayer.countMeteoroPowerUp >= gd.dataPlayer.maxCountMeteoroPowerUp)
                     {
                         gd.dataPlayer.countMeteoroPowerUp = gd.dataPlayer.maxCountMeteoroPowerUp;
+                        itemsShop[index].textCount.text = "" + gd.dataPlayer.maxCountMeteoroPowerUp;
                     }
                 }
                 break;
-            case ItemsShoop.NukePowerUp:
+            case (int)ItemsShoop.NukePowerUp:
                 if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock)
                 {
                     if (gd.dataPlayer.countNukePowerUp < gd.dataPlayer.maxCountNukePowerUp)
                     {
                         gd.generalScore -= itemsShop[index].price;
                         gd.dataPlayer.countNukePowerUp += itemsShop[index].count;
+                        itemsShop[index].textCount.text = "" + gd.dataPlayer.countNukePowerUp;
                     }
                     else if (gd.dataPlayer.countNukePowerUp >= gd.dataPlayer.maxCountNukePowerUp)
                     {
                         gd.dataPlayer.countNukePowerUp = gd.dataPlayer.maxCountNukePowerUp;
+                        itemsShop[index].textCount.text = "" + gd.dataPlayer.maxCountNukePowerUp;
                     }
                 }
                 break;
-            case ItemsShoop.RepairConstructionPowerUp:
+            case (int)ItemsShoop.RepairConstructionPowerUp:
                 if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock)
                 {
                     if (gd.dataPlayer.countRepairConstructionPowerUp < gd.dataPlayer.maxCountRepairConstructionPowerUp)
                     {
                         gd.generalScore -= itemsShop[index].price;
                         gd.dataPlayer.countRepairConstructionPowerUp += itemsShop[index].count;
+                        itemsShop[index].textCount.text = "" + gd.dataPlayer.countRepairConstructionPowerUp;
                     }
                     else if (gd.dataPlayer.countRepairConstructionPowerUp >= gd.dataPlayer.maxCountRepairConstructionPowerUp)
                     {
                         gd.dataPlayer.countRepairConstructionPowerUp = gd.dataPlayer.maxCountRepairConstructionPowerUp;
+                        itemsShop[index].textCount.text = "" + gd.dataPlayer.maxCountRepairConstructionPowerUp;
                     }
                 }
                 break;
-            case ItemsShoop.SCAR:
+            case (int)ItemsShoop.SCAR:
                 if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock)
                 {
                     gd.generalScore -= itemsShop[index].price;
@@ -217,7 +252,7 @@ public class Shop : MonoBehaviour
                     itemsShop[index].outStock = true;
                 }
                 break;
-            case ItemsShoop.Sniper:
+            case (int)ItemsShoop.Sniper:
                 if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock)
                 {
                     gd.generalScore -= itemsShop[index].price;
@@ -226,10 +261,10 @@ public class Shop : MonoBehaviour
                 }
                 break;
         }
-        itemsShop[index].countStock--;
         itemsShop[index].CheckInShop();
     }
-    public void SellItem(ItemsShoop _itemsShoop)
+
+    /*public void SellItem(ItemsShoop _itemsShoop)
     {
         int index = (int)_itemsShoop;
         switch (_itemsShoop)
@@ -336,5 +371,5 @@ public class Shop : MonoBehaviour
         }
         itemsShop[index].countStock++;
         itemsShop[index].CheckInShop();
-    }
+    }*/
 }
