@@ -29,12 +29,16 @@ public class Slime : Enemy
     // Update is called once per frame
     protected override void Update()
     {
-        CheckFinishRouteEnemy();
-        CheckDie();
-        if (gameObject.activeSelf && animator.enabled)
+        if (stateEnemy != StateEnemy.stune)
         {
-            CheckMeleAttack();
+            CheckFinishRouteEnemy();
+            if (gameObject.activeSelf && animator.enabled)
+            {
+                CheckMeleAttack();
+            }
         }
+        CheckDie();
+        CheckState();
     }
     public void CheckDie()
     {

@@ -60,6 +60,8 @@ namespace DarkTreeFPS
                         Enemy e = hit.transform.gameObject.GetComponent<Enemy>();
                         e.blood.gameObject.SetActive(true);
                         e.blood.transform.position = hit.point;
+                        e.rig.velocity = Vector3.zero;
+                        e.rig.angularVelocity = Vector3.zero;
                         if (e.life > 0)
                         {
                             e.animator.Play("Damage");
@@ -147,7 +149,7 @@ namespace DarkTreeFPS
                 player.health = player.health - turtleShell.counterAttackDamage;
                 gameObject.SetActive(false);
             }
-            else if(other.transform.tag != "Player" && other.transform.tag != "Enemy" && other.transform.tag != "Shild" && shooter == Shooter.Enemy)
+            else if(other.transform.tag != "Inside" && other.transform.tag != "Player" && other.transform.tag != "Enemy" && other.transform.tag != "Shild" && shooter == Shooter.Enemy)
             {
                 gameObject.SetActive(false);
             }

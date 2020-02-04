@@ -15,13 +15,40 @@ namespace DarkTreeFPS
         public bool UseNonPhysicalReticle = true;
 
         public bool haveMeleeWeaponByDefault = true;
+        [HideInInspector]
         public Weapon melleeDefaultWeapon;
+        [HideInInspector]
         public Weapon grenade;
+        [HideInInspector]
         public Weapon PrimaryGun;
+        [HideInInspector]
         public Weapon M4;
+        [HideInInspector]
         public Weapon SCAR;
+        [HideInInspector]
         public Weapon Sniper;
+
+        [Header("Weapons PC")]
+        public Weapon melleeDefaultWeaponPC;
+        public Weapon grenadePC;
+        public Weapon PrimaryGunPC;
+        public Weapon M4PC;
+        public Weapon SCARPC;
+        public Weapon SniperPC;
+
+        [Header("Weapons Android")]
+        public Weapon melleeDefaultWeaponAndroid;
+        public Weapon grenadeAndroid;
+        public Weapon PrimaryGunAndroid;
+        public Weapon M4Android;
+        public Weapon SCARAndroid;
+        public Weapon SniperAndroid;
+
         public int ammoPrimaryGun;
+        public int ammoM4;
+        public int ammoSCAR;
+        public int ammoSniper;
+
         public bool enableGrenade;
         public List<Slot> slots;
         [Range(1, 9)]
@@ -31,6 +58,7 @@ namespace DarkTreeFPS
         public int switchSlotIndex = 0;
         public int currentWeaponIndex;
         public Slot activeSlot;
+        private bool once = false;
         //public Weapon primarySlot;
         //public Weapon secondarySlot;
 
@@ -53,7 +81,8 @@ namespace DarkTreeFPS
 
         private Inventory inventory;
 
-        private GameData gd;
+        [HideInInspector]
+        public GameData gd;
 
         private GameManager gm;
 
@@ -65,117 +94,143 @@ namespace DarkTreeFPS
 
         public void ON()
         {
-            gm = GameObject.Find("GamePrefab").GetComponent<GameManager>();
-            if (gm.InTutorial)
+            if (!once)
             {
-                enableShoot = false;
-            }
-            else
-            {
-                enableShoot = true;
-            }
-            Sway swayObject = FindObjectOfType<Sway>();
-            if (swayObject != null)
-            {
-                swayTransform = FindObjectOfType<Sway>().GetComponent<Transform>();
-            }
-
-            if (swayTransform != null)
-            {
-                for (int i = 0; i < slotsSize; i++)
+                gm = GameObject.Find("GamePrefab").GetComponent<GameManager>();
+                if (gm.InTutorial)
                 {
-                    Slot slot_temp = gameObject.AddComponent<Slot>();
-
-                    slots.Add(slot_temp);
-                }
-
-                if (haveMeleeWeaponByDefault)
-                {
-                    slots[0].storedWeapon = melleeDefaultWeapon;
-                    activeSlot = slots[0];
+                    enableShoot = false;
                 }
                 else
                 {
-                    slots[indexSlot].storedWeapon = PrimaryGun;
-                    activeSlot = slots[indexSlot];
-                    slots[indexSlot].storedWeapon.currentAmmo = 0;
-                    //AGREGO LAS ARMAS COMPRADAS EN LA TIENDA
-                    if (gd.dataPlayer.unlockedM4)
+                    enableShoot = true;
+                }
+                Sway swayObject = FindObjectOfType<Sway>();
+                if (swayObject != null)
+                {
+                    swayTransform = FindObjectOfType<Sway>().GetComponent<Transform>();
+                }
+
+                if (swayTransform != null)
+                {
+                    for (int i = 0; i < slotsSize; i++)
                     {
-                        indexSlot++;
-                        if (indexSlot < slots.Count)
+                        Slot slot_temp = gameObject.AddComponent<Slot>();
+
+                        slots.Add(slot_temp);
+                    }
+
+                    if (haveMeleeWeaponByDefault)
+                    {
+                        slots[0].storedWeapon = melleeDefaultWeapon;
+                        activeSlot = slots[0];
+                    }
+                    else
+                    {
+                        slots[indexSlot].storedWeapon = PrimaryGun;
+                        activeSlot = slots[indexSlot];
+                        slots[indexSlot].storedWeapon.currentAmmo = 0;
+                        //AGREGO LAS ARMAS COMPRADAS EN LA TIENDA
+                        if (gd.dataPlayer.unlockedM4)
                         {
-                            slots[indexSlot].storedWeapon = M4;
-                            slots[indexSlot].storedWeapon.currentAmmo = M4.currentAmmo;
-                            slots[indexSlot].storedWeapon._totalAmmo = gd.dataPlayer.M4Ammo;
+                            indexSlot++;
+                            if (indexSlot < slots.Count)
+                            {
+                                M4.currentAmmo = 30;
+                                M4._totalAmmo = gd.dataPlayer.M4Ammo;
+                                slots[indexSlot].storedWeapon = M4;
+                            }
+                        }
+                        if (gd.dataPlayer.unlockedScar)
+                        {
+                            indexSlot++;
+                            if (indexSlot < slots.Count)
+                            {
+                                SCAR.currentAmmo = 30;
+                                SCAR._totalAmmo = gd.dataPlayer.scarAmmo;
+                                slots[indexSlot].storedWeapon = SCAR;
+                            }
+                        }
+                        if (gd.dataPlayer.unlockedSniper)
+                        {
+                            indexSlot++;
+                            if (indexSlot < slots.Count)
+                            {
+                                Sniper.currentAmmo = 10;
+                                Sniper._totalAmmo = gd.dataPlayer.SniperAmmo;
+                                slots[indexSlot].storedWeapon = Sniper;
+
+                            }
                         }
                     }
-                    if (gd.dataPlayer.unlockedScar)
+                    if (enableGrenade)
                     {
-                        indexSlot++;
-                        if (indexSlot < slots.Count)
+                        if (grenade != null)
                         {
-                            slots[indexSlot].storedWeapon = SCAR;
-                            slots[indexSlot].storedWeapon.currentAmmo = SCAR.currentAmmo;
-                            slots[indexSlot].storedWeapon._totalAmmo = gd.dataPlayer.scarAmmo;
+                            indexSlot++;
+                            if (indexSlot < slots.Count)
+                            {
+                                slots[indexSlot].storedWeapon = grenade;
+                            }
                         }
                     }
-                    if (gd.dataPlayer.unlockedSniper)
+
+                    scopeImage.SetActive(false);
+
+                    if (UseNonPhysicalReticle)
                     {
-                        indexSlot++;
-                        if (indexSlot < slots.Count)
-                        {
-                            slots[indexSlot].storedWeapon = Sniper;
-                            slots[indexSlot].storedWeapon.currentAmmo = Sniper.currentAmmo;
-                            slots[indexSlot].storedWeapon._totalAmmo = gd.dataPlayer.SniperAmmo;
-                        }
+                        reticleStatic.SetActive(true);
+                        reticleDynamic.SetActive(false);
                     }
-                }
-                if (enableGrenade)
-                {
-                    if (grenade != null)
+                    else
                     {
-                        indexSlot++;
-                        if (indexSlot < slots.Count)
-                        {
-                            slots[indexSlot].storedWeapon = grenade;
-                        }
+                        reticleStatic.SetActive(false);
+                        reticleDynamic.SetActive(true);
                     }
+
+                    playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
+                    foreach (Weapon weapon in swayTransform.GetComponentsInChildren<Weapon>(true))
+                    {
+                        weapons.Add(weapon);
+                    }
+
+                    inventory = FindObjectOfType<Inventory>();
+                    switchSlotIndex = 0;
+                    SlotChange();
                 }
-
-                scopeImage.SetActive(false);
-
-                if (UseNonPhysicalReticle)
-                {
-                    reticleStatic.SetActive(true);
-                    reticleDynamic.SetActive(false);
-                }
-                else
-                {
-                    reticleStatic.SetActive(false);
-                    reticleDynamic.SetActive(true);
-                }
-
-                playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-
-                foreach (Weapon weapon in swayTransform.GetComponentsInChildren<Weapon>(true))
-                {
-                    weapons.Add(weapon);
-                }
-
-                inventory = FindObjectOfType<Inventory>();
-                switchSlotIndex = 0;
-                SlotChange();
+                once = true;
             }
         }
         private void OnEnable()
         {
             ON();
         }
-        private void Start()
+        private void Awake()
         {
             //ON();
+
+#if UNITY_ANDROID
+            melleeDefaultWeapon = melleeDefaultWeaponAndroid;
+            grenade = grenadeAndroid;
+            PrimaryGun = PrimaryGunAndroid;
+            M4 = M4Android;
+            SCAR = SCARAndroid;
+            Sniper = SniperAndroid;
+#endif
+#if UNITY_STANDALONE
+            melleeDefaultWeapon = melleeDefaultWeaponPC;
+            grenade = grenadePC;
+            PrimaryGun = PrimaryGunPC;
+            M4 = M4PC;
+            SCAR = SCARPC;
+            Sniper = SniperPC;
+#endif
             gd = GameData.instaceGameData;
+            /*if(gd == null)
+            {
+                Debug.Log("gd is null");
+            }*/
         }
         public void CheckEnableShoot()
         {
@@ -185,6 +240,7 @@ namespace DarkTreeFPS
             }
             else
             {
+                PrimaryGun._totalAmmo = 20;
                 PrimaryGun._totalAmmo = 120;
             }
         }

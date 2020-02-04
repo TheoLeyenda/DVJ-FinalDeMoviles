@@ -39,7 +39,7 @@ namespace DarkTreeFPS
 
         private void Update()
         {
-            if (Input.GetKeyDown(input.Inventory) && !PlayerStats.isPlayerDead)
+            /*if (Input.GetKeyDown(input.Inventory) && !PlayerStats.isPlayerDead)
             {
                 showInventory = !showInventory;
             }
@@ -51,7 +51,7 @@ namespace DarkTreeFPS
             else
             {
                 InventoryClose();
-            }
+            }*/
         }
 
         private void InventoryOpen()

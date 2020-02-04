@@ -10,6 +10,34 @@ public class TeleportController : MonoBehaviour
     [SerializeField]
     private List<CustomTeleporter> customTeleporters;
     public CustomTeleporter currentCustomTeleporter;
+    public GameObject camvasTeleport;
+    [System.Serializable]
+    public class ButtonsTeleports
+    {
+        public GameObject go_imageLifeConstruction;
+        public Image imageLifeConstruction;
+        public Image ImageButtonDisable;
+        public Button buttonTeleport;
+        public Text textButton;
+        public bool disableButton;
+
+        public void CheckDisableButton()
+        {
+            if (disableButton)
+            {
+                ImageButtonDisable.gameObject.SetActive(true);
+                buttonTeleport.interactable = false;
+                textButton.gameObject.SetActive(false);
+            }
+            else
+            {
+                ImageButtonDisable.gameObject.SetActive(false);
+                buttonTeleport.interactable = true;
+            }
+        }
+    }
+
+    public List<ButtonsTeleports> buttonsTeleports;
 
     // ESTA FUNCION VA A SER LLAMADA POR EL BOTON DE JUGAR DE LA FASE DE CONSTRUCCION.
     private void OnEnable()
@@ -23,6 +51,10 @@ public class TeleportController : MonoBehaviour
     private void Start()
     {
         customTeleporters = new List<CustomTeleporter>();
+        for (int i = 0; i < buttonsTeleports.Count; i++)
+        {
+            buttonsTeleports[i].CheckDisableButton();
+        }
     }
     public void EventOnTriggerWhitMe(CustomTeleporter ct)
     {

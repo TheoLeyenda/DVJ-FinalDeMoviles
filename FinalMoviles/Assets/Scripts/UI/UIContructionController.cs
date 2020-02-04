@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class UIContructionController : MonoBehaviour
 {
@@ -180,7 +181,16 @@ public class UIContructionController : MonoBehaviour
             }
             CM.GetCurrentZoneConstruction().SetActive(false);
             construction.SetConstructed(true);
+            //if(SceneManager.GetActiveScene().name == "Nivel 1")
+            //{
+                //construction.SetIndexConstruction(CM.CZ.detectedTeleport.indexTeleport -1);
+            //}
+            //else
+            //{
+                construction.SetIndexConstruction(CM.CZ.detectedTeleport.indexTeleport -1);
+            //}
             construction = null;
+            CM.CZ = null;
             camvasConfirmationConstruction.SetActive(false);
             CM.CheckActivationButtons();
         }
@@ -199,6 +209,7 @@ public class UIContructionController : MonoBehaviour
             CM.camvasContruction.SetActive(true);
             construction = null;
             camvasConfirmationConstruction.SetActive(false);
+            CM.CZ = null;
         }
     }
     public void RotateStructure(int angle)

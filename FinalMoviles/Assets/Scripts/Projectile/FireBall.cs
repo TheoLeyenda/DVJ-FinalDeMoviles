@@ -48,11 +48,19 @@ public class FireBall : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Construccion")
+        if (other.tag == "Construccion" || other.tag == "Inside")
         {
+            Construction construction;
             int indexParticleSystem = Random.Range(0, explotionParticle.Length);
             Wall wall = other.GetComponent<Wall>();
-            Construction construction = wall.construction;
+            if (wall != null)
+            {
+                 construction = wall.construction;
+            }
+            else
+            {
+                construction = GetComponent<Construction>();
+            }
             construction.life = construction.life - shooter.DamageProjectileConstructions;
             explotionParticle[indexParticleSystem].Play();
             inExplotion = true;

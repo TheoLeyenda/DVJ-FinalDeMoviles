@@ -32,20 +32,31 @@ public class Enemy : MonoBehaviour
     public float delayMeleAttack;
     public float auxDelayMeleAttack;
     protected bool meleAttack;
+    [Header("Data Stune")]
+    public float delayStune = 7;
+    public float auxDelayStune = 7;
     [HideInInspector]
     public Construction construction;
+    [HideInInspector]
+    public Rigidbody rig;
 
+    public enum StateEnemy
+    {
+        none,
+        stune,
+    }
     public enum TypeEnemy
     {
         none,
         defensive,
     }
-
+    protected StateEnemy stateEnemy;
     public TypeEnemy typeEnemy;
 
     public static event Action<Enemy> OnDieAction;
     protected virtual void Start()
     {
+        rig = GetComponent<Rigidbody>();
 #if UNITY_ANDROID
         speed = speed / 2;
 #endif
@@ -64,7 +75,7 @@ public class Enemy : MonoBehaviour
         auxLife = life;
 
     }
-    private void OnDisable()
+    private void OnEnable()
     {
         life = maxLife;
         auxLife = life;
@@ -78,10 +89,14 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        CheckFinishRouteEnemy();
-        //CheckDieEnemy();
+        if (stateEnemy != StateEnemy.stune)
+        {
+            CheckFinishRouteEnemy();
+            //CheckDieEnemy();
+            CheckMeleAttack();
+        }
         CheckAnimations();
-        CheckMeleAttack();
+        CheckState();
     }
     public void CheckFinishRouteEnemy()
     {
@@ -154,6 +169,22 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+    public void CheckState()
+    {
+        if (stateEnemy == StateEnemy.stune)
+        {
+            if (delayStune > 0)
+            {
+                delayStune = delayStune - Time.deltaTime;
+            }
+            else if (delayStune <= 0)
+            {
+                delayStune = auxDelayStune;
+                stateEnemy = StateEnemy.none;
+                followRoute.GetAgent().speed = speed;
+            }
+        }
+    }
     public void CheckDieEnemy()
     {
         if (life <= 0)
@@ -211,6 +242,26 @@ public class Enemy : MonoBehaviour
                     life = maxLife;
                 }
             }
+        }
+        if (other.tag == "Nuke")
+        {
+            life = 0;
+        }
+        if (other.tag == "Ice")
+        {
+            followRoute.GetAgent().speed = 0;
+            stateEnemy = StateEnemy.stune;
+        }
+        if (other.tag == "DestroyEnemy")
+        {
+            life = 0;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Ice")
+        {
+            followRoute.GetAgent().speed = speed;
         }
     }
     private void OnCollisionEnter(Collision collision)

@@ -34,11 +34,15 @@ public class Spider : Enemy
 
     protected override void Update()
     {
-        base.Update();
-        if (generateSoons)
+        if (stateEnemy != StateEnemy.stune)
         {
-            CheckDelayGenerateSoons();
+            if (generateSoons)
+            {
+                CheckDelayGenerateSoons();
+            }
         }
+        base.Update();
+        CheckState();
     }
     public void CheckDelayGenerateSoons()
     {

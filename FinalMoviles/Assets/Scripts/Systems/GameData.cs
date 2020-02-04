@@ -8,7 +8,7 @@ public class GameData : MonoBehaviour
     public List<string> nameLokedObjects;
     public List<string> nameUnlokedObjects;
     public int currentLevel;
-
+    public string currentNameUser;
     public int countEnemysDie;
     public int countBulletsShoots;
     public int currentScore;
@@ -58,7 +58,7 @@ public class GameData : MonoBehaviour
         }
         else if (instaceGameData != null)
         {
-            gameObject.SetActive(false);
+            Destroy(this);
         }
         
     }

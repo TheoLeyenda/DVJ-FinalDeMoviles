@@ -23,21 +23,25 @@ public class Orc : Enemy
     }
     public void CheckCuration()
     {
-        if (life > 0)
+        if (stateEnemy != StateEnemy.stune)
         {
-            if (delayMagicCuration > 0)
+            if (life > 0)
             {
-                delayMagicCuration = delayMagicCuration - Time.deltaTime;
-            }
-            else if (delayMagicCuration <= 0)
-            {
-                if (life > 0)
+                if (delayMagicCuration > 0)
                 {
-                    MagicCuration();
+                    delayMagicCuration = delayMagicCuration - Time.deltaTime;
                 }
-                delayMagicCuration = Random.Range(minDelayMagicCuration, maxDelayMagicCuration);
+                else if (delayMagicCuration <= 0)
+                {
+                    if (life > 0)
+                    {
+                        MagicCuration();
+                    }
+                    delayMagicCuration = Random.Range(minDelayMagicCuration, maxDelayMagicCuration);
+                }
             }
         }
+        CheckState();
     }
     public void MagicCuration()
     {

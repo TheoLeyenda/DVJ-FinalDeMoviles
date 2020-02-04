@@ -33,6 +33,9 @@ public class ConstructionManager : MonoBehaviour
     public static event Action<ConstructionManager> OnClickGeneralView;
     public static event Action<ConstructionManager> OnClickPlayButton;
 
+    [HideInInspector]
+    public ConstructionZone CZ;
+
     private void OnEnable()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -94,6 +97,7 @@ public class ConstructionManager : MonoBehaviour
                     if (hit.transform.tag == "ZonaConstruccion")
                     {
                         //Debug.Log("ENTRE");
+                        CZ = hit.transform.gameObject.GetComponent<ConstructionZone>();
                         if (OnClickConstructionZone != null && gm.InTutorial)
                         {
                             OnClickConstructionZone(this);

@@ -409,12 +409,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbbf174a8358cc42aea5427e5d774e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myGenerator: 0
   animator: {fileID: 4388350939936424869}
   DamageMeleConstruction: 2
   DamageLifes: 1
   blood: {fileID: 198342848801841090}
   scalerBloodVar: 1.3
-  EnemyPrefab: {fileID: 0}
+  EnemyPrefab: {fileID: 4388350939929047147}
   auxFollowRoute: {fileID: 261713683}
   followRoute: {fileID: 261713683}
   speed: 4
@@ -427,6 +428,8 @@ MonoBehaviour:
   rangeMeleAttack: 0
   delayMeleAttack: 0
   auxDelayMeleAttack: 0
+  delayStune: 7
+  auxDelayStune: 7
   construction: {fileID: 0}
   typeEnemy: 0
   generator: {fileID: 693369604}

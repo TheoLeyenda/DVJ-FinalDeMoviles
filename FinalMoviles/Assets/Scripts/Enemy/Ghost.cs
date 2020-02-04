@@ -32,16 +32,20 @@ public class Ghost : Enemy
     // Update is called once per frame
     protected override void Update()
     {
+        if (stateEnemy != StateEnemy.stune)
+        {
+            if (life > 0)
+            {
+                CheckStateGhost();
+            }
+            else
+            {
+                skinnedMeshRenderer.material = normalMaterial;
+                boxCollider.enabled = true;
+            }
+        }
         base.Update();
-        if (life > 0)
-        {
-            CheckStateGhost();
-        }
-        else
-        {
-            skinnedMeshRenderer.material = normalMaterial;
-            boxCollider.enabled = true;
-        }
+        CheckState();
     }
     public void CheckStateGhost()
     {

@@ -10,7 +10,11 @@ namespace DarkTreeFPS
 {
     public class Weapon : MonoBehaviour
     {
+
+
         [Header("Weapon setting")]
+
+        public bool UseItemAmmo;
 
         public WeaponSettingSO weaponSetting;
 
@@ -219,7 +223,6 @@ namespace DarkTreeFPS
         private void Start()
         {
             GetWeaponSettings();
-
             if (weaponType != WeaponType.Melee && weaponType != WeaponType.Grenade)
                 BalisticProjectilesPool();
 
@@ -282,6 +285,11 @@ namespace DarkTreeFPS
                 if (GameObject.Find("DynamicReticle") != null)
                     dynamicReticle = GameObject.Find("DynamicReticle").GetComponent<RectTransform>();
             }
+
+            //if (weaponManager.PrimaryGun != this && weaponManager.melleeDefaultWeapon != this)
+            //{
+                UseItemAmmo = false;
+            //}
         }
 
 
@@ -344,9 +352,19 @@ namespace DarkTreeFPS
                 sway.xSwayAmount = sway.xSwayAmount * 0.3f;
                 sway.ySwayAmount = sway.ySwayAmount * 0.3f;
                 if (weaponManager.UseNonPhysicalReticle)
-                    staticReticle.SetActive(false);
+                {
+                    if (staticReticle != null)
+                    {
+                        staticReticle.SetActive(false);
+                    }
+                }
                 else
-                    dynamicReticle.gameObject.SetActive(false);
+                {
+                    if (dynamicReticle != null)
+                    {
+                        dynamicReticle.gameObject.SetActive(false);
+                    }
+                }
             }
         }
         public void DisableAim()
@@ -358,9 +376,19 @@ namespace DarkTreeFPS
                 sway.xSwayAmount = sway.startX;
                 sway.ySwayAmount = sway.startY;
                 if (weaponManager.UseNonPhysicalReticle)
-                    staticReticle.SetActive(true);
+                {
+                    if (staticReticle != null)
+                    {
+                        staticReticle.SetActive(true);
+                    }
+                }
                 else
-                    dynamicReticle.gameObject.SetActive(true);
+                {
+                    if (dynamicReticle != null)
+                    {
+                        dynamicReticle.gameObject.SetActive(true);
+                    }
+                }
             }
         }
         public void FireMobile()
@@ -537,9 +565,10 @@ namespace DarkTreeFPS
 
             var index = 0;
 
-            var neededAmmo = maxAmmo - currentAmmo;
-            if (weaponManager.PrimaryGun != this)
+            
+            if (UseItemAmmo) // this
             {
+                var neededAmmo = maxAmmo - currentAmmo;
                 if (ammoItems[index].ammo >= neededAmmo)
                 {
                     ammoItems[index].ammo -= neededAmmo;
@@ -573,9 +602,71 @@ namespace DarkTreeFPS
                     }
                 }
             }
-            else if (weaponManager.PrimaryGun == this)
+            else if (!UseItemAmmo) // this
             {
-                currentAmmo = weaponManager.ammoPrimaryGun;
+                if (weaponManager.PrimaryGun == this)
+                {
+                    currentAmmo = weaponManager.ammoPrimaryGun;
+                }
+                else if (weaponManager.M4 == this)
+                {
+                    //HACER LA RESTA ENTRE LA MUNICION QUE TENGO Y LA QUE ESTOY CARGANDO
+                    var neededAmmo = weaponManager.ammoM4 - currentAmmo;
+                    if (weaponManager.gd.dataPlayer.M4Ammo < neededAmmo)
+                    {
+                        neededAmmo = weaponManager.gd.dataPlayer.M4Ammo;
+                    }
+                    currentAmmo = currentAmmo + neededAmmo;
+
+                    if (currentAmmo <= 0)
+                    {
+                        currentAmmo = 0;
+                    }
+                    weaponManager.gd.dataPlayer.M4Ammo = weaponManager.gd.dataPlayer.M4Ammo - neededAmmo;
+                    if (weaponManager.gd.dataPlayer.M4Ammo <= 0)
+                    {
+                        weaponManager.gd.dataPlayer.M4Ammo = 0;
+                    }
+
+                }
+                else if (weaponManager.SCAR == this)
+                {
+                    //HACER LA RESTA ENTRE LA MUNICION QUE TENGO Y LA QUE ESTOY CARGANDO
+                    var neededAmmo = weaponManager.ammoSCAR - currentAmmo;
+                    if (weaponManager.gd.dataPlayer.scarAmmo < neededAmmo)
+                    {
+                        neededAmmo = weaponManager.gd.dataPlayer.scarAmmo;
+                    }
+                    currentAmmo = currentAmmo + neededAmmo;
+                    if (currentAmmo <= 0)
+                    {
+                        currentAmmo = 0;
+                    }
+                    weaponManager.gd.dataPlayer.scarAmmo = weaponManager.gd.dataPlayer.scarAmmo - neededAmmo;
+                    if (weaponManager.gd.dataPlayer.scarAmmo <= 0)
+                    {
+                        weaponManager.gd.dataPlayer.scarAmmo = 0;
+                    }
+                }
+                else if (weaponManager.Sniper == this)
+                {
+                    //HACER LA RESTA ENTRE LA MUNICION QUE TENGO Y LA QUE ESTOY CARGANDO
+                    var neededAmmo = weaponManager.ammoSniper - currentAmmo;
+                    if (weaponManager.gd.dataPlayer.SniperAmmo < neededAmmo)
+                    {
+                        neededAmmo = weaponManager.gd.dataPlayer.SniperAmmo;
+                    }
+                    currentAmmo = currentAmmo + neededAmmo;
+                    if (currentAmmo <= 0)
+                    {
+                        currentAmmo = 0;
+                    }
+                    weaponManager.gd.dataPlayer.SniperAmmo = weaponManager.gd.dataPlayer.SniperAmmo - neededAmmo;
+                    if (weaponManager.gd.dataPlayer.SniperAmmo <= 0)
+                    {
+                        weaponManager.gd.dataPlayer.SniperAmmo = 0;
+                    }
+                }
             }
             /*
             for(int i = currentAmmo; i < maxAmmo; ++i) //For ammo < max ammo
@@ -915,18 +1006,27 @@ namespace DarkTreeFPS
                 {
                     RaycastHit muzzleHit;
                     if (Physics.Raycast(bulletTransform.position, bulletTransform.forward, out muzzleHit, 1000))
-                        dynamicReticle.transform.position = cam.WorldToScreenPoint(muzzleHit.point);
+                        if (dynamicReticle != null)
+                        {
+                            dynamicReticle.transform.position = cam.WorldToScreenPoint(muzzleHit.point);
+                        }
                 }
                 else
                 {
                     var screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
-                    dynamicReticle.transform.position = screenCenter;
+                    if (dynamicReticle != null)
+                    {
+                        dynamicReticle.transform.position = screenCenter;
+                    }
                 }
             }
             else
             {
                 var screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
-                dynamicReticle.transform.position = screenCenter;
+                if (dynamicReticle != null)
+                {
+                    dynamicReticle.transform.position = screenCenter;
+                }
             }
         }
         
@@ -967,14 +1067,26 @@ namespace DarkTreeFPS
         {
             int totalAmmo = new int();
 
-            foreach (var item in inventory.characterItems)
+            /*foreach (var item in inventory.characterItems)
             {
                 if (item.id == ammoItemID)
                 {
                     totalAmmo += item.ammo;
                 }
+            }*/
+            if (this == weaponManager.M4)
+            {
+                totalAmmo = weaponManager.gd.dataPlayer.M4Ammo;
             }
-            if (weaponManager.PrimaryGun == this)
+            else if (this == weaponManager.SCAR)
+            {
+                totalAmmo = weaponManager.gd.dataPlayer.scarAmmo;
+            }
+            else if (this == weaponManager.Sniper)
+            {
+                totalAmmo = weaponManager.gd.dataPlayer.SniperAmmo;
+            }
+            if (weaponManager.PrimaryGun == this) // this
             {
                 totalAmmo = _totalAmmo;
             }

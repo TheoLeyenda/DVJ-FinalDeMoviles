@@ -45,7 +45,7 @@ public class Lance : MonoBehaviour
             player.health = player.health - Damage;
             gameObject.SetActive(false);
         }
-        else if(collision.gameObject.tag != "Wall" && collision.transform.tag != "Enemy" && collision.transform.tag != "Shild" && collision.transform.tag != "Construccion" && collision.transform.tag != "Lance")
+        else if(collision.gameObject.tag != "Inside" && collision.gameObject.tag != "Wall" && collision.transform.tag != "Enemy" && collision.transform.tag != "Shild" && collision.transform.tag != "Construccion" && collision.transform.tag != "Lance")
         {
             gameObject.SetActive(false);
         }

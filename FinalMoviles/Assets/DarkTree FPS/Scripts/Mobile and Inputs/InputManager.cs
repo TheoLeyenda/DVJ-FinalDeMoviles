@@ -24,7 +24,8 @@ public class InputManager : MonoBehaviour
     public KeyCode Reload;
     public KeyCode FiremodeSingle;
     public KeyCode FiremodeAuto;
-    public KeyCode Inventory;
+    //public KeyCode Inventory;
+    public KeyCode inventoryPowerUp;
 
     public static Vector2 joystickInputVector;
     public static Vector2 touchPanelLook;

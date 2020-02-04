@@ -58,9 +58,8 @@ public class Shop : MonoBehaviour
     }
     public List<ItemShoop> itemsShop;
     private GameData gd;
-    private void Start()
+    public void CheckItems()
     {
-        gd = GameData.instaceGameData;
         for (int i = 0; i < itemsShop.Count; i++)
         {
             if (gd.dataPlayer.unlockedM4 && itemsShop[i].name == "M4"
@@ -84,6 +83,24 @@ public class Shop : MonoBehaviour
             }
             itemsShop[i].CheckInShop();
         }
+    }
+    private void Start()
+    {
+        gd = GameData.instaceGameData;
+        CheckItems();
+        ShowItem();
+    }
+    public void ShowItem()
+    {
+        itemsShop[(int)ItemsShoop.AmmoM4].textCount.text = "" + gd.dataPlayer.M4Ammo;
+        itemsShop[(int)ItemsShoop.AmmoSCAR].textCount.text = "" + gd.dataPlayer.scarAmmo;
+        itemsShop[(int)ItemsShoop.AmmoSniper].textCount.text = "" + gd.dataPlayer.SniperAmmo;
+        itemsShop[(int)ItemsShoop.NukePowerUp].textCount.text = "" + gd.dataPlayer.countNukePowerUp;
+        itemsShop[(int)ItemsShoop.LifeUpPowerUp].textCount.text = "" + gd.dataPlayer.countLifeUpPowerUp;
+        itemsShop[(int)ItemsShoop.RepairConstructionPowerUp].textCount.text = "" + gd.dataPlayer.countRepairConstructionPowerUp;
+        itemsShop[(int)ItemsShoop.MedikitPowerUp].textCount.text = "" + gd.dataPlayer.countMedikitPowerUp;
+        itemsShop[(int)ItemsShoop.IcePowerUp].textCount.text = "" + gd.dataPlayer.countIcePowerUp;
+        itemsShop[(int)ItemsShoop.MeteoroPowerUp].textCount.text = "" + gd.dataPlayer.countMeteoroPowerUp;
     }
     public void BuyItem(int indexItemShop)
     {
@@ -261,6 +278,7 @@ public class Shop : MonoBehaviour
                 }
                 break;
         }
+        CheckItems();
         itemsShop[index].CheckInShop();
     }
 

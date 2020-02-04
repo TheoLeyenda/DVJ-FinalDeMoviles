@@ -16,21 +16,25 @@ public class TurtleShell : Enemy
 
     protected override void Update()
     {
+        if (stateEnemy != StateEnemy.stune)
+        { 
+            if (animator.enabled)
+            {
+                CheckMeleAttack();
+            }
+            if (life <= 0 && nameEnemy == "TurtleShell")
+            {
+                boxColliderDamage1.enabled = false;
+                boxColliderDamage2.enabled = false;
+                boxColliderShild.enabled = false;
+            }
+            if (!boxColliderDamage1.enabled && !boxColliderDamage2.enabled && !boxColliderShild.enabled)
+            {
+                nameEnemy = "";
+            }
+        }
         base.Update();
-        if (animator.enabled)
-        {
-            CheckMeleAttack();
-        }
-        if (life <= 0 && nameEnemy == "TurtleShell")
-        {
-            boxColliderDamage1.enabled = false;
-            boxColliderDamage2.enabled = false;
-            boxColliderShild.enabled = false;
-        }
-        if (!boxColliderDamage1.enabled && !boxColliderDamage2.enabled && !boxColliderShild.enabled)
-        {
-            nameEnemy = "";
-        }
+        CheckState();
     }
     private void OnDisable()
     {

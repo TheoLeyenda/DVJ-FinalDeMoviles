@@ -29,9 +29,13 @@ public class StoneMonster : Enemy
     // Update is called once per frame
     protected override void Update()
     {
-        CheckFinishRouteEnemy();
+        if (stateEnemy != StateEnemy.stune)
+        {
+            CheckFinishRouteEnemy();
+            CheckInRageAttack();
+        }
         CheckAnimations();
-        CheckInRageAttack();
+        CheckState();
     }
     public void CheckInRageAttack()
     {

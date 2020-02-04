@@ -71,7 +71,11 @@ public class CustomTeleporter : MonoBehaviour
             teleportPadSound.volume = 0;
             PS.Clear();
         }
-
+        if (subject == null)
+        {
+            GameManager gm = GameObject.Find("GamePrefab").GetComponent<GameManager>();
+            subject = gm.player.transform;
+        }
     }
 
     public void Teleport()
@@ -82,15 +86,18 @@ public class CustomTeleporter : MonoBehaviour
             {
                 if (randomTeleport)
                 {
-                    int chosenPad = UnityEngine.Random.Range(0, destinationPad.Count);
-                    destinationPad[chosenPad].GetComponent<CustomTeleporter>().arrived = true;
-                    subject.transform.position = destinationPad[chosenPad].transform.position + new Vector3(0, teleportationHeightOffset + 1.5f, 0);
-                    teleportSound.Play();
-                    camvasTeleport.SetActive(false);
+                    if (subject != null)
+                    {
+                        int chosenPad = UnityEngine.Random.Range(0, destinationPad.Count);
+                        destinationPad[chosenPad].GetComponent<CustomTeleporter>().arrived = true;
+                        subject.transform.position = destinationPad[chosenPad].transform.position + new Vector3(0, teleportationHeightOffset + 1.5f, 0);
+                        teleportSound.Play();
+                        camvasTeleport.SetActive(false);
+                    }
                 }
                 else
                 {
-                    if (destinationPad[0] != null)
+                    if (destinationPad[0] != null && subject != null)
                     {
                         destinationPad[0].GetComponent<CustomTeleporter>().arrived = true;
                         subject.transform.position = destinationPad[0].transform.position + new Vector3(0, teleportationHeightOffset + 1.5f, 0);
@@ -108,15 +115,18 @@ public class CustomTeleporter : MonoBehaviour
                     curTeleportTime = teleportTime;
                     if (randomTeleport)
                     {
-                        int chosenPad = UnityEngine.Random.Range(0, destinationPad.Count);
-                        destinationPad[chosenPad].GetComponent<CustomTeleporter>().arrived = true;
-                        subject.transform.position = destinationPad[chosenPad].transform.position + new Vector3(0, teleportationHeightOffset + 1.5f, 0);
-                        teleportSound.Play();
-                        camvasTeleport.SetActive(false);
+                        if (subject != null)
+                        {
+                            int chosenPad = UnityEngine.Random.Range(0, destinationPad.Count);
+                            destinationPad[chosenPad].GetComponent<CustomTeleporter>().arrived = true;
+                            subject.transform.position = destinationPad[chosenPad].transform.position + new Vector3(0, teleportationHeightOffset + 1.5f, 0);
+                            teleportSound.Play();
+                            camvasTeleport.SetActive(false);
+                        }
                     }
                     else
                     {
-                        if (destinationPad[0] != null)
+                        if (destinationPad[0] != null && subject != null)
                         {
                             destinationPad[0].GetComponent<CustomTeleporter>().arrived = true;
                             subject.transform.position = destinationPad[0].transform.position + new Vector3(0, teleportationHeightOffset + 1.5f, 0);
@@ -136,7 +146,7 @@ public class CustomTeleporter : MonoBehaviour
                         if (curTeleportTime <= 0)
                         {
                             curTeleportTime = teleportTime;
-                            if (randomTeleport)
+                            if (randomTeleport && subject != null)
                             {
                                 int chosenPad = UnityEngine.Random.Range(0, destinationPad.Count);
                                 destinationPad[chosenPad].GetComponent<CustomTeleporter>().arrived = true;
@@ -146,7 +156,7 @@ public class CustomTeleporter : MonoBehaviour
                             }
                             else
                             {
-                                if (destinationPad[0] != null)
+                                if (destinationPad[0] != null && subject != null)
                                 {
                                     destinationPad[0].GetComponent<CustomTeleporter>().arrived = true;
                                     subject.transform.position = destinationPad[0].transform.position + new Vector3(0, teleportationHeightOffset + 1.5f, 0);
@@ -156,7 +166,7 @@ public class CustomTeleporter : MonoBehaviour
                             }
                         }
                     }
-                    else if (randomTeleport)
+                    else if (randomTeleport && subject != null)
                     {
                         int chosenPad = UnityEngine.Random.Range(0, destinationPad.Count);
                         destinationPad[chosenPad].GetComponent<CustomTeleporter>().arrived = true;
@@ -166,7 +176,7 @@ public class CustomTeleporter : MonoBehaviour
                     }
                     else
                     {
-                        if (destinationPad[0] != null)
+                        if (destinationPad[0] != null && subject != null)
                         {
                             destinationPad[0].GetComponent<CustomTeleporter>().arrived = true;
                             subject.transform.position = destinationPad[0].transform.position + new Vector3(0, teleportationHeightOffset + 1.5f, 0);
@@ -238,7 +248,6 @@ public class CustomTeleporter : MonoBehaviour
 				{
 					arrived = false;
 				}
-				subject = null;
 			}
 		}
 		else
@@ -249,7 +258,10 @@ public class CustomTeleporter : MonoBehaviour
 			{
 				arrived = false;
 			}
-			subject = null;
 		}
 	}
+    public void SetSubject(Transform _subject)
+    {
+        subject = _subject;
+    }
 }

@@ -5,15 +5,17 @@ using DarkTreeFPS;
 
 public class GameManager : MonoBehaviour
 {
-
-    // Start is called before the first frame update
     private bool enableStartGame;
     public bool InTutorial;
     public TutorialElements tutorialElements;
-    private FPSController player;
+    [HideInInspector]
+    public FPSController player;
+    [HideInInspector]
+    public PlayerStats playerStats;
     public FPSController PlayerPC;
     public FPSController PlayerAndroid;
     public GenerateEnemyManager generateEnemyManager;
+    public TeleportController TC;
 
     [Header("Unloked Items")]
     public bool UnlokedItem;
@@ -24,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     public UIStadistics uIStadistics;
 
+    private bool gameOver = false;
+
     [System.Serializable]
     public struct TutorialElements
     {
@@ -32,6 +36,9 @@ public class GameManager : MonoBehaviour
         public bool skipTutorial;
         public GameObject PrefabEvents;
     }
+
+    [Header("Game Data")]
+    public int countLifes;
 
     void Start()
     {
@@ -44,24 +51,29 @@ public class GameManager : MonoBehaviour
 #if UNITY_STANDALONE
         player = PlayerPC;
 #endif
+        playerStats = player.gameObject.GetComponent<PlayerStats>();
     }
     private void Update()
     {
-        if (generateEnemyManager.GetFinishGenerator() && UnlokedItem)
+        if (!gameOver)
         {
-            gd.UnlokedObject(NameLevelUnlocked);
-            gd.UnlokedObject(UnlockedItemName);
-            uIStadistics.camvasStadistics.SetActive(true);
-            uIStadistics.unlockedConstruction = true;
-            player.lockCursor = false;
+            if (generateEnemyManager.GetFinishGenerator() && UnlokedItem)
+            {
+                gd.UnlokedObject(NameLevelUnlocked);
+                gd.UnlokedObject(UnlockedItemName);
+                uIStadistics.camvasStadistics.SetActive(true);
+                uIStadistics.unlockedConstruction = true;
+                player.lockCursor = false;
+            }
+            else if (generateEnemyManager.GetFinishGenerator())
+            {
+                gd.UnlokedObject(NameLevelUnlocked);
+                uIStadistics.camvasStadistics.SetActive(true);
+                uIStadistics.unlockedConstruction = false;
+                player.lockCursor = false;
+            }
         }
-        else if (generateEnemyManager.GetFinishGenerator())
-        {
-            gd.UnlokedObject(NameLevelUnlocked);
-            uIStadistics.camvasStadistics.SetActive(true);
-            uIStadistics.unlockedConstruction = false;
-            player.lockCursor = false;
-        }
+        CheckGameOver();
     }
     public void SetEnableStartGame(bool startGame)
     {
@@ -109,5 +121,34 @@ public class GameManager : MonoBehaviour
     public void DisableCursor()
     {
         player.lockCursor = true;
+    }
+    public void CheckGameOver()
+    {
+        gameOver = true;
+        for (int i = 0; i < TC.buttonsTeleports.Count; i++)
+        {
+            if (!TC.buttonsTeleports[i].disableButton)
+            {
+                //Debug.Log("ENTRE");
+                gameOver = false;
+            }
+        }
+        if (countLifes <= 0 || playerStats.health <= 0)
+        {
+            gameOver = true;
+        }
+        if (gameOver)
+        {
+            //PROGRAMAR LO QUE PASA CUANDO PERDES.
+            Debug.Log("GameOver");
+        }
+    }
+    public void SetGameOver(bool _gameOver)
+    {
+        gameOver = _gameOver;
+    }
+    public bool GetGameOver()
+    {
+        return gameOver;
     }
 }

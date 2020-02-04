@@ -31,8 +31,12 @@ public class Demon : Enemy
     // Update is called once per frame
     protected override void Update()
     {
+        if (stateEnemy != StateEnemy.stune)
+        {
+            CheckAttack();
+        }
         base.Update();
-        CheckAttack();
+        CheckState();
     }
     private void OnDisable()
     {

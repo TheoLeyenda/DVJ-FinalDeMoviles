@@ -155,8 +155,8 @@ public class GenerateEnemyManager : MonoBehaviour
             else
             {
                 finishGenerator = true;
-                Debug.Log("NIVEL TERMINADO");
-                Debug.ClearDeveloperConsole();
+                //Debug.Log("NIVEL TERMINADO");
+                //Debug.ClearDeveloperConsole();
                 //EL JUGADOR GANO EL NIVEL.
             }
         }

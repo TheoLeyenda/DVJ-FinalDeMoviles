@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6453170}
   - component: {fileID: -4796373026185617728}
   - component: {fileID: 9183798715222325441}
+  - component: {fileID: 4539687607107978487}
+  - component: {fileID: 458130779901650796}
   m_Layer: 0
   m_Name: Destroyed_House_V2
   m_TagString: MeleTarget
@@ -120,10 +122,93 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 100
+  maxLife: 100
+  myTeleporter: {fileID: 7252643250972884828}
+  player: {fileID: 0}
   rotateStart: 0
   pivotMovement: 2
   pivotRotation: 1
   rotation: -90
+  meshRenderers:
+  - {fileID: 2334130}
+  - {fileID: 68068590}
+  - {fileID: 1127271354}
+  - {fileID: 1645317996}
+  - {fileID: 1610183743}
+  - {fileID: 682369473}
+  - {fileID: 703855312}
+  - {fileID: 88181701}
+  - {fileID: 1051063559}
+  - {fileID: 1746945767}
+  - {fileID: 999986620}
+  - {fileID: 875606028}
+  - {fileID: 2066688252}
+  - {fileID: 372566842}
+  - {fileID: 108854809}
+  - {fileID: 1697538672}
+  - {fileID: 775801715}
+  - {fileID: 433093968}
+  - {fileID: 1784582343}
+  - {fileID: 1508213490}
+  - {fileID: 1910321682}
+  - {fileID: 620044515}
+  - {fileID: 1259939241}
+  - {fileID: 1843396437}
+  - {fileID: 368760173}
+  - {fileID: 1218240339}
+  - {fileID: 338016758}
+  - {fileID: 1324606185}
+  - {fileID: 1221919821}
+  - {fileID: 149629289}
+  - {fileID: 259138718}
+  - {fileID: 7252643250963584124}
+  - {fileID: 5536691925115686916}
+  - {fileID: 7555562806095396219}
+  - {fileID: 4966643403630587744}
+  colliders:
+  - {fileID: 6453170}
+  - {fileID: 4539687607107978487}
+  - {fileID: 68068589}
+  - {fileID: 1127271353}
+  - {fileID: 1645317995}
+  - {fileID: 1610183742}
+  - {fileID: 682369472}
+  - {fileID: 703855311}
+  - {fileID: 88181700}
+  - {fileID: 1051063558}
+  - {fileID: 1746945766}
+  - {fileID: 999986619}
+  - {fileID: 875606027}
+  - {fileID: 2066688251}
+  - {fileID: 372566841}
+  - {fileID: 108854808}
+  - {fileID: 1697538671}
+  - {fileID: 775801714}
+  - {fileID: 433093967}
+  - {fileID: 1784582342}
+  - {fileID: 1508213489}
+  - {fileID: 1910321681}
+  - {fileID: 620044514}
+  - {fileID: 1259939240}
+  - {fileID: 1843396436}
+  - {fileID: 368760172}
+  - {fileID: 1218240338}
+  - {fileID: 338016757}
+  - {fileID: 1324606184}
+  - {fileID: 1221919820}
+  - {fileID: 149629288}
+  - {fileID: 259138717}
+  - {fileID: 7252643250970626332}
+  - {fileID: 1712510124110435085}
+  - {fileID: 9063494447019878713}
+  - {fileID: 2470266160800908149}
+  - {fileID: 3963421655474728936}
+  - {fileID: 2159234786304698496}
+  - {fileID: 1550577531418805544}
+  - {fileID: 1368054214965058816}
+  - {fileID: 4561034775973689102}
+  - {fileID: 1170855040515542880}
+  particleSystemTeleport: {fileID: 7252643250981082076}
   valueDown: 0.5
   valueUp: 0
 --- !u!114 &9183798715222325441
@@ -139,6 +224,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   construction: {fileID: -4796373026185617728}
+--- !u!65 &4539687607107978487
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119966}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.10412485, y: 0.09938753, z: 0.08655319}
+  m_Center: {x: 0.014055521, y: -0.0097641805, z: 0.04074692}
+--- !u!54 &458130779901650796
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119966}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &68068587
 GameObject:
   m_ObjectHideFlags: 0
@@ -3651,9 +3765,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60ea8a8ee79fc564294d0a35f8b0ae4a, type: 3}
+--- !u!23 &7252643250963584124 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2300000, guid: 60ea8a8ee79fc564294d0a35f8b0ae4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 7252643250965744668}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7252643250965878428 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 60ea8a8ee79fc564294d0a35f8b0ae4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 7252643250965744668}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7252643250981082076 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19800000, guid: 60ea8a8ee79fc564294d0a35f8b0ae4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 7252643250965744668}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7252643250972884828 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 11400000, guid: 60ea8a8ee79fc564294d0a35f8b0ae4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 7252643250965744668}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a12a6df1fe650d441955e878d144f941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &7252643250970626332 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 13600000, guid: 60ea8a8ee79fc564294d0a35f8b0ae4a,
     type: 3}
   m_PrefabInstance: {fileID: 7252643250965744668}
   m_PrefabAsset: {fileID: 0}
