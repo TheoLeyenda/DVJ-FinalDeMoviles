@@ -35,6 +35,7 @@ public class Shop : MonoBehaviour
         public bool outStock;
         //public int countStock;
         public Text textCount;
+        public Text textPrice;
 
         public void CheckInShop()
         {
@@ -101,6 +102,19 @@ public class Shop : MonoBehaviour
         itemsShop[(int)ItemsShoop.MedikitPowerUp].textCount.text = "" + gd.dataPlayer.countMedikitPowerUp;
         itemsShop[(int)ItemsShoop.IcePowerUp].textCount.text = "" + gd.dataPlayer.countIcePowerUp;
         itemsShop[(int)ItemsShoop.MeteoroPowerUp].textCount.text = "" + gd.dataPlayer.countMeteoroPowerUp;
+
+        itemsShop[(int)ItemsShoop.M4].textPrice.text = itemsShop[(int)ItemsShoop.M4].price + "$";
+        itemsShop[(int)ItemsShoop.AmmoM4].textPrice.text = itemsShop[(int)ItemsShoop.AmmoM4].price + "$";
+        itemsShop[(int)ItemsShoop.SCAR].textPrice.text = itemsShop[(int)ItemsShoop.SCAR].price + "$";
+        itemsShop[(int)ItemsShoop.AmmoSCAR].textPrice.text = itemsShop[(int)ItemsShoop.AmmoSCAR].price + "$";
+        itemsShop[(int)ItemsShoop.Sniper].textPrice.text = itemsShop[(int)ItemsShoop.Sniper].price + "$";
+        itemsShop[(int)ItemsShoop.AmmoSniper].textPrice.text = itemsShop[(int)ItemsShoop.AmmoSniper].price + "$";
+        itemsShop[(int)ItemsShoop.NukePowerUp].textPrice.text = itemsShop[(int)ItemsShoop.NukePowerUp].price + "$";
+        itemsShop[(int)ItemsShoop.LifeUpPowerUp].textPrice.text = itemsShop[(int)ItemsShoop.LifeUpPowerUp].price + "$";
+        itemsShop[(int)ItemsShoop.RepairConstructionPowerUp].textPrice.text = itemsShop[(int)ItemsShoop.RepairConstructionPowerUp].price + "$";
+        itemsShop[(int)ItemsShoop.MedikitPowerUp].textPrice.text = itemsShop[(int)ItemsShoop.MedikitPowerUp].price + "$";
+        itemsShop[(int)ItemsShoop.IcePowerUp].textPrice.text = itemsShop[(int)ItemsShoop.IcePowerUp].price + "$";
+        itemsShop[(int)ItemsShoop.MeteoroPowerUp].textPrice.text = itemsShop[(int)ItemsShoop.MeteoroPowerUp].price + "$";
     }
     public void BuyItem(int indexItemShop)
     {

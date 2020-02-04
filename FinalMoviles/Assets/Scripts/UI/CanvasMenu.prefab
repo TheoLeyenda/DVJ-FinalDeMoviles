@@ -18154,7 +18154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6379252228897928389
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18258,72 +18258,84 @@ MonoBehaviour:
     button: {fileID: 6361982650788651600}
     outStock: 0
     textCount: {fileID: 0}
+    textPrice: {fileID: 8024533923144989564}
   - name: AmmoM4
     price: 0
     count: 30
     button: {fileID: 9196836589279537039}
     outStock: 0
     textCount: {fileID: 1454615719939358768}
+    textPrice: {fileID: 1167419809600254120}
   - name: SCAR
     price: 0
     count: 1
     button: {fileID: 2883621491618730709}
     outStock: 0
     textCount: {fileID: 0}
+    textPrice: {fileID: 6840253912758406018}
   - name: AmmoSCAR
     price: 0
     count: 30
     button: {fileID: 9105970356442720896}
     outStock: 0
     textCount: {fileID: 4992685034895453368}
+    textPrice: {fileID: 6308993464735713946}
   - name: Sniper
     price: 0
     count: 1
     button: {fileID: 3598341068090588257}
     outStock: 0
     textCount: {fileID: 0}
+    textPrice: {fileID: 1928714631786915501}
   - name: AmmoSniper
     price: 0
     count: 10
     button: {fileID: 7267128893889022967}
     outStock: 0
     textCount: {fileID: 7497214783777246678}
+    textPrice: {fileID: 7024933348443867779}
   - name: NukePowerUp
     price: 0
     count: 1
     button: {fileID: 1924088813714960218}
     outStock: 0
     textCount: {fileID: 7628205581425373320}
+    textPrice: {fileID: 6674023034071990939}
   - name: LifeUpPowerUp
     price: 0
     count: 1
     button: {fileID: 6855482196339550859}
     outStock: 0
     textCount: {fileID: 2173061570941256671}
+    textPrice: {fileID: 1322346305414892982}
   - name: RepairConstructionPowerUp
     price: 0
     count: 1
     button: {fileID: 3500865093304558897}
     outStock: 0
     textCount: {fileID: 3080400934589044728}
+    textPrice: {fileID: 5404603316701681205}
   - name: MedikitPowerUp
     price: 0
     count: 1
     button: {fileID: 8864917607707072573}
     outStock: 0
     textCount: {fileID: 5799342017526553312}
+    textPrice: {fileID: 1159951743957709388}
   - name: IcePowerUp
     price: 0
     count: 1
     button: {fileID: 1134541285617121168}
     outStock: 0
     textCount: {fileID: 5084294292142756625}
+    textPrice: {fileID: 8999686204819627438}
   - name: MeteoroPowerUp
     price: 0
     count: 1
     button: {fileID: 2980004850239003934}
     outStock: 0
     textCount: {fileID: 7484892446672201831}
+    textPrice: {fileID: 5157531269248832332}
 --- !u!1 &1000445921394581150
 GameObject:
   m_ObjectHideFlags: 0
@@ -20840,7 +20852,7 @@ GameObject:
   - component: {fileID: 6454894230823979087}
   - component: {fileID: 6674023034071990939}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28291,7 +28303,7 @@ GameObject:
   - component: {fileID: 9216619164581215765}
   - component: {fileID: 1322346305414892982}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29279,7 +29291,7 @@ GameObject:
   - component: {fileID: 4990532155787199733}
   - component: {fileID: 5157531269248832332}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29881,7 +29893,7 @@ GameObject:
   - component: {fileID: 8106112285132123702}
   - component: {fileID: 8999686204819627438}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32987,7 +32999,7 @@ GameObject:
   - component: {fileID: 8493717613241579560}
   - component: {fileID: 1159951743957709388}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33629,7 +33641,7 @@ GameObject:
   - component: {fileID: 854308338909875159}
   - component: {fileID: 5404603316701681205}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
