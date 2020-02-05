@@ -54,6 +54,7 @@ public class Enemy : MonoBehaviour
     public TypeEnemy typeEnemy;
 
     public static event Action<Enemy> OnDieAction;
+    public static event Action<Enemy> OnFinishRoute;
     protected virtual void Start()
     {
         rig = GetComponent<Rigidbody>();
@@ -108,15 +109,22 @@ public class Enemy : MonoBehaviour
             {
                 if (OnDieAction != null)
                     OnDieAction(this);
+                if (OnFinishRoute != null)
+                    OnFinishRoute(this);
+
                 EnemyPrefab.SetActive(false);
             }
             else
             {
                 if (OnDieAction != null)
                     OnDieAction(this);
+                if (OnFinishRoute != null)
+                    OnFinishRoute(this);
+
                 gameObject.SetActive(false);
             }
         }
+        
     }
     public void CheckMeleAttack()
     {

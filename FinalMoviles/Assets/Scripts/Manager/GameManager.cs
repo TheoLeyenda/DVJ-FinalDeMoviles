@@ -40,6 +40,18 @@ public class GameManager : MonoBehaviour
     [Header("Game Data")]
     public int countLifes;
 
+    private void OnEnable()
+    {
+        Enemy.OnFinishRoute += SubstractLifes;
+    }
+    private void OnDisable()
+    {
+        Enemy.OnFinishRoute -= SubstractLifes;
+    }
+    public void SubstractLifes(Enemy e)
+    {
+        countLifes = countLifes - e.DamageLifes;
+    }
     void Start()
     {
         gd = GameData.instaceGameData;
