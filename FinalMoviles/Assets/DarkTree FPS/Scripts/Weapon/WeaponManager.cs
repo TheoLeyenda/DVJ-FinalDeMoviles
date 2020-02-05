@@ -1,7 +1,4 @@
-﻿/// DarkTreeDevelopment (2019) DarkTree FPS v1.2
-/// If you have any questions feel free to write me at email --- darktreedevelopment@gmail.com ---
-/// Thanks for purchasing my asset!
-
+﻿
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -89,7 +86,10 @@ namespace DarkTreeFPS
         private int indexSlot = 0;
 
         public bool enableShoot = false;
-        [HideInInspector]
+        //[HideInInspector]
+
+        public GameObject staticReticle;
+        public RectTransform dynamicReticle;
         //public Weapon currentWeapon;
 
         public void ON()

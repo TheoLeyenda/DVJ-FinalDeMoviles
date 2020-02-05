@@ -275,7 +275,7 @@ namespace DarkTreeFPS
             inventory = FindObjectOfType<Inventory>();
             input = FindObjectOfType<InputManager>();
 
-            if (weaponManager.UseNonPhysicalReticle)
+            /*if (weaponManager.UseNonPhysicalReticle)
             {
                 if (GameObject.Find("StaticReticle") != null)
                     staticReticle = GameObject.Find("StaticReticle");
@@ -284,12 +284,11 @@ namespace DarkTreeFPS
             {
                 if (GameObject.Find("DynamicReticle") != null)
                     dynamicReticle = GameObject.Find("DynamicReticle").GetComponent<RectTransform>();
-            }
+            }*/
 
-            //if (weaponManager.PrimaryGun != this && weaponManager.melleeDefaultWeapon != this)
-            //{
-                UseItemAmmo = false;
-            //}
+            staticReticle = weaponManager.staticReticle;
+            dynamicReticle = weaponManager.dynamicReticle;
+            UseItemAmmo = false;
         }
 
 
@@ -357,12 +356,21 @@ namespace DarkTreeFPS
                     {
                         staticReticle.SetActive(false);
                     }
+                    else
+                    {
+                        Debug.Log("staticReticle is Null");
+                    }
+
                 }
                 else
                 {
                     if (dynamicReticle != null)
                     {
                         dynamicReticle.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        Debug.Log("dynamicReticle is Null");
                     }
                 }
             }
@@ -381,12 +389,20 @@ namespace DarkTreeFPS
                     {
                         staticReticle.SetActive(true);
                     }
+                    else
+                    {
+                        Debug.Log("staticReticle is Null");
+                    }
                 }
                 else
                 {
                     if (dynamicReticle != null)
                     {
                         dynamicReticle.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        Debug.Log("dynamicReticle is Null");
                     }
                 }
             }

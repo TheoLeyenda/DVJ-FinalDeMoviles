@@ -44806,6 +44806,8 @@ MonoBehaviour:
   tempGameobject: {fileID: 0}
   gd: {fileID: 0}
   enableShoot: 0
+  staticReticle: {fileID: 0}
+  dynamicReticle: {fileID: 0}
 --- !u!114 &9073217116206331582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51491,6 +51493,11 @@ PrefabInstance:
       propertyPath: miniMapScale.y
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1811191446848272053, guid: a47b1ab7661661644992c1822a54a1b2,
+        type: 3}
+      propertyPath: renderTex
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1890994131917191131, guid: a47b1ab7661661644992c1822a54a1b2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -51507,6 +51514,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 1d0c184845252df44a655359de388cb8,
         type: 3}
+    - target: {fileID: 1811191446840925501, guid: a47b1ab7661661644992c1822a54a1b2,
+        type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1811191446827912141, guid: a47b1ab7661661644992c1822a54a1b2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
