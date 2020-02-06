@@ -8,6 +8,8 @@ public class MainMenuController : MonoBehaviour
     public GameObject CamvasStart;
     public GameObject CamvasMenu;
     public GameObject CamvasControls;
+    public GameObject ImageControlesAndroid;
+    public GameObject ImageControlesPC;
     public GameObject CamvasInsertName;
     public GameObject CamvasCredits;
     public GameObject CamvasSelectionSurvival;
@@ -23,6 +25,14 @@ public class MainMenuController : MonoBehaviour
     private void Start()
     {
         gd = GameData.instaceGameData;
+#if UNITY_ANDROID
+        ImageControlesAndroid.SetActive(true);
+        ImageControlesPC.SetActive(false);
+#endif
+#if UNITY_STANDALONE
+        ImageControlesPC.SetActive(true);
+        ImageControlesAndroid.SetActive(false);
+#endif
     }
 
     public void StartGame() //BOTON DE INICIO

@@ -260,7 +260,7 @@ namespace DarkTreeFPS
         void DrawHealthStats()
         {
             if (healthUIText != null)
-                healthUIText.text = health.ToString();
+                healthUIText.text = "Salud: "+health.ToString() +"%";
 
             if (healthUISlider != null)
                 healthUISlider.value = health;

@@ -1,6 +1,5 @@
-﻿
-
-using UnityEngine;
+﻿using UnityEngine;
+using System;
 
 namespace DarkTreeFPS
 {
@@ -36,6 +35,9 @@ namespace DarkTreeFPS
         public Shooter shooter;
 
         public PlayerStats playerStats;
+
+        public static event Action<BalisticProjectile> OnHitEnemy;
+        public static event Action<BalisticProjectile> OnPlayerShoot;
         private void Start()
         {
             
@@ -45,6 +47,10 @@ namespace DarkTreeFPS
             if (shooter == Shooter.Player)
             {
                 GetComponent<Rigidbody>().AddForce(transform.forward * initialVelocity);
+                if (OnPlayerShoot != null)
+                {
+                    OnPlayerShoot(this);
+                }
             }
 
             lastPosition = transform.position;
@@ -62,6 +68,10 @@ namespace DarkTreeFPS
                         e.blood.transform.position = hit.point;
                         e.rig.velocity = Vector3.zero;
                         e.rig.angularVelocity = Vector3.zero;
+                        if (OnHitEnemy != null)
+                        {
+                            OnHitEnemy(this);
+                        }
                         if (e.life > 0)
                         {
                             e.animator.Play("Damage");
@@ -69,7 +79,7 @@ namespace DarkTreeFPS
                         float range;
                         if (typeBullet == TypeBullet.Rifle)
                         {
-                            range = Random.Range(10, 15);
+                            range = UnityEngine.Random.Range(10, 15);
                             if (e.scalerBloodVar > 0)
                             {
                                 range = range / (e.scalerBloodVar);
@@ -78,7 +88,7 @@ namespace DarkTreeFPS
                         }
                         else if (typeBullet == TypeBullet.Pistol)
                         {
-                            range = Random.Range(5, 10);
+                            range = UnityEngine.Random.Range(5, 10);
                             if (e.scalerBloodVar > 0)
                             {
                                 range = range / (e.scalerBloodVar);
@@ -88,11 +98,11 @@ namespace DarkTreeFPS
                         e.blood.Play();
                         if (e.typeEnemy == Enemy.TypeEnemy.defensive)
                         {
-                            e.life = e.life - Random.Range(weapon.damageMin, weapon.damageMax) / e.deffense;
+                            e.life = e.life - UnityEngine.Random.Range(weapon.damageMin, weapon.damageMax) / e.deffense;
                         }
                         else
                         {
-                            e.life = e.life - Random.Range(weapon.damageMin, weapon.damageMax);
+                            e.life = e.life - UnityEngine.Random.Range(weapon.damageMin, weapon.damageMax);
                         }
 
                         gameObject.SetActive(false);

@@ -17,6 +17,7 @@ namespace DarkTreeFPS
         public Image imageButtonRuning; 
         public Sprite spriteRunningStickMan;
         public Sprite spriteWalkingStickMan;
+        public Construction construction;
         [Header("Movement Settings")]
         public float moveSpeed = 1f;
         public float crouchSpeed = 0.4f;
@@ -89,8 +90,8 @@ namespace DarkTreeFPS
                 MouseLook();
             
                 StandaloneMovement();
-            
 
+#if UNITY_STANDALONE
             if (lockCursor)
             {
                 Cursor.visible = false;
@@ -101,7 +102,11 @@ namespace DarkTreeFPS
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
-
+#endif
+#if UNITY_ANDROID
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+#endif
             Crouch();
             Landing();
         }

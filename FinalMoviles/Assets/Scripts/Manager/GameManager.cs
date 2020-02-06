@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public FPSController PlayerAndroid;
     public GenerateEnemyManager generateEnemyManager;
     public TeleportController TC;
+    public bool inSurvivalMode;
 
     [Header("Unloked Items")]
     public bool UnlokedItem;
@@ -40,18 +41,18 @@ public class GameManager : MonoBehaviour
     [Header("Game Data")]
     public int countLifes;
 
-    private void OnEnable()
+    /*private void OnEnable()
     {
-        Enemy.OnFinishRoute += SubstractLifes;
+        //Enemy.OnFinishRoute += SubstractLifes;
     }
     private void OnDisable()
     {
-        Enemy.OnFinishRoute -= SubstractLifes;
+        //Enemy.OnFinishRoute -= SubstractLifes;
     }
     public void SubstractLifes(Enemy e)
     {
-        countLifes = countLifes - e.DamageLifes;
-    }
+        //countLifes = countLifes - e.DamageLifes;
+    }*/
     void Start()
     {
         gd = GameData.instaceGameData;

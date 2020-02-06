@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DarkTreeFPS;
 
 public class GameData : MonoBehaviour
 {
     // Start is called before the first frame update
     public List<string> nameLokedObjects;
     public List<string> nameUnlokedObjects;
+    public int scoreForDieEnemy = 60;
+    public int scoreForHitEnemy = 10;
     public int currentLevel;
-    public string currentNameUser;
+    public string currentNameUser = "None";
     public int countEnemysDie;
     public int countBulletsShoots;
     public int currentScore;
@@ -65,6 +68,24 @@ public class GameData : MonoBehaviour
     private void Start()
     {
         currentLevel = 0;
+    }
+    private void OnEnable()
+    {
+        Enemy.LifeIsZero += AddEnemysDie;
+        BalisticProjectile.OnPlayerShoot += AddShootPlayer;
+    }
+    private void OnDisable()
+    {
+        Enemy.LifeIsZero -= AddEnemysDie;
+        BalisticProjectile.OnPlayerShoot -= AddShootPlayer;
+    }
+    public void AddEnemysDie(Enemy e)
+    {
+        countEnemysDie++;
+    }
+    public void AddShootPlayer(BalisticProjectile bp)
+    {
+        countBulletsShoots++;
     }
     public bool CheckUnlokedObject(string name)
     {

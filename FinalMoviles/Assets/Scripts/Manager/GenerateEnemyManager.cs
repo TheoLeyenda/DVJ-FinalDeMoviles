@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class GenerateEnemyManager : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -23,7 +23,7 @@ public class GenerateEnemyManager : MonoBehaviour
     private bool ActivateElementsUiNextWave;
 
     private bool finishGenerator = false;
-
+    public static event Action<GenerateEnemyManager> OnFinishWave;
     private void Start()
     {
         if (!infinityGenerator)
@@ -96,7 +96,7 @@ public class GenerateEnemyManager : MonoBehaviour
                     {
                         for (int i = 0; i < enemyGenerates.Count; i++)
                         {
-                            float a = Random.Range(0, 100);
+                            float a = UnityEngine.Random.Range(0, 100);
                             enemyGenerates[i].StartGenerate = true;
                             enemyGenerates[i].typeGenerator = EnemyGenerate.TypeGenerator.Infinite;
                             enemyGenerates[i].ready = false;
@@ -141,6 +141,10 @@ public class GenerateEnemyManager : MonoBehaviour
 
                         }
                         currentWave++;
+                        if (OnFinishWave != null)
+                        {
+                            OnFinishWave(this);
+                        }
                     }
                     DelayStartRound = auxDelayStartRound;
                     enableCountdown = false;

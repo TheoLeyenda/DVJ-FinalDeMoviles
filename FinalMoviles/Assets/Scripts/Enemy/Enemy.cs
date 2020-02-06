@@ -55,6 +55,7 @@ public class Enemy : MonoBehaviour
 
     public static event Action<Enemy> OnDieAction;
     public static event Action<Enemy> OnFinishRoute;
+    public static event Action<Enemy> LifeIsZero;
     protected virtual void Start()
     {
         rig = GetComponent<Rigidbody>();
@@ -199,6 +200,10 @@ public class Enemy : MonoBehaviour
         {
             //SI ANDA MAL LA DESAPARICION O APARICION DEL ENEMIGO PROGRAMAR EL TEMA DEL RECICLADO DEL POOL
             DieEnemy();
+            if (OnDieAction != null)
+            {
+                OnDieAction(this);
+            }
         }
     }
     public void DieEnemy()

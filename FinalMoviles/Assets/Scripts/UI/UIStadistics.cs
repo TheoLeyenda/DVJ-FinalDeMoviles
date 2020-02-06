@@ -15,6 +15,12 @@ public class UIStadistics : MonoBehaviour
     public GameObject button;
     [HideInInspector]
     public bool unlockedConstruction;
+    private GameData gd;
+    private int bulletsShoots = 0;
+    private void Start()
+    {
+        gd = GameData.instaceGameData;
+    }
     private void OnEnable()
     {
         ShowData();
@@ -34,5 +40,13 @@ public class UIStadistics : MonoBehaviour
             textNotUnlockedConstruction.color = Color.red;
             imageUnlockedConstruction.gameObject.SetActive(false);
         }
+        textCountEnemysDie.text = "Enemigos Abatidos: " + gd.countEnemysDie;
+        textCountBulletsShoots.text = "Balas Disparadas: " + gd.countBulletsShoots;
+        textScore.text = "Puntaje: " + gd.currentScore + "$";
+        gd.generalScore = gd.generalScore + gd.currentScore;
+        textTotalScore.text = "Puntaje Total: " + gd.generalScore + "$";
+        gd.countEnemysDie = 0;
+        gd.countBulletsShoots = 0;
+        gd.currentScore = 0;
     }
 }

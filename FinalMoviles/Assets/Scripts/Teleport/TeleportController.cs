@@ -14,6 +14,7 @@ public class TeleportController : MonoBehaviour
     [System.Serializable]
     public class ButtonsTeleports
     {
+        public int lifeConstruction;
         public GameObject go_imageLifeConstruction;
         public Image imageLifeConstruction;
         public Image ImageButtonDisable;

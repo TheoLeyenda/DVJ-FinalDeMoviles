@@ -56,6 +56,7 @@ namespace DarkTreeFPS
         public int currentWeaponIndex;
         public Slot activeSlot;
         private bool once = false;
+        private bool switchWeaponButton = false;
         //public Weapon primarySlot;
         //public Weapon secondarySlot;
 
@@ -350,10 +351,13 @@ namespace DarkTreeFPS
 
             return null;
         }
-        
+        public void SetSwitchWeapon(bool _switchWeapon)
+        {
+            switchWeaponButton = _switchWeapon;
+        }
         private void SlotInput()
         {
-            if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            if (Input.GetAxis("Mouse ScrollWheel") > 0 || switchWeaponButton)
             {
                 switchSlotIndex++;
                 if (switchSlotIndex < slotsSize)
@@ -373,6 +377,7 @@ namespace DarkTreeFPS
                     switchSlotIndex = 0;
                     SlotChange();
                 }
+                switchWeaponButton = false;
                 
             }
             if (Input.GetAxis("Mouse ScrollWheel") < 0)
