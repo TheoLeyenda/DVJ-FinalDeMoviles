@@ -267,7 +267,7 @@ namespace DarkTreeFPS
             {
                 if (Input.GetKey(activeSlot.storedWeapon.input.Fire) && !PlayerStats.isPlayerDead && activeSlot.storedWeapon.weaponType != WeaponType.Pistol && !InventoryManager.showInventory && activeSlot.storedWeapon.fireMode == Weapon.FireMode.automatic)  //Statement to restrict auto-fire for pistol weapon type. Riffle and others are automatic
                 {
-                    Debug.Log("ENTRE");
+                    //Debug.Log("ENTRE");
                     activeSlot.storedWeapon.Fire();
                 }
                 else if (Input.GetKeyDown(activeSlot.storedWeapon.input.Fire) && !PlayerStats.isPlayerDead && (activeSlot.storedWeapon.weaponType == WeaponType.Pistol || activeSlot.storedWeapon.fireMode == Weapon.FireMode.single) && !InventoryManager.showInventory)

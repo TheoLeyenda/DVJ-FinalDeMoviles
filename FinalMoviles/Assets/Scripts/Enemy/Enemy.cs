@@ -198,16 +198,18 @@ public class Enemy : MonoBehaviour
     {
         if (life <= 0)
         {
+            
             //SI ANDA MAL LA DESAPARICION O APARICION DEL ENEMIGO PROGRAMAR EL TEMA DEL RECICLADO DEL POOL
             DieEnemy();
-            if (OnDieAction != null)
-            {
-                OnDieAction(this);
-            }
         }
     }
     public void DieEnemy()
     {
+        if (LifeIsZero != null)
+        {
+            LifeIsZero(this);
+        }
+
         if (EnemyPrefab != null)
         {
             if (OnDieAction != null)

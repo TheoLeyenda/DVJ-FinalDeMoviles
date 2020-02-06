@@ -58,6 +58,7 @@ public class Shop : MonoBehaviour
         }
     }
     public List<ItemShoop> itemsShop;
+    public Text textCurrentScore;
     private GameData gd;
     public void CheckItems()
     {
@@ -90,6 +91,11 @@ public class Shop : MonoBehaviour
         gd = GameData.instaceGameData;
         CheckItems();
         ShowItem();
+    }
+    private void OnEnable()
+    { 
+        gd = GameData.instaceGameData;
+        textCurrentScore.text = "Puntaje: "+gd.generalScore+"$";
     }
     public void ShowItem()
     {

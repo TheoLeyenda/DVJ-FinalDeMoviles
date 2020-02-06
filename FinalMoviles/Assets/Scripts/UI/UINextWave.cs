@@ -52,11 +52,15 @@ public class UINextWave : MonoBehaviour
             {
                 if (Input.GetKeyDown(keyCodeStartWave))
                 {
-                    generateEnemyManager.ActivateAllGenerators();
+                    StartWave();
                 }
             }
         }
         
+    }
+    public void StartWave()
+    {
+        generateEnemyManager.ActivateAllGenerators();
     }
     public void SetActivateElementsCamvasNextWave(bool _activateElementsCamvasNextWave)
     {

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public FPSController PlayerAndroid;
     public GenerateEnemyManager generateEnemyManager;
     public TeleportController TC;
+    public bool isFinishLevel;
     public bool inSurvivalMode;
 
     [Header("Unloked Items")]
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
     public GameData gd;
 
     public UIStadistics uIStadistics;
+    public UIGameOver uIGameOver;
 
     private bool gameOver = false;
 
@@ -153,7 +155,8 @@ public class GameManager : MonoBehaviour
         if (gameOver)
         {
             //PROGRAMAR LO QUE PASA CUANDO PERDES.
-            Debug.Log("GameOver");
+            //Debug.Log("GameOver");
+            uIGameOver.gameObject.SetActive(true);
         }
     }
     public void SetGameOver(bool _gameOver)
