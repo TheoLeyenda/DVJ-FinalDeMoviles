@@ -12,6 +12,8 @@ public class UIGameData : MonoBehaviour
     //public Text textConstruction;
     //public Text textRemainingEnemies;
     public Text textWave;
+    public Text textCountWaves;
+    public GenerateEnemyManager gem;
 
     private int wave = 1;
     public GameManager gm;
@@ -23,6 +25,7 @@ public class UIGameData : MonoBehaviour
         textScore.text = "Puntaje: 0$";
         textLifes.text = ""+gm.countLifes;
         textWave.text = "Ronda 1";
+        textCountWaves.text = "Rondas: 1/" + gem.countTotalWaves;
         if (gm.inSurvivalMode)
         {
             textWave.gameObject.SetActive(false);
@@ -57,9 +60,17 @@ public class UIGameData : MonoBehaviour
         gm.countLifes = gm.countLifes - e.DamageLifes;
         textLifes.text = ""+gm.countLifes;
     }
-    public void AddWave(GenerateEnemyManager gem)
+    public void AddWave(GenerateEnemyManager _gem)
     {
         wave++;
         textWave.text = "Ronda " + wave;
+        if (wave > _gem.countTotalWaves)
+        {
+            textCountWaves.color = Color.yellow;
+        }
+        else
+        {
+            textCountWaves.text = "Rondas: " + wave + "/" + _gem.countTotalWaves;
+        }
     }
 }

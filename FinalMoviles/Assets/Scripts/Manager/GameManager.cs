@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public FPSController PlayerAndroid;
     public GenerateEnemyManager generateEnemyManager;
     public TeleportController TC;
+    public GameObject MenuPause;
+    public InputManager inputManager;
     public bool isFinishLevel;
     public bool inSurvivalMode;
 
@@ -70,6 +72,10 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyDown(inputManager.Pause))
+        {
+            GamePause();
+        }
         if (!gameOver)
         {
             if (generateEnemyManager.GetFinishGenerator() && UnlokedItem)
@@ -89,6 +95,11 @@ public class GameManager : MonoBehaviour
             }
         }
         CheckGameOver();
+    }
+    public void GamePause()
+    {
+        Time.timeScale = 0;
+        MenuPause.SetActive(true);
     }
     public void SetEnableStartGame(bool startGame)
     {

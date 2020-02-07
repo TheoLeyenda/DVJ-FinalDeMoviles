@@ -23,6 +23,10 @@ public class UIStadistics : MonoBehaviour
     }
     private void OnEnable()
     {
+        if (gd == null)
+        {
+            gd = GameData.instaceGameData;
+        }
         ShowData();
     }
     public void ShowData()

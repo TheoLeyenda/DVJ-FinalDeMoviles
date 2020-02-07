@@ -434,8 +434,10 @@ namespace DarkTreeFPS
                         activeSlot.storedWeapon.gameObject.SetActive(true);
 
                         //print("I equip slot number" + switchSlotIndex);
-
-                        weaponHolderAnimator.Play("Unhide");
+                        if (weaponHolderAnimator.enabled && weaponHolderAnimator.gameObject.activeSelf && weaponHolderAnimator.isActiveAndEnabled)
+                        {
+                            weaponHolderAnimator.Play("Unhide");
+                        }
                     }
                 }
                 else

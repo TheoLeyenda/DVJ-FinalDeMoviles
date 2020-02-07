@@ -994,6 +994,11 @@ namespace DarkTreeFPS
             {
                 if (scopeActivateTimer <= 0)
                 {
+                    if (!scope.activeSelf)
+                    {
+                        normalSensX = controller.sensitivity.x;
+                        normalSensY = controller.sensitivity.y;
+                    }
                     scope.SetActive(true);
                     cam.fieldOfView = scopeFOV;
                     controller.sensitivity.x = scopeSensitivityX;
@@ -1003,8 +1008,11 @@ namespace DarkTreeFPS
             else
             {
                 cam.fieldOfView = normalFOV;
-                controller.sensitivity.x = normalSensX;
-                controller.sensitivity.y = normalSensY;
+                if (scope.activeSelf)
+                {
+                    controller.sensitivity.x = normalSensX;
+                    controller.sensitivity.y = normalSensY;
+                }
                 scope.SetActive(false);
                 scopeActivateTimer = scopeTimer;
             }

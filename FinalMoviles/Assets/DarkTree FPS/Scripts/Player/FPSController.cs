@@ -82,6 +82,7 @@ namespace DarkTreeFPS
             weaponHolderAnimator = GameObject.Find("Weapon holder").GetComponent<Animator>();
 
             inputManager = FindObjectOfType<InputManager>();
+            crouch = false;
         }
 
         private void Update()
@@ -330,7 +331,7 @@ namespace DarkTreeFPS
                 {
                     camHolder.transform.localPosition = new Vector3(0, posCamara.localPosition.y,0); 
                     controllerCollider.height = height;
-                    crouch = false;
+                   crouch = false;
                 }
                 else
                     crouch = true;
