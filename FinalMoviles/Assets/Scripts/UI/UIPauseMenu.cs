@@ -107,11 +107,13 @@ public class UIPauseMenu : MonoBehaviour
     }
     public void RestartLevel()
     {
+        Time.timeScale = 1;
         //Reinicia el nivel
         SceneManager.LoadScene("LoadScene");
     }
     public void ExitLevel()
     {
+        Time.timeScale = 1;
         //Sale a la pantalla de loby.
         SceneManager.LoadScene("LobyScene");
     }

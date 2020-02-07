@@ -15,7 +15,7 @@ public class UIGameData : MonoBehaviour
     public Text textCountWaves;
     public GenerateEnemyManager gem;
 
-    private int wave = 1;
+    private int wave = 0;
     public GameManager gm;
     private GameData gd;
 
@@ -25,7 +25,11 @@ public class UIGameData : MonoBehaviour
         textScore.text = "Puntaje: 0$";
         textLifes.text = ""+gm.countLifes;
         textWave.text = "Ronda 1";
-        textCountWaves.text = "Rondas: 1/" + gem.countTotalWaves;
+        if (gm.InTutorial)
+        {
+            wave = 1;
+        }
+        textCountWaves.text = "Rondas: "+wave +"/" + gem.countTotalWaves;
         if (gm.inSurvivalMode)
         {
             textWave.gameObject.SetActive(false);
