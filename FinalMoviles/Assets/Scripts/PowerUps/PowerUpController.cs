@@ -15,6 +15,7 @@ public class PowerUpController : MonoBehaviour
     private bool enableFrameworkPowerUps = false;
     public FPSController playerPC;
     public FPSController playerAndroid;
+    public GameObject camvasAndroid;
 
     [Header("DATA: PowerUp Nuke")]
     public Button buttonNuke;
@@ -285,6 +286,7 @@ public class PowerUpController : MonoBehaviour
         {
             if (timeMeteoroON > 0)
             {
+                camvasAndroid.SetActive(false);
                 timeMeteoroON = timeMeteoroON - Time.deltaTime;
                 cameraMeteoro.SetActive(true);
                 player.gameObject.SetActive(false);
@@ -293,6 +295,7 @@ public class PowerUpController : MonoBehaviour
             }
             else if (timeMeteoroON <= 0)
             {
+                camvasAndroid.SetActive(true);
                 player.gameObject.SetActive(true);
                 player.lockCursor = true;
                 timeMeteoroON = auxTimeMeteoroON;
