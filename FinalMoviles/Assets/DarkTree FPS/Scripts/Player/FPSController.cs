@@ -155,7 +155,7 @@ namespace DarkTreeFPS
                 weaponHolderAnimator.SetBool("Run", false);
             }
 
-            if (crouch)
+            /*if (crouch)
             {
                 moveSpeedLocal = crouchSpeed;
                 weaponHolderAnimator.SetBool("Walk", false);
@@ -168,12 +168,12 @@ namespace DarkTreeFPS
                     weaponHolderAnimator.SetBool("Crouch", false);
             }
             else
-                weaponHolderAnimator.SetBool("Crouch", false);
+                weaponHolderAnimator.SetBool("Crouch", false);*/
 
-            if (Input.GetKeyDown(inputManager.Crouch))
+            /*if (Input.GetKeyDown(inputManager.Crouch))
             {
                 crouch = !crouch;
-            }
+            }*/
             if (Input.GetKeyDown(inputManager.Jump))
             {
                 Jump();
@@ -207,7 +207,7 @@ namespace DarkTreeFPS
                 weaponHolderAnimator.SetBool("Run", false);
             }
 
-            if (crouch)
+            /*if (crouch)
             {
                 moveSpeedLocal = crouchSpeed;
                 weaponHolderAnimator.SetBool("Walk", false);
@@ -220,12 +220,12 @@ namespace DarkTreeFPS
                     weaponHolderAnimator.SetBool("Crouch", false);
             }
             else
-                weaponHolderAnimator.SetBool("Crouch", false);
+                weaponHolderAnimator.SetBool("Crouch", false);*/
 
-            if (Input.GetKeyDown(inputManager.Crouch))
+            /*if (Input.GetKeyDown(inputManager.Crouch))
             {
                 crouch = !crouch;
-            }
+            }*/
             if (Input.GetKeyDown(inputManager.Jump))
             {
                 Jump();
@@ -327,18 +327,18 @@ namespace DarkTreeFPS
             }
             else
             {
-                Ray ray = new Ray();
-                RaycastHit hit;
-                ray.origin = transform.position;
-                ray.direction = transform.up;
-                if (!Physics.Raycast(ray, out hit, 1))
-                {
+                //Ray ray = new Ray();
+                //RaycastHit hit;
+                //ray.origin = transform.position;
+                //ray.direction = transform.up;
+                //if (!Physics.Raycast(ray, out hit, 1))
+                //{
                     camHolder.transform.localPosition = new Vector3(0, posCamara.localPosition.y,0); 
                     controllerCollider.height = height;
-                   crouch = false;
-                }
-                else
-                    crouch = true;
+                    crouch = false;
+                //}
+                //else
+                    //crouch = true;
             }
         }
         

@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
     //public static bool useMobileInput;
     
     [Header("Movement keys")]
-    public KeyCode Crouch;
+    //public KeyCode Crouch;
     public KeyCode Run;
     public KeyCode Jump;
     public KeyCode LeanLeft;
