@@ -10,12 +10,27 @@ public class UINextWave : MonoBehaviour
     public KeyCode keyCodeStartWave;
     [HideInInspector]
     public bool activateElementsCamvasNextWave;
+    public GameManager gm;
     public GenerateEnemyManager generateEnemyManager;
+    public GameObject CountdownObject;
+    public Text textCountdownObject;
 
     // Update is called once per frame
     void Update()
     {
         CheckElementsCamvasNextWave();
+        CheckCountdown();
+    }
+    public void CheckCountdown()
+    {
+        if (generateEnemyManager.DelayStartRound > 0.5 )
+        {
+            textCountdownObject.text = "" + Mathf.Round(generateEnemyManager.DelayStartRound);
+        }
+        else
+        {
+            CountdownObject.SetActive(false);
+        }
     }
     public void CheckElementsCamvasNextWave()
     {
@@ -25,12 +40,14 @@ public class UINextWave : MonoBehaviour
             {
 #if UNITY_ANDROID
                 buttonStartWave.SetActive(false);
+                CountdownObject.SetActive(false);
 #endif
             }
             if (textStartWave.gameObject.activeSelf)
             {
 #if UNITY_STANDALONE
                 textStartWave.gameObject.SetActive(false);
+                CountdownObject.SetActive(false);
 #endif
             }
         }
@@ -40,12 +57,28 @@ public class UINextWave : MonoBehaviour
             {
 #if UNITY_ANDROID
                 buttonStartWave.SetActive(true);
+                if (gm.InTutorial)
+                {
+                    CountdownObject.SetActive(true);
+                }
+                else if (generateEnemyManager.currentWave > 0) 
+                {
+                    CountdownObject.SetActive(true);
+                }
 #endif
             }
             if (!textStartWave.gameObject.activeSelf)
             {
 #if UNITY_STANDALONE
                 textStartWave.gameObject.SetActive(true);
+                if (gm.InTutorial)
+                {
+                    CountdownObject.SetActive(true);
+                }
+                else if (generateEnemyManager.currentWave > 0) 
+                {
+                    CountdownObject.SetActive(true);
+                }
 #endif
             }
             if (textStartWave.gameObject.activeSelf)

@@ -16,7 +16,7 @@ public class GenerateEnemyManager : MonoBehaviour
     public UINextWave uiNextWave;
 
     private int countfinishWave;
-    private int currentWave = 0;
+    public int currentWave = 0;
     public int countTotalWaves;
 
     [SerializeField]

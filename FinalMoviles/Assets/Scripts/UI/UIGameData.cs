@@ -19,6 +19,7 @@ public class UIGameData : MonoBehaviour
     public GameManager gm;
     private GameData gd;
 
+    private bool enableCountdown = false;
     private void Awake()
     {
         gd = GameData.instaceGameData;
@@ -35,6 +36,22 @@ public class UIGameData : MonoBehaviour
             textWave.gameObject.SetActive(false);
         }
     }
+    /*public void CheckCountdown()
+    {
+        if (gem.DelayStartRound >= 0)
+        { 
+            CountdownObject.SetActive(true);
+            textCountdownObject.text = "" + Mathf.Round(gem.DelayStartRound);
+        }
+        else
+        {
+            CountdownObject.SetActive(false);
+        }
+    }
+    private void Update()
+    {
+        CheckCountdown();
+    }*/
     private void OnEnable()
     {
         Enemy.OnDieAction += AddScoreForDieEnemy;
@@ -66,6 +83,7 @@ public class UIGameData : MonoBehaviour
     }
     public void AddWave(GenerateEnemyManager _gem)
     {
+        enableCountdown = true;
         wave++;
         textWave.text = "Ronda " + wave;
         if (wave > _gem.countTotalWaves)
