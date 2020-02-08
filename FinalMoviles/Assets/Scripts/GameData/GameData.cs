@@ -19,6 +19,11 @@ public class GameData : MonoBehaviour
 
     public static GameData instaceGameData;
 
+    public const int positiveValuePartyCreated = 1;
+    public int PartyCreated = 0; // *si este valor es igual a 0 quiere decir que la partida no fue creada.
+                                  // *si este valor es igual a 1 quiere decir que la partida fue creada y debera
+                                  // ser cargada automaticamente.
+
     [System.Serializable]
     public struct InventoryPlayer
     {
@@ -97,6 +102,17 @@ public class GameData : MonoBehaviour
             }
         }
         return false;
+    }
+    public void CreatedParty()
+    {
+        if (PartyCreated != positiveValuePartyCreated)
+        {
+            PartyCreated = positiveValuePartyCreated;
+        }
+    }
+    public int GetPositiveValuePartyCreated()
+    {
+        return positiveValuePartyCreated;
     }
     public void UnlokedObject(string name)
     {

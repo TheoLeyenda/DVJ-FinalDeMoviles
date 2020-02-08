@@ -682,6 +682,7 @@ Transform:
   - {fileID: 4634392867471346580}
   - {fileID: 6390862595443111709}
   - {fileID: 6833435614246835560}
+  - {fileID: 966627405181736685}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -726,6 +727,7 @@ MonoBehaviour:
   - {fileID: 7003128853405441031}
   - {fileID: 4573403878168209775}
   particleSystemTeleport: {fileID: 4400182231623303996}
+  teleportPosition: {fileID: 5990605554737388096}
   valueDown: 1
   valueUp: 0
 --- !u!65 &1802403459196534891
@@ -1004,6 +1006,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   construction: {fileID: -6636336992004740721}
+--- !u!1 &5990605554737388096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 966627405181736685}
+  m_Layer: 0
+  m_Name: TeleportPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &966627405181736685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990605554737388096}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.646, y: 1.68, z: 1.355}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 432084}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7811142655073778483
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,12 +1243,6 @@ CapsuleCollider:
     type: 3}
   m_PrefabInstance: {fileID: 4400182231638383868}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &4400182231623303996 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19800000, guid: 60ea8a8ee79fc564294d0a35f8b0ae4a,
-    type: 3}
-  m_PrefabInstance: {fileID: 4400182231638383868}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4400182231631884220 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 11400000, guid: 60ea8a8ee79fc564294d0a35f8b0ae4a,
@@ -1229,3 +1255,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a12a6df1fe650d441955e878d144f941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &4400182231623303996 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19800000, guid: 60ea8a8ee79fc564294d0a35f8b0ae4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 4400182231638383868}
+  m_PrefabAsset: {fileID: 0}

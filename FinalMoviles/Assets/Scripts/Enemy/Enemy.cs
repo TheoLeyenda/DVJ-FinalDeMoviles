@@ -285,6 +285,14 @@ public class Enemy : MonoBehaviour
         {
             finishRoute = true;
         }
+        //ESTO VERIFICA QUE SI EL ENEMIGO COLISIONA CON ALGUNO DE ESTOS TAGS LA VELOCIDAD DEL MISMO SERA 0
+        //(SI ESTO NO FUNCIONA COPIAR Y PEGAR ESTO EN LOS SCRITPS DE LOS ENEMIGOS QUE HEREDAN DE ESTA CLASE)
+        if (collision.gameObject.tag == "Meteoro" || collision.gameObject.tag == "Proyectil" || collision.gameObject.tag == "bullet")
+        {
+            rig.velocity = Vector3.zero;
+            rig.angularVelocity = Vector3.zero;
+        }
+        //-------------------------------------------------------------------------------------------------
     }
     public virtual void CheckAnimations()
     {

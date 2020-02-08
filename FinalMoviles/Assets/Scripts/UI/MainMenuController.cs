@@ -48,8 +48,15 @@ public class MainMenuController : MonoBehaviour
     }
     public void InsertName()
     {
-        CamvasMenu.SetActive(false);
-        CamvasInsertName.SetActive(true);
+        if (gd.PartyCreated != gd.GetPositiveValuePartyCreated())
+        {
+            CamvasMenu.SetActive(false);
+            CamvasInsertName.SetActive(true);
+        }
+        else
+        {
+            LobyGame();
+        }
     }
     public void Credits()
     {
@@ -97,6 +104,7 @@ public class MainMenuController : MonoBehaviour
     }
     public void ConfirmNameUser()
     {
+        gd.CreatedParty();
         userName = textInputField.text;
         gd.currentNameUser = userName;
         LobyGame();

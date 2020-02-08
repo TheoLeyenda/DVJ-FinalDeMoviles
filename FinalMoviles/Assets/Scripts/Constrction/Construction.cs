@@ -34,6 +34,7 @@ public class Construction : MonoBehaviour
     public List<MeshRenderer> meshRenderers;
     public List<Collider> colliders;
     public ParticleSystem particleSystemTeleport;
+    public GameObject teleportPosition;
     // Esto sirve para acomodar el edificio en caso de que este no este en el piso cuando se genere
     [Header("Start Movement Construction")]
     public float valueDown;

@@ -2439,6 +2439,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fc267564dfd69343ad2dde81c4c8953, type: 3}
+--- !u!1 &1032292759 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8442788747091035548, guid: 1fc267564dfd69343ad2dde81c4c8953,
+    type: 3}
+  m_PrefabInstance: {fileID: 1032292758}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1090361270
 GameObject:
   m_ObjectHideFlags: 0
@@ -2890,6 +2896,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GamePrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 2445384442001846874, guid: 745a50f68c8269c4e9effa16ff8aad2a,
+        type: 3}
+      propertyPath: floorObject
+      value: 
+      objectReference: {fileID: 1032292759}
     - target: {fileID: 2445384442456757866, guid: 745a50f68c8269c4e9effa16ff8aad2a,
         type: 3}
       propertyPath: constructionZone.Array.size
@@ -3575,6 +3586,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ImageLife 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9073183842776488102, guid: 745a50f68c8269c4e9effa16ff8aad2a,
+        type: 3}
+      propertyPath: floorObject
+      value: 
+      objectReference: {fileID: 1032292759}
     - target: {fileID: 4093038926414326974, guid: 745a50f68c8269c4e9effa16ff8aad2a,
         type: 3}
       propertyPath: m_IsActive

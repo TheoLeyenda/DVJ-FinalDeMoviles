@@ -17,7 +17,9 @@ namespace DarkTreeFPS
         public Image imageButtonRuning; 
         public Sprite spriteRunningStickMan;
         public Sprite spriteWalkingStickMan;
-        public Construction construction;
+        public Construction currentConstruction;
+        public GameObject floorObject;
+        private string auxFloorObjectTag;
         [Header("Movement Settings")]
         public float moveSpeed = 1f;
         public float crouchSpeed = 0.4f;
@@ -71,6 +73,8 @@ namespace DarkTreeFPS
 #else
             prefabPlayerAndroid.SetActive(false);
 #endif
+            auxFloorObjectTag = floorObject.tag;
+            floorObject.tag = "Untagged";
         }
         private void Start()
         {
@@ -373,6 +377,25 @@ namespace DarkTreeFPS
                     weaponHolderAnimator.Play("Landing");
 
                 inAirTime = 0;
+            }
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.tag == "Inside" || other.tag == "MeleTarget")
+            {
+                floorObject.tag = auxFloorObjectTag;
+                currentConstruction = other.GetComponent<Construction>();
+            }
+            if (other.tag == "Piso" && currentConstruction != null)
+            {
+                transform.position = currentConstruction.teleportPosition.transform.position;
+            }
+        }
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.tag == "Piso" && currentConstruction != null)
+            {
+                transform.position = currentConstruction.teleportPosition.transform.position;
             }
         }
     }
