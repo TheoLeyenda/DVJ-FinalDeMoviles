@@ -8,7 +8,7 @@ public class GameData : MonoBehaviour
     // Start is called before the first frame update
     public List<string> nameLokedObjects;
     public List<string> nameUnlokedObjects;
-    public int scoreForDieEnemy = 60;
+    public int scoreForDieEnemy = 30;
     public int scoreForHitEnemy = 10;
     public int currentLevel;
     public string currentNameUser = "None";

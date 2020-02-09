@@ -29,8 +29,10 @@ public class UIPauseMenu : MonoBehaviour
     private float porcentageVolumen;
     private float porcentageSensivility;
     private float currentVolumen = 0.5f;
+    private GameData gd;
     void Start()
     {
+        gd = GameData.instaceGameData;
 #if UNITY_ANDROID
         fpsController = fpsControllerAndroid;
         currentWindowsControls = windowsControlsAndroid;
@@ -54,6 +56,10 @@ public class UIPauseMenu : MonoBehaviour
     }
     private void Update()
     {
+        if(gd == null)
+        {
+            gd = GameData.instaceGameData;
+        }
         CheckImageButtonPause();
         if (windowsOptions.activeSelf)
         {
@@ -65,6 +71,7 @@ public class UIPauseMenu : MonoBehaviour
     {
         if (windowsOptions.activeSelf || windowsPause.activeSelf || currentWindowsControls.activeSelf)
         {
+            fpsControllerPC.lockCursor = false;
             imageButtonPause.sprite = spritePause;
         }
         else
@@ -96,6 +103,7 @@ public class UIPauseMenu : MonoBehaviour
     }
     public void Reanude()
     {
+        fpsControllerPC.lockCursor = true;
         Time.timeScale = 1;
         windowsPause.SetActive(false);
         windowsOptions.SetActive(false);
@@ -107,12 +115,15 @@ public class UIPauseMenu : MonoBehaviour
     }
     public void RestartLevel()
     {
+        gd.currentScore = 0;
         Time.timeScale = 1;
         //Reinicia el nivel
         SceneManager.LoadScene("LoadScene");
+        
     }
     public void ExitLevel()
     {
+        gd.currentScore = 0;
         Time.timeScale = 1;
         //Sale a la pantalla de loby.
         SceneManager.LoadScene("LobyScene");

@@ -874,13 +874,13 @@ namespace DarkTreeFPS
             {
                 projectiles[projectilesIndex].transform.position = bulletTransform.position;
                 projectiles[projectilesIndex].transform.rotation = bulletTransform.rotation;
-                projectiles[projectilesIndex].transform.Rotate(spreadVector);
+                //projectiles[projectilesIndex].transform.Rotate(spreadVector);
             }
             else
             {
                 projectiles[projectilesIndex].transform.position = Camera.main.transform.position;
                 projectiles[projectilesIndex].transform.rotation = Camera.main.transform.rotation;
-                projectiles[projectilesIndex].transform.Rotate(spreadVector);
+                //projectiles[projectilesIndex].transform.Rotate(spreadVector);
             }
 
             if (weaponType == WeaponType.SniperRiffle && setAim)

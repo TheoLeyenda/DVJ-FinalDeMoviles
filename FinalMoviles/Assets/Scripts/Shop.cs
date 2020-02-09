@@ -300,6 +300,7 @@ public class Shop : MonoBehaviour
         }
         CheckItems();
         itemsShop[index].CheckInShop();
+        textCurrentScore.text = "Puntaje: " + gd.generalScore + "$";
     }
 
     /*public void SellItem(ItemsShoop _itemsShoop)

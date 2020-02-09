@@ -16,6 +16,7 @@ public class PowerUpController : MonoBehaviour
     public FPSController playerPC;
     public FPSController playerAndroid;
     public GameObject camvasAndroid;
+    public Text textCountLifes;
 
     [Header("DATA: PowerUp Nuke")]
     public Button buttonNuke;
@@ -215,6 +216,7 @@ public class PowerUpController : MonoBehaviour
     public void PowerUpLifeUp()
     {
         gm.countLifes = gm.countLifes + countLifeRecovered;
+        textCountLifes.text = "" + gm.countLifes;
         gd.dataPlayer.countLifeUpPowerUp--;
     }
 

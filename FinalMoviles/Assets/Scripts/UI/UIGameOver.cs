@@ -9,6 +9,7 @@ public class UIGameOver : MonoBehaviour
     public Text textScore;
     public Text textTotalScore;
     private GameData gd;
+    public GameManager gm;
     private void Start()
     {
         gd = GameData.instaceGameData;
@@ -20,6 +21,7 @@ public class UIGameOver : MonoBehaviour
     }
     public void ShowDataGameOver()
     {
+        gm.PlayerPC.lockCursor = false;
         textCountEnemysDie.text = "Enemigos Abatidos: " + gd.countEnemysDie;
         textCountBulletsShoots.text = "Balas Disparadas: " + gd.countBulletsShoots;
         textScore.text = "Puntaje: " + gd.currentScore + "$";

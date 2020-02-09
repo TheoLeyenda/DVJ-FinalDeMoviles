@@ -43,6 +43,17 @@ public class UISeleccionLevel : MonoBehaviour
         CheckButtonsLevels();
        
     }
+    private void OnEnable()
+    {
+        gd = GameData.instaceGameData;
+    }
+    private void Update()
+    {
+        if (gd == null)
+        {
+            gd = GameData.instaceGameData;
+        }
+    }
     public void CheckButtonsLevels()
     {
         for (int i = 0; i < buttonLevels.Count; i++)

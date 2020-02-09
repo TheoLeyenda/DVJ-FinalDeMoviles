@@ -29,6 +29,13 @@ public class UIStadistics : MonoBehaviour
         }
         ShowData();
     }
+    private void Update()
+    {
+        if (gd == null)
+        {
+            gd = GameData.instaceGameData;
+        }
+    }
     public void ShowData()
     {
         if (unlockedConstruction)
