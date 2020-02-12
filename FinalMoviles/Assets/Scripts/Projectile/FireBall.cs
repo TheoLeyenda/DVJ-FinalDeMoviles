@@ -61,6 +61,10 @@ public class FireBall : MonoBehaviour
             {
                 construction = GetComponent<Construction>();
             }
+            if (construction.GetEnableCameraShake())
+            {
+                construction.player.cameraShake.Shake();
+            }
             construction.life = construction.life - shooter.DamageProjectileConstructions;
             explotionParticle[indexParticleSystem].Play();
             inExplotion = true;
@@ -77,6 +81,10 @@ public class FireBall : MonoBehaviour
             Wall wall = other.GetComponent<Wall>();
             Construction construction = wall.construction;
             construction.life = construction.life - shooter.DamageProjectileConstructions;
+            if (construction.GetEnableCameraShake())
+            {
+                construction.player.cameraShake.Shake();
+            }
             explotionParticle[indexParticleSystem].Play();
             inExplotion = true;
             sphereCollider.enabled = false;

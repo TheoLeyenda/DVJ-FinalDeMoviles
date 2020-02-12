@@ -20,13 +20,15 @@ public class Construction : MonoBehaviour
         Y,
         Z,
     }
+    public bool useCheckMagnitude;
+    public float magnitudeInX;
+    public float magnitudeInZ;
     public float life;
     public float maxLife;
     protected bool constructed;
     public CustomTeleporter myTeleporter;
     private TeleportController TC;
-    [SerializeField]
-    private FPSController player;
+    public FPSController player;
     public bool rotateStart;
     public PivotMovement pivotMovement;
     public PivotRotation pivotRotation;
@@ -42,9 +44,11 @@ public class Construction : MonoBehaviour
     private int indexConstruction; // este index va a ser igual al index del boton de construccion al que pertenece.
     private GameManager gm;
     private bool DestroyedConstruction;
+    private bool enableCameraShake;
 
     private void Start()
     {
+        enableCameraShake = false;
         DestroyedConstruction = false;
         GameObject go = GameObject.Find("GamePrefab");
         TC = go.GetComponent<TeleportController>();
@@ -101,8 +105,24 @@ public class Construction : MonoBehaviour
             transform.position = transform.position - new Vector3(valueDown, 0, 0);
         }
     }
+    public void CheckMagnitude()
+    {
+        if(player != null)
+        {
+            float distanceX = Mathf.Abs(transform.position.x - player.transform.position.x);
+            float distanceZ = Mathf.Abs(transform.position.z - player.transform.position.z);
+            if (distanceX > magnitudeInX || distanceZ > magnitudeInZ)
+            {
+                enableCameraShake = false;
+            }
+        }
+    }
     private void Update()
     {
+        if (useCheckMagnitude)
+        {
+            CheckMagnitude();
+        }
         if (TC != null)
         {
             if (!TC.buttonsTeleports[indexConstruction].go_imageLifeConstruction.activeSelf)
@@ -134,6 +154,7 @@ public class Construction : MonoBehaviour
         if (!DestroyedConstruction)
         {
             DestroyedConstruction = true;
+            enableCameraShake = false;
             TC.buttonsTeleports[indexConstruction].disableButton = true;
             TC.buttonsTeleports[indexConstruction].CheckDisableButton();
             player.lockCursor = false;
@@ -155,6 +176,7 @@ public class Construction : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            enableCameraShake = true;
             player = other.GetComponent<FPSController>();
         }
         if (other.tag == "RepairConstruction" && !DestroyedConstruction)
@@ -177,5 +199,9 @@ public class Construction : MonoBehaviour
     public void SetIndexConstruction(int _indexConstruction)
     {
         indexConstruction = _indexConstruction;
+    }
+    public bool GetEnableCameraShake()
+    {
+        return enableCameraShake;
     }
 }

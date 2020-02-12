@@ -13,7 +13,6 @@ public class UIStadistics : MonoBehaviour
     public Text textNotUnlockedConstruction;
     public Image imageUnlockedConstruction;
     public GameObject button;
-    [HideInInspector]
     public bool unlockedConstruction;
     private GameData gd;
     private int bulletsShoots = 0;

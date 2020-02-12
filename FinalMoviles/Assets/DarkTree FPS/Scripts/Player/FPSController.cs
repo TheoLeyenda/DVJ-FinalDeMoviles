@@ -11,6 +11,7 @@ namespace DarkTreeFPS
 {
     public class FPSController : MonoBehaviour
     {
+        public StressReceiver cameraShake;
         public GameObject prefabPlayerPC;
         public GameObject prefabPlayerAndroid;
         public Transform posCamara;

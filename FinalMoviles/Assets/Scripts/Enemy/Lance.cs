@@ -52,6 +52,10 @@ public class Lance : MonoBehaviour
         if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Construccion")
         {
             Construction construction = collision.gameObject.GetComponent<Wall>().construction;
+            /*if (construction.GetEnableCameraShake())
+            {
+                construction.player.cameraShake.Shake();
+            }*/
             construction.life = construction.life - DamageConstruction;
         }
     }
@@ -60,6 +64,10 @@ public class Lance : MonoBehaviour
         if (other.tag == "Wall" || other.tag == "Construccion")
         {
             Construction construction = other.GetComponent<Wall>().construction;
+            /*if (construction.GetEnableCameraShake()) 
+            {
+                construction.player.cameraShake.Shake();
+            }*/
             construction.life = construction.life - DamageConstruction;
         }
     }
