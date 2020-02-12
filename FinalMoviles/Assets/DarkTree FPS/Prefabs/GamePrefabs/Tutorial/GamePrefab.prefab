@@ -4044,7 +4044,7 @@ MonoBehaviour:
     spriteLocked: {fileID: 21300098, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
     nameLockedConstruction: Bloqueado
     nameConstruction: Torre De Metal
-    lockedButton: 1
+    lockedButton: 0
   - informationButton: {fileID: 1612633528}
     poolConstruction: {fileID: 949773796754601029}
     go_button: {fileID: 2000964205}
@@ -4056,7 +4056,7 @@ MonoBehaviour:
     spriteLocked: {fileID: 21300098, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
     nameLockedConstruction: Bloqueado
     nameConstruction: Torre Blindada
-    lockedButton: 1
+    lockedButton: 0
   - informationButton: {fileID: 294859875}
     poolConstruction: {fileID: 4429038751708838085}
     go_button: {fileID: 791542659}
@@ -4068,7 +4068,7 @@ MonoBehaviour:
     spriteLocked: {fileID: 21300098, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
     nameLockedConstruction: Bloqueado
     nameConstruction: "Caseta Peque\xF1a"
-    lockedButton: 1
+    lockedButton: 0
   - informationButton: {fileID: 2080510951}
     poolConstruction: {fileID: 4386242612774713560}
     go_button: {fileID: 1010626942}
@@ -4080,7 +4080,7 @@ MonoBehaviour:
     spriteLocked: {fileID: 21300098, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
     nameLockedConstruction: Bloqueado
     nameConstruction: Casa en Ruinas
-    lockedButton: 1
+    lockedButton: 0
   - informationButton: {fileID: 1588149327}
     poolConstruction: {fileID: 1965207617558273133}
     go_button: {fileID: 1464852940}
@@ -4092,7 +4092,7 @@ MonoBehaviour:
     spriteLocked: {fileID: 21300098, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
     nameLockedConstruction: Bloqueado
     nameConstruction: Edificio en Ruinas
-    lockedButton: 1
+    lockedButton: 0
   - informationButton: {fileID: 1978985659}
     poolConstruction: {fileID: 3579119379584686970}
     go_button: {fileID: 1077387934}
@@ -4104,7 +4104,7 @@ MonoBehaviour:
     spriteLocked: {fileID: 21300098, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
     nameLockedConstruction: Bloqueado
     nameConstruction: Casa Sin Techo
-    lockedButton: 1
+    lockedButton: 0
   - informationButton: {fileID: 1152878376}
     poolConstruction: {fileID: 5066843343464523284}
     go_button: {fileID: 1983053084}
@@ -4116,7 +4116,7 @@ MonoBehaviour:
     spriteLocked: {fileID: 21300098, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
     nameLockedConstruction: Bloqueado
     nameConstruction: Casa
-    lockedButton: 1
+    lockedButton: 0
   - informationButton: {fileID: 826369498}
     poolConstruction: {fileID: 3260537853850673488}
     go_button: {fileID: 944340521}
@@ -4128,7 +4128,7 @@ MonoBehaviour:
     spriteLocked: {fileID: 21300098, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
     nameLockedConstruction: Bloqueado
     nameConstruction: "Bunker Peque\xF1o"
-    lockedButton: 1
+    lockedButton: 0
   - informationButton: {fileID: 1222940558}
     poolConstruction: {fileID: 2843657011618368193}
     go_button: {fileID: 827695393}
@@ -4140,7 +4140,7 @@ MonoBehaviour:
     spriteLocked: {fileID: 21300098, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
     nameLockedConstruction: Bloqueado
     nameConstruction: Bunker
-    lockedButton: 1
+    lockedButton: 0
   camvasConfirmationConstruction: {fileID: 1764210340}
 --- !u!1 &483932515
 GameObject:
@@ -13760,7 +13760,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Jugar
---- !u!114 &6166376310897210171
+--- !u!114 &8909624873055698101
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13769,12 +13769,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 81495372539111772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1ee1c62c905bb24ea7c9cf3d9d40b56, type: 3}
+  m_Script: {fileID: 11500000, guid: ac0582372bfe819488515b0d7a784691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TraumaExponent: 1
-  MaximumAngularShake: {x: 5, y: 5, z: 5}
-  MaximumTranslationShake: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!1 &317686100671936999
 GameObject:
   m_ObjectHideFlags: 0
@@ -14036,7 +14033,7 @@ RectTransform:
   m_AnchoredPosition: {x: 2, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6500734598257315357
+--- !u!114 &2447648095734478836
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14045,12 +14042,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6680837297551829584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1ee1c62c905bb24ea7c9cf3d9d40b56, type: 3}
+  m_Script: {fileID: 11500000, guid: ac0582372bfe819488515b0d7a784691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TraumaExponent: 1
-  MaximumAngularShake: {x: 5, y: 5, z: 5}
-  MaximumTranslationShake: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!1 &6743780984289686421
 GameObject:
   m_ObjectHideFlags: 0
@@ -15907,7 +15901,27 @@ PrefabInstance:
         type: 3}
       propertyPath: cameraShake
       value: 
-      objectReference: {fileID: 6166376310897210171}
+      objectReference: {fileID: 8909624873055698101}
+    - target: {fileID: 8208526472310566600, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: delayCameraShakeActivate
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208526472310566600, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: auxDelayCameraShakeActivate
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208526472310566600, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: durationCameraShake
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208526472310566600, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: magnitudeCameraShake
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 8105418047783999356, guid: 75e7e4547c8465e4faa093309eb8c2e7,
         type: 3}
       propertyPath: m_IsActive
@@ -15992,7 +16006,27 @@ PrefabInstance:
         type: 3}
       propertyPath: cameraShake
       value: 
-      objectReference: {fileID: 6500734598257315357}
+      objectReference: {fileID: 2447648095734478836}
+    - target: {fileID: 3309907984531768372, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: delayCameraShakeActivate
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309907984531768372, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: auxDelayCameraShakeActivate
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309907984531768372, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: durationCameraShake
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309907984531768372, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: magnitudeCameraShake
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 8105073504810244102, guid: 75e7e4547c8465e4faa093309eb8c2e7,
         type: 3}
       propertyPath: m_IsActive
@@ -16048,6 +16082,16 @@ PrefabInstance:
       propertyPath: gm
       value: 
       objectReference: {fileID: 7466954863210566409}
+    - target: {fileID: 3309907984569556986, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 2447648095734478836}
+    - target: {fileID: 8104714038966394107, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 8909624873055698101}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75e7e4547c8465e4faa093309eb8c2e7, type: 3}
 --- !u!114 &6680837297513984400 stripped

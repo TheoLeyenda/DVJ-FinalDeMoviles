@@ -55,15 +55,16 @@ public class FireBall : MonoBehaviour
             Wall wall = other.GetComponent<Wall>();
             if (wall != null)
             {
-                 construction = wall.construction;
+                construction = wall.construction;
             }
             else
             {
                 construction = GetComponent<Construction>();
             }
+            //Debug.Log(construction.GetEnableCameraShake());
             if (construction.GetEnableCameraShake())
             {
-                construction.player.cameraShake.Shake();
+                StartCoroutine(construction.player.cameraShake.Shake(construction.player.durationCameraShake, construction.player.magnitudeCameraShake));
             }
             construction.life = construction.life - shooter.DamageProjectileConstructions;
             explotionParticle[indexParticleSystem].Play();
@@ -80,11 +81,12 @@ public class FireBall : MonoBehaviour
             int indexParticleSystem = Random.Range(0, explotionParticle.Length);
             Wall wall = other.GetComponent<Wall>();
             Construction construction = wall.construction;
-            construction.life = construction.life - shooter.DamageProjectileConstructions;
             if (construction.GetEnableCameraShake())
             {
-                construction.player.cameraShake.Shake();
+                StartCoroutine(construction.player.cameraShake.Shake(construction.player.durationCameraShake, construction.player.magnitudeCameraShake));
             }
+            construction.life = construction.life - shooter.DamageProjectileConstructions;
+            Debug.Log(construction.GetEnableCameraShake());
             explotionParticle[indexParticleSystem].Play();
             inExplotion = true;
             sphereCollider.enabled = false;

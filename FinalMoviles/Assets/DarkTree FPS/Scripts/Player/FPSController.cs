@@ -11,7 +11,7 @@ namespace DarkTreeFPS
 {
     public class FPSController : MonoBehaviour
     {
-        public StressReceiver cameraShake;
+        
         public GameObject prefabPlayerPC;
         public GameObject prefabPlayerAndroid;
         public Transform posCamara;
@@ -21,6 +21,7 @@ namespace DarkTreeFPS
         public Construction currentConstruction;
         public GameObject floorObject;
         private string auxFloorObjectTag;
+
         [Header("Movement Settings")]
         public float moveSpeed = 1f;
         public float crouchSpeed = 0.4f;
@@ -30,13 +31,18 @@ namespace DarkTreeFPS
         public float crouchHeight = 0.5f;
         private bool crouch = false;
         private bool isRunning = false;
-        [Header("MouseLook Settings")]
 
+        [Header("MouseLook Settings")]
         private Vector2 clampInDegrees = new Vector2(360, 180);
         public bool lockCursor;
         public Vector2 sensitivity = new Vector2(0.5f, 0.5f);
         public Vector2 smoothing = new Vector2(3, 3);
-        
+
+        [Header("CameraShake Settings")]
+        public float durationCameraShake;
+        public float magnitudeCameraShake;
+        public CameraShake cameraShake;
+
         [HideInInspector]
         public Vector2 targetDirection;
 
@@ -89,9 +95,10 @@ namespace DarkTreeFPS
             inputManager = FindObjectOfType<InputManager>();
             crouch = false;
         }
-
+        
         private void Update()
         {
+
             if (mouseLookEnabled && !InventoryManager.showInventory)
                 MouseLook();
             

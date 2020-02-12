@@ -8500,7 +8500,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a17bb8ff3dbeb345ba06600a2c8abe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraShake: {fileID: 1479957574336983595}
   prefabPlayerPC: {fileID: 8970287767917633810}
   prefabPlayerAndroid: {fileID: 2445384442001846878}
   posCamara: {fileID: 2445384442931364864}
@@ -8520,6 +8519,9 @@ MonoBehaviour:
   lockCursor: 0
   sensitivity: {x: 1, y: 1}
   smoothing: {x: 1, y: 1}
+  durationCameraShake: 0.2
+  magnitudeCameraShake: 0.4
+  cameraShake: {fileID: 974480367534334997}
   targetDirection: {x: 0, y: 0}
   controllerRigidbody: {fileID: 0}
   camHolder: {fileID: 2445384443251917171}
@@ -9329,7 +9331,7 @@ GameObject:
   - component: {fileID: 2445384442031171990}
   - component: {fileID: 2445384442031171991}
   - component: {fileID: 2445384442031171988}
-  - component: {fileID: 1479957574336983595}
+  - component: {fileID: 974480367534334997}
   m_Layer: 0
   m_Name: Camera & Recoil
   m_TagString: MainCamera
@@ -9453,7 +9455,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recoilReleaseSpeed: 6
---- !u!114 &1479957574336983595
+  cameraShake: {fileID: 974480367534334997}
+--- !u!114 &974480367534334997
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9462,12 +9465,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2445384442031171994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1ee1c62c905bb24ea7c9cf3d9d40b56, type: 3}
+  m_Script: {fileID: 11500000, guid: ac0582372bfe819488515b0d7a784691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TraumaExponent: 1
-  MaximumAngularShake: {x: 5, y: 5, z: 5}
-  MaximumTranslationShake: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!1 &2445384442031581464
 GameObject:
   m_ObjectHideFlags: 0
@@ -39842,7 +39842,7 @@ GameObject:
   - component: {fileID: 9073128131771583384}
   - component: {fileID: 8969302996131326615}
   - component: {fileID: 8969302996131326613}
-  - component: {fileID: 7736103153348678678}
+  - component: {fileID: 1881617097056993090}
   m_Layer: 0
   m_Name: Camera & Recoil
   m_TagString: MainCamera
@@ -39966,7 +39966,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recoilReleaseSpeed: 6
---- !u!114 &7736103153348678678
+  cameraShake: {fileID: 1881617097056993090}
+--- !u!114 &1881617097056993090
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -39975,12 +39976,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8969302996131326614}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1ee1c62c905bb24ea7c9cf3d9d40b56, type: 3}
+  m_Script: {fileID: 11500000, guid: ac0582372bfe819488515b0d7a784691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TraumaExponent: 1
-  MaximumAngularShake: {x: 5, y: 5, z: 5}
-  MaximumTranslationShake: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!1 &8969317674120072008
 GameObject:
   m_ObjectHideFlags: 0
@@ -45151,7 +45149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a17bb8ff3dbeb345ba06600a2c8abe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraShake: {fileID: 7736103153348678678}
   prefabPlayerPC: {fileID: 8970287767917633810}
   prefabPlayerAndroid: {fileID: 2445384442001846878}
   posCamara: {fileID: 2445384441843974887}
@@ -45169,6 +45166,9 @@ MonoBehaviour:
   lockCursor: 0
   sensitivity: {x: 2, y: 2}
   smoothing: {x: 1, y: 1}
+  durationCameraShake: 0.2
+  magnitudeCameraShake: 0.4
+  cameraShake: {fileID: 1881617097056993090}
   targetDirection: {x: 0, y: 0}
   controllerRigidbody: {fileID: 0}
   camHolder: {fileID: 2098028722202722423}
