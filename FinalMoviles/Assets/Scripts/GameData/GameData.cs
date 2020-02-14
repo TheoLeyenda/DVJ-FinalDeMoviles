@@ -9,9 +9,9 @@ public class GameData : MonoBehaviour
     public int numberParty;
     public List<string> nameLokedObjects;
     public List<string> nameUnlokedObjects;
-    [HideInInspector]
+    //[HideInInspector]
     public List<string> auxNameLokedObjects;
-    [HideInInspector]
+    //[HideInInspector]
     public List<string> auxNameUnlokedObjects;
     public int currentLevel;
     public string currentNameUser = "None";
@@ -74,10 +74,7 @@ public class GameData : MonoBehaviour
         {
             Destroy(this);
         }
-        
-    }
-    private void Start()
-    {
+
         auxNameLokedObjects = new List<string>();
         auxNameUnlokedObjects = new List<string>();
 
@@ -89,6 +86,10 @@ public class GameData : MonoBehaviour
         {
             auxNameUnlokedObjects.Add(nameUnlokedObjects[i]);
         }
+    }
+    private void Start()
+    {
+        
         currentLevel = 0;
     }
     private void OnEnable()

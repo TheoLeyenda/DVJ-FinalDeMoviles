@@ -37,7 +37,13 @@ public class MainMenuController : MonoBehaviour
         sgm = SaveGameManager.instaceSaveGameManager;
         sgm.LoadNamesButtons();
     }
-
+    private void Update()
+    {
+        if (CamvasMenu.activeSelf)
+        {
+            sgm.ClearGameData();
+        }
+    }
     public void SlotsParty()
     {
         CamvasSlotsSavePartys.SetActive(true);

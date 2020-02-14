@@ -31,6 +31,10 @@ public class UISlotsSaves : MonoBehaviour
         sgm = SaveGameManager.instaceSaveGameManager;
         gd = GameData.instaceGameData;
     }*/
+    public void DeleteAllData()
+    {
+        sgm.DeleteAll();
+    }
     public void CheckSlot()
     {
         for (int i = 0; i < sgm.slotsSaveData.Length; i++)

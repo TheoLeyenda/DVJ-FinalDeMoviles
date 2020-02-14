@@ -49,6 +49,7 @@ public class UISeleccionLevel : MonoBehaviour
     {
         sgm = SaveGameManager.instaceSaveGameManager;
         gd = GameData.instaceGameData;
+        CheckButtonsLevels();
         sgm.SaveGame(gd.numberParty);
     }
     private void Update()
@@ -60,6 +61,10 @@ public class UISeleccionLevel : MonoBehaviour
     }
     public void CheckButtonsLevels()
     {
+        for(int i = 0; i < buttonLevels.Count; i++)
+        {
+            buttonLevels[i].interactable = false;
+        }
         for (int i = 0; i < buttonLevels.Count; i++)
         {
             for (int j = 0; j < gd.nameUnlokedObjects.Count; j++)

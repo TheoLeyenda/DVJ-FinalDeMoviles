@@ -118,11 +118,12 @@ public class SaveGameManager : MonoBehaviour
         slotsSaveData[indexSlot].countIcePowerUp = gd.dataPlayer.countIcePowerUp;
         slotsSaveData[indexSlot].countMeteoroPowerUp = gd.dataPlayer.countMeteoroPowerUp;
     }
-    public void DeleteSlot(int indexSlot)
+    public void DeleteAll()
     {
-        slotsSaveData[indexSlot].OccupiedSlot = 0;
-        namesButtonsLoadGame[indexSlot] = "Nueva Partida";
-        PlayerPrefs.SetString("Slot " + indexSlot, namesButtonsLoadGame[indexSlot]);
+        PlayerPrefs.DeleteAll();
+    }
+    public void ClearGameData()
+    {
         gd.nameLokedObjects.Clear();
         gd.nameUnlokedObjects.Clear();
         for (int i = 0; i < gd.auxNameLokedObjects.Count; i++)
@@ -148,6 +149,13 @@ public class SaveGameManager : MonoBehaviour
         gd.dataPlayer.countMedikitPowerUp = 0;
         gd.dataPlayer.countIcePowerUp = 0;
         gd.dataPlayer.countMeteoroPowerUp = 0;
+    }
+    public void DeleteSlot(int indexSlot)
+    {
+        slotsSaveData[indexSlot].OccupiedSlot = 0;
+        namesButtonsLoadGame[indexSlot] = "Nueva Partida";
+        PlayerPrefs.SetString("Slot " + indexSlot, namesButtonsLoadGame[indexSlot]);
+        ClearGameData();
         SaveGame(indexSlot);
     }
     public void SaveGame(int indexSlot)
