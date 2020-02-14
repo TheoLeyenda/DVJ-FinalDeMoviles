@@ -7,6 +7,9 @@ public class UISlotsSaves : MonoBehaviour
     private SaveGameManager sgm;
     private GameData gd;
     public List<Text> textSlot;
+    public List<GameObject> buttonDeleteSlots;
+    private bool windowsSureDeleteSlotON;
+    public List<GameObject> windowsSureDeleteSlot;
     private void OnEnable()
     {
         sgm = SaveGameManager.instaceSaveGameManager;
@@ -16,12 +19,48 @@ public class UISlotsSaves : MonoBehaviour
         {
             textSlot[i].text = sgm.namesButtonsLoadGame[i];
         }
+        CheckSlot();
+        for (int i = 0; i < windowsSureDeleteSlot.Count; i++)
+        {
+            windowsSureDeleteSlot[i].SetActive(false);
+        }
+        windowsSureDeleteSlotON = false;
     }
     /*private void Start()
     {
         sgm = SaveGameManager.instaceSaveGameManager;
         gd = GameData.instaceGameData;
     }*/
+    public void CheckSlot()
+    {
+        for (int i = 0; i < sgm.slotsSaveData.Length; i++)
+        {
+            if (sgm.slotsSaveData[i].OccupiedSlot == 1)
+            {
+                buttonDeleteSlots[i].SetActive(true);
+            }
+            else if (sgm.slotsSaveData[i].OccupiedSlot == 0)
+            {
+                buttonDeleteSlots[i].SetActive(false);
+            }
+        }
+    }
+    private void Update()
+    {
+        CheckSlot();
+    }
+    public void SureDeleteSlotWindows(int indexWindows)
+    {
+        windowsSureDeleteSlotON = !windowsSureDeleteSlotON;
+        if (windowsSureDeleteSlotON)
+        {
+            windowsSureDeleteSlot[indexWindows].SetActive(true);
+        }
+        else
+        {
+            windowsSureDeleteSlot[indexWindows].SetActive(false);
+        }
+    }
     public void SetTextButtonString(string _textButton, int index)
     {
         textSlot[index].text = _textButton;
@@ -42,5 +81,6 @@ public class UISlotsSaves : MonoBehaviour
     {
         sgm.DeleteSlot(indexSlot);
         SetTextButtonString("Nueva Partida", indexSlot);
+        windowsSureDeleteSlot[indexSlot].SetActive(false);
     }
 }

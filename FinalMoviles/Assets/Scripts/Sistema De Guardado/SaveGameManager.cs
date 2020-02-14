@@ -121,6 +121,34 @@ public class SaveGameManager : MonoBehaviour
     public void DeleteSlot(int indexSlot)
     {
         slotsSaveData[indexSlot].OccupiedSlot = 0;
+        namesButtonsLoadGame[indexSlot] = "Nueva Partida";
+        PlayerPrefs.SetString("Slot " + indexSlot, namesButtonsLoadGame[indexSlot]);
+        gd.nameLokedObjects.Clear();
+        gd.nameUnlokedObjects.Clear();
+        for (int i = 0; i < gd.auxNameLokedObjects.Count; i++)
+        {
+            gd.nameLokedObjects.Add(gd.auxNameLokedObjects[i]);
+        }
+        for (int i = 0; i < gd.auxNameUnlokedObjects.Count; i++)
+        {
+            gd.nameUnlokedObjects.Add(gd.auxNameUnlokedObjects[i]);
+        }
+        gd.currentLevel = 0;
+        gd.currentNameUser = "None";
+        gd.generalScore = 0;
+        gd.dataPlayer.unlockedScar = false;
+        gd.dataPlayer.unlockedM4 = false;
+        gd.dataPlayer.unlockedSniper = false;
+        gd.dataPlayer.scarAmmo = 0;
+        gd.dataPlayer.M4Ammo = 0;
+        gd.dataPlayer.SniperAmmo = 0;
+        gd.dataPlayer.countNukePowerUp = 0;
+        gd.dataPlayer.countLifeUpPowerUp = 0;
+        gd.dataPlayer.countRepairConstructionPowerUp = 0;
+        gd.dataPlayer.countMedikitPowerUp = 0;
+        gd.dataPlayer.countIcePowerUp = 0;
+        gd.dataPlayer.countMeteoroPowerUp = 0;
+        SaveGame(indexSlot);
     }
     public void SaveGame(int indexSlot)
     {
