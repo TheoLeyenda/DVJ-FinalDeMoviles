@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1934178995800727621}
   - component: {fileID: 4099130491744214478}
+  - component: {fileID: 589673463627373082}
   m_Layer: 0
   m_Name: GameData
   m_TagString: Untagged
@@ -43,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c240617612047e4792be93ae91abbba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberParty: 0
   nameLokedObjects:
   - Torre De Metal
   - Torre Blindada
@@ -68,15 +70,14 @@ MonoBehaviour:
   - Glock
   - Torre De Madera
   - Nivel 1
-  scoreForDieEnemy: 30
-  scoreForHitEnemy: 5
   currentLevel: 0
   currentNameUser: None
+  generalScore: 0
+  scoreForDieEnemy: 30
+  scoreForHitEnemy: 5
   countEnemysDie: 0
   countBulletsShoots: 0
   currentScore: 0
-  generalScore: 0
-  PartyCreated: 0
   dataPlayer:
     maxAmmoScar: 630
     maxAmmoM4: 900
@@ -99,3 +100,24 @@ MonoBehaviour:
     countMedikitPowerUp: 0
     countIcePowerUp: 0
     countMeteoroPowerUp: 0
+--- !u!114 &589673463627373082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7889077527266548366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be645e739ec591498cbec0b66b7dccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NameSceneLoby: LobyScene
+  gd: {fileID: 4099130491744214478}
+  sizeSlotData: 3
+  namesButtonsLoadGame:
+  - Nueva Partida
+  - Nueva Partida
+  - Nueva Partida
+  clearSaveData: 0
+  loops: 25

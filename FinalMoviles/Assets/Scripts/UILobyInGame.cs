@@ -9,11 +9,25 @@ public class UILobyInGame : MonoBehaviour
     public Text textNameParty;
     public Text textCurrentScore;
     private GameData gd;
+    private SaveGameManager sgm;
+    public UISlotsSaves uISlotsSaves;
 
     private void OnEnable()
     {
         gd = GameData.instaceGameData;
-        textNameParty.text = "Partida: "+gd.currentNameUser+".";
+        sgm = SaveGameManager.instaceSaveGameManager;
+        textNameParty.text = "Partida: " + gd.currentNameUser + ".";
         textCurrentScore.text = "Puntaje: " + gd.generalScore + "$";
+        sgm.LoadNamesButtons();
+        
+        //Debug.Log(sgm.slotsSaveData[gd.numberParty].OccupiedSlot);
+        if (sgm.slotsSaveData[gd.numberParty].OccupiedSlot == 0)
+        {
+            //Debug.Log("ENTRE");
+            sgm.namesButtonsLoadGame[gd.numberParty] = gd.currentNameUser;
+            sgm.slotsSaveData[gd.numberParty].OccupiedSlot = 1;
+        }
+        uISlotsSaves.SetTextButtonString(gd.currentNameUser, gd.numberParty);
+        sgm.SaveGame(gd.numberParty);
     }
 }

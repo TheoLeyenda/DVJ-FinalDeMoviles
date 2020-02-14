@@ -36,16 +36,20 @@ public class UISeleccionLevel : MonoBehaviour
     public List<ButtonLevel> buttonLevels;
     [SerializeField]
     private GameData gd;
+    private SaveGameManager sgm;
     // Start is called before the first frame update
     void Start()
     {
+        sgm = SaveGameManager.instaceSaveGameManager;
         gd = GameData.instaceGameData;
         CheckButtonsLevels();
-       
+        sgm.SaveGame(gd.numberParty);
     }
     private void OnEnable()
     {
+        sgm = SaveGameManager.instaceSaveGameManager;
         gd = GameData.instaceGameData;
+        sgm.SaveGame(gd.numberParty);
     }
     private void Update()
     {

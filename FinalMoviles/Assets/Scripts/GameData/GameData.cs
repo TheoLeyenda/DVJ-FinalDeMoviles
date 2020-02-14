@@ -5,22 +5,24 @@ using DarkTreeFPS;
 
 public class GameData : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Data a guardar.
+    public int numberParty;
     public List<string> nameLokedObjects;
     public List<string> nameUnlokedObjects;
-    public int scoreForDieEnemy = 30;
-    public int scoreForHitEnemy = 10;
     public int currentLevel;
     public string currentNameUser = "None";
+    public int generalScore;
+
+    public int scoreForDieEnemy = 30;
+    public int scoreForHitEnemy = 10;
     public int countEnemysDie;
     public int countBulletsShoots;
     public int currentScore;
-    public int generalScore;
 
     public static GameData instaceGameData;
 
-    public const int positiveValuePartyCreated = 1;
-    public int PartyCreated = 0; // *si este valor es igual a 0 quiere decir que la partida no fue creada.
+    //public const int positiveValuePartyCreated = 1;
+    //public int PartyCreated = 0; // *si este valor es igual a 0 quiere decir que la partida no fue creada.
                                   // *si este valor es igual a 1 quiere decir que la partida fue creada y debera
                                   // ser cargada automaticamente.
 
@@ -103,17 +105,18 @@ public class GameData : MonoBehaviour
         }
         return false;
     }
-    public void CreatedParty()
-    {
-        if (PartyCreated != positiveValuePartyCreated)
-        {
-            PartyCreated = positiveValuePartyCreated;
-        }
-    }
-    public int GetPositiveValuePartyCreated()
-    {
-        return positiveValuePartyCreated;
-    }
+    //public void CreatedParty()
+    //{
+        //if (PartyCreated != positiveValuePartyCreated)
+        //{
+            //PartyCreated = positiveValuePartyCreated;
+        //}
+    //}
+    //public int GetPositiveValuePartyCreated()
+    //{
+        //return 0;
+        //return positiveValuePartyCreated;
+    //}
     public void UnlokedObject(string name)
     {
         for (int i = 0; i < nameLokedObjects.Count; i++)

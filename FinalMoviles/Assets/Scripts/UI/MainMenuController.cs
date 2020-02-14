@@ -16,12 +16,13 @@ public class MainMenuController : MonoBehaviour
     public GameObject CamvasSelectionLevelStory;
     public GameObject CamvasLobyInGame;
     public GameObject CamvasShop;
+    public GameObject CamvasSlotsSavePartys;
     public Text textInputField;
     private string userName;
     private GameData gd;
     public Text textUserNameLoby;
     public Text textGeneralScore;
-
+    private SaveGameManager sgm;
     private void Start()
     {
         gd = GameData.instaceGameData;
@@ -33,8 +34,15 @@ public class MainMenuController : MonoBehaviour
         ImageControlesPC.SetActive(true);
         ImageControlesAndroid.SetActive(false);
 #endif
+        sgm = SaveGameManager.instaceSaveGameManager;
+        sgm.LoadNamesButtons();
     }
 
+    public void SlotsParty()
+    {
+        CamvasSlotsSavePartys.SetActive(true);
+        CamvasMenu.SetActive(false);
+    }
     public void StartGame() //BOTON DE INICIO
     {
         CamvasStart.SetActive(false);
@@ -48,15 +56,16 @@ public class MainMenuController : MonoBehaviour
     }
     public void InsertName()
     {
-        if (gd.PartyCreated != gd.GetPositiveValuePartyCreated())
-        {
+        //if (gd.PartyCreated != gd.GetPositiveValuePartyCreated())
+        //{
+            CamvasSlotsSavePartys.SetActive(false);
             CamvasMenu.SetActive(false);
             CamvasInsertName.SetActive(true);
-        }
-        else
-        {
-            LobyGame();
-        }
+        //}
+        //else
+        //{
+            //LobyGame();
+        //}
     }
     public void Credits()
     {
@@ -104,7 +113,7 @@ public class MainMenuController : MonoBehaviour
     }
     public void ConfirmNameUser()
     {
-        gd.CreatedParty();
+        //gd.CreatedParty();
         userName = textInputField.text;
         gd.currentNameUser = userName;
         LobyGame();
