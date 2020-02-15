@@ -54,30 +54,36 @@ public class Slime : Enemy
         {
             CheckDieEnemy();
         }
-        if (spawns.Length == slimes.Length && life <= 0)
+        if (life <= 0)
         {
             for (int i = 0; i < slimes.Length; i++)
             {
+                slimes[i].followRoute.enabled = true;
                 slimes[i].EnemyPrefab.transform.position = spawns[i].transform.position;
+                slimes[i].followRoute.numRoute = followRoute.numRoute;
                 slimes[i].followRoute.FindGoDataRoute();
                 slimes[i].followRoute.generatePath();
-                slimes[i].followRoute.SetIndexRoute(followRoute.GetIndexRoute());
-                if (slimes[i].followRoute.pathPoints.Count > 0)
+                slimes[i].followRoute.SetIndexRoute(followRoute.GetIndexRoute() + 1);
+                if (slimes[i].followRoute.pathPoints.Count > 0 && followRoute.GetIndexRoute() + 1 < slimes[i].followRoute.pathPoints.Count)
                 {
-                    slimes[i].followRoute.SetFinishPoint(slimes[i].followRoute.pathPoints[followRoute.GetIndexRoute()]);
+                    slimes[i].followRoute.SetFinishPoint(slimes[i].followRoute.pathPoints[followRoute.GetIndexRoute() + 1]);
                 }
                 else
                 {
                     slimes[i].followRoute.SetFinishPoint(followRoute.GetFinishPoint());
                 }
-                slimes[i].followRoute.enabled = true;
                 slimes[i].EnemyPrefab.transform.SetParent(null);
                 slimes[i].EnemyPrefab.SetActive(true);
-                if (OnGenerateSoonsSlimes != null)
+
+                /*if (OnGenerateSoonsSlimes != null)
                 {
                     OnGenerateSoonsSlimes(this);
-                }
+                }*/
             }
+            //if (!iAmSoon)
+            //{
+                DieEnemy();
+            //}
         }
         
 

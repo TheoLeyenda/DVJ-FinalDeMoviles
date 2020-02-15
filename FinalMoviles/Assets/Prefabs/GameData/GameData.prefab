@@ -70,6 +70,8 @@ MonoBehaviour:
   - Glock
   - Torre De Madera
   - Nivel 1
+  auxNameLokedObjects: []
+  auxNameUnlokedObjects: []
   currentLevel: 0
   currentNameUser: None
   generalScore: 0
@@ -79,14 +81,14 @@ MonoBehaviour:
   countBulletsShoots: 0
   currentScore: 0
   dataPlayer:
-    maxAmmoScar: 630
-    maxAmmoM4: 900
-    maxAmmoSniper: 30
+    maxAmmoScar: 1500
+    maxAmmoM4: 3000
+    maxAmmoSniper: 150
     maxCountNukePowerUp: 5
-    maxCountLifeUpPowerUp: 5
-    maxCountRepairConstructionPowerUp: 5
-    maxCountMedikitPowerUp: 5
-    maxCountIcePowerUp: 5
+    maxCountLifeUpPowerUp: 15
+    maxCountRepairConstructionPowerUp: 10
+    maxCountMedikitPowerUp: 7
+    maxCountIcePowerUp: 10
     maxCountMeteoroPowerUp: 5
     unlockedScar: 0
     unlockedM4: 0
@@ -114,6 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameSceneLoby: LobyScene
   gd: {fileID: 4099130491744214478}
+  slotsSaveData: []
   sizeSlotData: 3
   namesButtonsLoadGame:
   - Nueva Partida

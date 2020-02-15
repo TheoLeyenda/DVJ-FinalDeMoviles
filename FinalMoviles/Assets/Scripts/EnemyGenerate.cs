@@ -25,6 +25,8 @@ public class EnemyGenerate : MonoBehaviour
         Finite,
         Infinite,
     }
+    [SerializeField]
+    private int enemysDie;
     public int indexGenerator;
     private NameEnemys nameEnemys;
     private TypeGenerator auxTypeGenerator;
@@ -43,7 +45,7 @@ public class EnemyGenerate : MonoBehaviour
     private bool finishWaves;
     [SerializeField]
     private int indexWave;
-    private int enemysDie;
+
     private float delayGeneratorInfinite;
     public int countEnemysRount_InfiniteGenered;
     private int EnemysRount_InfiniteGenered;
@@ -159,7 +161,7 @@ public class EnemyGenerate : MonoBehaviour
         public int currentEnemysGenerate;
         //SI ALGO FALLA DESCOMENTAR EL [HideInInspector] de abajo y comparar el countTotalEnemyWave con la
         //suma de todos los countEnemysSpawn del DataCountEnemySpawn en cuestion.
-        [HideInInspector]
+        //[HideInInspector]
         public int countTotalEnemysWave;
         [HideInInspector]
         public float[] delayGenerationEnemys;

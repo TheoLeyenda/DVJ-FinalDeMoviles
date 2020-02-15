@@ -89,7 +89,6 @@ public class GameData : MonoBehaviour
     }
     private void Start()
     {
-        
         currentLevel = 0;
     }
     private void OnEnable()

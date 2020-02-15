@@ -183,10 +183,13 @@ public class UIContructionController : MonoBehaviour
             construction.SetConstructed(true);
             //if(SceneManager.GetActiveScene().name == "Nivel 1")
             //{
-                //construction.SetIndexConstruction(CM.CZ.detectedTeleport.indexTeleport -1);
+            //construction.SetIndexConstruction(CM.CZ.detectedTeleport.indexTeleport -1);
             //}
             //else
             //{
+            //Debug.Log("Construction: " + construction);
+            //Debug.Log("CM: " + CM);
+            //Debug.Log("CM.CZ: " + CM.CZ);
                 construction.SetIndexConstruction(CM.CZ.detectedTeleport.indexTeleport -1);
             //}
             construction = null;
@@ -209,7 +212,7 @@ public class UIContructionController : MonoBehaviour
             CM.camvasContruction.SetActive(true);
             construction = null;
             camvasConfirmationConstruction.SetActive(false);
-            CM.CZ = null;
+            //CM.CZ = null;
         }
     }
     public void RotateStructure(int angle)

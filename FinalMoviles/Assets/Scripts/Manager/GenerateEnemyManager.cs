@@ -5,6 +5,7 @@ using System;
 public class GenerateEnemyManager : MonoBehaviour
 {
     // Start is called before the first frame update
+    public bool usingDelayStartRound;
     public List<EnemyGenerate> enemyGenerates;
     private bool enableCountdown;
     public bool infinityGenerator;
@@ -136,6 +137,7 @@ public class GenerateEnemyManager : MonoBehaviour
                                     enemyGenerates[i].ready = true;
                                     enemyGenerates[i].finishRound = true;
                                     enemyGenerates[i].skipRound = true;
+
                                     enemyGenerates[i].SetIndexWave(enemyGenerates[i].GetIndexWave() + 1);
                                 }
                             }
@@ -154,7 +156,10 @@ public class GenerateEnemyManager : MonoBehaviour
                 }
                 else if (DelayStartRound > 0)
                 {
-                    DelayStartRound = DelayStartRound - Time.deltaTime;
+                    if (usingDelayStartRound)
+                    {
+                        DelayStartRound = DelayStartRound - Time.deltaTime;
+                    }
                 }
             }
             else

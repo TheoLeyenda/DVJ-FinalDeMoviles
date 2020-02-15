@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
     public InputManager inputManager;
     public bool isFinishLevel;
     public bool inSurvivalMode;
-
+    public GameObject CountdownTitle;
+    public GameObject CountdownText;
     [Header("Unloked Items")]
     public bool UnlokedItem;
     public string UnlockedItemName;
@@ -69,6 +70,11 @@ public class GameManager : MonoBehaviour
         player = PlayerPC;
 #endif
         playerStats = player.gameObject.GetComponent<PlayerStats>();
+        if (!generateEnemyManager.usingDelayStartRound)
+        {
+            CountdownTitle.SetActive(false);
+            CountdownText.SetActive(false);
+        }
     }
     private void Update()
     {

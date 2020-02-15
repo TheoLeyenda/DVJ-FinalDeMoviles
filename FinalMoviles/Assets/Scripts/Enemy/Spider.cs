@@ -81,6 +81,7 @@ public class Spider : Enemy
 #endif
                 enemy.life = lifeSoons;
                 enemy.nameEnemy = soonsName;
+                enemy.followRoute.numRoute = followRoute.numRoute;
                 enemy.followRoute.FindGoDataRoute();
                 enemy.followRoute.generatePath();
                 if (enemy.followRoute.GetIndexRoute() < enemy.followRoute.pathPoints.Count - 1)

@@ -54,14 +54,14 @@ public class UIGameData : MonoBehaviour
     }*/
     private void OnEnable()
     {
-        Enemy.OnDieAction += AddScoreForDieEnemy;
+        Enemy.LifeIsZero += AddScoreForDieEnemy;
         BalisticProjectile.OnHitEnemy += AddScoreForHitEnemy;
         Enemy.OnFinishRoute += SubstractLifes;
         GenerateEnemyManager.OnFinishWave += AddWave;
     }
     private void OnDisable()
     {
-        Enemy.OnDieAction -= AddScoreForDieEnemy;
+        Enemy.LifeIsZero -= AddScoreForDieEnemy;
         BalisticProjectile.OnHitEnemy -= AddScoreForHitEnemy;
         Enemy.OnFinishRoute -= SubstractLifes;
         GenerateEnemyManager.OnFinishWave -= AddWave;

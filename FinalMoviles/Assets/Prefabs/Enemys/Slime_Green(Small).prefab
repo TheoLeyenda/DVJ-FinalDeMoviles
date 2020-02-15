@@ -728,6 +728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3747b236271032e43aeef967216ec6d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iAmSoon: 1
   myGenerator: 0
   animator: {fileID: 7482511023213624171}
   DamageMeleConstruction: 1
@@ -788,6 +789,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7387796901652151354}
     m_Modifications:
+    - target: {fileID: 1376784407383280, guid: 14740899a922691429cebeb5142e6860, type: 3}
+      propertyPath: m_Name
+      value: bloodFX
+      objectReference: {fileID: 0}
     - target: {fileID: 198342849822023124, guid: 14740899a922691429cebeb5142e6860,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
@@ -858,10 +863,6 @@ PrefabInstance:
     - target: {fileID: 4932000250680620, guid: 14740899a922691429cebeb5142e6860, type: 3}
       propertyPath: m_LocalScale.z
       value: 33.750034
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376784407383280, guid: 14740899a922691429cebeb5142e6860, type: 3}
-      propertyPath: m_Name
-      value: bloodFX
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14740899a922691429cebeb5142e6860, type: 3}

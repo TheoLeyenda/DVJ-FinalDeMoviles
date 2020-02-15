@@ -5,6 +5,7 @@ using System;
 public class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
+    public bool iAmSoon;
     [HideInInspector]
     public int myGenerator;
     public Animator animator;
@@ -108,7 +109,7 @@ public class Enemy : MonoBehaviour
             finishRoute = false;
             if (EnemyPrefab != null)
             {
-                if (OnDieAction != null)
+                if (OnDieAction != null && !iAmSoon)
                     OnDieAction(this);
                 if (OnFinishRoute != null)
                     OnFinishRoute(this);
@@ -117,7 +118,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                if (OnDieAction != null)
+                if (OnDieAction != null && !iAmSoon)
                     OnDieAction(this);
                 if (OnFinishRoute != null)
                     OnFinishRoute(this);
@@ -125,7 +126,6 @@ public class Enemy : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
-        
     }
     public void CheckMeleAttack()
     {
@@ -209,16 +209,15 @@ public class Enemy : MonoBehaviour
         {
             LifeIsZero(this);
         }
-
         if (EnemyPrefab != null)
         {
-            if (OnDieAction != null)
+            if (OnDieAction != null && !iAmSoon)
                 OnDieAction(this);
             EnemyPrefab.SetActive(false);
         }
         else
         {
-            if (OnDieAction != null)
+            if (OnDieAction != null && !iAmSoon)
                 OnDieAction(this);
             gameObject.SetActive(false);
         }
