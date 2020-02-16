@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a7f0820da3c8746bcbdcc21af943ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemysDie: 0
   indexGenerator: 0
   typeGenerator: 1
   porcentageGrupInSurvivalMode: 85
@@ -54,7 +55,7 @@ MonoBehaviour:
   listPools:
   - pool: {fileID: 3012772412427642411}
     nameObjectPool: Slime_2
-    objectHeight: -0.26
+    objectHeight: 0
   - pool: {fileID: 3012772411307270610}
     nameObjectPool: Rabbit
     objectHeight: -0.27
@@ -75,10 +76,10 @@ MonoBehaviour:
     objectHeight: -0.311
   - pool: {fileID: 3629334701536395627}
     nameObjectPool: BoximonFiery
-    objectHeight: 0.11
+    objectHeight: 0.5
   - pool: {fileID: 4640351362993216619}
     nameObjectPool: BoximonCyclopes
-    objectHeight: 0.11
+    objectHeight: 0.5
   - pool: {fileID: 4190555757823437857}
     nameObjectPool: StoneMonster
     objectHeight: 0
@@ -211,6 +212,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3012772410816871954}
     m_Modifications:
+    - target: {fileID: 7497226929717959897, guid: b54148df196df1444850374a102f7efe,
+        type: 3}
+      propertyPath: m_Name
+      value: PoolsEnemys
+      objectReference: {fileID: 0}
     - target: {fileID: 7497226930595062474, guid: b54148df196df1444850374a102f7efe,
         type: 3}
       propertyPath: count
@@ -325,11 +331,6 @@ PrefabInstance:
         type: 3}
       propertyPath: count
       value: 105
-      objectReference: {fileID: 0}
-    - target: {fileID: 7497226929717959897, guid: b54148df196df1444850374a102f7efe,
-        type: 3}
-      propertyPath: m_Name
-      value: PoolsEnemys
       objectReference: {fileID: 0}
     - target: {fileID: 302394671493129745, guid: b54148df196df1444850374a102f7efe,
         type: 3}

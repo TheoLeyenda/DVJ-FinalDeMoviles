@@ -198,6 +198,8 @@ namespace DarkTreeFPS
 
         public void PlayerDeath()
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             if (!isPlayerDead)
             {
                 controller.enabled = false;

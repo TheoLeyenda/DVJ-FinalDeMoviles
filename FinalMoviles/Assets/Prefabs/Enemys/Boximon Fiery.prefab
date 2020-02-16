@@ -1223,7 +1223,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 22.5
+  m_Radius: 25
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &6524710460252284758
 MonoBehaviour:
@@ -1250,6 +1250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21bcfd6290e97e64486751f931d52073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iAmSoon: 0
   myGenerator: 0
   animator: {fileID: 95206688057043068}
   DamageMeleConstruction: 3
@@ -1272,7 +1273,10 @@ MonoBehaviour:
   delayStune: 7
   auxDelayStune: 7
   construction: {fileID: 0}
+  rig: {fileID: 0}
   typeEnemy: 0
+  delayDeath: 0
+  animation: {fileID: 7400000, guid: 3014723763036b442b52f60b16e2aa31, type: 3}
   delayStartAttack: 0
   delayAttack: 1.5
   auxDelayAttack: 1.5

@@ -13,6 +13,7 @@ public class Lance : MonoBehaviour
     public float initialVelocity = 80;
     public Rigidbody rig;
     public TrailRenderer trailRenderer;
+    public bool usingCameraShake;
     
     private void OnDisable()
     {
@@ -52,10 +53,13 @@ public class Lance : MonoBehaviour
         if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Construccion")
         {
             Construction construction = collision.gameObject.GetComponent<Wall>().construction;
-            /*if (construction.GetEnableCameraShake())
+            if (usingCameraShake)
             {
-                StartCoroutine(construction.player.cameraShake.Shake(construction.player.durationCameraShake, construction.player.magnitudeCameraShake));
-            }*/
+                if (construction.GetEnableCameraShake())
+                {
+                    StartCoroutine(construction.player.cameraShake.Shake(construction.player.durationCameraShake, construction.player.magnitudeCameraShake));
+                }
+            }
             construction.life = construction.life - DamageConstruction;
         }
     }
@@ -64,10 +68,13 @@ public class Lance : MonoBehaviour
         if (other.tag == "Wall" || other.tag == "Construccion")
         {
             Construction construction = other.GetComponent<Wall>().construction;
-            /*if (construction.GetEnableCameraShake())
+            if (usingCameraShake)
             {
-                StartCoroutine(construction.player.cameraShake.Shake(construction.player.durationCameraShake, construction.player.magnitudeCameraShake));
-            }*/
+                if (construction.GetEnableCameraShake())
+                {
+                    StartCoroutine(construction.player.cameraShake.Shake(construction.player.durationCameraShake, construction.player.magnitudeCameraShake));
+                }
+            }
             construction.life = construction.life - DamageConstruction;
         }
     }

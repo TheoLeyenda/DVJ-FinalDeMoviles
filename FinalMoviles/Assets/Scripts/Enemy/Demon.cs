@@ -6,6 +6,9 @@ using DarkTreeFPS;
 public class Demon : Enemy
 {
     // Start is called before the first frame update
+    [SerializeField]
+    private float delayDeath;
+    public AnimationClip animation;
     private bool enableAttack;
     private PlayerStats TargetPlayer;
     public float delayStartAttack;
@@ -19,6 +22,7 @@ public class Demon : Enemy
     public float maxDelayStartAttack;
     protected override void Start()
     {
+        delayDeath = animation.length;
         base.Start();
         enableAttack = false;
         delayStartAttack = Random.Range(minDelayStartAttack, maxDelayStartAttack);
@@ -37,6 +41,15 @@ public class Demon : Enemy
         }
         base.Update();
         CheckState();
+        if (life <= 0)
+        {
+            delayDeath = delayDeath - Time.deltaTime;
+            if (delayDeath <= 0)
+            {
+                delayDeath = animation.length;
+                DieEnemy();
+            }
+        }
     }
     private void OnDisable()
     {

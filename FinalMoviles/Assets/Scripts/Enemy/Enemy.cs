@@ -208,6 +208,7 @@ public class Enemy : MonoBehaviour
         if (LifeIsZero != null)
         {
             LifeIsZero(this);
+            EnemyPrefab.SetActive(false);
         }
         if (EnemyPrefab != null)
         {
@@ -313,7 +314,7 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-        if(life <= 0 && !dead && nameEnemy != "TurtleShell")
+        if(life <= 0 && !dead && nameEnemy != "TurtleShell" /*|| nameEnemy == "BoximonFiery" && life <= 0*/)
         {
             followRoute.GetAgent().speed = 0;
             animator.SetBool("Dead",true);

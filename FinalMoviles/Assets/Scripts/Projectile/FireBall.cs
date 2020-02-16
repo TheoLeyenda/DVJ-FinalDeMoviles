@@ -59,12 +59,15 @@ public class FireBall : MonoBehaviour
             }
             else
             {
-                construction = GetComponent<Construction>();
+                construction = other.GetComponent<Construction>();
             }
             //Debug.Log(construction.GetEnableCameraShake());
-            if (construction.GetEnableCameraShake())
+            if (construction != null)
             {
-                StartCoroutine(construction.player.cameraShake.Shake(construction.player.durationCameraShake, construction.player.magnitudeCameraShake));
+                if (construction.GetEnableCameraShake())
+                {
+                    StartCoroutine(construction.player.cameraShake.Shake(construction.player.durationCameraShake, construction.player.magnitudeCameraShake));
+                }
             }
             construction.life = construction.life - shooter.DamageProjectileConstructions;
             explotionParticle[indexParticleSystem].Play();

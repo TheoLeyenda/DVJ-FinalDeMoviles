@@ -136,7 +136,7 @@ public class Shop : MonoBehaviour
                         gd.dataPlayer.M4Ammo += itemsShop[index].count;
                         itemsShop[index].textCount.text = ""+gd.dataPlayer.M4Ammo;
                     }
-                    else if (gd.dataPlayer.M4Ammo >= gd.dataPlayer.maxAmmoM4)
+                    if (gd.dataPlayer.M4Ammo >= gd.dataPlayer.maxAmmoM4)
                     {
                         gd.dataPlayer.M4Ammo = gd.dataPlayer.maxAmmoM4;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.maxAmmoM4;
@@ -152,7 +152,7 @@ public class Shop : MonoBehaviour
                         gd.dataPlayer.scarAmmo += itemsShop[index].count;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.scarAmmo;
                     }
-                    else if (gd.dataPlayer.scarAmmo >= gd.dataPlayer.maxAmmoScar)
+                    if (gd.dataPlayer.scarAmmo >= gd.dataPlayer.maxAmmoScar)
                     {
                         gd.dataPlayer.scarAmmo = gd.dataPlayer.maxAmmoScar;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.maxAmmoScar;
@@ -168,7 +168,7 @@ public class Shop : MonoBehaviour
                         gd.dataPlayer.SniperAmmo += itemsShop[index].count;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.SniperAmmo;
                     }
-                    else if (gd.dataPlayer.SniperAmmo >= gd.dataPlayer.maxAmmoSniper)
+                    if (gd.dataPlayer.SniperAmmo >= gd.dataPlayer.maxAmmoSniper)
                     {
                         gd.dataPlayer.SniperAmmo = gd.dataPlayer.maxAmmoSniper;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.maxAmmoSniper;
@@ -185,7 +185,7 @@ public class Shop : MonoBehaviour
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.countIcePowerUp;
 
                     }
-                    else if (gd.dataPlayer.countIcePowerUp >= gd.dataPlayer.maxCountIcePowerUp)
+                    if (gd.dataPlayer.countIcePowerUp >= gd.dataPlayer.maxCountIcePowerUp)
                     {
                         gd.dataPlayer.countIcePowerUp = gd.dataPlayer.maxCountIcePowerUp;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.maxCountIcePowerUp;
@@ -202,7 +202,7 @@ public class Shop : MonoBehaviour
                         gd.dataPlayer.countLifeUpPowerUp += itemsShop[index].count;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.countLifeUpPowerUp;
                     }
-                    else if (gd.dataPlayer.countLifeUpPowerUp >= gd.dataPlayer.maxCountLifeUpPowerUp)
+                    if (gd.dataPlayer.countLifeUpPowerUp >= gd.dataPlayer.maxCountLifeUpPowerUp)
                     {
                         gd.dataPlayer.countLifeUpPowerUp = gd.dataPlayer.maxCountLifeUpPowerUp;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.maxCountLifeUpPowerUp;
@@ -226,7 +226,7 @@ public class Shop : MonoBehaviour
                         gd.dataPlayer.countMedikitPowerUp += itemsShop[index].count;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.countMedikitPowerUp;
                     }
-                    else if (gd.dataPlayer.countMedikitPowerUp >= gd.dataPlayer.maxCountMedikitPowerUp)
+                    if (gd.dataPlayer.countMedikitPowerUp >= gd.dataPlayer.maxCountMedikitPowerUp)
                     {
                         gd.dataPlayer.countMedikitPowerUp = gd.dataPlayer.maxCountMedikitPowerUp;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.maxCountMedikitPowerUp;
@@ -242,7 +242,7 @@ public class Shop : MonoBehaviour
                         gd.dataPlayer.countMeteoroPowerUp += itemsShop[index].count;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.countMeteoroPowerUp;
                     }
-                    else if (gd.dataPlayer.countMeteoroPowerUp >= gd.dataPlayer.maxCountMeteoroPowerUp)
+                    if (gd.dataPlayer.countMeteoroPowerUp >= gd.dataPlayer.maxCountMeteoroPowerUp)
                     {
                         gd.dataPlayer.countMeteoroPowerUp = gd.dataPlayer.maxCountMeteoroPowerUp;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.maxCountMeteoroPowerUp;
@@ -258,7 +258,7 @@ public class Shop : MonoBehaviour
                         gd.dataPlayer.countNukePowerUp += itemsShop[index].count;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.countNukePowerUp;
                     }
-                    else if (gd.dataPlayer.countNukePowerUp >= gd.dataPlayer.maxCountNukePowerUp)
+                    if (gd.dataPlayer.countNukePowerUp >= gd.dataPlayer.maxCountNukePowerUp)
                     {
                         gd.dataPlayer.countNukePowerUp = gd.dataPlayer.maxCountNukePowerUp;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.maxCountNukePowerUp;
@@ -274,7 +274,7 @@ public class Shop : MonoBehaviour
                         gd.dataPlayer.countRepairConstructionPowerUp += itemsShop[index].count;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.countRepairConstructionPowerUp;
                     }
-                    else if (gd.dataPlayer.countRepairConstructionPowerUp >= gd.dataPlayer.maxCountRepairConstructionPowerUp)
+                    if (gd.dataPlayer.countRepairConstructionPowerUp >= gd.dataPlayer.maxCountRepairConstructionPowerUp)
                     {
                         gd.dataPlayer.countRepairConstructionPowerUp = gd.dataPlayer.maxCountRepairConstructionPowerUp;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.maxCountRepairConstructionPowerUp;

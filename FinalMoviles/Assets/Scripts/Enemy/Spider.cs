@@ -63,6 +63,22 @@ public class Spider : Enemy
             {
                 float x = Random.Range(-rangeGenerateX, rangeGenerateX);
                 float z = Random.Range(-rangeGenerateZ, rangeGenerateZ);
+                if (x <= 1 && x >= 0)
+                {
+                    x = x + 0.5f;
+                }
+                if (z <= 1 && z >= 0)
+                {
+                    z = z + 0.5f;
+                }
+                if (x >= -1 && x <= 0)
+                {
+                    x = x - 0.5f;
+                }
+                if (z >= -1 && z <= 0)
+                {
+                    z = z - 0.5f;
+                }
                 GameObject go;
 
                 go = poolSpiderSoons.GetObject();
