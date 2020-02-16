@@ -123,6 +123,7 @@ public class UIPauseMenu : MonoBehaviour
     }
     public void ExitLevel()
     {
+        gd.generalScore = gd.generalScore + gd.currentScore;
         gd.currentScore = 0;
         Time.timeScale = 1;
         //Sale a la pantalla de loby.
