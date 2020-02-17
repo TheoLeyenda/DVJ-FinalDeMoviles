@@ -12,13 +12,21 @@ public class DisableButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (delayDisableInformationButton <= 0)
+        if (!GameManager.instanceGameManager.lockedTutorial)
         {
-            buttonInformation.interactable = false;
+            Debug.Log("ENTRE");
+            if (delayDisableInformationButton <= 0)
+            {
+                buttonInformation.interactable = false;
+            }
+            else
+            {
+                delayDisableInformationButton = delayDisableInformationButton - Time.deltaTime;
+            }
         }
         else
         {
-            delayDisableInformationButton = delayDisableInformationButton - Time.deltaTime;
+            gameObject.SetActive(false);
         }
     }
     private void OnDisable()

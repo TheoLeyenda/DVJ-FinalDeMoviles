@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DarkTreeFPS;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instanceGameManager;
+    public GameObject arrowTutorial;
+    public Button[] enableButtonsTutorial;
+    public ConstructionManager CM;
     private bool enableStartGame;
     public bool InTutorial;
     public TutorialElements tutorialElements;
@@ -22,10 +27,13 @@ public class GameManager : MonoBehaviour
     public bool inSurvivalMode;
     public GameObject CountdownTitle;
     public GameObject CountdownText;
+    public GameObject checkEventsGameInTutorial;
     [Header("Unloked Items")]
     public bool UnlokedItem;
     public string UnlockedItemName;
     public string NameLevelUnlocked;
+    [HideInInspector]
+    public bool lockedTutorial;
     [HideInInspector]
     public GameData gd;
 
@@ -58,8 +66,21 @@ public class GameManager : MonoBehaviour
     {
         //countLifes = countLifes - e.DamageLifes;
     }*/
+    void Awake()
+    {
+        if (instanceGameManager == null)
+        {
+            instanceGameManager = this;
+        }
+        else if (instanceGameManager != null)
+        {
+            Destroy(this);
+        }
+
+    }
     void Start()
     {
+        lockedTutorial = false;
         gd = GameData.instaceGameData;
         enableStartGame = false;
 
@@ -74,6 +95,21 @@ public class GameManager : MonoBehaviour
         {
             CountdownTitle.SetActive(false);
             CountdownText.SetActive(false);
+        }
+        for (int i = 0; i < gd.nameUnlokedObjects.Count; i++)
+        {
+            if (gd.nameUnlokedObjects[i] == "Nivel 2")
+            {
+                lockedTutorial = true;
+                arrowTutorial.SetActive(false);
+            }
+        }
+        if (lockedTutorial)
+        {
+            for (int i = 0; i < enableButtonsTutorial.Length; i++)
+            {
+                enableButtonsTutorial[i].interactable = true;
+            }
         }
     }
     private void Update()

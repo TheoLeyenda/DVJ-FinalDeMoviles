@@ -34,6 +34,7 @@ public class Dialogue : MonoBehaviour
         public List<Button> buttons;
         public List<GameObject> activateObjects;
         public List<GameObject> disableObjects;
+        public GameObject windosSkipTutorial;
         public enum Events
         {
             None,
@@ -59,7 +60,24 @@ public class Dialogue : MonoBehaviour
         {
             for (int i = 0; i < activateObjects.Count; i++)
             {
-                activateObjects[i].SetActive(true);
+                if (windosSkipTutorial == null)
+                {
+                    activateObjects[i].SetActive(true);
+                }
+                else if(windosSkipTutorial == activateObjects[i])
+                {
+                    if (!GameManager.instanceGameManager.lockedTutorial)
+                    {
+                        activateObjects[i].SetActive(true);
+                    }
+                    else
+                    {
+                        Debug.Log("SkipTutorial");
+                        GameManager.instanceGameManager.SkipTutorial();
+                        //GameManager.instanceGameManager.checkEventsGameInTutorial.gameObject.SetActive(true);
+                        GameManager.instanceGameManager.CM.gameObject.SetActive(true);
+                    }
+                }
             }
         }
         public void DisableObjects()
@@ -154,7 +172,11 @@ public class Dialogue : MonoBehaviour
                 || dialogues[indexDialogues].events4 == DataDialogue.Events.DisableButton
                 || dialogues[indexDialogues].events5 == DataDialogue.Events.DisableButton)
             {
-                dialogues[indexDialogues].DisableButtons();
+                if (!GameManager.instanceGameManager.lockedTutorial)
+                {
+                    Debug.Log("ENTRE");
+                    dialogues[indexDialogues].DisableButtons();
+                }
             }
             if (dialogues[indexDialogues].events == DataDialogue.Events.ActivateButtons
                 || dialogues[indexDialogues].events2 == DataDialogue.Events.ActivateButtons
