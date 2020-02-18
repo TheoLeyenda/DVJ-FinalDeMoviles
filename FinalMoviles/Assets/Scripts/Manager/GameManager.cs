@@ -101,7 +101,10 @@ public class GameManager : MonoBehaviour
             if (gd.nameUnlokedObjects[i] == "Nivel 2")
             {
                 lockedTutorial = true;
-                arrowTutorial.SetActive(false);
+                if (arrowTutorial != null)
+                {
+                    arrowTutorial.SetActive(false);
+                }
             }
         }
         if (lockedTutorial)

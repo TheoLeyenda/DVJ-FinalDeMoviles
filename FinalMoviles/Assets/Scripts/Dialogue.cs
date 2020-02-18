@@ -72,7 +72,7 @@ public class Dialogue : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("SkipTutorial");
+                        //Debug.Log("SkipTutorial");
                         GameManager.instanceGameManager.SkipTutorial();
                         //GameManager.instanceGameManager.checkEventsGameInTutorial.gameObject.SetActive(true);
                         GameManager.instanceGameManager.CM.gameObject.SetActive(true);
