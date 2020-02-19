@@ -1,7 +1,7 @@
 ﻿/// DarkTreeDevelopment (2019) DarkTree FPS v1.1
 /// If you have any questions feel free to write me at email --- darktreedevelopment@gmail.com ---
 /// Thanks for purchasing my asset!
-
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +18,17 @@ namespace DarkTreeFPS
     public class PlayerStats : MonoBehaviour
     {
         public GameObject HeadPlayer;
+
+        [Header("Screen Mask Blood")]
+        public List<GameObject> goMasksBloodScreen;
+        public int countLifeLowMaskBlood;
+        public int countLifeMediumMaskBlood;
+        public int countLifeCriticalMaskBlood;
+        private int indexMaskBloodScreen = 0;
+        private bool inMaskBlood = false;
+        private double delayActiveBlood = (0.667f * 1);
+        private double auxDelayActiveBlood = (0.667 * 1);
+
         [Header("Health")]
         [Tooltip("Player's health")]
         public int health = 100;
@@ -53,6 +64,7 @@ namespace DarkTreeFPS
 
         public static bool isPlayerDead = false;
 
+           
 
         #region utility objects
         private Rigidbody playerRigidbody;
@@ -71,6 +83,7 @@ namespace DarkTreeFPS
         
         private void Start()
         {
+
             isPlayerDead = false;
 
             playerRigidbody = GetComponent<Rigidbody>();
@@ -82,7 +95,6 @@ namespace DarkTreeFPS
             mainCameraGameobject = Camera.main.gameObject;
             mainCameraStartPos = mainCameraGameobject.transform.position;
         }
-        
         void Update()
         {
             if (isPlayerDead)
@@ -112,8 +124,54 @@ namespace DarkTreeFPS
             //ConsumableManager(useConsumeSystem);
             DrawHealthStats();
             DrawPlayerStats();
+            DrawMaskBlood();
         }
-        
+        public void DrawMaskBlood()
+        {
+            if (goMasksBloodScreen[indexMaskBloodScreen].activeSelf && !inMaskBlood)
+            {
+                if (delayActiveBlood > 0)
+                {
+                    delayActiveBlood = delayActiveBlood - Time.deltaTime;
+                }
+                else
+                {
+                    delayActiveBlood = auxDelayActiveBlood;
+                    goMasksBloodScreen[indexMaskBloodScreen].SetActive(false);
+                }
+            }
+            else if (health > countLifeLowMaskBlood)
+            {
+                inMaskBlood = false;
+                goMasksBloodScreen[indexMaskBloodScreen].SetActive(false);
+                goMasksBloodScreen[indexMaskBloodScreen + 1].SetActive(false);
+                goMasksBloodScreen[indexMaskBloodScreen + 2].SetActive(false);
+            }
+            else if (health <= countLifeLowMaskBlood && health > countLifeMediumMaskBlood)
+            {
+                inMaskBlood = true;
+                goMasksBloodScreen[indexMaskBloodScreen].SetActive(true);
+                goMasksBloodScreen[indexMaskBloodScreen + 1].SetActive(false);
+                goMasksBloodScreen[indexMaskBloodScreen + 2].SetActive(false);
+            }
+            else if (health <= countLifeMediumMaskBlood && health > countLifeCriticalMaskBlood)
+            {
+                inMaskBlood = true;
+                goMasksBloodScreen[indexMaskBloodScreen].SetActive(false);
+                goMasksBloodScreen[indexMaskBloodScreen + 1].SetActive(true);
+                goMasksBloodScreen[indexMaskBloodScreen + 2].SetActive(false);
+            }
+            else if (health <= countLifeCriticalMaskBlood)
+            {
+                inMaskBlood = true;
+                goMasksBloodScreen[indexMaskBloodScreen].SetActive(false);
+                goMasksBloodScreen[indexMaskBloodScreen + 1].SetActive(false);
+                goMasksBloodScreen[indexMaskBloodScreen + 2].SetActive(true);
+            }
+
+            
+            
+        }
         public void ConsumableManager(bool useSystem)
         {
             if (!useSystem)

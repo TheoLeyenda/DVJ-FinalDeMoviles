@@ -91,10 +91,13 @@ public class GameManager : MonoBehaviour
         player = PlayerPC;
 #endif
         playerStats = player.gameObject.GetComponent<PlayerStats>();
-        if (!generateEnemyManager.usingDelayStartRound)
+        if (generateEnemyManager != null)
         {
-            CountdownTitle.SetActive(false);
-            CountdownText.SetActive(false);
+            if (!generateEnemyManager.usingDelayStartRound)
+            {
+                CountdownTitle.SetActive(false);
+                CountdownText.SetActive(false);
+            }
         }
         for (int i = 0; i < gd.nameUnlokedObjects.Count; i++)
         {

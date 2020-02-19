@@ -157,6 +157,7 @@ namespace DarkTreeFPS
             {
                 PlayerStats player = other.gameObject.GetComponent<PlayerStats>();
                 player.health = player.health - turtleShell.counterAttackDamage;
+                player.goMasksBloodScreen[0].SetActive(true);
                 gameObject.SetActive(false);
             }
             else if(other.transform.tag != "Inside" && other.transform.tag != "Player" && other.transform.tag != "Enemy" && other.transform.tag != "Shild" && shooter == Shooter.Enemy)

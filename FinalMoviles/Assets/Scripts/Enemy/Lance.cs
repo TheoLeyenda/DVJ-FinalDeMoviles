@@ -44,6 +44,7 @@ public class Lance : MonoBehaviour
         {
             PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
             player.health = player.health - Damage;
+            player.goMasksBloodScreen[0].SetActive(true);
             gameObject.SetActive(false);
         }
         else if(collision.gameObject.tag != "Inside" && collision.gameObject.tag != "Wall" && collision.transform.tag != "Enemy" && collision.transform.tag != "Shild" && collision.transform.tag != "Construccion" && collision.transform.tag != "Lance")

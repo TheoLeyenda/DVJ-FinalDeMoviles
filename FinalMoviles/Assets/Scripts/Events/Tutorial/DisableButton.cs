@@ -14,7 +14,6 @@ public class DisableButton : MonoBehaviour
     {
         if (!GameManager.instanceGameManager.lockedTutorial)
         {
-            Debug.Log("ENTRE");
             if (delayDisableInformationButton <= 0)
             {
                 buttonInformation.interactable = false;
@@ -31,9 +30,12 @@ public class DisableButton : MonoBehaviour
     }
     private void OnDisable()
     {
-        if (buttonInformation.gameObject.activeSelf)
+        if (buttonInformation != null)
         {
-            buttonInformation.interactable = true;
+            if (buttonInformation.gameObject.activeSelf)
+            {
+                buttonInformation.interactable = true;
+            }
         }
     }
 }
