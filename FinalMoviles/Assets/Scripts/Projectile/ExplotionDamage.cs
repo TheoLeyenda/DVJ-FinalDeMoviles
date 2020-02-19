@@ -17,6 +17,8 @@ public class ExplotionDamage : MonoBehaviour
         if (other.tag == "Enemy")
         {
             Enemy e = other.GetComponent<Enemy>();
+            e.fireEffect.gameObject.SetActive(true);
+            e.fireEffect.Play();
             e.life = e.life - damage;
         }
     }

@@ -22,6 +22,7 @@ public class Dialogue : MonoBehaviour
     private Rigidbody rigPlayer;
     private bool switchPosition;
     public GameObject WindowsSkipTutorial;
+    public bool enableFreezAllPlayer;
     [System.Serializable]
     public class DataDialogue
     {
@@ -113,7 +114,10 @@ public class Dialogue : MonoBehaviour
 #if UNITY_ANDROID
         rigPlayer = PlayerAndroid.GetComponent<Rigidbody>();
 #endif
-        rigPlayer.constraints = RigidbodyConstraints.FreezeAll;
+        if (enableFreezAllPlayer)
+        {
+            rigPlayer.constraints = RigidbodyConstraints.FreezeAll;
+        }
         indexDialogues = 0;
         textDialogues.text = dialogues[indexDialogues].dialogo;
         imageFaceTalk.sprite = Face;

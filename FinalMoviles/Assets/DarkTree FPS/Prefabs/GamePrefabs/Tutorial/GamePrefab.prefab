@@ -3890,6 +3890,7 @@ MonoBehaviour:
   activateObjectInFinishDialogue: 0
   BarDialogue: {fileID: 125442861}
   WindowsSkipTutorial: {fileID: 1167464866}
+  enableFreezAllPlayer: 1
 --- !u!1 &468539770
 GameObject:
   m_ObjectHideFlags: 0
@@ -15701,6 +15702,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasMenuDePausa
       objectReference: {fileID: 0}
+    - target: {fileID: 6504037912211272311, guid: 17086d738a1326a4ba8b2e378613f452,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4548686525193405583, guid: 17086d738a1326a4ba8b2e378613f452,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15806,6 +15812,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4925020638220559630, guid: 17086d738a1326a4ba8b2e378613f452,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357643292344719067, guid: 17086d738a1326a4ba8b2e378613f452,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3079250361629896886, guid: 17086d738a1326a4ba8b2e378613f452,
         type: 3}
       propertyPath: fpsControllerPC
@@ -15821,21 +15837,6 @@ PrefabInstance:
       propertyPath: audioManager
       value: 
       objectReference: {fileID: 2816780882662670888}
-    - target: {fileID: 6504037912211272311, guid: 17086d738a1326a4ba8b2e378613f452,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6357643292344719067, guid: 17086d738a1326a4ba8b2e378613f452,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4925020638220559630, guid: 17086d738a1326a4ba8b2e378613f452,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5296477809061611421, guid: 17086d738a1326a4ba8b2e378613f452,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -16508,6 +16509,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7769550043214370507, guid: ae421a58440945345942cb0ab3f9ee35,
+        type: 3}
+      propertyPath: gm
+      value: 
+      objectReference: {fileID: 7466954863210566409}
     - target: {fileID: 5651870318820005954, guid: ae421a58440945345942cb0ab3f9ee35,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16613,11 +16619,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7769550043214370507, guid: ae421a58440945345942cb0ab3f9ee35,
-        type: 3}
-      propertyPath: gm
-      value: 
-      objectReference: {fileID: 7466954863210566409}
     - target: {fileID: 4866488350449599985, guid: ae421a58440945345942cb0ab3f9ee35,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

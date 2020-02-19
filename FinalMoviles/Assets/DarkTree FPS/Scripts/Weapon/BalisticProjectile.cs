@@ -64,8 +64,8 @@ namespace DarkTreeFPS
                         
                             //animator.SetTrigger("Damage");
                         Enemy e = hit.transform.gameObject.GetComponent<Enemy>();
-                        e.blood.gameObject.SetActive(true);
-                        e.blood.transform.position = hit.point;
+                        e.bloodEffect.gameObject.SetActive(true);
+                        e.bloodEffect.transform.position = hit.point;
                         e.rig.velocity = Vector3.zero;
                         e.rig.angularVelocity = Vector3.zero;
                         if (OnHitEnemy != null)
@@ -84,7 +84,7 @@ namespace DarkTreeFPS
                             {
                                 range = range / (e.scalerBloodVar);
                             }
-                            e.blood.gameObject.transform.localScale = new Vector3(range, range, range);
+                            e.bloodEffect.gameObject.transform.localScale = new Vector3(range, range, range);
                         }
                         else if (typeBullet == TypeBullet.Pistol)
                         {
@@ -93,9 +93,9 @@ namespace DarkTreeFPS
                             {
                                 range = range / (e.scalerBloodVar);
                             }
-                            e.blood.gameObject.transform.localScale = new Vector3(range, range, range);
+                            e.bloodEffect.gameObject.transform.localScale = new Vector3(range, range, range);
                         }
-                        e.blood.Play();
+                        e.bloodEffect.Play();
                         if (e.typeEnemy == Enemy.TypeEnemy.defensive)
                         {
                             e.life = e.life - UnityEngine.Random.Range(weapon.damageMin, weapon.damageMax) / e.deffense;

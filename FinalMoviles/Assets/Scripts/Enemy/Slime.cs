@@ -39,6 +39,7 @@ public class Slime : Enemy
         }
         CheckDie();
         CheckState();
+        CheckInFire();
     }
     public void CheckDie()
     {

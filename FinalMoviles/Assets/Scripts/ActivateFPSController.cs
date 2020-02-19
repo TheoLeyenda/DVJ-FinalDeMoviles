@@ -10,6 +10,7 @@ public class ActivateFPSController : MonoBehaviour
     public GameObject CamvasInventory;
     public GameObject CamvasMain;
     public GameObject WeaponManager;
+    public GameObject dialogueObject;
     private void OnEnable()
     {
 #if !UNITY_ANDROID
@@ -20,5 +21,9 @@ public class ActivateFPSController : MonoBehaviour
         CamvasInventory.SetActive(true);
         CamvasMain.SetActive(true);
         WeaponManager.SetActive(true);
+        if (dialogueObject != null)
+        {
+            dialogueObject.SetActive(true);
+        }
     }
 }

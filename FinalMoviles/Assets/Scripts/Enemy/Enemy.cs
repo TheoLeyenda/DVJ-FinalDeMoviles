@@ -4,14 +4,17 @@ using UnityEngine;
 using System;
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float delayInFire = 4.5f;
+    public float auxDelayInFire = 4.5f;
     public bool iAmSoon;
     [HideInInspector]
     public int myGenerator;
     public Animator animator;
     public int DamageMeleConstruction;//daño a estructuras por defencto.
-    public int DamageLifes; //daño a las vidas del jugador al pasar de punto A a punto B. 
-    public ParticleSystem blood;
+    public int DamageLifes; //daño a las vidas del jugador al pasar de punto A a punto B.
+    public GameObject iceEffect;
+    public ParticleSystem fireEffect;
+    public ParticleSystem bloodEffect;
     public float scalerBloodVar;
     public GameObject EnemyPrefab;
     public FollowRoute auxFollowRoute;
@@ -76,7 +79,8 @@ public class Enemy : MonoBehaviour
             followRoute.GetAgent().acceleration = acceletartion;
         }
         auxLife = life;
-
+        fireEffect.gameObject.SetActive(false);
+        fireEffect.Stop();
     }
     private void OnEnable()
     {
@@ -89,6 +93,11 @@ public class Enemy : MonoBehaviour
         }
         meleAttack = false;
     }
+    private void OnDisable()
+    {
+        fireEffect.gameObject.SetActive(false);
+        fireEffect.Stop();
+    }
     // Update is called once per frame
     protected virtual void Update()
     {
@@ -100,6 +109,24 @@ public class Enemy : MonoBehaviour
         }
         CheckAnimations();
         CheckState();
+        CheckInFire();
+    }
+    public void CheckInFire()
+    {
+        if (fireEffect.gameObject.activeSelf)
+        {
+            if (delayInFire > 0)
+            {
+                fireEffect.gameObject.SetActive(true);
+                delayInFire = delayInFire - Time.deltaTime;
+            }
+            else if (delayInFire <= 0)
+            {
+                fireEffect.gameObject.SetActive(false);
+                fireEffect.Stop();
+                delayInFire = auxDelayInFire;
+            }
+        }
     }
     public void CheckFinishRouteEnemy()
     {
@@ -180,11 +207,15 @@ public class Enemy : MonoBehaviour
     }
     public void CheckState()
     {
+        CheckIceEffect();
         if (stateEnemy == StateEnemy.stune)
         {
+            rig.velocity = Vector3.zero;
+            rig.angularVelocity = Vector3.zero;
             if (delayStune > 0)
             {
                 delayStune = delayStune - Time.deltaTime;
+                followRoute.GetAgent().speed = 0;
             }
             else if (delayStune <= 0)
             {
@@ -192,6 +223,17 @@ public class Enemy : MonoBehaviour
                 stateEnemy = StateEnemy.none;
                 followRoute.GetAgent().speed = speed;
             }
+        }
+    }
+    public void CheckIceEffect()
+    {
+        if (stateEnemy == StateEnemy.stune && followRoute.GetAgent().speed <= 0)
+        {
+            iceEffect.SetActive(true);
+        }
+        else if(iceEffect.activeSelf || life <= 0)
+        {
+            iceEffect.SetActive(false);
         }
     }
     public void CheckDieEnemy()
@@ -261,6 +303,8 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Nuke")
         {
             life = 0;
+            fireEffect.gameObject.SetActive(true);
+            fireEffect.Play();
         }
         if (other.tag == "Ice")
         {
@@ -272,13 +316,13 @@ public class Enemy : MonoBehaviour
             life = 0;
         }
     }
-    private void OnTriggerExit(Collider other)
+    /*private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Ice")
         {
             followRoute.GetAgent().speed = speed;
         }
-    }
+    }*/
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "FinishPoint")
