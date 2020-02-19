@@ -6,6 +6,9 @@ using DarkTreeFPS;
 
 public class PowerUpController : MonoBehaviour
 {
+    public GameObject lookSniperPC;
+    public GameObject lookSniperAndroid;
+    private GameObject lookSniper;
     private GameData gd;
     public InputManager inputManager;
     public GameManager gm;
@@ -72,9 +75,11 @@ public class PowerUpController : MonoBehaviour
         {
 #if UNITY_ANDROID
         player = playerAndroid;
+        lookSniper = lookSniperAndroid;
 #endif
 #if UNITY_STANDALONE
             player = playerPC;
+            lookSniper = lookSniperPC;
 #endif
         }
         playerStats = player.gameObject.GetComponent<PlayerStats>();
@@ -82,9 +87,9 @@ public class PowerUpController : MonoBehaviour
         gd = GameData.instaceGameData;
         cameraMeteoro.SetActive(false);
     }
-
     private void Update()
     {
+        
         CheckEnableButtons();
         CheckPowerUpNuke();
         CheckPowerUpIce();
@@ -94,13 +99,13 @@ public class PowerUpController : MonoBehaviour
         {
             CheckEnableFrameworkPowerUps();
         }
-        else if (!wm.enableShoot)
+        else if ((!wm.enableShoot || lookSniper.activeSelf) && buttonOpenFrameWorkPowerUps.activeSelf)
         {
             buttonOpenFrameWorkPowerUps.SetActive(false);
         }
         else if (wm.enableShoot)
         {
-            if (!buttonOpenFrameWorkPowerUps.activeSelf)
+            if (!buttonOpenFrameWorkPowerUps.activeSelf && !lookSniper.activeSelf)
             {
                 buttonOpenFrameWorkPowerUps.SetActive(true);
             }

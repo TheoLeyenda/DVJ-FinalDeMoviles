@@ -44,6 +44,10 @@ public class Enemy : MonoBehaviour
     [HideInInspector]
     public Rigidbody rig;
 
+    private float delayResetVelocity = 0.5f;
+    private float auxDelayResetVelocity = 0.5f;
+    private bool resetVelocity = false;
+
     public enum StateEnemy
     {
         none,
@@ -67,6 +71,7 @@ public class Enemy : MonoBehaviour
         speed = speed / 1.5;
 #endif
         finishRoute = false;
+        resetVelocity = false;
         acceletartion = acceletartion * 10;
         auxAceleration = acceletartion;
         auxSpeed = speed;
@@ -95,6 +100,8 @@ public class Enemy : MonoBehaviour
     }
     private void OnDisable()
     {
+        resetVelocity = false;
+        delayResetVelocity = auxDelayResetVelocity;
         fireEffect.gameObject.SetActive(false);
         fireEffect.Stop();
     }
@@ -207,6 +214,16 @@ public class Enemy : MonoBehaviour
     }
     public void CheckState()
     {
+        if(delayResetVelocity > 0)
+        {
+            delayResetVelocity = delayResetVelocity - Time.deltaTime;
+        }
+        else if(delayResetVelocity <= 0 && !resetVelocity)
+        {
+            resetVelocity = true;
+            rig.velocity = Vector3.zero;
+            rig.angularVelocity = Vector3.zero;
+        }
         CheckIceEffect();
         if (stateEnemy == StateEnemy.stune)
         {
