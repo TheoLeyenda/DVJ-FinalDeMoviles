@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using System;
 public class Loading : MonoBehaviour {
 
     public float speedLoad;
@@ -27,6 +27,7 @@ public class Loading : MonoBehaviour {
         sceneToLoad = "Nivel " + gd.currentLevel;
     }
     void Start () {
+        GC.Collect();
         //StartCoroutine(LoadScene());
         loading = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Single);
         loading.allowSceneActivation = false;

@@ -181,6 +181,7 @@ public class UIContructionController : MonoBehaviour
             }
             CM.GetCurrentZoneConstruction().SetActive(false);
             construction.SetConstructed(true);
+            construction.gameObject.isStatic = true;
             //if(SceneManager.GetActiveScene().name == "Nivel 1")
             //{
             //construction.SetIndexConstruction(CM.CZ.detectedTeleport.indexTeleport -1);

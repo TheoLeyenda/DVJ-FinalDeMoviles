@@ -21,10 +21,11 @@ public class MapObject : MonoBehaviour {
 	Transform miniMapTarget;
 
 	void FixedUpdate () {
-		if (owner == null)
-			Destroy (this.gameObject);
-		else
-			SetPositionAndRotation ();
+        if (owner == null)
+            //Destroy (this.gameObject);
+            gameObject.SetActive(false);
+        else
+            SetPositionAndRotation();
 
 	}
 

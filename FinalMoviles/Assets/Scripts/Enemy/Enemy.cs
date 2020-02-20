@@ -41,7 +41,6 @@ public class Enemy : MonoBehaviour
     public float auxDelayStune = 7;
     [HideInInspector]
     public Construction construction;
-    [HideInInspector]
     public Rigidbody rig;
 
     private float delayResetVelocity = 0.5f;
@@ -66,7 +65,10 @@ public class Enemy : MonoBehaviour
     public static event Action<Enemy> LifeIsZero;
     protected virtual void Start()
     {
-        rig = GetComponent<Rigidbody>();
+        if (rig == null)
+        {
+            rig = GetComponent<Rigidbody>();
+        }
 #if UNITY_ANDROID
         speed = speed / 1.5;
 #endif
