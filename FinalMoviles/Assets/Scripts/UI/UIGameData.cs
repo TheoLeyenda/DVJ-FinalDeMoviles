@@ -86,13 +86,16 @@ public class UIGameData : MonoBehaviour
         enableCountdown = true;
         wave++;
         textWave.text = "Ronda " + wave;
-        if (wave > _gem.countTotalWaves)
+        if (!_gem.infinityGenerator)
         {
-            textCountWaves.color = Color.yellow;
-        }
-        else
-        {
-            textCountWaves.text = "Rondas: " + wave + "/" + _gem.countTotalWaves;
+            if (wave > _gem.countTotalWaves)
+            {
+                textCountWaves.color = Color.yellow;
+            }
+            else
+            {
+                textCountWaves.text = "Rondas: " + wave + "/" + _gem.countTotalWaves;
+            }
         }
     }
 }

@@ -43,11 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e602e5ce8166d64fb88d01724955039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingDelayStartRound: 0
   enemyGenerates:
   - {fileID: 0}
   - {fileID: 0}
   infinityGenerator: 0
   DelayStartRound: 5.5
   auxDelayStartRound: 5.5
-  porcentageDisableGenerator: 0
+  porcentageDisableGenerator: 40
   uiNextWave: {fileID: 0}
+  currentWave: 0
+  countTotalWaves: 0
+  onceActivateElementsUiNextWave: 1
+  maxAddEnemyInfiniteGenerator: 4
+  minAddEnemyInfiniteGenerator: 2

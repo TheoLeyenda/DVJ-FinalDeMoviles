@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 public class GenerateEnemyManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // HACER QUE EN TODAS LAS RONDAS EL BOTON DE SIGUIENTE RONDA Y EL BOTON ENTER LLAMEN A LA FUNCION EnableNextRound() DE ESTA CLASE.
     public bool usingDelayStartRound;
     public List<EnemyGenerate> enemyGenerates;
     private bool enableCountdown;
@@ -26,8 +26,24 @@ public class GenerateEnemyManager : MonoBehaviour
 
     private bool finishGenerator = false;
     public static event Action<GenerateEnemyManager> OnFinishWave;
+
+    [Header("Variables Generador Infinito")]
+    public int maxAddEnemyInfiniteGenerator = 4;
+    public int minAddEnemyInfiniteGenerator = 2;
+    private int countTotalEnemyGenerate;
+    private int countEnemyDie = 0;
+    private int countEnemyGenerate;
+    private bool regulatorGenerate;
+    //private bool enableGenerators;
+    private void Awake()
+    {
+        countTotalEnemyGenerate = 5;
+    }
     private void Start()
     {
+
+        regulatorGenerate = true;
+        //enableGenerators = true;
         if (!infinityGenerator)
         {
             if (enemyGenerates[0] != null)
@@ -48,9 +64,41 @@ public class GenerateEnemyManager : MonoBehaviour
             porcentageDisableGenerator = 0;
         }
     }
+    private void OnEnable()
+    {
+        EnemyGenerate.OnGenerateEnemy += AddCountEnemyGenerate;
+        Enemy.OnDieAction += AddEnemysDie;
+    }
+    private void OnDisable()
+    {
+        EnemyGenerate.OnGenerateEnemy -= AddCountEnemyGenerate;
+        Enemy.OnDieAction -= AddEnemysDie;
+    }
+
+    public void AddEnemysDie(Enemy e)
+    {
+        if (e.nameEnemy != "MiniSpider" && e.nameEnemy != "Slime_2(Small)")
+        {
+            if (countEnemyDie < countTotalEnemyGenerate)
+            {
+                countEnemyDie++;
+            }
+            else
+            {
+                countEnemyDie = countTotalEnemyGenerate;
+            }
+            //enemysDie++;
+            //Debug.Log("Enemigos muertos: "+ enemysDie);
+        }
+    }
+
     private void Update()
     {
         CheckEnableCountdown();
+    }
+    public void AddCountEnemyGenerate(EnemyGenerate eg)
+    {
+        countEnemyGenerate++;
     }
     public void CheckEnableCountdown()
     {
@@ -75,48 +123,85 @@ public class GenerateEnemyManager : MonoBehaviour
         else if (!enableCountdown && !activateAllGenerators || currentWave >= countfinishWave)
         {
             DelayStartRound = auxDelayStartRound;
-            if(uiNextWave.activateElementsCamvasNextWave)
+            if(uiNextWave.activateElementsCamvasNextWave && !infinityGenerator)
                 uiNextWave.activateElementsCamvasNextWave = false;
         }
         //Debug.Log(enableCountdown)
-        if (enableCountdown || activateAllGenerators)
+        if (enableCountdown || activateAllGenerators || infinityGenerator)
         {
             
-            if (currentWave < countfinishWave)
+            if (currentWave < countfinishWave || infinityGenerator)
             {
-                if (AdvanceGeneration)
+                if (AdvanceGeneration && !infinityGenerator)
                 {
                     DelayStartRound = 0;
                     AdvanceGeneration = false;
                 }
-                if (!uiNextWave.activateElementsCamvasNextWave)
+                if (!uiNextWave.activateElementsCamvasNextWave && !infinityGenerator)
                     uiNextWave.activateElementsCamvasNextWave = true;
-
-                if (DelayStartRound <= 0)
+                //Debug.Log("countEnemyGenerate " + countEnemyGenerate);
+                //Debug.Log("countTotalEnemyGenerate" + countTotalEnemyGenerate);
+                //Debug.Log(DelayStartRound);
+                if (DelayStartRound <= 0 || infinityGenerator)
                 {
-                    if (infinityGenerator && enemyGenerates.Count > 1)
+                    if (infinityGenerator)
                     {
-                        for (int i = 0; i < enemyGenerates.Count; i++)
+                        
+                        //(Debug.Log(countEnemyDie + "/" + countTotalEnemyGenerate);
+                        if (countEnemyDie >= countTotalEnemyGenerate)
                         {
-                            float a = UnityEngine.Random.Range(0, 100);
-                            enemyGenerates[i].StartGenerate = true;
-                            enemyGenerates[i].typeGenerator = EnemyGenerate.TypeGenerator.Infinite;
-                            enemyGenerates[i].ready = false;
-                            enemyGenerates[i].skipRound = false;
-                            //enemyGenerates[i].skipRound = false;
-                            if (i > 0)
-                            {
-                                if (a >= porcentageDisableGenerator)
-                                {
-                                    enemyGenerates[i].ready = true;
-                                    enemyGenerates[i].skipRound = true;
-                                    enemyGenerates[i].StartGenerate = false;
-                                    enemyGenerates[i].typeGenerator = EnemyGenerate.TypeGenerator.None;
-                                    enemyGenerates[i].finishRound = true;
-                                }
+                            
+                            regulatorGenerate = true;
+                            enableCountdown = false;
+                            activateAllGenerators = false;
+                            uiNextWave.activateElementsCamvasNextWave = true;
+                            uiNextWave.textStartWave.gameObject.SetActive(true);
+                            
+                            //enableGenerators = true;
+                        }
 
+                        if (countEnemyGenerate >= countTotalEnemyGenerate && countTotalEnemyGenerate > 0)
+                        {
+                            //Debug.Log("ENTRE");
+                            for (int i = 0; i < enemyGenerates.Count; i++)
+                            {
+                                //enemyGenerates[i].enableGenerateInfinite = false;
+                                enemyGenerates[i].gameObject.SetActive(false);
                             }
                         }
+                        else if (countEnemyGenerate < countTotalEnemyGenerate && regulatorGenerate)
+                        {
+                            for (int i = 0; i < enemyGenerates.Count; i++)
+                            {
+                                float a = UnityEngine.Random.Range(0, 100);
+                                //enemyGenerates[i].StartGenerate = true;
+                                enemyGenerates[i].typeGenerator = EnemyGenerate.TypeGenerator.Infinite;
+                                //enemyGenerates[i].ready = false;
+                                //enemyGenerates[i].skipRound = false;
+                                //enemyGenerates[i].skipRound = false;
+                                
+                                if (i > 0 && enemyGenerates.Count > 1)
+                                {
+                                    Debug.Log(a);
+                                    if (a <= porcentageDisableGenerator)
+                                    {
+                                        //Debug.Log("ENTRE");
+                                        //enemyGenerates[i].ready = true;
+                                        //enemyGenerates[i].skipRound = true;
+                                        //enemyGenerates[i].StartGenerate = false;
+                                        enemyGenerates[i].typeGenerator = EnemyGenerate.TypeGenerator.None;
+                                        //enemyGenerates[i].finishRound = true;
+                                    }
+                                    else
+                                    {
+                                        //Debug.Log("GENERADOR ACTIVADO");
+                                    }
+                                }
+                            }
+                            
+                            regulatorGenerate = false;
+                        }
+                        
                     }
                     if (!infinityGenerator)
                     {
@@ -148,10 +233,11 @@ public class GenerateEnemyManager : MonoBehaviour
                         {
                             OnFinishWave(this);
                         }
+                        DelayStartRound = auxDelayStartRound;
+                        enableCountdown = false;
+                        activateAllGenerators = false;
                     }
-                    DelayStartRound = auxDelayStartRound;
-                    enableCountdown = false;
-                    activateAllGenerators = false;
+                    
 
                 }
                 else if (DelayStartRound > 0)
@@ -159,6 +245,15 @@ public class GenerateEnemyManager : MonoBehaviour
                     if (usingDelayStartRound)
                     {
                         DelayStartRound = DelayStartRound - Time.deltaTime;
+                        /*if (infinityGenerator && enableGenerators)
+                        {
+                            for (int i = 0; i < enemyGenerates.Count; i++)
+                            {
+                                enemyGenerates[i].countEnemysGenerate = 0;
+                                enemyGenerates[i].totalEnemyRound = countTotalEnemyGenerate;
+                            }
+                            enableGenerators = false;
+                        }*/
                     }
                 }
             }
@@ -171,6 +266,24 @@ public class GenerateEnemyManager : MonoBehaviour
             }
         }
 
+    }
+    public void EnableNextRound()
+    {
+        if (OnFinishWave != null)
+        {
+            OnFinishWave(this);
+        }
+        countTotalEnemyGenerate = countTotalEnemyGenerate + UnityEngine.Random.Range(minAddEnemyInfiniteGenerator, maxAddEnemyInfiniteGenerator);
+        countEnemyDie = 0;
+        //DelayStartRound = auxDelayStartRound;
+        currentWave++;
+        countEnemyGenerate = 0;
+        uiNextWave.textStartWave.gameObject.SetActive(false);
+        for (int i = 0; i < enemyGenerates.Count; i++)
+        {
+            //enemyGenerates[i].enableGenerateInfinite = true;
+            enemyGenerates[i].gameObject.SetActive(true);
+        }
     }
     public bool GetFinishGenerator()
     {

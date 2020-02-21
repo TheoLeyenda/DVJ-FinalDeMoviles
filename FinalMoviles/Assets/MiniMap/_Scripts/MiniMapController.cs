@@ -205,7 +205,7 @@ public class MiniMapController : MonoBehaviour {
 	public void UnregisterMapObject(MapObject mmo, GameObject owner){
 		if (ownerIconMap.ContainsKey (owner)) {
             //Destroy (ownerIconMap [owner]);
-            gameObject.SetActive(false);
+            ownerIconMap[owner].SetActive(false);
 			ownerIconMap.Remove (owner);
 		}
 		Destroy (mmo);

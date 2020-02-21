@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnemyGenerate : MonoBehaviour
 {
@@ -47,9 +48,10 @@ public class EnemyGenerate : MonoBehaviour
     private int indexWave;
 
     private float delayGeneratorInfinite;
-    public int countEnemysRount_InfiniteGenered;
-    private int EnemysRount_InfiniteGenered;
-    private bool infinite;
+    //public int countEnemysRount_InfiniteGenered;
+    //private int EnemysRount_InfiniteGenered;
+    [HideInInspector]
+    public bool infinite;
     public bool DisableGenerator;
     public int numRoute;
     public bool StartGenerate = false;
@@ -59,7 +61,10 @@ public class EnemyGenerate : MonoBehaviour
     public bool skipRound;
     [HideInInspector]
     public bool ready;
-    //private bool swarm;//Enjambre (boleano que controla si los enemigos a salir salen en enjambre o no)
+
+    //Variables del generador infinito.
+    //public bool enableGenerateInfinite;
+    public static event Action<EnemyGenerate> OnGenerateEnemy;
 
     private void Start()
     {
@@ -70,15 +75,16 @@ public class EnemyGenerate : MonoBehaviour
         if (typeGenerator == TypeGenerator.Infinite)
         {
             infinite = true;
+            //enableGenerateInfinite = true;
         }
         else
         {
             infinite = false;
         }
-        if (countEnemysRount_InfiniteGenered <= 0)
+        /*if (countEnemysRount_InfiniteGenered <= 0)
         {
             countEnemysRount_InfiniteGenered = 25;
-        }
+        }*/
         delayGeneratorInfinite = 0;
         auxTypeGenerator = typeGenerator;
         waves.Add(new Wave());
@@ -95,7 +101,7 @@ public class EnemyGenerate : MonoBehaviour
             {
                 if (j > 0)
                 {
-                    waves[i].delayGenerationEnemys[j] = Random.Range(minDelaySpawn, maxDelaySpawn);
+                    waves[i].delayGenerationEnemys[j] = UnityEngine.Random.Range(minDelaySpawn, maxDelaySpawn);
                 }
                 else
                 {
@@ -214,7 +220,7 @@ public class EnemyGenerate : MonoBehaviour
                                         //go.transform.position = new Vector3(transform.position.x, Height, transform.position.z);
 
                                         //APARECEN EN X o Z ALEATORIO
-                                        go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
+                                        go.transform.position = new Vector3(transform.position.x + (UnityEngine.Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (UnityEngine.Random.Range(-rangeGenerationZ, rangeGenerationZ)));
                                         go.transform.rotation = transform.rotation;
                                         FollowRoute followRoute = go.GetComponent<FollowRoute>();
                                         followRoute.numRoute = numRoute;
@@ -247,7 +253,7 @@ public class EnemyGenerate : MonoBehaviour
                                 {
                                     go = currentPool.GetObject();
                                     go.transform.rotation = transform.rotation;
-                                    go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
+                                    go.transform.position = new Vector3(transform.position.x + (UnityEngine.Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (UnityEngine.Random.Range(-rangeGenerationZ, rangeGenerationZ)));
                                     FollowRoute followRoute = go.GetComponent<FollowRoute>();
                                     followRoute.numRoute = numRoute;
                                     followRoute.FindGoDataRoute();
@@ -303,92 +309,104 @@ public class EnemyGenerate : MonoBehaviour
         {
             GameObject go;
             int iter = 0;
-            if (delayBetweenWaves <= 0 && StartGenerate)
-            {
-                if (EnemysRount_InfiniteGenered < countEnemysRount_InfiniteGenered)
+            
+            //if (countEnemysGenerate < totalEnemyRound)
+            //{
+                if (delayBetweenWaves <= 0 /*&& StartGenerate*/)
                 {
-                    if (delayGeneratorInfinite <= 0)
-                    {
-                        float Height = 0;
-                        int maxEnemyGrup = 10;
-                        int minEnemyGrup = 3;
-                        int porcentageGrupGenetation = Random.Range(0, 101);
-                        int enemySelected = Random.Range(0, listPools.Count);
-                        int countEnemyGrup = Random.Range(minEnemyGrup, maxEnemyGrup + 1);
-
-                        if (porcentageGrupGenetation > porcentageGrupInSurvivalMode)
+                    //if (EnemysRount_InfiniteGenered < countEnemysRount_InfiniteGenered)
+                    //{
+                        if (delayGeneratorInfinite <= 0)
                         {
-                            while (iter < countEnemyGrup && EnemysRount_InfiniteGenered < countEnemysRount_InfiniteGenered)
+                            float Height = 0;
+                            int maxEnemyGrup = 10;
+                            int minEnemyGrup = 3;
+                            int porcentageGrupGenetation = UnityEngine.Random.Range(0, 101);
+                            int enemySelected = UnityEngine.Random.Range(0, listPools.Count);
+                            int countEnemyGrup = UnityEngine.Random.Range(minEnemyGrup, maxEnemyGrup + 1);
+                            if (porcentageGrupGenetation > porcentageGrupInSurvivalMode)
                             {
-                                Height = listPools[enemySelected].objectHeight;
-                                go = listPools[enemySelected].pool.GetObject();
-                                go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
-                                go.transform.rotation = transform.rotation;
-                                FollowRoute followRoute = go.GetComponent<FollowRoute>();
-                                followRoute.numRoute = numRoute;
-                                followRoute.FindGoDataRoute();
-                                EnemysRount_InfiniteGenered++;
-                                iter++;
-                                Enemy enemy = go.GetComponent<Enemy>();
-                                if (enemy == null)
+                                while (iter < countEnemyGrup /*&& EnemysRount_InfiniteGenered < countEnemysRount_InfiniteGenered*/)
                                 {
-                                    enemy = go.GetComponentInChildren<Enemy>();
-                                }
-                                if (enemy != null)
-                                {
-                                    enemy.myGenerator = indexGenerator;
-                                    if (enemy.nameEnemy == "Spider")
+                                    Height = listPools[enemySelected].objectHeight;
+                                    go = listPools[enemySelected].pool.GetObject();
+                                    go.transform.position = new Vector3(transform.position.x + (UnityEngine.Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (UnityEngine.Random.Range(-rangeGenerationZ, rangeGenerationZ)));
+                                    go.transform.rotation = transform.rotation;
+                                    FollowRoute followRoute = go.GetComponent<FollowRoute>();
+                                    followRoute.numRoute = numRoute;
+                                    followRoute.FindGoDataRoute();
+                                    //EnemysRount_InfiniteGenered++;
+                                    iter++;
+                                    Enemy enemy = go.GetComponent<Enemy>();
+                                    if (enemy == null)
                                     {
-                                        Spider spider = enemy.GetComponent<Spider>();
-                                        spider.generateSoons = false;
-                                        spider.poolSpiderSoons.enabled = false;
+                                        enemy = go.GetComponentInChildren<Enemy>();
+                                    }
+                                    if (enemy != null)
+                                    {
+                                        enemy.myGenerator = indexGenerator;
+                                        if (enemy.nameEnemy == "Spider")
+                                        {
+                                            Spider spider = enemy.GetComponent<Spider>();
+                                            spider.generateSoons = false;
+                                            spider.poolSpiderSoons.enabled = false;
+                                        }
+                                    }
+                                    //countEnemysGenerate++;
+                                    if (OnGenerateEnemy != null)
+                                    {
+                                        OnGenerateEnemy(this);
                                     }
                                 }
-
+                                delayGeneratorInfinite = UnityEngine.Random.Range(minDelaySpawn, maxDelaySpawn);
                             }
-                            delayGeneratorInfinite = Random.Range(minDelaySpawn, maxDelaySpawn);
-                        }
-                        else if (porcentageGrupGenetation <= porcentageGrupInSurvivalMode)
-                        {
-                            if (EnemysRount_InfiniteGenered < countEnemysRount_InfiniteGenered)
+                            else if (porcentageGrupGenetation <= porcentageGrupInSurvivalMode)
                             {
-                                Height = listPools[enemySelected].objectHeight;
-                                go = listPools[enemySelected].pool.GetObject();
-                                go.transform.position = new Vector3(transform.position.x + (Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (Random.Range(-rangeGenerationZ, rangeGenerationZ)));
-                                go.transform.rotation = transform.rotation;
-                                FollowRoute followRoute = go.GetComponent<FollowRoute>();
-                                followRoute.numRoute = numRoute;
-                                followRoute.FindGoDataRoute();
-                                delayGeneratorInfinite = Random.Range(minDelaySpawn, maxDelaySpawn);
-                                EnemysRount_InfiniteGenered++;
-                                Enemy enemy = go.GetComponent<Enemy>();
-                                if (enemy == null)
-                                {
-                                    enemy = go.GetComponentInChildren<Enemy>();
-                                }
-                                if (enemy != null)
-                                {
-                                    enemy.myGenerator = indexGenerator;
-                                    if (enemy.nameEnemy == "Spider")
+                                //if (EnemysRount_InfiniteGenered < countEnemysRount_InfiniteGenered)
+                                //{
+                                    Height = listPools[enemySelected].objectHeight;
+                                    go = listPools[enemySelected].pool.GetObject();
+                                    go.transform.position = new Vector3(transform.position.x + (UnityEngine.Random.Range(-rangeGenerationX, rangeGenerationX)), Height, transform.position.z + (UnityEngine.Random.Range(-rangeGenerationZ, rangeGenerationZ)));
+                                    go.transform.rotation = transform.rotation;
+                                    FollowRoute followRoute = go.GetComponent<FollowRoute>();
+                                    followRoute.numRoute = numRoute;
+                                    followRoute.FindGoDataRoute();
+                                    delayGeneratorInfinite = UnityEngine.Random.Range(minDelaySpawn, maxDelaySpawn);
+                                    //EnemysRount_InfiniteGenered++;
+                                    Enemy enemy = go.GetComponent<Enemy>();
+                                    if (enemy == null)
                                     {
-                                        Spider spider = enemy.GetComponent<Spider>();
-                                        spider.generateSoons = true;
-                                        spider.poolSpiderSoons.enabled = true;
+                                        enemy = go.GetComponentInChildren<Enemy>();
                                     }
-                                }
+                                    if (enemy != null)
+                                    {
+                                        enemy.myGenerator = indexGenerator;
+                                        if (enemy.nameEnemy == "Spider")
+                                        {
+                                            Spider spider = enemy.GetComponent<Spider>();
+                                            spider.generateSoons = true;
+                                            spider.poolSpiderSoons.enabled = true;
+                                        }
+                                    }
+                                    //countEnemysGenerate++;
+                                    if (OnGenerateEnemy != null)
+                                    {
+                                        OnGenerateEnemy(this);
+                                    }
+                                //}
                             }
                         }
-                    }
-                    else
-                    {
-                        delayGeneratorInfinite = delayGeneratorInfinite - Time.deltaTime;
-                    }
+                        else
+                        {
+                            delayGeneratorInfinite = delayGeneratorInfinite - Time.deltaTime;
+                        }
+                    //}
                 }
-            }
-            else if (delayBetweenWaves > 0 && StartGenerate)
-            {
-                delayBetweenWaves = delayBetweenWaves - Time.deltaTime;
-            }
+                else if (delayBetweenWaves > 0)
+                {
+                    delayBetweenWaves = delayBetweenWaves - Time.deltaTime;
+                }
+            //}
         }
 
     }
@@ -429,7 +447,7 @@ public class EnemyGenerate : MonoBehaviour
                 typeGenerator = TypeGenerator.None;
             }
         }
-        else if (infinite)
+        /*else if (infinite)
         {
             if (enemysDie < countEnemysRount_InfiniteGenered && !ready)
             {
@@ -457,7 +475,7 @@ public class EnemyGenerate : MonoBehaviour
                 typeGenerator = TypeGenerator.None;
                 StartGenerate = false;
             }
-        }
+        }*/
     }
     public int GetIndexWave()
     {

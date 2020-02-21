@@ -89,11 +89,13 @@ public class MainMenuController : MonoBehaviour
     {
         CamvasLobyInGame.SetActive(false);
         CamvasSelectionSurvival.SetActive(true);
+        gd.gameMode = GameData.GameMode.Survival;
     }
     public void SelectLevelStory()
     {
         CamvasLobyInGame.SetActive(false);
         CamvasSelectionLevelStory.SetActive(true);
+        gd.gameMode = GameData.GameMode.Story;
     }
     public void OpenShop()
     {
@@ -104,11 +106,13 @@ public class MainMenuController : MonoBehaviour
     {
         go.SetActive(false);
         CamvasMenu.SetActive(true);
+        gd.gameMode = GameData.GameMode.None;
     }
     public void BackLobyGame(GameObject go)
     {
         go.SetActive(false);
         CamvasLobyInGame.SetActive(true);
+        gd.gameMode = GameData.GameMode.None;
     }
     public void Exit()
     {

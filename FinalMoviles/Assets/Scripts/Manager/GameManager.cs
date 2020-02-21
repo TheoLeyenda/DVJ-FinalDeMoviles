@@ -117,6 +117,28 @@ public class GameManager : MonoBehaviour
                 enableButtonsTutorial[i].interactable = true;
             }
         }
+        switch (gd.gameMode)
+        {
+            case GameData.GameMode.Survival:
+                for (int i = 0; i < generateEnemyManager.enemyGenerates.Count; i++)
+                {
+                    generateEnemyManager.enemyGenerates[i].typeGenerator = EnemyGenerate.TypeGenerator.Infinite;
+                    generateEnemyManager.infinityGenerator = true;
+                    generateEnemyManager.enemyGenerates[i].infinite = true;
+                    //generateEnemyManager.enemyGenerates[i].enableGenerateInfinite = true;
+                }
+
+                break;
+            case GameData.GameMode.Story:
+                for (int i = 0; i < generateEnemyManager.enemyGenerates.Count; i++)
+                {
+                    generateEnemyManager.enemyGenerates[i].typeGenerator = EnemyGenerate.TypeGenerator.Finite;
+                    generateEnemyManager.infinityGenerator = false;
+                    generateEnemyManager.enemyGenerates[i].infinite = false;
+                    //generateEnemyManager.enemyGenerates[i].enableGenerateInfinite = false;
+                }
+                break;
+        }
     }
     private void Update()
     {
@@ -126,7 +148,7 @@ public class GameManager : MonoBehaviour
         }
         if (!gameOver)
         {
-            if (generateEnemyManager.GetFinishGenerator() && UnlokedItem)
+            if (generateEnemyManager.GetFinishGenerator() && UnlokedItem && !generateEnemyManager.infinityGenerator)
             {
                 gd.UnlokedObject(NameLevelUnlocked);
                 gd.UnlokedObject(UnlockedItemName);
@@ -134,7 +156,7 @@ public class GameManager : MonoBehaviour
                 uIStadistics.unlockedConstruction = true;
                 player.lockCursor = false;
             }
-            else if (generateEnemyManager.GetFinishGenerator())
+            else if (generateEnemyManager.GetFinishGenerator() && !generateEnemyManager.infinityGenerator)
             {
                 gd.UnlokedObject(NameLevelUnlocked);
                 uIStadistics.camvasStadistics.SetActive(true);

@@ -5,7 +5,14 @@ using DarkTreeFPS;
 
 public class GameData : MonoBehaviour
 {
+    public enum GameMode
+    {
+        None,
+        Survival,
+        Story,
+    }
     // Data a guardar.
+    public GameMode gameMode;
     public int numberParty;
     public List<string> nameLokedObjects;
     public List<string> nameUnlokedObjects;
@@ -65,6 +72,7 @@ public class GameData : MonoBehaviour
 
     void Awake()
     {
+        gameMode = GameMode.None;
         if (instaceGameData == null)
         {
             instaceGameData = this;

@@ -46,6 +46,7 @@ public class UINextWave : MonoBehaviour
             if (textStartWave.gameObject.activeSelf)
             {
 #if UNITY_STANDALONE
+                //Debug.Log("Desactive texto");
                 textStartWave.gameObject.SetActive(false);
                 CountdownObject.SetActive(false);
 #endif
@@ -93,11 +94,16 @@ public class UINextWave : MonoBehaviour
     }
     public void StartWave()
     {
+        if (generateEnemyManager.infinityGenerator)
+        {
+            activateElementsCamvasNextWave = false;
+            generateEnemyManager.EnableNextRound();
+            generateEnemyManager.DelayStartRound = 0;
+        }
         generateEnemyManager.ActivateAllGenerators();
     }
     public void SetActivateElementsCamvasNextWave(bool _activateElementsCamvasNextWave)
     {
         activateElementsCamvasNextWave = _activateElementsCamvasNextWave;
     }
-
 }
