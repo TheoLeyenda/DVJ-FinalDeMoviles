@@ -5,6 +5,7 @@ using DarkTreeFPS;
 public class ControllerElementSurvivalTutorial : MonoBehaviour
 {
     // Start is called before the first frame update
+    public List<GameObject> stars;
     public CapsuleCollider colliderDialogueSoldier;
     public WeaponManager wm;
     public UINextWave uiNextWave;
@@ -45,7 +46,16 @@ public class ControllerElementSurvivalTutorial : MonoBehaviour
             dialogueObject.SetActive(false);
             camvasDialogue.SetActive(false);
             ConstructionManager.SetActive(true);
-            
+            for (int i = 0; i < stars.Count; i++)
+            {
+                stars[i].SetActive(false);
+            }
+
+        }
+        else
+        {
+            stars[0].SetActive(true);
+            stars[stars.Count - 1].SetActive(false);
         }
     }
     public void CheckEnableFPS()
@@ -56,6 +66,12 @@ public class ControllerElementSurvivalTutorial : MonoBehaviour
             camvasTeleport.SetActive(true);
             fps.transform.localPosition = positionTeleport;
             fps.lockCursor = false;
+
+        }
+        else
+        {
+            stars[0].SetActive(false);
+            stars[stars.Count - 1].SetActive(true);
         }
     }
     public void EnableFire()
@@ -71,6 +87,7 @@ public class ControllerElementSurvivalTutorial : MonoBehaviour
 #endif
             once = false;
 
+            stars[stars.Count - 1].SetActive(false);
         }
     }
 }
