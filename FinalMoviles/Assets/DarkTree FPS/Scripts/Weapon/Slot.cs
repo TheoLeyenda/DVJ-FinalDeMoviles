@@ -10,7 +10,6 @@ namespace DarkTreeFPS {
         
         public Weapon storedWeapon;
         public GameObject storedDropObject;
-
         public bool IsFree()
         {
             if (!storedWeapon)

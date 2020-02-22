@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UISlotsSaves : MonoBehaviour
 {
+    public MainMenuController mmc;
     private SaveGameManager sgm;
     private GameData gd;
     public List<Text> textSlot;
@@ -74,6 +75,7 @@ public class UISlotsSaves : MonoBehaviour
         if (sgm.slotsSaveData[indexSlot].OccupiedSlot == 0)
         {
             sgm.SaveGame(indexSlot);
+            mmc.InsertName();
         }
         else if(sgm.slotsSaveData[indexSlot].OccupiedSlot == 1)
         {

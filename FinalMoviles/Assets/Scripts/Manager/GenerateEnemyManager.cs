@@ -14,6 +14,7 @@ public class GenerateEnemyManager : MonoBehaviour
     public float porcentageDisableGenerator;
     private bool AdvanceGeneration = false;
     private bool activateAllGenerators;
+    private bool startFirstRoundInfiniteGenerator = false;
     public UINextWave uiNextWave;
 
     private int countfinishWave;
@@ -21,7 +22,7 @@ public class GenerateEnemyManager : MonoBehaviour
     public int countTotalWaves;
 
     [SerializeField]
-    private bool onceActivateElementsUiNextWave = true;
+    public bool onceActivateElementsUiNextWave = true;
     private bool ActivateElementsUiNextWave;
 
     private bool finishGenerator = false;
@@ -41,7 +42,7 @@ public class GenerateEnemyManager : MonoBehaviour
     }
     private void Start()
     {
-
+        
         regulatorGenerate = true;
         //enableGenerators = true;
         if (!infinityGenerator)
@@ -63,6 +64,7 @@ public class GenerateEnemyManager : MonoBehaviour
         {
             porcentageDisableGenerator = 0;
         }
+        
     }
     private void OnEnable()
     {
@@ -144,7 +146,7 @@ public class GenerateEnemyManager : MonoBehaviour
                 //Debug.Log(DelayStartRound);
                 if (DelayStartRound <= 0 || infinityGenerator)
                 {
-                    if (infinityGenerator)
+                    if (infinityGenerator && startFirstRoundInfiniteGenerator)
                     {
                         
                         //(Debug.Log(countEnemyDie + "/" + countTotalEnemyGenerate);
@@ -155,8 +157,12 @@ public class GenerateEnemyManager : MonoBehaviour
                             enableCountdown = false;
                             activateAllGenerators = false;
                             uiNextWave.activateElementsCamvasNextWave = true;
+#if UNITY_STANDALONE
                             uiNextWave.textStartWave.gameObject.SetActive(true);
-                            
+#else
+                            uiNextWave.buttonStartWave.gameObject.SetActive(true);
+#endif
+
                             //enableGenerators = true;
                         }
 
@@ -182,7 +188,7 @@ public class GenerateEnemyManager : MonoBehaviour
                                 
                                 if (i > 0 && enemyGenerates.Count > 1)
                                 {
-                                    Debug.Log(a);
+                                    //Debug.Log(a);
                                     if (a <= porcentageDisableGenerator)
                                     {
                                         //Debug.Log("ENTRE");
@@ -269,20 +275,26 @@ public class GenerateEnemyManager : MonoBehaviour
     }
     public void EnableNextRound()
     {
+        //Debug.Log("ENTRE");
         if (OnFinishWave != null)
         {
             OnFinishWave(this);
         }
+        startFirstRoundInfiniteGenerator = true;
         countTotalEnemyGenerate = countTotalEnemyGenerate + UnityEngine.Random.Range(minAddEnemyInfiniteGenerator, maxAddEnemyInfiniteGenerator);
         countEnemyDie = 0;
         //DelayStartRound = auxDelayStartRound;
         currentWave++;
         countEnemyGenerate = 0;
+#if UNITY_STANDALONE
         uiNextWave.textStartWave.gameObject.SetActive(false);
+#else
+        uiNextWave.buttonStartWave.gameObject.SetActive(false);
+#endif
         for (int i = 0; i < enemyGenerates.Count; i++)
         {
-            //enemyGenerates[i].enableGenerateInfinite = true;
             enemyGenerates[i].gameObject.SetActive(true);
+            enemyGenerates[i].StartInfiniteGenerate = true;
         }
     }
     public bool GetFinishGenerator()

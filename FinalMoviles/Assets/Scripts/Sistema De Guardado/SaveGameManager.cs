@@ -203,6 +203,7 @@ public class SaveGameManager : MonoBehaviour
                     
         }
     }
+    
     public void LoadGame(int indexSlot)
     {
         if (slotsSaveData != null)

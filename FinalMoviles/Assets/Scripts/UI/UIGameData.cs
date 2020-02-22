@@ -7,6 +7,7 @@ using DarkTreeFPS;
 public class UIGameData : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject buttonShopSurvival;
     public Text textScore;
     public Text textLifes;
     //public Text textConstruction;
@@ -30,10 +31,24 @@ public class UIGameData : MonoBehaviour
         {
             wave = 1;
         }
+        if (gd.gameMode == GameData.GameMode.Survival)
+        {
+            wave = 0;
+        }
         textCountWaves.text = "Rondas: "+wave +"/" + gem.countTotalWaves;
         if (gm.inSurvivalMode)
         {
             textWave.gameObject.SetActive(false);
+        }
+        if (gd.gameMode == GameData.GameMode.Survival)
+        {
+            buttonShopSurvival.SetActive(true);
+            textCountWaves.gameObject.SetActive(false);
+        }
+        else
+        {
+            buttonShopSurvival.SetActive(false);
+            textCountWaves.gameObject.SetActive(true);
         }
     }
     /*public void CheckCountdown()

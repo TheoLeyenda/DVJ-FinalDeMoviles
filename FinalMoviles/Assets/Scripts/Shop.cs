@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class Shop : MonoBehaviour
 {
     // Start is called before the first frame update
+    private bool activateCamvasShop = false;
+    public GameObject CamvasShop;
+    public KeyCode keyOpenShop = KeyCode.T;
     public enum ItemsShoop
     {
         M4,
@@ -95,7 +98,14 @@ public class Shop : MonoBehaviour
     private void OnEnable()
     { 
         gd = GameData.instaceGameData;
-        textCurrentScore.text = "Puntaje: "+gd.generalScore+"$";
+        if (gd.gameMode != GameData.GameMode.Survival)
+        {
+            textCurrentScore.text = "Puntaje: " + gd.generalScore + "$";
+        }
+        else
+        {
+            textCurrentScore.text = "Puntaje: " + gd.currentScore + "$";
+        }
     }
     public void ShowItem()
     {
@@ -144,11 +154,18 @@ public class Shop : MonoBehaviour
                 }
                 break;
             case (int)ItemsShoop.AmmoSCAR:
-                if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock && gd.dataPlayer.unlockedScar)
+                if ((gd.generalScore >= itemsShop[index].price && gd.gameMode != GameData.GameMode.Survival || gd.currentScore >= itemsShop[index].price) && !itemsShop[index].outStock && gd.dataPlayer.unlockedScar)
                 {
                     if (gd.dataPlayer.scarAmmo < gd.dataPlayer.maxAmmoScar)
                     {
-                        gd.generalScore -= itemsShop[index].price;
+                        if (gd.gameMode != GameData.GameMode.Survival)
+                        {
+                            gd.generalScore -= itemsShop[index].price;
+                        }
+                        else
+                        {
+                            gd.currentScore -= itemsShop[index].price;
+                        }
                         gd.dataPlayer.scarAmmo += itemsShop[index].count;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.scarAmmo;
                     }
@@ -160,11 +177,18 @@ public class Shop : MonoBehaviour
                 }
                 break;
             case (int)ItemsShoop.AmmoSniper:
-                if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock && gd.dataPlayer.unlockedSniper)
+                if ((gd.generalScore >= itemsShop[index].price && gd.gameMode != GameData.GameMode.Survival || gd.currentScore >= itemsShop[index].price) && !itemsShop[index].outStock && gd.dataPlayer.unlockedSniper)
                 {
                     if (gd.dataPlayer.SniperAmmo < gd.dataPlayer.maxAmmoSniper)
                     {
-                        gd.generalScore -= itemsShop[index].price;
+                        if (gd.gameMode != GameData.GameMode.Survival)
+                        {
+                            gd.generalScore -= itemsShop[index].price;
+                        }
+                        else
+                        {
+                            gd.currentScore -= itemsShop[index].price;
+                        }
                         gd.dataPlayer.SniperAmmo += itemsShop[index].count;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.SniperAmmo;
                     }
@@ -176,11 +200,18 @@ public class Shop : MonoBehaviour
                 }
                 break;
             case (int)ItemsShoop.IcePowerUp:
-                if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock)
+                if ((gd.generalScore >= itemsShop[index].price && gd.gameMode != GameData.GameMode.Survival || gd.currentScore >= itemsShop[index].price) && !itemsShop[index].outStock)
                 {
                     if (gd.dataPlayer.countIcePowerUp < gd.dataPlayer.maxCountIcePowerUp)
                     {
-                        gd.generalScore -= itemsShop[index].price;
+                        if (gd.gameMode != GameData.GameMode.Survival)
+                        {
+                            gd.generalScore -= itemsShop[index].price;
+                        }
+                        else
+                        {
+                            gd.currentScore -= itemsShop[index].price;
+                        }
                         gd.dataPlayer.countIcePowerUp += itemsShop[index].count;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.countIcePowerUp;
 
@@ -194,11 +225,18 @@ public class Shop : MonoBehaviour
                 }
                 break;
             case (int)ItemsShoop.LifeUpPowerUp:
-                if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock)
+                if ((gd.generalScore >= itemsShop[index].price && gd.gameMode != GameData.GameMode.Survival || gd.currentScore >= itemsShop[index].price) && !itemsShop[index].outStock)
                 {
                     if (gd.dataPlayer.countLifeUpPowerUp < gd.dataPlayer.maxCountLifeUpPowerUp)
                     {
-                        gd.generalScore -= itemsShop[index].price;
+                        if (gd.gameMode != GameData.GameMode.Survival)
+                        {
+                            gd.generalScore -= itemsShop[index].price;
+                        }
+                        else
+                        {
+                            gd.currentScore -= itemsShop[index].price;
+                        }
                         gd.dataPlayer.countLifeUpPowerUp += itemsShop[index].count;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.countLifeUpPowerUp;
                     }
@@ -210,19 +248,27 @@ public class Shop : MonoBehaviour
                 }
                 break;
             case (int)ItemsShoop.M4:
-                if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock)
+                if ((gd.generalScore >= itemsShop[index].price) && !itemsShop[index].outStock)
                 {
+
                     gd.generalScore -= itemsShop[index].price;
                     gd.dataPlayer.unlockedM4 = true;
                     itemsShop[index].outStock = true;
                 }
                 break;
             case (int)ItemsShoop.MedikitPowerUp:
-                if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock)
+                if ((gd.generalScore >= itemsShop[index].price && gd.gameMode != GameData.GameMode.Survival || gd.currentScore >= itemsShop[index].price) && !itemsShop[index].outStock)
                 {
                     if (gd.dataPlayer.countMedikitPowerUp < gd.dataPlayer.maxCountMedikitPowerUp)
                     {
-                        gd.generalScore -= itemsShop[index].price;
+                        if (gd.gameMode != GameData.GameMode.Survival)
+                        {
+                            gd.generalScore -= itemsShop[index].price;
+                        }
+                        else
+                        {
+                            gd.currentScore -= itemsShop[index].price;
+                        }
                         gd.dataPlayer.countMedikitPowerUp += itemsShop[index].count;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.countMedikitPowerUp;
                     }
@@ -234,11 +280,18 @@ public class Shop : MonoBehaviour
                 }
                 break;
             case (int)ItemsShoop.MeteoroPowerUp:
-                if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock)
+                if ((gd.generalScore >= itemsShop[index].price && gd.gameMode != GameData.GameMode.Survival || gd.currentScore >= itemsShop[index].price) && !itemsShop[index].outStock)
                 {
                     if (gd.dataPlayer.countMeteoroPowerUp < gd.dataPlayer.maxCountMeteoroPowerUp)
                     {
-                        gd.generalScore -= itemsShop[index].price;
+                        if (gd.gameMode != GameData.GameMode.Survival)
+                        {
+                            gd.generalScore -= itemsShop[index].price;
+                        }
+                        else
+                        {
+                            gd.currentScore -= itemsShop[index].price;
+                        }
                         gd.dataPlayer.countMeteoroPowerUp += itemsShop[index].count;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.countMeteoroPowerUp;
                     }
@@ -250,11 +303,18 @@ public class Shop : MonoBehaviour
                 }
                 break;
             case (int)ItemsShoop.NukePowerUp:
-                if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock)
+                if ((gd.generalScore >= itemsShop[index].price && gd.gameMode != GameData.GameMode.Survival || gd.currentScore >= itemsShop[index].price) && !itemsShop[index].outStock)
                 {
                     if (gd.dataPlayer.countNukePowerUp < gd.dataPlayer.maxCountNukePowerUp)
                     {
-                        gd.generalScore -= itemsShop[index].price;
+                        if (gd.gameMode != GameData.GameMode.Survival)
+                        {
+                            gd.generalScore -= itemsShop[index].price;
+                        }
+                        else
+                        {
+                            gd.currentScore -= itemsShop[index].price;
+                        }
                         gd.dataPlayer.countNukePowerUp += itemsShop[index].count;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.countNukePowerUp;
                     }
@@ -266,11 +326,18 @@ public class Shop : MonoBehaviour
                 }
                 break;
             case (int)ItemsShoop.RepairConstructionPowerUp:
-                if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock)
+                if ((gd.generalScore >= itemsShop[index].price && gd.gameMode != GameData.GameMode.Survival || gd.currentScore >= itemsShop[index].price) && !itemsShop[index].outStock)
                 {
                     if (gd.dataPlayer.countRepairConstructionPowerUp < gd.dataPlayer.maxCountRepairConstructionPowerUp)
                     {
-                        gd.generalScore -= itemsShop[index].price;
+                        if (gd.gameMode != GameData.GameMode.Survival)
+                        {
+                            gd.generalScore -= itemsShop[index].price;
+                        }
+                        else
+                        {
+                            gd.currentScore -= itemsShop[index].price;
+                        }
                         gd.dataPlayer.countRepairConstructionPowerUp += itemsShop[index].count;
                         itemsShop[index].textCount.text = "" + gd.dataPlayer.countRepairConstructionPowerUp;
                     }
@@ -282,17 +349,31 @@ public class Shop : MonoBehaviour
                 }
                 break;
             case (int)ItemsShoop.SCAR:
-                if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock)
+                if ((gd.generalScore >= itemsShop[index].price && gd.gameMode != GameData.GameMode.Survival || gd.currentScore >= itemsShop[index].price ) && !itemsShop[index].outStock)
                 {
-                    gd.generalScore -= itemsShop[index].price;
+                    if (gd.gameMode != GameData.GameMode.Survival)
+                    {
+                        gd.generalScore -= itemsShop[index].price;
+                    }
+                    else
+                    {
+                        gd.currentScore -= itemsShop[index].price;
+                    }
                     gd.dataPlayer.unlockedScar = true;
                     itemsShop[index].outStock = true;
                 }
                 break;
             case (int)ItemsShoop.Sniper:
-                if (gd.generalScore >= itemsShop[index].price && !itemsShop[index].outStock)
+                if ((gd.generalScore >= itemsShop[index].price && gd.gameMode != GameData.GameMode.Survival || gd.currentScore >= itemsShop[index].price) && !itemsShop[index].outStock)
                 {
-                    gd.generalScore -= itemsShop[index].price;
+                    if (gd.gameMode != GameData.GameMode.Survival)
+                    {
+                        gd.generalScore -= itemsShop[index].price;
+                    }
+                    else
+                    {
+                        gd.currentScore -= itemsShop[index].price;
+                    }
                     gd.dataPlayer.unlockedSniper = true;
                     itemsShop[index].outStock = true;
                 }
@@ -300,9 +381,31 @@ public class Shop : MonoBehaviour
         }
         CheckItems();
         itemsShop[index].CheckInShop();
-        textCurrentScore.text = "Puntaje: " + gd.generalScore + "$";
+        if (gd.gameMode != GameData.GameMode.Survival)
+        {
+            textCurrentScore.text = "Puntaje: " + gd.generalScore + "$";
+        }
+        else
+        {
+            textCurrentScore.text = "Puntaje: " + gd.currentScore + "$";
+        }
     }
-
+    public void ActivateCamvasShop()
+    {
+        activateCamvasShop = !activateCamvasShop;
+        if (activateCamvasShop && CamvasShop != null)
+        {
+            CamvasShop.SetActive(true);
+        }
+        else if(CamvasShop != null)
+        {
+            CamvasShop.SetActive(false);
+        }
+    }
+    public bool GetActivateCamvasShop()
+    {
+        return activateCamvasShop;
+    }
     /*public void SellItem(ItemsShoop _itemsShoop)
     {
         int index = (int)_itemsShoop;

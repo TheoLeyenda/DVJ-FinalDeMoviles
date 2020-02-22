@@ -69,7 +69,7 @@ public class GameData : MonoBehaviour
     }
 
     public InventoryPlayer dataPlayer;
-
+    public InventoryPlayer auxDataPlayer;
     void Awake()
     {
         gameMode = GameMode.None;
@@ -108,6 +108,57 @@ public class GameData : MonoBehaviour
     {
         Enemy.LifeIsZero -= AddEnemysDie;
         BalisticProjectile.OnPlayerShoot -= AddShootPlayer;
+    }
+    public void SaveAuxData()
+    {
+        auxDataPlayer.unlockedScar = dataPlayer.unlockedScar;
+        auxDataPlayer.unlockedM4 = dataPlayer.unlockedM4;
+        auxDataPlayer.unlockedSniper = dataPlayer.unlockedSniper;
+
+        auxDataPlayer.scarAmmo = dataPlayer.scarAmmo;
+        auxDataPlayer.M4Ammo = dataPlayer.M4Ammo;
+        auxDataPlayer.SniperAmmo = dataPlayer.SniperAmmo;
+
+        auxDataPlayer.countNukePowerUp = dataPlayer.countNukePowerUp;
+        auxDataPlayer.countLifeUpPowerUp = dataPlayer.countLifeUpPowerUp;
+        auxDataPlayer.countRepairConstructionPowerUp = dataPlayer.countRepairConstructionPowerUp;
+        auxDataPlayer.countMedikitPowerUp = dataPlayer.countMedikitPowerUp;
+        auxDataPlayer.countIcePowerUp = dataPlayer.countIcePowerUp;
+        auxDataPlayer.countMeteoroPowerUp = dataPlayer.countMeteoroPowerUp;
+    }
+    public void LoadAuxData()
+    {
+        dataPlayer.unlockedScar = auxDataPlayer.unlockedScar;
+        dataPlayer.unlockedM4 = auxDataPlayer.unlockedM4;
+        dataPlayer.unlockedSniper = auxDataPlayer.unlockedSniper;
+
+        dataPlayer.scarAmmo = auxDataPlayer.scarAmmo;
+        dataPlayer.M4Ammo = auxDataPlayer.M4Ammo;
+        dataPlayer.SniperAmmo = auxDataPlayer.SniperAmmo;
+
+        dataPlayer.countNukePowerUp = auxDataPlayer.countNukePowerUp;
+        dataPlayer.countLifeUpPowerUp = auxDataPlayer.countLifeUpPowerUp;
+        dataPlayer.countRepairConstructionPowerUp = auxDataPlayer.countRepairConstructionPowerUp;
+        dataPlayer.countMedikitPowerUp = auxDataPlayer.countMedikitPowerUp;
+        dataPlayer.countIcePowerUp = auxDataPlayer.countIcePowerUp;
+        dataPlayer.countMeteoroPowerUp = auxDataPlayer.countMeteoroPowerUp;
+    }
+    public void ClearData()
+    {
+        dataPlayer.unlockedScar = false;
+        dataPlayer.unlockedM4 = false;
+        dataPlayer.unlockedSniper = false;
+
+        dataPlayer.scarAmmo = 0;
+        dataPlayer.M4Ammo = 0;
+        dataPlayer.SniperAmmo = 0;
+
+        dataPlayer.countNukePowerUp = 0;
+        dataPlayer.countLifeUpPowerUp = 0;
+        dataPlayer.countRepairConstructionPowerUp = 0;
+        dataPlayer.countMedikitPowerUp = 0;
+        dataPlayer.countIcePowerUp = 0;
+        dataPlayer.countMeteoroPowerUp = 0;
     }
     public void AddEnemysDie(Enemy e)
     {

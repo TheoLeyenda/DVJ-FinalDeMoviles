@@ -90,6 +90,8 @@ public class MainMenuController : MonoBehaviour
         CamvasLobyInGame.SetActive(false);
         CamvasSelectionSurvival.SetActive(true);
         gd.gameMode = GameData.GameMode.Survival;
+        gd.SaveAuxData();
+        gd.ClearData();
     }
     public void SelectLevelStory()
     {

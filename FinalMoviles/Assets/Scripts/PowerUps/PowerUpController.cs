@@ -6,6 +6,7 @@ using DarkTreeFPS;
 
 public class PowerUpController : MonoBehaviour
 {
+    public GameObject camvasShopSurvival;
     public GameObject lookSniperPC;
     public GameObject lookSniperAndroid;
     private GameObject lookSniper;
@@ -99,13 +100,13 @@ public class PowerUpController : MonoBehaviour
         {
             CheckEnableFrameworkPowerUps();
         }
-        else if ((!wm.enableShoot || lookSniper.activeSelf) && buttonOpenFrameWorkPowerUps.activeSelf)
+        else if ((!wm.enableShoot || lookSniper.activeSelf || camvasShopSurvival.activeSelf) && buttonOpenFrameWorkPowerUps.activeSelf)
         {
             buttonOpenFrameWorkPowerUps.SetActive(false);
         }
         else if (wm.enableShoot)
         {
-            if (!buttonOpenFrameWorkPowerUps.activeSelf && !lookSniper.activeSelf)
+            if (!buttonOpenFrameWorkPowerUps.activeSelf && !lookSniper.activeSelf && !camvasShopSurvival.activeSelf)
             {
                 buttonOpenFrameWorkPowerUps.SetActive(true);
             }
@@ -187,7 +188,7 @@ public class PowerUpController : MonoBehaviour
             gm.player.lockCursor = false;
             frameworkPowerUps.SetActive(true);
         }
-        else
+        else if(!camvasShopSurvival.activeSelf && frameworkPowerUps.activeSelf)
         {
 #if !UNITY_ANDROID
             gm.player.lockCursor = true;

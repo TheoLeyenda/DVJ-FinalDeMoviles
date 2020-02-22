@@ -7,6 +7,8 @@ namespace DarkTreeFPS
     public class WeaponManager : MonoBehaviour
     {
         //A public list which get all aviliable weapons on Start() and operate with them
+        private bool onceGlockCurrentAmmo = true;
+
         public List<Weapon> weapons;
 
         public bool UseNonPhysicalReticle = true;
@@ -85,6 +87,7 @@ namespace DarkTreeFPS
         private GameManager gm;
 
         private int indexSlot = 0;
+        private int indexM4;
 
         public bool enableShoot = false;
         //[HideInInspector]
@@ -92,6 +95,10 @@ namespace DarkTreeFPS
         public GameObject staticReticle;
         public RectTransform dynamicReticle;
         //public Weapon currentWeapon;
+
+       //Variables que habilitan la compra de municion en el modo supervivencia
+        private bool enableAmmoSCAR = false;
+        private bool enableAmmoSniper = false;
 
         public void ON()
         {
@@ -132,7 +139,13 @@ namespace DarkTreeFPS
                         activeSlot = slots[indexSlot];
                         slots[indexSlot].storedWeapon.currentAmmo = 0;
                         //AGREGO LAS ARMAS COMPRADAS EN LA TIENDA
-                        if (gd.dataPlayer.unlockedM4)
+                        if (gd.gameMode == GameData.GameMode.Survival)
+                        {
+                            M4.currentAmmo = 30;
+                            SCAR.currentAmmo = 30;
+                            Sniper.currentAmmo = 10;
+                        }
+                        if (gd.dataPlayer.unlockedM4 || gd.gameMode == GameData.GameMode.Survival)
                         {
                             indexSlot++;
                             if (indexSlot < slots.Count)
@@ -140,6 +153,7 @@ namespace DarkTreeFPS
                                 M4.currentAmmo = 30;
                                 M4._totalAmmo = gd.dataPlayer.M4Ammo;
                                 slots[indexSlot].storedWeapon = M4;
+                                indexM4 = indexSlot;
                             }
                         }
                         if (gd.dataPlayer.unlockedScar)
@@ -235,14 +249,57 @@ namespace DarkTreeFPS
         }
         public void CheckEnableShoot()
         {
+            if (gd.gameMode == GameData.GameMode.Survival)
+            {
+                //Debug.Log("ENTRE");
+                gd.dataPlayer.M4Ammo = 270;
+                M4._totalAmmo = gd.dataPlayer.M4Ammo;
+                gd.dataPlayer.unlockedM4 = true;
+                if (gd.dataPlayer.unlockedScar && !enableAmmoSCAR)
+                {
+                    indexSlot++;
+                    if (indexSlot < slots.Count)
+                    {
+                        SCAR.currentAmmo = 30;
+                        SCAR._totalAmmo = gd.dataPlayer.scarAmmo;
+                        slots[indexSlot].storedWeapon = SCAR;
+                        enableAmmoSCAR = true;
+                    }
+                }
+                if (gd.dataPlayer.unlockedSniper && !enableAmmoSniper)
+                {
+                    indexSlot++;
+                    if (indexSlot < slots.Count)
+                    {
+                        Sniper.currentAmmo = 10;
+                        Sniper._totalAmmo = gd.dataPlayer.SniperAmmo;
+                        slots[indexSlot].storedWeapon = Sniper;
+                        enableAmmoSniper = true;
+
+                    }
+                }
+                if (gd.dataPlayer.unlockedSniper && enableAmmoSniper)
+                {
+                    Sniper._totalAmmo = gd.dataPlayer.SniperAmmo;
+                }
+                if (gd.dataPlayer.unlockedScar && enableAmmoSCAR)
+                {
+                    SCAR._totalAmmo = gd.dataPlayer.scarAmmo;
+                }
+            }
             if (!enableShoot)
             {
                 PrimaryGun.currentAmmo = 0;
             }
             else
             {
-                PrimaryGun._totalAmmo = 20;
+                if (onceGlockCurrentAmmo)
+                {
+                    PrimaryGun.currentAmmo = 20;
+                    onceGlockCurrentAmmo = false;
+                }
                 PrimaryGun._totalAmmo = 120;
+                
             }
         }
         private void Update()

@@ -63,7 +63,7 @@ public class EnemyGenerate : MonoBehaviour
     public bool ready;
 
     //Variables del generador infinito.
-    //public bool enableGenerateInfinite;
+    public bool StartInfiniteGenerate = false;
     public static event Action<EnemyGenerate> OnGenerateEnemy;
 
     private void Start()
@@ -305,14 +305,14 @@ public class EnemyGenerate : MonoBehaviour
                 delayBetweenWaves = delayBetweenWaves - Time.deltaTime;
             }
         }
-        else if (typeGenerator == TypeGenerator.Infinite)
+        else if (typeGenerator == TypeGenerator.Infinite && StartInfiniteGenerate)
         {
             GameObject go;
             int iter = 0;
             
             //if (countEnemysGenerate < totalEnemyRound)
             //{
-                if (delayBetweenWaves <= 0 /*&& StartGenerate*/)
+                if (delayBetweenWaves <= 0 )
                 {
                     //if (EnemysRount_InfiniteGenered < countEnemysRount_InfiniteGenered)
                     //{

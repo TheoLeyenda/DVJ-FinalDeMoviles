@@ -43,14 +43,20 @@ public class UISeleccionLevel : MonoBehaviour
         sgm = SaveGameManager.instaceSaveGameManager;
         gd = GameData.instaceGameData;
         CheckButtonsLevels();
-        sgm.SaveGame(gd.numberParty);
+        if (gd.gameMode != GameData.GameMode.Survival)
+        {
+            sgm.SaveGame(gd.numberParty);
+        }
     }
     private void OnEnable()
     {
         sgm = SaveGameManager.instaceSaveGameManager;
         gd = GameData.instaceGameData;
         CheckButtonsLevels();
-        sgm.SaveGame(gd.numberParty);
+        if (gd.gameMode != GameData.GameMode.Survival)
+        {
+            sgm.SaveGame(gd.numberParty);
+        }
     }
     private void Update()
     {

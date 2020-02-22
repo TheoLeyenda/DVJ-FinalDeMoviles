@@ -835,10 +835,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConstructionZone
       objectReference: {fileID: 0}
-    - target: {fileID: 290296121, guid: e971c6173e61a4b43b98cd43a489d772, type: 3}
-      propertyPath: m_Name
-      value: WeyPointCamera4
-      objectReference: {fileID: 0}
     - target: {fileID: 8819566637389130932, guid: e971c6173e61a4b43b98cd43a489d772,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -904,6 +900,10 @@ PrefabInstance:
       propertyPath: detectedTeleport
       value: 
       objectReference: {fileID: 681343281}
+    - target: {fileID: 290296121, guid: e971c6173e61a4b43b98cd43a489d772, type: 3}
+      propertyPath: m_Name
+      value: WeyPointCamera4
+      objectReference: {fileID: 0}
     - target: {fileID: 290296122, guid: e971c6173e61a4b43b98cd43a489d772, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.7
@@ -1909,10 +1909,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConstructionZone
       objectReference: {fileID: 0}
-    - target: {fileID: 290296121, guid: e971c6173e61a4b43b98cd43a489d772, type: 3}
-      propertyPath: m_Name
-      value: WeyPointCamera2
-      objectReference: {fileID: 0}
     - target: {fileID: 8819566637389130932, guid: e971c6173e61a4b43b98cd43a489d772,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1978,6 +1974,10 @@ PrefabInstance:
       propertyPath: detectedTeleport
       value: 
       objectReference: {fileID: 401791309}
+    - target: {fileID: 290296121, guid: e971c6173e61a4b43b98cd43a489d772, type: 3}
+      propertyPath: m_Name
+      value: WeyPointCamera2
+      objectReference: {fileID: 0}
     - target: {fileID: 290296122, guid: e971c6173e61a4b43b98cd43a489d772, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.31899247
@@ -2259,10 +2259,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConstructionZone
       objectReference: {fileID: 0}
-    - target: {fileID: 290296121, guid: e971c6173e61a4b43b98cd43a489d772, type: 3}
-      propertyPath: m_Name
-      value: WeyPointCamera3
-      objectReference: {fileID: 0}
     - target: {fileID: 8819566637389130932, guid: e971c6173e61a4b43b98cd43a489d772,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2328,6 +2324,10 @@ PrefabInstance:
       propertyPath: detectedTeleport
       value: 
       objectReference: {fileID: 1500293843}
+    - target: {fileID: 290296121, guid: e971c6173e61a4b43b98cd43a489d772, type: 3}
+      propertyPath: m_Name
+      value: WeyPointCamera3
+      objectReference: {fileID: 0}
     - target: {fileID: 290296122, guid: e971c6173e61a4b43b98cd43a489d772, type: 3}
       propertyPath: m_LocalPosition.x
       value: -26.56
@@ -8512,6 +8512,24 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 662707358}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &662707388 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2445384442007133440, guid: 745a50f68c8269c4e9effa16ff8aad2a,
+    type: 3}
+  m_PrefabInstance: {fileID: 662707358}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &662707389 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2445384441544351136, guid: 745a50f68c8269c4e9effa16ff8aad2a,
+    type: 3}
+  m_PrefabInstance: {fileID: 662707358}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d926ceda97ad86a4686e216d90438d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &681343280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9400,6 +9418,85 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a77a093a26d8f4abd161b7ec46e8e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &927357908
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8072839320491396684, guid: bbbf41d53bdc7e1489c02559c2400044,
+        type: 3}
+      propertyPath: m_Name
+      value: CheckElementsInSurvivalMode
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072839320491396686, guid: bbbf41d53bdc7e1489c02559c2400044,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.723639
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072839320491396686, guid: bbbf41d53bdc7e1489c02559c2400044,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.8983097
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072839320491396686, guid: bbbf41d53bdc7e1489c02559c2400044,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.059347
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072839320491396686, guid: bbbf41d53bdc7e1489c02559c2400044,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072839320491396686, guid: bbbf41d53bdc7e1489c02559c2400044,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072839320491396686, guid: bbbf41d53bdc7e1489c02559c2400044,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072839320491396686, guid: bbbf41d53bdc7e1489c02559c2400044,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072839320491396686, guid: bbbf41d53bdc7e1489c02559c2400044,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072839320491396686, guid: bbbf41d53bdc7e1489c02559c2400044,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072839320491396686, guid: bbbf41d53bdc7e1489c02559c2400044,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072839320491396686, guid: bbbf41d53bdc7e1489c02559c2400044,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072839320491396685, guid: bbbf41d53bdc7e1489c02559c2400044,
+        type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 662707389}
+    - target: {fileID: 8072839320491396685, guid: bbbf41d53bdc7e1489c02559c2400044,
+        type: 3}
+      propertyPath: objectDialogue
+      value: 
+      objectReference: {fileID: 662707388}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bbbf41d53bdc7e1489c02559c2400044, type: 3}
 --- !u!1 &929742688
 GameObject:
   m_ObjectHideFlags: 0
@@ -9492,10 +9589,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 290296121, guid: e971c6173e61a4b43b98cd43a489d772, type: 3}
-      propertyPath: m_Name
-      value: WeyPointCamera6
-      objectReference: {fileID: 0}
     - target: {fileID: 8819566637389130932, guid: e971c6173e61a4b43b98cd43a489d772,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9561,6 +9654,10 @@ PrefabInstance:
       propertyPath: detectedTeleport
       value: 
       objectReference: {fileID: 920676028}
+    - target: {fileID: 290296121, guid: e971c6173e61a4b43b98cd43a489d772, type: 3}
+      propertyPath: m_Name
+      value: WeyPointCamera6
+      objectReference: {fileID: 0}
     - target: {fileID: 290296122, guid: e971c6173e61a4b43b98cd43a489d772, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.9
@@ -9899,10 +9996,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConstructionZone
       objectReference: {fileID: 0}
-    - target: {fileID: 290296121, guid: e971c6173e61a4b43b98cd43a489d772, type: 3}
-      propertyPath: m_Name
-      value: WeyPointCamera5
-      objectReference: {fileID: 0}
     - target: {fileID: 8819566637389130932, guid: e971c6173e61a4b43b98cd43a489d772,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9968,6 +10061,10 @@ PrefabInstance:
       propertyPath: detectedTeleport
       value: 
       objectReference: {fileID: 1209297329}
+    - target: {fileID: 290296121, guid: e971c6173e61a4b43b98cd43a489d772, type: 3}
+      propertyPath: m_Name
+      value: WeyPointCamera5
+      objectReference: {fileID: 0}
     - target: {fileID: 290296122, guid: e971c6173e61a4b43b98cd43a489d772, type: 3}
       propertyPath: m_LocalPosition.x
       value: -23.83

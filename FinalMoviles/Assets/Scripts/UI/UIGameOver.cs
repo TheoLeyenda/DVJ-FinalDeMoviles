@@ -10,6 +10,8 @@ public class UIGameOver : MonoBehaviour
     public Text textTotalScore;
     private GameData gd;
     public GameManager gm;
+    [HideInInspector]
+    public bool deleteWeaponsAndPowerUps;
     private void Start()
     {
         gd = GameData.instaceGameData;
@@ -17,10 +19,18 @@ public class UIGameOver : MonoBehaviour
     private void OnEnable()
     {
         gd = GameData.instaceGameData;
+        if (gd.gameMode == GameData.GameMode.Survival)
+        {
+            deleteWeaponsAndPowerUps = true;
+        }
         ShowDataGameOver();   
     }
     public void ShowDataGameOver()
     {
+        /*if (deleteWeaponsAndPowerUps)
+        {
+            gd.LoadAuxData();
+        }*/
         gm.PlayerPC.lockCursor = false;
         textCountEnemysDie.text = "Enemigos Abatidos: " + gd.countEnemysDie;
         textCountBulletsShoots.text = "Balas Disparadas: " + gd.countBulletsShoots;

@@ -115,6 +115,10 @@ public class UIPauseMenu : MonoBehaviour
     }
     public void RestartLevel()
     {
+        if (gd.gameMode == GameData.GameMode.Survival)
+        {
+            gd.ClearData();
+        }
         gd.currentScore = 0;
         Time.timeScale = 1;
         //Reinicia el nivel
@@ -123,6 +127,10 @@ public class UIPauseMenu : MonoBehaviour
     }
     public void ExitLevel()
     {
+        /*if (gd.gameMode == GameData.GameMode.Survival)
+        {
+            gd.LoadAuxData();
+        }*/
         gd.generalScore = gd.generalScore + gd.currentScore;
         gd.currentScore = 0;
         Time.timeScale = 1;

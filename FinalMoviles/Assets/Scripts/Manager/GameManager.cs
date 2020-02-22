@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject camvasTeleport;
+    public PowerUpController powerUpController;
+    public Shop shopSurvivalMode;
     public static GameManager instanceGameManager;
     public GameObject arrowTutorial;
     public Button[] enableButtonsTutorial;
@@ -125,6 +128,7 @@ public class GameManager : MonoBehaviour
                     generateEnemyManager.enemyGenerates[i].typeGenerator = EnemyGenerate.TypeGenerator.Infinite;
                     generateEnemyManager.infinityGenerator = true;
                     generateEnemyManager.enemyGenerates[i].infinite = true;
+                    generateEnemyManager.onceActivateElementsUiNextWave = true;
                     //generateEnemyManager.enemyGenerates[i].enableGenerateInfinite = true;
                 }
 
@@ -142,6 +146,24 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if (shopSurvivalMode != null)
+        {
+            if (gd.gameMode == GameData.GameMode.Survival && Input.GetKeyDown(shopSurvivalMode.keyOpenShop))
+            {
+                shopSurvivalMode.ActivateCamvasShop();
+
+            }
+#if UNITY_STANDALONE
+            if (shopSurvivalMode.GetActivateCamvasShop())
+            {
+                player.lockCursor = false;
+            }
+            else if (!camvasTeleport.activeSelf && !powerUpController.frameworkPowerUps.activeSelf && !shopSurvivalMode.GetActivateCamvasShop() && !gameOver)
+            {
+                player.lockCursor = true;
+            }
+#endif
+        }
         if (Input.GetKeyDown(inputManager.Pause))
         {
             GamePause();

@@ -14,14 +14,18 @@ public class UILobyInGame : MonoBehaviour
 
     private void OnEnable()
     {
-        
+
         gd = GameData.instaceGameData;
         sgm = SaveGameManager.instaceSaveGameManager;
+        if (gd.gameMode == GameData.GameMode.Survival)
+        { 
+            gd.LoadAuxData();
+        }
         textNameParty.text = "Partida: " + gd.currentNameUser + ".";
         textCurrentScore.text = "Puntaje: " + gd.generalScore + "$";
         sgm.LoadNamesButtons();
         gd.gameMode = GameData.GameMode.None;
-
+        
         //Debug.Log(sgm.slotsSaveData[gd.numberParty].OccupiedSlot);
         if (sgm.slotsSaveData[gd.numberParty].OccupiedSlot == 0)
         {

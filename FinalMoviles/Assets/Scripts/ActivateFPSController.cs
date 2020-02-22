@@ -11,6 +11,8 @@ public class ActivateFPSController : MonoBehaviour
     public GameObject CamvasMain;
     public GameObject WeaponManager;
     public GameObject dialogueObject;
+    [HideInInspector]
+    public bool onceDisable = false;
     private void OnEnable()
     {
 #if !UNITY_ANDROID
@@ -24,6 +26,11 @@ public class ActivateFPSController : MonoBehaviour
         if (dialogueObject != null)
         {
             dialogueObject.SetActive(true);
+        }
+        if (onceDisable)
+        {
+            onceDisable = false;
+            gameObject.SetActive(false);
         }
     }
 }
