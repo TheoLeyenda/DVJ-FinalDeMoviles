@@ -96,11 +96,11 @@ public class PowerUpController : MonoBehaviour
         CheckPowerUpIce();
         CheckPowerUpRepairConstruction();
         CheckPowerUpMeteorito();
-        if (Input.GetKeyDown(inputManager.inventoryPowerUp) && wm.enableShoot)
+        if (Input.GetKeyDown(inputManager.inventoryPowerUp) && wm.startParty)
         {
             CheckEnableFrameworkPowerUps();
         }
-        else if ((!wm.enableShoot || lookSniper.activeSelf || camvasShopSurvival.activeSelf) && buttonOpenFrameWorkPowerUps.activeSelf)
+        else if ((!wm.enableShoot && !wm.startParty|| lookSniper.activeSelf || camvasShopSurvival.activeSelf) && buttonOpenFrameWorkPowerUps.activeSelf)
         {
             buttonOpenFrameWorkPowerUps.SetActive(false);
         }

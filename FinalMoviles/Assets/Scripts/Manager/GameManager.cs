@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public WeaponManager wm;
     public GameObject camvasTeleport;
     public PowerUpController powerUpController;
     public Shop shopSurvivalMode;
@@ -153,16 +154,33 @@ public class GameManager : MonoBehaviour
                 shopSurvivalMode.ActivateCamvasShop();
 
             }
-#if UNITY_STANDALONE
+
             if (shopSurvivalMode.GetActivateCamvasShop())
             {
                 player.lockCursor = false;
+                if (wm.startParty)
+                {
+                    wm.enableShoot = false;
+                }
             }
             else if (!camvasTeleport.activeSelf && !powerUpController.frameworkPowerUps.activeSelf && !shopSurvivalMode.GetActivateCamvasShop() && !gameOver)
             {
+#if UNITY_STANDALONE
                 player.lockCursor = true;
-            }
 #endif
+                if (wm.startParty)
+                {
+                    wm.enableShoot = true;
+                }
+            }
+            else
+            {
+                if (wm.startParty)
+                {
+                    wm.enableShoot = false;
+                }
+            }
+
         }
         if (Input.GetKeyDown(inputManager.Pause))
         {
@@ -187,6 +205,10 @@ public class GameManager : MonoBehaviour
             }
         }
         CheckGameOver();
+    }
+    public void EnableShotParty()
+    {
+        wm.startParty = true;
     }
     public void GamePause()
     {

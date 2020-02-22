@@ -419,56 +419,59 @@ namespace DarkTreeFPS
 
         public void Fire()
         {
-            if (weaponType != WeaponType.Melee && weaponType != WeaponType.Grenade)
+            if (weaponManager.enableShoot)
             {
-                if (Time.time > nextFireTime && !reloading && canShot && !controller.isClimbing) //Allow fire statement
+                if (weaponType != WeaponType.Melee && weaponType != WeaponType.Grenade)
                 {
-                    if (currentAmmo > 0)
+                    if (Time.time > nextFireTime && !reloading && canShot && !controller.isClimbing) //Allow fire statement
                     {
-                        currentAmmo -= 1;
+                        if (currentAmmo > 0)
+                        {
+                            currentAmmo -= 1;
 
-                        PlayFX();
-                        
-                        //Getting random damage from minimum and maximum damage.
-                        calculatedDamage = Random.Range(damageMin, damageMax);
+                            PlayFX();
 
-                        ProjectilesManager();
+                            //Getting random damage from minimum and maximum damage.
+                            calculatedDamage = Random.Range(damageMin, damageMax);
 
-                        recoilComponent.AddRecoil(recoil);
+                            ProjectilesManager();
 
-                        //Calculating when next fire call allowed
-                        nextFireTime = Time.time + fireRate;
+                            recoilComponent.AddRecoil(recoil);
+
+                            //Calculating when next fire call allowed
+                            nextFireTime = Time.time + fireRate;
 
 
-                    }
-                    else
-                    {
-                        if (!reloading && autoReload)
-                            ReloadBegin();
+                        }
                         else
-                            audioSource.PlayOneShot(emptySFX);
+                        {
+                            if (!reloading && autoReload)
+                                ReloadBegin();
+                            else
+                                audioSource.PlayOneShot(emptySFX);
 
-                        nextFireTime = Time.time + fireRate;
+                            nextFireTime = Time.time + fireRate;
+                        }
                     }
                 }
-            }
-            else if (weaponType == WeaponType.Melee)
-            {
-                if (Time.time > nextFireTime) //Allow fire statement
+                else if (weaponType == WeaponType.Melee)
                 {
-                    audioSource.Stop();
-                    audioSource.PlayOneShot(shotSFX);
-                    animator.Play("Attack");
-                    Invoke("MeleeHit", meleeHitTime);
-                    recoilComponent.AddRecoil(recoil);
-                    nextFireTime = Time.time + meleeAttackRate;
-                }
+                    if (Time.time > nextFireTime) //Allow fire statement
+                    {
+                        audioSource.Stop();
+                        audioSource.PlayOneShot(shotSFX);
+                        animator.Play("Attack");
+                        Invoke("MeleeHit", meleeHitTime);
+                        recoilComponent.AddRecoil(recoil);
+                        nextFireTime = Time.time + meleeAttackRate;
+                    }
 
-            }
-            else if(weaponType == WeaponType.Grenade && !isThrowingGrenade)
-            {
-                animator.SetTrigger("Throw");
-                isThrowingGrenade = true;
+                }
+                else if (weaponType == WeaponType.Grenade && !isThrowingGrenade)
+                {
+                    animator.SetTrigger("Throw");
+                    isThrowingGrenade = true;
+                }
             }
         }
 

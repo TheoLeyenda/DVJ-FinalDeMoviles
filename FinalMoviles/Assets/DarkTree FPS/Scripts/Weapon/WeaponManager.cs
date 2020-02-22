@@ -90,6 +90,8 @@ namespace DarkTreeFPS
         private int indexM4;
 
         public bool enableShoot = false;
+        public bool startParty = false;
+        private bool onceEmptyCharger = true;
         //[HideInInspector]
 
         public GameObject staticReticle;
@@ -287,9 +289,10 @@ namespace DarkTreeFPS
                     SCAR._totalAmmo = gd.dataPlayer.scarAmmo;
                 }
             }
-            if (!enableShoot)
+            if (!enableShoot && onceEmptyCharger)
             {
                 PrimaryGun.currentAmmo = 0;
+                onceEmptyCharger = false;
             }
             else
             {
@@ -322,12 +325,12 @@ namespace DarkTreeFPS
             //DISPARO
             if (activeSlot.storedWeapon.weaponName != "Knife")
             {
-                if (Input.GetKey(activeSlot.storedWeapon.input.Fire) && !PlayerStats.isPlayerDead && activeSlot.storedWeapon.weaponType != WeaponType.Pistol && !InventoryManager.showInventory && activeSlot.storedWeapon.fireMode == Weapon.FireMode.automatic)  //Statement to restrict auto-fire for pistol weapon type. Riffle and others are automatic
+                if (enableShoot && Input.GetKey(activeSlot.storedWeapon.input.Fire) && !PlayerStats.isPlayerDead && activeSlot.storedWeapon.weaponType != WeaponType.Pistol && !InventoryManager.showInventory && activeSlot.storedWeapon.fireMode == Weapon.FireMode.automatic)  //Statement to restrict auto-fire for pistol weapon type. Riffle and others are automatic
                 {
                     //Debug.Log("ENTRE");
                     activeSlot.storedWeapon.Fire();
                 }
-                else if (Input.GetKeyDown(activeSlot.storedWeapon.input.Fire) && !PlayerStats.isPlayerDead && (activeSlot.storedWeapon.weaponType == WeaponType.Pistol || activeSlot.storedWeapon.fireMode == Weapon.FireMode.single) && !InventoryManager.showInventory)
+                else if (enableShoot && Input.GetKeyDown(activeSlot.storedWeapon.input.Fire) && !PlayerStats.isPlayerDead && (activeSlot.storedWeapon.weaponType == WeaponType.Pistol || activeSlot.storedWeapon.fireMode == Weapon.FireMode.single) && !InventoryManager.showInventory)
                 {
                     activeSlot.storedWeapon.Fire();
                 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DarkTreeFPS;
 public class UINextWave : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -93,7 +94,7 @@ public class UINextWave : MonoBehaviour
         
     }
     public void StartWave()
-    {
+    { 
         if (generateEnemyManager.infinityGenerator)
         {
             activateElementsCamvasNextWave = false;

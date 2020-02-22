@@ -79,6 +79,7 @@ public class ControllerElementSurvivalTutorial : MonoBehaviour
         if (once)
         {
             wm.enableShoot = true;
+            wm.startParty = true;
             uiNextWave.activateElementsCamvasNextWave = true;
 #if UNITY_STANDALONE
             uiNextWave.textStartWave.gameObject.SetActive(true);

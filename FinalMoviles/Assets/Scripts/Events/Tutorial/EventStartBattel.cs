@@ -28,6 +28,7 @@ public class EventStartBattel : EventsGame
                 dialogue.BarDialogue.SetActive(true);
                 dialogue.CheckDialogue();
                 weaponManager.enableShoot = true;
+                weaponManager.startParty = true;
             }
         }
     }

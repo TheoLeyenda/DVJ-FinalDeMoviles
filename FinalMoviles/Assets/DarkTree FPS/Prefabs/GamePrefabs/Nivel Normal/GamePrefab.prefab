@@ -4968,6 +4968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   go_activate: {fileID: 3097797148192598545}
+  gd: {fileID: 0}
   InitialGame: 1
 --- !u!1 &2445384441661019080
 GameObject:
@@ -29332,6 +29333,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5075613763355972900}
+        m_MethodName: EnableShotParty
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &2445384443613951129
@@ -31256,6 +31268,7 @@ MonoBehaviour:
   CamvasMain: {fileID: 8970241198847073524}
   WeaponManager: {fileID: 8970016653837512296}
   dialogueObject: {fileID: 0}
+  onceDisable: 0
 --- !u!82 &2445384443098784733
 AudioSource:
   m_ObjectHideFlags: 0
@@ -40217,6 +40230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2051946489441b47859a512511f0625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wm: {fileID: 9072728510919924606}
   camvasTeleport: {fileID: 2445384443017860418}
   powerUpController: {fileID: 6247978320244331243}
   shopSurvivalMode: {fileID: 4651719887562155566}
@@ -44448,6 +44462,7 @@ MonoBehaviour:
   tempGameobject: {fileID: 0}
   gd: {fileID: 0}
   enableShoot: 0
+  startParty: 0
   staticReticle: {fileID: 0}
   dynamicReticle: {fileID: 0}
 --- !u!114 &9073217116206331582
