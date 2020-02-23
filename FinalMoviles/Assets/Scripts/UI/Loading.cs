@@ -40,7 +40,7 @@ public class Loading : MonoBehaviour {
     {
         if (porcentage < 100)
         {
-            porcentage = porcentage + Time.deltaTime * speedLoad;
+            porcentage = porcentage + Time.deltaTime * 0.3f;
             progressImage.fillAmount = porcentage / 100;
             percentText.text = (int)porcentage + "%";
         }
@@ -52,7 +52,6 @@ public class Loading : MonoBehaviour {
             //progressImage.fillAmount = 1;
             //progressImage.fillAmount = loading.progress;
             loading.allowSceneActivation = true;
-
         }
     }
     /*IEnumerator LoadScene()

@@ -15751,21 +15751,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5407273929612421349, guid: 6a02cb246d167de499c38137fbd8457b,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5407273928102803085, guid: 6a02cb246d167de499c38137fbd8457b,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6537628218165336554, guid: 6a02cb246d167de499c38137fbd8457b,
-        type: 3}
-      propertyPath: inputManager
-      value: 
-      objectReference: {fileID: 2144064490249763335}
     - target: {fileID: 5407273928707341870, guid: 6a02cb246d167de499c38137fbd8457b,
         type: 3}
       propertyPath: inputManager
@@ -15821,6 +15806,21 @@ PrefabInstance:
       propertyPath: camvasShopSurvival
       value: 
       objectReference: {fileID: 2654893600235852286}
+    - target: {fileID: 5407273929612421349, guid: 6a02cb246d167de499c38137fbd8457b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537628218165336554, guid: 6a02cb246d167de499c38137fbd8457b,
+        type: 3}
+      propertyPath: inputManager
+      value: 
+      objectReference: {fileID: 2144064490249763335}
+    - target: {fileID: 5407273928102803085, guid: 6a02cb246d167de499c38137fbd8457b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a02cb246d167de499c38137fbd8457b, type: 3}
 --- !u!114 &1388468353256389011 stripped
@@ -16492,6 +16492,36 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8208526472310566600, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 8909624873055698101}
+    - target: {fileID: 8208526472310566600, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: delayCameraShakeActivate
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208526472310566600, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: auxDelayCameraShakeActivate
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208526472310566600, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: durationCameraShake
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208526472310566600, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: magnitudeCameraShake
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7825288769944358819, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: Pause
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 6357740329484606078, guid: 75e7e4547c8465e4faa093309eb8c2e7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16547,36 +16577,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7825288769944358819, guid: 75e7e4547c8465e4faa093309eb8c2e7,
-        type: 3}
-      propertyPath: Pause
-      value: 112
-      objectReference: {fileID: 0}
-    - target: {fileID: 8105418047783999356, guid: 75e7e4547c8465e4faa093309eb8c2e7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8105073504810244102, guid: 75e7e4547c8465e4faa093309eb8c2e7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8314631267595555724, guid: 75e7e4547c8465e4faa093309eb8c2e7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5379387136849969341, guid: 75e7e4547c8465e4faa093309eb8c2e7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8991730356288816179, guid: 75e7e4547c8465e4faa093309eb8c2e7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3309907984531768372, guid: 75e7e4547c8465e4faa093309eb8c2e7,
         type: 3}
       propertyPath: cameraShake
@@ -16602,90 +16602,35 @@ PrefabInstance:
       propertyPath: magnitudeCameraShake
       value: 0.4
       objectReference: {fileID: 0}
-    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+    - target: {fileID: 8105073504810244102, guid: 75e7e4547c8465e4faa093309eb8c2e7,
         type: 3}
-      propertyPath: goMasksBloodScreen.Array.size
-      value: 3
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+    - target: {fileID: 8105418047783999356, guid: 75e7e4547c8465e4faa093309eb8c2e7,
         type: 3}
-      propertyPath: lowLifeMaskBlood
-      value: 
-      objectReference: {fileID: 6890262516921718408}
-    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
-        type: 3}
-      propertyPath: mediumLifeMaskBlood
-      value: 
-      objectReference: {fileID: 4059060010863565566}
-    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
-        type: 3}
-      propertyPath: criticalLifeMaskBlood
-      value: 
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+    - target: {fileID: 8314631267595555724, guid: 75e7e4547c8465e4faa093309eb8c2e7,
         type: 3}
-      propertyPath: countLifeLowMaskBlood
-      value: 50
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+    - target: {fileID: 8991730356288816179, guid: 75e7e4547c8465e4faa093309eb8c2e7,
         type: 3}
-      propertyPath: countLifeMediumMaskBlood
-      value: 25
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+    - target: {fileID: 5379387136849969341, guid: 75e7e4547c8465e4faa093309eb8c2e7,
         type: 3}
-      propertyPath: countLifeCriticalMaskBlood
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
-        type: 3}
-      propertyPath: goMasksBloodScreen.Array.data[0]
-      value: 
-      objectReference: {fileID: 6664639852466358148}
-    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
-        type: 3}
-      propertyPath: goMasksBloodScreen.Array.data[1]
-      value: 
-      objectReference: {fileID: 1213886524699510821}
-    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
-        type: 3}
-      propertyPath: goMasksBloodScreen.Array.data[2]
-      value: 
-      objectReference: {fileID: 5415873665132371152}
-    - target: {fileID: 3309907983662996051, guid: 75e7e4547c8465e4faa093309eb8c2e7,
-        type: 3}
-      propertyPath: m_Enabled
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5379387136836094493, guid: 75e7e4547c8465e4faa093309eb8c2e7,
         type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8208526472310566600, guid: 75e7e4547c8465e4faa093309eb8c2e7,
-        type: 3}
-      propertyPath: cameraShake
-      value: 
-      objectReference: {fileID: 8909624873055698101}
-    - target: {fileID: 8208526472310566600, guid: 75e7e4547c8465e4faa093309eb8c2e7,
-        type: 3}
-      propertyPath: delayCameraShakeActivate
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8208526472310566600, guid: 75e7e4547c8465e4faa093309eb8c2e7,
-        type: 3}
-      propertyPath: auxDelayCameraShakeActivate
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8208526472310566600, guid: 75e7e4547c8465e4faa093309eb8c2e7,
-        type: 3}
-      propertyPath: durationCameraShake
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8208526472310566600, guid: 75e7e4547c8465e4faa093309eb8c2e7,
-        type: 3}
-      propertyPath: magnitudeCameraShake
-      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8207830060718974584, guid: 75e7e4547c8465e4faa093309eb8c2e7,
         type: 3}
@@ -16742,6 +16687,61 @@ PrefabInstance:
       propertyPath: goMasksBloodScreen.Array.data[2]
       value: 
       objectReference: {fileID: 5415873665132371152}
+    - target: {fileID: 3309907983662996051, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: goMasksBloodScreen.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: lowLifeMaskBlood
+      value: 
+      objectReference: {fileID: 6890262516921718408}
+    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: mediumLifeMaskBlood
+      value: 
+      objectReference: {fileID: 4059060010863565566}
+    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: criticalLifeMaskBlood
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: countLifeLowMaskBlood
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: countLifeMediumMaskBlood
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: countLifeCriticalMaskBlood
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: goMasksBloodScreen.Array.data[0]
+      value: 
+      objectReference: {fileID: 6664639852466358148}
+    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: goMasksBloodScreen.Array.data[1]
+      value: 
+      objectReference: {fileID: 1213886524699510821}
+    - target: {fileID: 3309907984531768374, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: goMasksBloodScreen.Array.data[2]
+      value: 
+      objectReference: {fileID: 5415873665132371152}
     - target: {fileID: 3309907984643770839, guid: 75e7e4547c8465e4faa093309eb8c2e7,
         type: 3}
       propertyPath: m_Enabled
@@ -16752,10 +16752,15 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 470776711780819189, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+    - target: {fileID: 8104714038966394107, guid: 75e7e4547c8465e4faa093309eb8c2e7,
         type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 8909624873055698101}
+    - target: {fileID: 7092247762985121235, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5259930948622260008, guid: 75e7e4547c8465e4faa093309eb8c2e7,
         type: 3}
@@ -16767,10 +16772,15 @@ PrefabInstance:
       propertyPath: buttonShopSurvival
       value: 
       objectReference: {fileID: 1833235867710942911}
-    - target: {fileID: 7092247762985121235, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+    - target: {fileID: 3309907984569556986, guid: 75e7e4547c8465e4faa093309eb8c2e7,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 2447648095734478836}
+    - target: {fileID: 470776711780819189, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8313963754367692426, guid: 75e7e4547c8465e4faa093309eb8c2e7,
         type: 3}
@@ -16797,16 +16807,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3309907984569556986, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+    - target: {fileID: 8208546772682779706, guid: 75e7e4547c8465e4faa093309eb8c2e7,
         type: 3}
-      propertyPath: cameraShake
+      propertyPath: m_FontData.m_Font
       value: 
-      objectReference: {fileID: 2447648095734478836}
-    - target: {fileID: 8104714038966394107, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+      objectReference: {fileID: 12800000, guid: e8a6d00697fe81d42b2ee31b623aec7a,
         type: 3}
-      propertyPath: cameraShake
+    - target: {fileID: 8207769988318403838, guid: 75e7e4547c8465e4faa093309eb8c2e7,
+        type: 3}
+      propertyPath: m_FontData.m_Font
       value: 
-      objectReference: {fileID: 8909624873055698101}
+      objectReference: {fileID: 12800000, guid: e8a6d00697fe81d42b2ee31b623aec7a,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75e7e4547c8465e4faa093309eb8c2e7, type: 3}
 --- !u!224 &977623033752564119 stripped
