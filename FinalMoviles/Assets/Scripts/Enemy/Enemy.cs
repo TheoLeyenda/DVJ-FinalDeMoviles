@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
             rig = GetComponent<Rigidbody>();
         }
 #if UNITY_ANDROID
-        speed = speed / 1.5f;
+        speed = speed / 2f;
 #endif
         finishRoute = false;
         resetVelocity = false;

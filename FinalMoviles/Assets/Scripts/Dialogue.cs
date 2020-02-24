@@ -178,7 +178,7 @@ public class Dialogue : MonoBehaviour
             {
                 if (!GameManager.instanceGameManager.lockedTutorial)
                 {
-                    Debug.Log("ENTRE");
+                    //Debug.Log("ENTRE");
                     dialogues[indexDialogues].DisableButtons();
                 }
             }

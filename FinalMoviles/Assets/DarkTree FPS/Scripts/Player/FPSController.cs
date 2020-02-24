@@ -14,7 +14,7 @@ namespace DarkTreeFPS
         public GameObject prefabPlayerPC;
         public GameObject prefabPlayerAndroid;
         public Transform posCamara;
-        public Image imageButtonRuning; 
+        public Image imageButtonRuning;
         public Sprite spriteRunningStickMan;
         public Sprite spriteWalkingStickMan;
         public Construction currentConstruction;
@@ -47,14 +47,14 @@ namespace DarkTreeFPS
 
         [HideInInspector]
         public Rigidbody controllerRigidbody;
-        
+
         private CapsuleCollider controllerCollider;
         public Transform camHolder;
         private float moveSpeedLocal;
 
         Vector2 _mouseAbsolute;
         Vector2 _smoothMouse;
-        
+
         private float distanceToGround;
 
         private Animator weaponHolderAnimator;
@@ -68,7 +68,7 @@ namespace DarkTreeFPS
 
         //Velocity calculation variable
         private Vector3 previousPos = new Vector3();
-        
+
         Vector3 dirVector;
 
         InputManager inputManager;
@@ -94,14 +94,14 @@ namespace DarkTreeFPS
             inputManager = FindObjectOfType<InputManager>();
             crouch = false;
         }
-        
+
         private void Update()
         {
 
             if (mouseLookEnabled && !InventoryManager.showInventory)
                 MouseLook();
-            
-                StandaloneMovement();
+
+            StandaloneMovement();
 
 #if UNITY_STANDALONE
             if (lockCursor)
@@ -238,14 +238,14 @@ namespace DarkTreeFPS
                 Jump();
                 crouch = false;
             }
-            
+
         }
-        
+
         void FixedUpdate()
         {
             CharacterMovement();
         }
-        
+
         void CharacterMovement()
         {
             var camForward = camHolder.transform.forward;
@@ -255,29 +255,29 @@ namespace DarkTreeFPS
             camRight.y = 0f;
             camForward.Normalize();
             camRight.Normalize();
-            
+
             if (isClimbing)
             {
                 crouch = false;
 
                 weaponHolderAnimator.SetBool("HideWeapon", true);
                 controllerRigidbody.useGravity = false;
-                
-                    dirVector = new Vector3(CrossPlatformInputManager.GetAxis("Horizontal"), 0, CrossPlatformInputManager.GetAxis("Vertical")).normalized;
-                
-                
+
+                dirVector = new Vector3(CrossPlatformInputManager.GetAxis("Horizontal"), 0, CrossPlatformInputManager.GetAxis("Vertical")).normalized;
+
+
                 Vector3 verticalDirection = transform.up;
-                Vector3 moveDirection = (verticalDirection) * dirVector.z+ camRight * dirVector.x;
-                
+                Vector3 moveDirection = (verticalDirection) * dirVector.z + camRight * dirVector.x;
+
                 controllerRigidbody.MovePosition(transform.position + moveDirection * moveSpeedLocal * Time.deltaTime);
             }
             else
             {
                 weaponHolderAnimator.SetBool("HideWeapon", false);
                 controllerRigidbody.useGravity = true;
-                
-                    dirVector = new Vector3(CrossPlatformInputManager.GetAxis("Horizontal"), 0, CrossPlatformInputManager.GetAxis("Vertical")).normalized;
-                
+
+                dirVector = new Vector3(CrossPlatformInputManager.GetAxis("Horizontal"), 0, CrossPlatformInputManager.GetAxis("Vertical")).normalized;
+
                 Vector3 moveDirection = camForward * dirVector.z + camRight * dirVector.x;
 
                 controllerRigidbody.MovePosition(transform.position + moveDirection * moveSpeedLocal * Time.deltaTime);
@@ -286,25 +286,28 @@ namespace DarkTreeFPS
 
         bool CheckMovement()
         {
-                if (CrossPlatformInputManager.GetAxis("Vertical") > 0 || CrossPlatformInputManager.GetAxis("Vertical") < 0 || CrossPlatformInputManager.GetAxis("Horizontal") > 0 || CrossPlatformInputManager.GetAxis("Horizontal") < 0)
-                {
-                    return true;
-                }
-            
-            
+            if (CrossPlatformInputManager.GetAxis("Vertical") > 0 || CrossPlatformInputManager.GetAxis("Vertical") < 0 || CrossPlatformInputManager.GetAxis("Horizontal") > 0 || CrossPlatformInputManager.GetAxis("Horizontal") < 0)
+            {
+                return true;
+            }
+
+
             return false;
         }
-        
+
         void MouseLook()
         {
-                Quaternion targetOrientation = Quaternion.Euler(targetDirection);
+            Quaternion targetOrientation = Quaternion.Euler(targetDirection);
 
-                Vector2 mouseDelta = new Vector2();
-            
-                    mouseDelta = new Vector2(CrossPlatformInputManager.GetAxisRaw("Mouse X"), CrossPlatformInputManager.GetAxisRaw("Mouse Y"));
-                
+            Vector2 mouseDelta = new Vector2();
 
-                mouseDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity.x * smoothing.x, sensitivity.y * smoothing.y));
+
+            mouseDelta = new Vector2(CrossPlatformInputManager.GetAxisRaw("Mouse X"), CrossPlatformInputManager.GetAxisRaw("Mouse Y"));
+            //mouseDelta = new Vector2(CrossPlatformInputManager.GetAxis("Mouse X"), CrossPlatformInputManager.GetAxis("Mouse Y"));
+            //mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+            // Debug.Log(Input.GetAxis("Mouse X") + "," + Input.GetAxis("Mouse X"));
+
+            mouseDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity.x * smoothing.x, sensitivity.y * smoothing.y));
                 
                 _smoothMouse.x = Mathf.Lerp(_smoothMouse.x, mouseDelta.x, 1f / smoothing.x);
                 _smoothMouse.y = Mathf.Lerp(_smoothMouse.y, mouseDelta.y, 1f / smoothing.y);

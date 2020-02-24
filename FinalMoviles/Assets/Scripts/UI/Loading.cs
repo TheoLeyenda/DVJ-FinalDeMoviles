@@ -40,7 +40,7 @@ public class Loading : MonoBehaviour {
     {
         if (porcentage < 100)
         {
-            porcentage = porcentage + Time.deltaTime * 0.3f;
+            porcentage = porcentage + Time.deltaTime * speedLoad;
             progressImage.fillAmount = porcentage / 100;
             percentText.text = (int)porcentage + "%";
         }
