@@ -192,6 +192,7 @@ public class SaveGameManager : MonoBehaviour
                     PlayerPrefs.SetFloat("Slot " + indexSlot + " - " + "Sensivilidad_X", 1);
                     PlayerPrefs.SetFloat("Slot " + indexSlot + " - " + "Sensivilidad_Y", 1);
                 }
+                PlayerPrefs.SetInt("Slot " + indexSlot + " - " + "TypeControlAndroid", (int)gd.typeAndroidControl);
                 PlayerPrefs.SetInt("Slot " + indexSlot + " - " + "OccupiedSlot", slotsSaveData[indexSlot].OccupiedSlot);
                 PlayerPrefs.SetInt("Slot " + indexSlot + " - " + "currentLevel", slotsSaveData[indexSlot].currentLevel);
                 PlayerPrefs.SetString("Slot " + indexSlot + " - " + "currentNameUser", slotsSaveData[indexSlot].currentNameUser);
@@ -262,6 +263,7 @@ public class SaveGameManager : MonoBehaviour
                         gd.nameUnlokedObjects.Add(PlayerPrefs.GetString(key));
                     }
                 }
+                gd.typeAndroidControl = (GameData.TypeAndroidControl)PlayerPrefs.GetInt("Slot " + indexSlot + " - " + "TypeControlAndroid", (int)GameData.TypeAndroidControl.TouchPad);
                 gd.sensivility.x = PlayerPrefs.GetFloat("Slot " + indexSlot + " - " + "Sensivilidad_X" , 1);
                 gd.sensivility.y = PlayerPrefs.GetFloat("Slot " + indexSlot + " - " + "Sensivilidad_Y" , 1);
                 slotsSaveData[indexSlot].OccupiedSlot = PlayerPrefs.GetInt("Slot " + indexSlot + " - " + "OccupiedSlot");

@@ -34,11 +34,18 @@ public class GameData : MonoBehaviour
     //public Vector3 scaleLook;
     public float volume;
     public static GameData instaceGameData;
+    public TypeAndroidControl typeAndroidControl;
+    public enum TypeAndroidControl
+    {
+        None,
+        Analogic,
+        TouchPad,
+    }
 
     //public const int positiveValuePartyCreated = 1;
     //public int PartyCreated = 0; // *si este valor es igual a 0 quiere decir que la partida no fue creada.
-                                  // *si este valor es igual a 1 quiere decir que la partida fue creada y debera
-                                  // ser cargada automaticamente.
+    // *si este valor es igual a 1 quiere decir que la partida fue creada y debera
+    // ser cargada automaticamente.
 
     [System.Serializable]
     public struct InventoryPlayer
@@ -102,7 +109,6 @@ public class GameData : MonoBehaviour
     {
         currentLevel = 0;
         sensivility = new Vector2(1, 1);
-        //scaleLook = new Vector3(2, 2 , 2);
     }
     private void OnEnable()
     {

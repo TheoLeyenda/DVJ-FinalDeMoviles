@@ -51,6 +51,7 @@ public class Loading : MonoBehaviour {
             //percentText.text = "100%";
             //progressImage.fillAmount = 1;
             //progressImage.fillAmount = loading.progress;
+            percentText.text = "99%";
             loading.allowSceneActivation = true;
         }
     }

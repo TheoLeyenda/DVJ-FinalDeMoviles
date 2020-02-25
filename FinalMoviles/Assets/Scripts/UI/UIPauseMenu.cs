@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using DarkTreeFPS;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.CrossPlatformInput;
 public class UIPauseMenu : MonoBehaviour
 {
     // Start is called before the first frame update
     public Image imageButtonPause;
     //public RectTransform imageLook;
+
     public Sprite spritePause;
     public Sprite spriteNotPause;
     public GameObject windowsPause;
@@ -35,6 +37,36 @@ public class UIPauseMenu : MonoBehaviour
     private float porcentageScaleLook;
     private float currentVolumen = 0.5f;
     private GameData gd;
+
+    
+
+    [Header("Scale And Position Slider Sensivility")]
+    public Vector3 scaleAndroidSliderSensivility;
+    public Vector3 scalePCSliderSensivility;
+    public Vector3 positionAndroidSliderSensivility;
+    public Vector3 positionPCSliderSensivility;
+
+    [Header("Objects Options Type Control Android")]
+    public GameObject touchPadControl;
+    public TouchPad scriptTouchPad;
+    public GameObject analogicControl;
+    public Joystick scriptAnalogic;
+
+    public Vector3 positionAnalogicJumpAndroid;
+    public Vector3 positionAnalogicLookAndroid;
+    public Vector3 positionAnalogicRunAndroid;
+
+    public Vector3 positionTouchPadJumpAndroid;
+    public Vector3 positionTouchPadLookAndroid;
+    public Vector3 positionTouchPadRunAndroid;
+
+    public GameObject buttonJumpAndroid;
+    public GameObject buttonLookAndroid;
+    public GameObject buttonRunAndroid;
+    public GameObject buttonTypeControl;
+    public Text textOptionSelected;
+
+
     void Start()
     {
         gd = GameData.instaceGameData;
@@ -42,18 +74,47 @@ public class UIPauseMenu : MonoBehaviour
         fpsController = fpsControllerAndroid;
         currentWindowsControls = windowsControlsAndroid;
         imageButtonPause.gameObject.SetActive(true);
+        sliderSensivility.transform.localScale = scaleAndroidSliderSensivility;
+        sliderSensivility.transform.localPosition = positionAndroidSliderSensivility;
+        buttonTypeControl.SetActive(true);
+        switch (gd.typeAndroidControl)
+        {
+            case GameData.TypeAndroidControl.Analogic:
+                analogicControl.SetActive(true);
+                touchPadControl.SetActive(false);
+                scriptAnalogic.enabled = true;
+                scriptTouchPad.enabled = false;
+                buttonJumpAndroid.transform.localPosition = positionAnalogicJumpAndroid;
+                buttonLookAndroid.transform.localPosition = positionAnalogicLookAndroid;
+                buttonRunAndroid.transform.localPosition = positionAnalogicRunAndroid;
+                textOptionSelected.text = "Analogico";
+                break;
+            case GameData.TypeAndroidControl.TouchPad:
+                touchPadControl.SetActive(true);
+                analogicControl.SetActive(false);
+                scriptTouchPad.enabled = true;
+                scriptAnalogic.enabled = false;
+                buttonJumpAndroid.transform.localPosition = positionTouchPadJumpAndroid;
+                buttonLookAndroid.transform.localPosition = positionTouchPadLookAndroid;
+                buttonRunAndroid.transform.localPosition = positionTouchPadRunAndroid;
+                textOptionSelected.text = "Pad";
+                break;
+        }
 #endif
 #if UNITY_STANDALONE
         fpsController = fpsControllerPC;
         currentWindowsControls = windowsControlsPC;
         imageButtonPause.gameObject.SetActive(false);
+        sliderSensivility.transform.localScale = scalePCSliderSensivility;
+        sliderSensivility.transform.localPosition = positionPCSliderSensivility;
+        buttonTypeControl.SetActive(false);
 #endif
-        for (int i = 0; i < audioManager.audioSources.Count; i++)
-        {
-            audioManager.audioSources[i].volume = currentVolumen;
-        }
-        porcentageVolumen = sliderVolumen.value * maxValue;
-        textVolumen.text = "Volumen: " + porcentageVolumen + "%";
+        //for (int i = 0; i < audioManager.audioSources.Count; i++)
+        //{
+           // audioManager.audioSources[i].volume = currentVolumen;
+        //}
+        //porcentageVolumen = sliderVolumen.value * maxValue;
+        //textVolumen.text = "Volumen: " + porcentageVolumen + "%";
 
         sliderSensivility.value = gd.sensivility.x / 10;
         sliderSensivility.value = gd.sensivility.y / 10;
@@ -61,10 +122,46 @@ public class UIPauseMenu : MonoBehaviour
         porcentageSensivility = sliderSensivility.value * maxValue;
         textSensivility.text = "Senibilidad: " + Mathf.Round(porcentageSensivility) + "%";
 
+       
         //sliderLook.value = gd.scaleLook.x / 10;
         //sliderLook.value = gd.scaleLook.y / 10;
         //porcentageScaleLook = sliderLook.value * maxValue;
         //textScaleLook.text = "Tamaño De La Mira: " + Mathf.Round(porcentageSensivility) +"%";
+    }
+    public void SwitchControlAndroid()
+    {
+        if (gd.typeAndroidControl == GameData.TypeAndroidControl.Analogic)
+        {
+            gd.typeAndroidControl = GameData.TypeAndroidControl.TouchPad;
+        }
+        else if (gd.typeAndroidControl == GameData.TypeAndroidControl.TouchPad)
+        {
+            gd.typeAndroidControl = GameData.TypeAndroidControl.Analogic;
+        }
+        switch (gd.typeAndroidControl)
+        {
+            case GameData.TypeAndroidControl.Analogic:
+                analogicControl.SetActive(true);
+                touchPadControl.SetActive(false);
+                scriptAnalogic.enabled = true;
+                scriptTouchPad.enabled = false;
+                buttonJumpAndroid.transform.localPosition = positionAnalogicJumpAndroid;
+                buttonLookAndroid.transform.localPosition = positionAnalogicLookAndroid;
+                buttonRunAndroid.transform.localPosition = positionAnalogicRunAndroid;
+                textOptionSelected.text = "Analogico";
+                
+                break;
+            case GameData.TypeAndroidControl.TouchPad:
+                touchPadControl.SetActive(true);
+                analogicControl.SetActive(false);
+                scriptTouchPad.enabled = true;
+                scriptAnalogic.enabled = false;
+                buttonJumpAndroid.transform.localPosition = positionTouchPadJumpAndroid;
+                buttonLookAndroid.transform.localPosition = positionTouchPadLookAndroid;
+                buttonRunAndroid.transform.localPosition = positionTouchPadRunAndroid;
+                textOptionSelected.text = "Pad";
+                break;
+        }
     }
     private void Update()
     {
@@ -79,10 +176,8 @@ public class UIPauseMenu : MonoBehaviour
             //ChangeVolumen();
             gd.sensivility.x = sliderSensivility.value * multiplaySensivility;
             gd.sensivility.y = sliderSensivility.value * multiplaySensivility;
-
             //imageLook.localScale = (new Vector3(sliderLook.value,sliderLook.value, 1)*multiplayScale);
             //gd.scaleLook = imageLook.localScale;
-
         }
         
     }
