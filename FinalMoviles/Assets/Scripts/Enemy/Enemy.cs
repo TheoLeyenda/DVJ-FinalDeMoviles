@@ -71,6 +71,7 @@ public class Enemy : MonoBehaviour
         }
 #if UNITY_ANDROID
         speed = speed / 2f;
+        life = life / 2;
 #endif
         finishRoute = false;
         resetVelocity = false;

@@ -30,6 +30,9 @@ public class GameData : MonoBehaviour
     public int countBulletsShoots;
     public int currentScore;
 
+    public Vector2 sensivility;
+    //public Vector3 scaleLook;
+    public float volume;
     public static GameData instaceGameData;
 
     //public const int positiveValuePartyCreated = 1;
@@ -98,6 +101,8 @@ public class GameData : MonoBehaviour
     private void Start()
     {
         currentLevel = 0;
+        sensivility = new Vector2(1, 1);
+        //scaleLook = new Vector3(2, 2 , 2);
     }
     private void OnEnable()
     {

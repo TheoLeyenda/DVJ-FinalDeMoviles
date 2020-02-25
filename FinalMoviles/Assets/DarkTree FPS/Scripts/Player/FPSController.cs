@@ -20,6 +20,7 @@ namespace DarkTreeFPS
         public Construction currentConstruction;
         public GameObject floorObject;
         private string auxFloorObjectTag;
+        private GameData gd;
 
         [Header("Movement Settings")]
         public float moveSpeed = 1f;
@@ -84,6 +85,7 @@ namespace DarkTreeFPS
         }
         private void Start()
         {
+            gd = GameData.instaceGameData;
             controllerRigidbody = GetComponent<Rigidbody>();
             controllerCollider = GetComponent<CapsuleCollider>();
 
@@ -93,6 +95,7 @@ namespace DarkTreeFPS
 
             inputManager = FindObjectOfType<InputManager>();
             crouch = false;
+            sensitivity = gd.sensivility;
         }
 
         private void Update()

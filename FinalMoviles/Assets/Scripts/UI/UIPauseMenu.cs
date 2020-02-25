@@ -8,6 +8,7 @@ public class UIPauseMenu : MonoBehaviour
 {
     // Start is called before the first frame update
     public Image imageButtonPause;
+    //public RectTransform imageLook;
     public Sprite spritePause;
     public Sprite spriteNotPause;
     public GameObject windowsPause;
@@ -17,10 +18,13 @@ public class UIPauseMenu : MonoBehaviour
     public GameObject prefabControles;
     private GameObject currentWindowsControls;
     public Slider sliderVolumen;
+    //public Slider sliderLook;
     public Slider sliderSensivility;
+    //public Text textScaleLook;
     public Text textVolumen;
     public Text textSensivility;
     public float multiplaySensivility = 1;
+    public float multiplayScale = 10f;
     private FPSController fpsController;
     public FPSController fpsControllerPC;
     public FPSController fpsControllerAndroid;
@@ -28,6 +32,7 @@ public class UIPauseMenu : MonoBehaviour
     private float maxValue = 100;
     private float porcentageVolumen;
     private float porcentageSensivility;
+    private float porcentageScaleLook;
     private float currentVolumen = 0.5f;
     private GameData gd;
     void Start()
@@ -50,9 +55,16 @@ public class UIPauseMenu : MonoBehaviour
         porcentageVolumen = sliderVolumen.value * maxValue;
         textVolumen.text = "Volumen: " + porcentageVolumen + "%";
 
-        sliderSensivility.value = fpsController.sensitivity.x / 10;
-        //Debug.Log(sliderSensivility.value);
-        sliderVolumen.value = fpsController.sensitivity.y / 10;
+        sliderSensivility.value = gd.sensivility.x / 10;
+        sliderSensivility.value = gd.sensivility.y / 10;
+        
+        porcentageSensivility = sliderSensivility.value * maxValue;
+        textSensivility.text = "Senibilidad: " + Mathf.Round(porcentageSensivility) + "%";
+
+        //sliderLook.value = gd.scaleLook.x / 10;
+        //sliderLook.value = gd.scaleLook.y / 10;
+        //porcentageScaleLook = sliderLook.value * maxValue;
+        //textScaleLook.text = "Tamaño De La Mira: " + Mathf.Round(porcentageSensivility) +"%";
     }
     private void Update()
     {
@@ -64,8 +76,23 @@ public class UIPauseMenu : MonoBehaviour
         if (windowsOptions.activeSelf)
         {
             ChangeSensivility();
-            ChangeVolumen();
+            //ChangeVolumen();
+            gd.sensivility.x = sliderSensivility.value * multiplaySensivility;
+            gd.sensivility.y = sliderSensivility.value * multiplaySensivility;
+
+            //imageLook.localScale = (new Vector3(sliderLook.value,sliderLook.value, 1)*multiplayScale);
+            //gd.scaleLook = imageLook.localScale;
+
         }
+        
+    }
+    private void OnDisable()
+    {
+        gd.sensivility.x = (sliderSensivility.value * multiplaySensivility) * 2;
+        gd.sensivility.y = (sliderSensivility.value * multiplaySensivility) * 2;
+
+        //gd.scaleLook.x = (sliderLook.value * multiplayScale) * 2;
+        //gd.scaleLook.y = (sliderLook.value * multiplayScale) * 2;
     }
     public void CheckImageButtonPause()
     {

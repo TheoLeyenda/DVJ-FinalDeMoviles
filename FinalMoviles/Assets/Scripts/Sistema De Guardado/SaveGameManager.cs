@@ -182,7 +182,16 @@ public class SaveGameManager : MonoBehaviour
                     string key = "Slot UnlokedObjects" + indexSlot + " - " + i;
                     PlayerPrefs.SetString(key, slotsSaveData[indexSlot].nameUnlokedObjects[i]);
                 }
-
+                if (gd.sensivility.x > 0 && gd.sensivility.y > 0)
+                {
+                    PlayerPrefs.SetFloat("Slot " + indexSlot + " - " + "Sensivilidad_X", gd.sensivility.x);
+                    PlayerPrefs.SetFloat("Slot " + indexSlot + " - " + "Sensivilidad_Y", gd.sensivility.y);
+                }
+                else
+                {
+                    PlayerPrefs.SetFloat("Slot " + indexSlot + " - " + "Sensivilidad_X", 1);
+                    PlayerPrefs.SetFloat("Slot " + indexSlot + " - " + "Sensivilidad_Y", 1);
+                }
                 PlayerPrefs.SetInt("Slot " + indexSlot + " - " + "OccupiedSlot", slotsSaveData[indexSlot].OccupiedSlot);
                 PlayerPrefs.SetInt("Slot " + indexSlot + " - " + "currentLevel", slotsSaveData[indexSlot].currentLevel);
                 PlayerPrefs.SetString("Slot " + indexSlot + " - " + "currentNameUser", slotsSaveData[indexSlot].currentNameUser);
@@ -253,6 +262,8 @@ public class SaveGameManager : MonoBehaviour
                         gd.nameUnlokedObjects.Add(PlayerPrefs.GetString(key));
                     }
                 }
+                gd.sensivility.x = PlayerPrefs.GetFloat("Slot " + indexSlot + " - " + "Sensivilidad_X" , 1);
+                gd.sensivility.y = PlayerPrefs.GetFloat("Slot " + indexSlot + " - " + "Sensivilidad_Y" , 1);
                 slotsSaveData[indexSlot].OccupiedSlot = PlayerPrefs.GetInt("Slot " + indexSlot + " - " + "OccupiedSlot");
                 gd.currentLevel = PlayerPrefs.GetInt("Slot " + indexSlot + " - " + "currentLevel");
                 gd.currentNameUser = PlayerPrefs.GetString("Slot " + indexSlot + " - " + "currentNameUser");

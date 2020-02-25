@@ -55,6 +55,8 @@ namespace DarkTreeFPS
         [Header("Fire mode")]
         public FireMode fireMode;
 
+        private float multiplaySensivilityInSniper = 1.2f;
+
         public int _totalAmmo;
         #region Utility variables
 
@@ -294,6 +296,8 @@ namespace DarkTreeFPS
 
         void Update()
         {
+            scopeSensitivityX = controller.sensitivity.x * multiplaySensivilityInSniper;
+            scopeSensitivityY = controller.sensitivity.y * multiplaySensivilityInSniper;
             movementSpreadFactor = controller.GetVelocityMagnitude();
 #if !UNITY_ANDROID
             if (Input.GetKey(input.Fire)  && !PlayerStats.isPlayerDead && weaponType != WeaponType.Pistol && !InventoryManager.showInventory && fireMode == FireMode.automatic)  //Statement to restrict auto-fire for pistol weapon type. Riffle and others are automatic
