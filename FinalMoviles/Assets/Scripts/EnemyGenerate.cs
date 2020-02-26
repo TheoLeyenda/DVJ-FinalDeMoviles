@@ -120,7 +120,7 @@ public class EnemyGenerate : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name == "Nivel 3")
         {
-            waves[0].countTotalEnemysWave = waves[0].countTotalEnemysWave - 2;
+            waves[waves.Count - 1].countTotalEnemysWave = waves[waves.Count - 1].countTotalEnemysWave - 3;
         }
     }
     private void OnEnable()
