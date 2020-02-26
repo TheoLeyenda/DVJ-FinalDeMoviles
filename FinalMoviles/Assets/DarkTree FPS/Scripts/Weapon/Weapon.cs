@@ -243,6 +243,7 @@ namespace DarkTreeFPS
 
             normalSensX = controller.sensitivity.x;
             normalSensY = controller.sensitivity.y;
+            
             normalFOV = cam.fieldOfView;
 
             weaponManager = FindObjectOfType<WeaponManager>();
@@ -295,8 +296,14 @@ namespace DarkTreeFPS
 
         void Update()
         {
+#if UNITY_STANDALONE
             scopeSensitivityX = controller.sensitivity.x;
             scopeSensitivityY = controller.sensitivity.y;
+#endif
+#if UNITY_ANDROID
+            scopeSensitivityX = 0.2f;
+            scopeSensitivityY = 0.2f;
+#endif
             movementSpreadFactor = controller.GetVelocityMagnitude();
 #if !UNITY_ANDROID
             if (Input.GetKey(input.Fire)  && !PlayerStats.isPlayerDead && weaponType != WeaponType.Pistol && !InventoryManager.showInventory && fireMode == FireMode.automatic)  //Statement to restrict auto-fire for pistol weapon type. Riffle and others are automatic
