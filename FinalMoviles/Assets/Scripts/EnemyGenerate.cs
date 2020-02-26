@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 
 public class EnemyGenerate : MonoBehaviour
@@ -116,6 +117,10 @@ public class EnemyGenerate : MonoBehaviour
         if (DisableGenerator)
         {
             gameObject.SetActive(false);
+        }
+        if (SceneManager.GetActiveScene().name == "Nivel 3")
+        {
+            waves[0].countTotalEnemysWave = waves[0].countTotalEnemysWave - 2;
         }
     }
     private void OnEnable()
