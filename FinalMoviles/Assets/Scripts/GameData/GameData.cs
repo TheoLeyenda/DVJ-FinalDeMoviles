@@ -37,7 +37,6 @@ public class GameData : MonoBehaviour
     public TypeAndroidControl typeAndroidControl;
     public enum TypeAndroidControl
     {
-        None,
         Analogic,
         TouchPad,
     }

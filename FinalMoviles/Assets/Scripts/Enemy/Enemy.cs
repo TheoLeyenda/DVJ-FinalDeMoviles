@@ -43,8 +43,8 @@ public class Enemy : MonoBehaviour
     public Construction construction;
     public Rigidbody rig;
 
-    private float delayResetVelocity = 0.5f;
-    private float auxDelayResetVelocity = 0.5f;
+    private float delayResetVelocity = 1.2f;
+    private float auxDelayResetVelocity = 1.2f;
     private bool resetVelocity = false;
 
     public enum StateEnemy
@@ -120,6 +120,7 @@ public class Enemy : MonoBehaviour
         CheckAnimations();
         CheckState();
         CheckInFire();
+        rig.velocity = Vector3.zero;  
     }
     public void CheckInFire()
     {
