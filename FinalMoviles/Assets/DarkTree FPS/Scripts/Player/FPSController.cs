@@ -96,6 +96,9 @@ namespace DarkTreeFPS
             inputManager = FindObjectOfType<InputManager>();
             crouch = false;
             sensitivity = gd.sensivility;
+
+            lockCursor = true;
+
         }
 
         private void Update()

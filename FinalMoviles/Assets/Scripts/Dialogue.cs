@@ -97,7 +97,8 @@ public class Dialogue : MonoBehaviour
         }
         public void FreezePlayer(Rigidbody rig)
         {
-            rig.constraints = RigidbodyConstraints.FreezeAll;
+            if(rig != null)
+                rig.constraints = RigidbodyConstraints.FreezeAll;
         }
     }
     private void OnEnable()

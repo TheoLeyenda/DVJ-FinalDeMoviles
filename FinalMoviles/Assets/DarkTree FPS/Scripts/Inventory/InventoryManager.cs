@@ -61,9 +61,9 @@ namespace DarkTreeFPS
             else
             {
                 canvas.enabled = true;
-#if !UNITY_ANDROID
-                controller.lockCursor = false;
-#endif
+//#if !UNITY_ANDROID
+                //controller.lockCursor = false;
+//#endif
                 blurEffect.enabled = true;
                 OnOpen.Invoke();
                 Time.timeScale = 0;
@@ -78,9 +78,9 @@ namespace DarkTreeFPS
             else
             {
                 canvas.enabled = false;
-#if !UNITY_ANDROID
-                controller.lockCursor = true;
-#endif
+//#if !UNITY_ANDROID
+                //controller.lockCursor = true;
+//#endif
                 blurEffect.enabled = false;
                 OnClose.Invoke();
                 Time.timeScale = 1;

@@ -16,6 +16,9 @@ public class ActivateDialogue : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            DarkTreeFPS.FPSController fpsController = other.GetComponent<DarkTreeFPS.FPSController>();
+
+            fpsController.lockCursor = false;
             go_dialogue.SetActive(true);
             if (disableCollider)
             {

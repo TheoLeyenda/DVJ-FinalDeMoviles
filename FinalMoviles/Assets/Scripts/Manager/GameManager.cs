@@ -154,30 +154,35 @@ public class GameManager : MonoBehaviour
                 shopSurvivalMode.ActivateCamvasShop();
 
             }
-
-            if (shopSurvivalMode.GetActivateCamvasShop())
+            if (gd.gameMode == GameData.GameMode.Survival)
             {
-                player.lockCursor = false;
-                if (wm.startParty)
+                if (shopSurvivalMode.GetActivateCamvasShop())
                 {
-                    wm.enableShoot = false;
+                    player.lockCursor = false;
+                    if (wm.startParty)
+                    {
+                        wm.enableShoot = false;
+                    }
                 }
-            }
-            else if (!camvasTeleport.activeSelf && !powerUpController.frameworkPowerUps.activeSelf && !shopSurvivalMode.GetActivateCamvasShop() && !gameOver)
-            {
+                else if (!camvasTeleport.activeSelf
+                    && !powerUpController.frameworkPowerUps.activeSelf
+                    && !shopSurvivalMode.GetActivateCamvasShop()
+                    && !gameOver)
+                {
 #if UNITY_STANDALONE
-                player.lockCursor = true;
+                    player.lockCursor = true;
 #endif
-                if (wm.startParty)
-                {
-                    wm.enableShoot = true;
+                    if (wm.startParty)
+                    {
+                        wm.enableShoot = true;
+                    }
                 }
-            }
-            else
-            {
-                if (wm.startParty)
+                else
                 {
-                    wm.enableShoot = false;
+                    if (wm.startParty)
+                    {
+                        wm.enableShoot = false;
+                    }
                 }
             }
 

@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DarkTreeFPS;
+using UnityEngine.UI;
 public class ControllerElementSurvivalTutorial : MonoBehaviour
 {
     // Start is called before the first frame update
+    public UIContructionController uiContructionController;
     public List<GameObject> stars;
+    public GameObject[] ArrowsObject;
+    public Button[] buttonsActivate;
     public CapsuleCollider colliderDialogueSoldier;
     public WeaponManager wm;
     public UINextWave uiNextWave;
@@ -42,20 +46,47 @@ public class ControllerElementSurvivalTutorial : MonoBehaviour
             //WeaponManager.SetActive(false);
             //fps.SetActive(false);
 
+
             camvasStory.SetActive(false);
             dialogueObject.SetActive(false);
             camvasDialogue.SetActive(false);
             ConstructionManager.SetActive(true);
+
+            
+
             for (int i = 0; i < stars.Count; i++)
             {
                 stars[i].SetActive(false);
             }
-
+            for (int i = 0; i < ArrowsObject.Length; i++)
+            {
+                ArrowsObject[i].SetActive(false);
+            }
         }
         else
         {
             stars[0].SetActive(true);
             stars[stars.Count - 1].SetActive(false);
+        }
+    }
+    private void Update()
+    {
+        if (gd.gameMode == GameData.GameMode.Survival)
+        {
+            for (int i = 0; i < buttonsActivate.Length; i++)
+                buttonsActivate[i].interactable = true;
+
+            for (int i = 0; i < gd.nameUnlokedObjects.Count; i++)
+            {
+                for (int j = 0; j < uiContructionController.buttons.Count; j++)
+                {
+                    if (gd.nameUnlokedObjects[i] == uiContructionController.buttons[j].nameConstruction)
+                    {
+                        uiContructionController.buttons[j].lockedButton = false;
+                        uiContructionController.buttons[j].CheckDataButton();
+                    }
+                }
+            }
         }
     }
     public void CheckEnableFPS()

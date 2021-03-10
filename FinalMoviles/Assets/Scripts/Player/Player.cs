@@ -60,34 +60,7 @@ public class Player : MonoBehaviour
         }
         currentGun = equipedGuns[indexGun];
     }
-    /*
-    public void ShootGunEquiped()
-    {
-        if (currentGun.GetBulletInCharger() > 0 && currentGun.GetEnableShoot())
-        {
-            if (currentGun.rateOfShoot <= 0)
-            {
-                switch (currentGun.typeGun)
-                {
-                    case Gun.TypeGun.Automatic:
-                        if (Input.GetButton("Fire"))
-                            currentGun.Shoot(Gun.TypeGun.Automatic);
-                        break;
-                    case Gun.TypeGun.Blast:
-                        if (Input.GetButtonDown("Fire"))
-                            currentGun.Shoot(Gun.TypeGun.Blast);
-                        break;
-                    case Gun.TypeGun.Semiautomatic:
-                        if (Input.GetButtonDown("Fire"))
-                            currentGun.Shoot(Gun.TypeGun.Semiautomatic);
-                        break;
-                }
-                currentGun.SetEnableShoot(false);
-                currentGun.rateOfShoot = currentGun.GetAuxRateOfShoot();
-            }
-        }
-    }
-    */
+    
     public void ReloadCurrentGun()
     {
         currentGun.Reload();
